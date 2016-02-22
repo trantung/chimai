@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,7 +96,6 @@ return array(
 	'providers' => array(
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Session\CommandsServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
@@ -114,13 +113,19 @@ return array(
 		'Illuminate\Queue\QueueServiceProvider',
 		'Illuminate\Redis\RedisServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',
-		'Illuminate\Auth\Reminders\ReminderServiceProvider',
+		'Ollieread\Multiauth\Reminders\ReminderServiceProvider',
 		'Illuminate\Database\SeedServiceProvider',
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		"Ollieread\Multiauth\MultiauthServiceProvider",
+		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+	    'Edisonthk\GoogleOAuth\GoogleOAuthServiceProvider',
+	    // 'Barryvdh\Debugbar\ServiceProvider',
+	    'Jenssegers\Agent\AgentServiceProvider',
+	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
 
 	),
 
@@ -188,7 +193,11 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
+		'GoogleOAuth'     => 'Edisonthk\GoogleOAuth\Facade\GoogleOAuth',
+		// 'Debugbar' 	      => 'Barryvdh\Debugbar\Facade',
+		'Agent' 		  => 'Jenssegers\Agent\Facades\Agent',
+		'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
+		
 	),
 
 );
