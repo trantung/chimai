@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoxCollectionTable extends Migration {
+class CreateLanguageTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBoxCollectionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('box_collections', function(Blueprint $table) {
+		Schema::create('languages', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name_menu', 256)->nullable();
 			$table->string('name_content', 256)->nullable();
@@ -29,7 +29,7 @@ class CreateBoxCollectionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('box_collections');
+		Schema::drop('languages');
 	}
 
 }

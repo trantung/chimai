@@ -12,7 +12,14 @@ class CreateBoxTypeTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('box_types', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('name_menu', 256)->nullable();
+			$table->string('name_content', 256)->nullable();
+			$table->integer('weight_number')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreateBoxTypeTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('box_types');
 	}
 
 }

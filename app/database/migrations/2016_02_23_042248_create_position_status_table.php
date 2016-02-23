@@ -12,7 +12,18 @@ class CreatePositionStatusTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('position_status', function(Blueprint $table) {
+			$table->increments('id');
+			$table->integer('model_id')->nullable();
+			$table->string('model_name', 256)->nullable();
+			$table->integer('relate_id')->nullable();
+			$table->string('relate_name', 256)->nullable();
+			$table->integer('position')->nullable();
+			$table->integer('status')->nullable();
+			$table->integer('weight_number')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +33,7 @@ class CreatePositionStatusTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('position_status');
 	}
 
 }
