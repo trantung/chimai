@@ -26,6 +26,11 @@ define('PAGINATE', 20);
 define('FRONENDPAGINATE', 8);
 //url upload img
 define('UPLOADIMG', '/images');
+//url upload boxtype, boxcollection, boxproduct
+define('BOXTYPE', '/box_type');
+define('BOXCOLLECTION', '/box_collection');
+define('BOXPRODUCT', '/box_product');
+
 //url upload avatar game
 define('UPLOAD_GAME_AVATAR', '/images/game_avatar');
 //url upload games
@@ -50,7 +55,7 @@ define('COMPUTER', 2);
 define('IS_UPLOAD_FILE', 1);
 define('IS_UPLOAD_UNIQUE', 1);
 //status admin
-define('INACTIVE', 0);
+define('INACTIVE', 2);
 define('ACTIVE', 1);
 //status game:
 define('DISABLED', 0);
@@ -161,4 +166,9 @@ define('MINI_GAME_SLUG', 'mini-game');
 
 define('LIMIT_HIGHTLIGHT_PC', 3);
 define('LIMIT_HIGHTLIGHT_MOBILE', 1);
+
+define('MENU', 1);
+define('CONTENT', 2);
+define('VI', 'vi');
+define('EN', 'en');
 

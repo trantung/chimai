@@ -17,6 +17,10 @@ class CreateBoxCollectionTable extends Migration {
 			$table->string('name_menu', 256)->nullable();
 			$table->string('name_content', 256)->nullable();
 			$table->integer('weight_number')->nullable();
+			$table->integer('status')->nullable();
+			$table->integer('position')->nullable();
+			$table->string('slug', 256)->nullable();
+			$table->string('image_url', 256)->nullable();
 			$table->softDeletes();
 			$table->timestamps();
 		});

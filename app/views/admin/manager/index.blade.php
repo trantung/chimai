@@ -44,7 +44,6 @@
 				  <td>
 					{{-- <a href="#" class="btn btn-success">Xem</a> --}}
 					<a href="{{action('ManagerController@changePassword', $value->id) }}" class="btn btn-primary">Change Pass</a>
-					<a href="{{ action('ManagerController@history', $value->id) }}" class="btn btn-success">Lịch sử</a>
 					<a href="{{ action('ManagerController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>
 					{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
 					<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>

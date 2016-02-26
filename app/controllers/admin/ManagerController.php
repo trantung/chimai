@@ -9,7 +9,11 @@ class ManagerController extends AdminController {
 	 */
 	public function index()
 	{
-		$data = Admin::orderBy('id', 'asc')->paginate(PAGINATE);
+		$data = Admin::orderBy('id', 'asc')
+			// ->get()
+			// ->toArray();
+			->paginate(PAGINATE);
+		// dd($data);
 		return View::make('admin.manager.index')->with(compact('data'));
 	}
 
