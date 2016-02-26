@@ -18,6 +18,7 @@ class CreateAdminTable extends Migration {
             $table->string('email', 256)->nullable();
             $table->string('password', 256)->nullable();
             $table->string('username', 256)->nullable();
+            $table->integer('status')->nullable();
             $table->string('remember_token', 256)->nullable();
             $table->softDeletes();
             $table->timestamps();
