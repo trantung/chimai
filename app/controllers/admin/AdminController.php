@@ -1,7 +1,8 @@
 <?php
-
 class AdminController extends BaseController {
-
+    public function __construct() {
+        $this->beforeFilter('admin', array('except'=>array('login','doLogin')));
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,10 +10,13 @@ class AdminController extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$checkLogin = Auth::admin()->check();
+        if($checkLogin) {
+    		return Redirect::action('ManagerController@edit', Auth::admin()->get()->id);
+        } else {
+            return View::make('admin.layout.login');
+        }
 	}
-
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -22,8 +26,6 @@ class AdminController extends BaseController {
 	{
 		//
 	}
-
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -33,8 +35,6 @@ class AdminController extends BaseController {
 	{
 		//
 	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -45,8 +45,6 @@ class AdminController extends BaseController {
 	{
 		//
 	}
-
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -55,10 +53,8 @@ class AdminController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
-	}
-
-
+	
+    }
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -67,10 +63,8 @@ class AdminController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		
 	}
-
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -81,6 +75,58 @@ class AdminController extends BaseController {
 	{
 		//
 	}
-
-
+    public function login()
+    {
+    	$checkLogin = Auth::admin()->check();
+        if($checkLogin) {
+	    	if (Auth::admin()->get()->status == ACTIVE) {
+	    		return Redirect::action('ManagerController@edit', Auth::admin()->get()->id);
+	    	}else{
+	    		return View::make('admin.layout.login')->with(compact('message','chưa kich hoat'));
+	    	}
+        } else {
+            return View::make('admin.layout.login');
+        }
+    }
+    public function doLogin()
+    {
+        $rules = array(
+            'username'   => 'required',
+            'password'   => 'required',
+        );
+        $input = Input::except('_token');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::route('admin.login')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            Auth::admin()->attempt($input);
+            $checkLogin = Auth::admin()->check();
+            if($checkLogin) {
+            	if (Auth::admin()->get()->status == ACTIVE) {
+            		$inputUser = CommonSite::ipDeviceUser();
+	            	CommonNormal::update(Auth::admin()->get()->id, $inputUser, 'Admin');     
+					//update history
+					$inputHistory = AdminHistory::where('model_name', 'Admin')->where('model_id', Auth::admin()->get()->id)->first();
+					$history_id = CommonLog::updateHistory('Admin', Auth::admin()->get()->id);
+					CommonLog::insertLogEdit('Admin', Auth::admin()->get()->id, $history_id, LOGIN);
+	        		return Redirect::action('ManagerController@index');
+            	}
+            	else{
+            		return View::make('admin.layout.login');
+            	}
+            	
+            } else {
+                return Redirect::route('admin.login');
+            }
+        }
+    }
+    public function logout()
+    {
+        Auth::admin()->logout();
+        Session::flush();
+        return Redirect::route('admin.login');
+    }
 }
+
