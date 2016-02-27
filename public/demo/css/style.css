@@ -92,6 +92,10 @@ a:focus{
 .form-search{
     
 }
+.input_search_a {
+    border-color: #ccc;
+    color: #888;
+}
 .input_search input {
     padding: 0.5rem 1rem;
 }
