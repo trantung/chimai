@@ -10,13 +10,20 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 Route::group(['prefix' => 'admin'], function () {
 
 	Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
 	Route::post('/login', array('uses' => 'AdminController@doLogin'));
 	Route::get('/logout', array('uses' => 'AdminController@logout', 'as' => 'admin.logout'));
 	Route::resource('/', 'AdminController');
+	Route::group(['prefix' => 'box'], function(){
+		//box tin tức hiển thị trên menu hoặc content
+		Route::resource('/type', 'BoxTypeController');
+		//box bộ sưu tập hiển thị trên menu hoặc content
+		Route::resource('/collection', 'BoxCollectionController');
+		//box sản phẩm hiển thị trên menu hoặc content
+		Route::resource('/product', 'BoxProductController');
+	});
 
 	Route::get('/manager/changepassword/{id}', array('uses' => 'ManagerController@changePassword', 'as' => 'admin.manager.chanpassword'));
 	Route::post('/manager/updatePassword/{id}', array('uses' => 'ManagerController@updatePassword'));
