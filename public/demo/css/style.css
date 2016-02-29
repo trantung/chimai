@@ -465,6 +465,7 @@ a.quick_compare_button {
 .bt_contact p {
     display: inline-block;
     font-size: 13px;
+    margin-bottom: 5px;
 }
 .bt_contact strong {
     display: block;
