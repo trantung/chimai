@@ -1843,7 +1843,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     border-top: 3px solid #055082;
     /*overflow: hidden;*/
 }
-forgotpassword_form {
+.forgotpassword_form {
     margin-bottom: 20px;
 }
 .forgotpassword h2,
