@@ -161,11 +161,11 @@ a:focus{
     padding: 0 6px;
     text-transform: uppercase;
     list-style: none;
-    color: #f06414;
+    color: #ED1C24;
 }
 .custom-block i.fa {
     padding-right: 7px;
-    color: #777;
+    color: #ed1c24;
 }
 .custom-block ul li a{
     color: #777; 
@@ -238,7 +238,7 @@ a.mini-cart{
     display: none;
 }
 .quick_compare_box a.compare_item::after {
-    background: #f06414 url("../imgs/remove.png") no-repeat scroll center center / 16px auto;
+    background: #ED1C24 url("../imgs/remove.png") no-repeat scroll center center / 16px auto;
     border-radius: 5px;
     content: "";
     height: 80%;
@@ -371,7 +371,7 @@ a.quick_compare_button {
     max-width: 100%;
 }
 .mega-menu-1a-item > a {
-    background-color: #f06414 !important;
+    background-color: #ED1C24 !important;
     border-radius: 4px !important;
     bottom: 15px;
     color: #fff !important;
@@ -400,7 +400,7 @@ a.quick_compare_button {
 /*BOTTOM FOOTER*/
 
 .bottom {
-    background: #f5f5f5 none repeat scroll 0 0;
+    background: #bbb none repeat scroll 0 0;
     padding-bottom: 20px;
     padding-top: 20px;
     font-size: 14px;
@@ -427,7 +427,7 @@ a.quick_compare_button {
 }
 .bt_account ul li i.fa {
     padding-right: 10px;
-    color: #f06414;
+    color: #ED1C24;
     font-size: 20px;
 }
 .bt_account ul li a {
@@ -478,14 +478,14 @@ a.quick_compare_button {
     
 }
 input.bt_newsletter_text {
-    border-color: #f06414;
-    border-radius: 0 !important;
+    border-color: #ED1C24;
+    border-radius: 5px 0 0 5px !important;
     margin-bottom: 0;
 }
 input.bt_newsletter_submit {
-    background: #f06414 none repeat scroll 0 0;
-    border-color: #f06414;
-    border-radius: 0 !important;
+    background: #ED1C24 none repeat scroll 0 0;
+    border-color: #ED1C24;
+    border-radius: 0 5px 5px 0 !important;
     color: #fff;
     font-weight: bold;
 }
@@ -506,7 +506,7 @@ p.bt_newsletter_title {
 }
 .bt-box ul li i.fa {
     padding-right: 10px;
-    color: #f06414;
+    color: #ED1C24;
     font-size: 20px;
 }
 .bt-box ul li a {
@@ -534,10 +534,10 @@ p.bt_newsletter_title {
 }
 
 footer {
-    background: #ebebeb none repeat scroll 0 0;
+    background: #aaa none repeat scroll 0 0;
     font-size: 13px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 .footer_logo img {
     max-width: 100%;
@@ -591,7 +591,7 @@ footer {
 
 footer p {
     text-align: center;
-    color: #888;
+    color: #555;
     margin-bottom: 0;
     font-size: 13px;
 }
@@ -804,7 +804,7 @@ footer p {
     color: #055082;
 }
 .price {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 25px;
     font-weight: 400;
     margin: 5px;
@@ -822,7 +822,7 @@ footer p {
     padding-right: 5px;
 }
 .price_sale span {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 30px;
     text-decoration: none;
     display: inline;
@@ -843,9 +843,9 @@ footer p {
 }
 .cart_heart {
     background-color: transparent;
-    border: 1px solid #f06414;
+    border: 1px solid #ED1C24;
     border-radius: 5px;
-    color: #f06414;
+    color: #ED1C24;
     display: inline-block;
     font-size: 16px;
     height: auto;
@@ -858,7 +858,7 @@ footer p {
     opacity: 0;
 }
 .cart_heart:hover {
-    color: #f06414;
+    color: #ED1C24;
 }
 .add_cart {
     background-color: #fff;
@@ -876,8 +876,8 @@ footer p {
 .add_cart:hover,
 .add_cart:focus {
     color: #fff;
-    background-color: #f06414;
-    border: 1px solid #f06414;
+    background-color: #ED1C24;
+    border: 1px solid #ED1C24;
 }
 .add_cart i.fa-shopping-cart {
     font-size: 20px;
@@ -920,8 +920,8 @@ footer p {
 .top_selling_col:hover a.add_cart,
 .top_selling_col1:hover a.add_cart {
     color: #fff;
-    background-color: #f06414;
-    border: 1px solid #f06414;
+    background-color: #ED1C24;
+    border: 1px solid #ED1C24;
 }
 
 /*=========================================================================================================================================*/
@@ -1203,11 +1203,11 @@ footer p {
 
 .side {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px 10px 5px 5px;
     margin-bottom: 15px;
 }
 .side > h3 {
-    background: #f5f5f5 none repeat scroll 0 0;
+    background: #bbb none repeat scroll 0 0;
     border-bottom: 1px solid #ccc;
     border-radius: 5px 5px 0 0;
     color: #055082 !important;
@@ -1315,7 +1315,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     display: inline;
 }
 .regular_price p {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 30px;
     padding-left: 10px;
     display: inline;
@@ -1327,8 +1327,8 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding: 20px 0;
 }
 .detail_cart a.add_cart {
-    background-color: #f06414;
-    border-color: #f06414;
+    background-color: #ED1C24;
+    border-color: #ED1C24;
     color: #fff;
     padding: 5px 20px 5px 15px;
 }
@@ -1475,8 +1475,8 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin-bottom: 20px;
 }
 .compare_cart a.add_cart {
-    background-color: #f06414;
-    border-color: #f06414;
+    background-color: #ED1C24;
+    border-color: #ED1C24;
     color: #fff;
     padding: 5px 20px 5px 15px;
 }
@@ -1484,16 +1484,16 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     opacity: 0.9;
 }
 .value_color td {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 20px;
     font-weight: bold;
 }
 .back_to_home {
-    color: #f06414;
+    color: #ED1C24;
 }
 .back_to_home:hover,
 .back_to_home:focus {
-    color: #f06414;
+    color: #ED1C24;
 }
 /*--------*/
 .top_selling_col1  {
@@ -1512,7 +1512,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     width: 70%;
 }
 .price1 {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 20px;
     font-weight: 400;
     margin: 5px;
@@ -1707,7 +1707,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     border-radius: 5px;
 }
 .contact_form_left label em {
-    color: #f06414;
+    color: #ED1C24;
 }
 .contact_form_right {
     margin-bottom: 20px;
@@ -1750,7 +1750,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding: 10px;
 }
 .main_page a {
-    color: #f06414;
+    color: #ED1C24;
 }
 .main_page table tr td,
 .main_page table tr th {
@@ -1798,7 +1798,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin-bottom: 10px;
 }
 .login_form .contact_form_left a {
-    color: #f06414;
+    color: #ED1C24;
     font-size: 14px;
 }
 .login_form2b {
@@ -1813,7 +1813,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding: 10px 20px;
 }
 .login_form2b a {
-    color: #f06414;
+    color: #ED1C24;
     text-decoration: underline;
 }
 .login_form1 .contact_form_left ul {
@@ -1885,17 +1885,17 @@ forgotpassword_form {
 .forgotpassword_form label em,
 .create_an_account_form label em,
 .shopping_cart form label em {
-    color: #f06414;
+    color: #ED1C24;
 }
 .forgotpassword_form a,
 .create_an_account_form a,
 .shopping_continue a {
-    color: #f06414;
+    color: #ED1C24;
     text-decoration: underline;
 }
 .forgotpassword_form a i.fa,
 .create_an_account_form a i.fa {
-    color: #f06414;
+    color: #ED1C24;
 }
 .forgotpassword_form button,
 .create_an_account_form button,
@@ -1962,7 +1962,7 @@ a.button2 i.fa {
    margin-left: 0; 
 }
 .checkoutb ul li p span {
-    color: #f06414;
+    color: #ED1C24;
     margin-left: 30px;
     font-size: 20px;
     font-weight: bold;
@@ -1978,7 +1978,7 @@ a.button2 i.fa {
     padding-top: 10px;
 }
 .checkout .create_an_account_form a {
-    color: #f06414;
+    color: #ED1C24;
     margin-bottom: 10px;
     margin-left: 35px;
     margin-top: 10px;
