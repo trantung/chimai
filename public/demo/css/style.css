@@ -40,8 +40,8 @@ a:focus{
     border-color: #055082;
 }
 .button:hover, .button:focus {
-    background-color: #007095;
-    border-color: #007095;
+    background-color: #fc2b33;
+    border-color: #fc2b33;
 }
 
 /*=========================================================================================================================================*/
@@ -400,7 +400,7 @@ a.quick_compare_button {
 /*BOTTOM FOOTER*/
 
 .bottom {
-    background: #bbb none repeat scroll 0 0;
+    background: #ddd none repeat scroll 0 0;
     padding-bottom: 20px;
     padding-top: 20px;
     font-size: 14px;
@@ -534,7 +534,7 @@ p.bt_newsletter_title {
 }
 
 footer {
-    background: #aaa none repeat scroll 0 0;
+    background: #c9c9c9 none repeat scroll 0 0;
     font-size: 13px;
     padding-bottom: 15px;
     padding-top: 15px;
@@ -1207,7 +1207,7 @@ footer p {
     margin-bottom: 15px;
 }
 .side > h3 {
-    background: #bbb none repeat scroll 0 0;
+    background: #c9c9c9 none repeat scroll 0 0;
     border-bottom: 1px solid #ccc;
     border-radius: 5px 5px 0 0;
     color: #055082 !important;
@@ -1703,7 +1703,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin: 0;
     padding: 10px 35px;
     font-weight: bold;
-    background-color: #055082;
+    background-color: #ed1c24;
     border-radius: 5px;
 }
 .contact_form_left label em {
@@ -1901,7 +1901,7 @@ forgotpassword_form {
 .create_an_account_form button,
 .shopping_cart_form button,
 a.button2 {
-    background-color: #055082;
+    background-color: #ed1c24;
     border-radius: 5px;
     color: #fff;
     padding: 10px 15px;
