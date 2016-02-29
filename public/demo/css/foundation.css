@@ -1857,11 +1857,11 @@ meta.foundation-mq-topbar {
         padding-right: 0.9375rem;
         background-color: #008CBA;
         border-color: #007095;
-        color: #32b4ff; }
+        color: #055082; }
         .top-bar-section ul li > a.button:hover, .top-bar-section ul li > a.button:focus {
           background-color: #007095; }
         .top-bar-section ul li > a.button:hover, .top-bar-section ul li > a.button:focus {
-          color: #32b4ff; }
+          color: #055082; }
       .top-bar-section ul li > a.button.secondary {
         background-color: #e7e7e7;
         border-color: #b9b9b9;
@@ -1955,7 +1955,7 @@ meta.foundation-mq-topbar {
           color: #FFFFFF; }
     .top-bar-section ul li:hover:not(.has-form) > a {
       background-color: #555555;
-      color: #32b4ff;
+      color: #055082;
       background: #fbfbfb; }
     .top-bar-section ul li.active > a {
       background: #31B4FF;
@@ -2094,16 +2094,16 @@ meta.foundation-mq-topbar {
       line-height: 2.8125rem;
       padding: 0 0.9375rem; }
       .top-bar-section li:not(.has-form) a:not(.button):hover {
-        color: #32b4ff;
+        color: #055082;
         background: #fbfbfb; }
     .top-bar-section li.active:not(.has-form) a:not(.button) {
       background: #fbfbfb;
-      color: #32b4ff;
+      color: #055082;
       line-height: 2.8125rem;
       padding: 0 0.9375rem; }
       .top-bar-section li.active:not(.has-form) a:not(.button):hover {
         background: #fbfbfb;
-        color: #32b4ff; }
+        color: #055082; }
     .top-bar-section .has-dropdown > a {
       padding-right: 2.1875rem !important; }
       .top-bar-section .has-dropdown > a:after {

@@ -36,8 +36,8 @@ a:focus{
 }
 
 .button {
-    background-color: #32b4ff;
-    border-color: #32b4ff;
+    background-color: #055082;
+    border-color: #055082;
 }
 .button:hover, .button:focus {
     background-color: #007095;
@@ -72,7 +72,7 @@ a:focus{
     padding-right: 0;
 }
 .top ul li a {
-    color: #32b4ff;
+    color: #055082;
     padding-bottom: 5px;
     padding-top: 5px;
 }
@@ -190,7 +190,7 @@ a:focus{
     text-align: right;
 }
 a.mini-cart{
-    background: #32b4ff none repeat scroll 0 0 !important;
+    background: #055082 none repeat scroll 0 0 !important;
     border-radius: 5px;
     color: #fff !important;
     display: inline-block !important;
@@ -255,7 +255,7 @@ a.mini-cart{
     height: 40px;
 }
 a.quick_compare_button {
-    background: #32b4ff none repeat scroll 0 0 !important;
+    background: #055082 none repeat scroll 0 0 !important;
     border-radius: 5px;
     color: #fff !important;
     display: inline-block !important;
@@ -310,15 +310,15 @@ a.quick_compare_button {
     box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3);
 }
 .top-bar-section li:not(.has-dropdown) .f-dropdown {
-    border-top: 5px solid #32b4ff;
+    border-top: 5px solid #055082;
 }
 .top-bar-section li:not(.has-dropdown) .f-dropdown::before,
 .top-bar-section li:not(.has-dropdown) .f-dropdown::after {
-    border-color: transparent transparent #32b4ff;
+    border-color: transparent transparent #055082;
     top: -17px;
 }
 .top-bar-section .dropdown {
-    border-top: 5px solid #32b4ff;
+    border-top: 5px solid #055082;
     box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3);
 }
 .top-bar-section .dropdown li label {
@@ -585,8 +585,8 @@ footer {
 }
 .footer_social ul li a:hover,
 .footer_social ul li a:focus {
-    border-color: #32b4ff;
-    color: #32b4ff;
+    border-color: #055082;
+    color: #055082;
 }
 
 footer p {
@@ -635,7 +635,7 @@ footer p {
     visibility: visible;
 }
 .go-to-top:hover {
-    background-color: #32b4ff;
+    background-color: #055082;
     color: #fff;
 }
 @media (max-width: 1335px) {
@@ -769,7 +769,7 @@ footer p {
     font-weight: 500; 
 }
 .tabs dd.active a, .tabs .tab-title.active a {
-    color: #32b4ff;
+    color: #055082;
     font-weight: 500;
 }
 .tabs {
@@ -886,9 +886,9 @@ footer p {
 }
 .add_compare {
     background-color: transparent;
-    border: 1px solid #32b4ff;
+    border: 1px solid #055082;
     border-radius: 5px;
-    color: #32b4ff;
+    color: #055082;
     display: inline-block;
     font-size: 16px;
     height: auto;
@@ -902,7 +902,7 @@ footer p {
 }
 .add_compare:hover,
 .add_compare:focus {
-    color: #32b4ff;
+    color: #055082;
 }
 
 .top_selling_col:hover a.cart_heart,
@@ -1068,8 +1068,8 @@ footer p {
 }
 
 .prslide_item a {
-    background-color: #32b4ff;
-    border: 1px solid #32b4ff;
+    background-color: #055082;
+    border: 1px solid #055082;
     border-radius: 5px;
     color: #fff;
     display: inline-block;
@@ -1112,7 +1112,7 @@ footer p {
 }
 .breadcrumb ul li a:hover,
 .breadcrumb ul li a:focus {
-    color: #32b4ff;
+    color: #055082;
 }
 /*=========================================================================================================================================*/
 .main_container { 
@@ -1133,7 +1133,7 @@ footer p {
     padding: 2px 8px;
 }
 .sortby a {
-    color: #32b4ff;
+    color: #055082;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -1174,20 +1174,20 @@ footer p {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
-    color: #32b4ff;
+    color: #055082;
     display: block;
     height: 30px;
     padding: 0;
 }
 .paging ul li a:hover,
 .paging ul li a:focus {
-    background-color: #32b4ff;
-    border-color: #32b4ff;
+    background-color: #055082;
+    border-color: #055082;
     color: #fff;
     text-decoration: none;
 }
 .paging ul li.current {
-    background-color: #32b4ff;
+    background-color: #055082;
     color: #fff;
 }
 .paging2 {
@@ -1232,11 +1232,11 @@ footer p {
     text-decoration: underline;
 }
 .side ul li.active a {
-    color: #32b4ff;
+    color: #055082;
 }
 .side ul li a i.fa {
     padding-right: 7px;
-    color: #32b4ff;
+    color: #055082;
 }
 .sale_pr {
     border: none;
@@ -1253,7 +1253,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     text-align: center;
 }
 .price_filter a {
-    background-color: #32b4ff;
+    background-color: #055082;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #fff;
@@ -1378,8 +1378,8 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 .detail_social ul li a:hover,
 .detail_social ul li a:focus {
     background-color: #f7f7f7;
-    border-color: #32b4ff;
-    color: #32b4ff;
+    border-color: #055082;
+    color: #055082;
 }
 .detail_social ul li a i.fa {
     text-align: center;
@@ -1387,8 +1387,8 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 }
 .detail_social ul li a:hover,
 .detail_social ul li a:focus {
-    border-color: #32b4ff;
-    color: #32b4ff;
+    border-color: #055082;
+    color: #055082;
 }
 /*------------*/
 .detail_bottom {
@@ -1422,7 +1422,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     border-style: solid;
     border-width: 3px 1px 0;
     margin-right: 2px;
-    border-top-color: #32b4ff;
+    border-top-color: #055082;
 }
 .Warranty_Policy p,
 .Advisory p, 
@@ -1468,7 +1468,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     height: 120px;
 }
 .spec_color a  {
-    color: #32b4ff;
+    color: #055082;
 }
 .compare {
     margin-top: 20px;
@@ -1619,7 +1619,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin-bottom: 3px;
 }
 .about_title {
-    color: #32b4ff;
+    color: #055082;
 }
 .about_body {
     bottom: 50px;
@@ -1636,7 +1636,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 .about_body1b h3,
 .about_body2 h3,
 .about_body3 h3 {
-    color: #32b4ff;
+    color: #055082;
     font-size: 19px;
     font-weight: bold;
     text-decoration: underline;
@@ -1674,7 +1674,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 }
 .contact_form h2,
 .search_form h2 {
-    color: #32b4ff;
+    color: #055082;
     font-size: 20px;
     margin-bottom: 10px;
     margin-left: 9px;
@@ -1703,7 +1703,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin: 0;
     padding: 10px 35px;
     font-weight: bold;
-    background-color: #32b4ff;
+    background-color: #055082;
     border-radius: 5px;
 }
 .contact_form_left label em {
@@ -1741,7 +1741,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 .contact_form form,
 .search_form form,
 .main_page {
-    border-color: #32b4ff #eee #eee;
+    border-color: #055082 #eee #eee;
     border-image: none;
     border-radius: 6px;
     border-style: solid;
@@ -1775,10 +1775,10 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
     padding: 10px;
-    border-top: 3px solid #32b4ff
+    border-top: 3px solid #055082
 }
 .login_form h2 {
-    color: #32b4ff;
+    color: #055082;
     font-size: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -1809,7 +1809,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding-right: 20px;
 }
 .login_form2b button {
-    background-color: #32b4ff;
+    background-color: #055082;
     padding: 10px 20px;
 }
 .login_form2b a {
@@ -1839,7 +1839,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
     padding: 10px;
-    border-top: 3px solid #32b4ff;
+    border-top: 3px solid #055082;
     /*overflow: hidden;*/
 }
 forgotpassword_form {
@@ -1851,7 +1851,7 @@ forgotpassword_form {
 .compare h2,
 .shopping_cart h2,
 .orders h2 {
-    color: #32b4ff;
+    color: #055082;
     font-size: 20px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -1901,7 +1901,7 @@ forgotpassword_form {
 .create_an_account_form button,
 .shopping_cart_form button,
 a.button2 {
-    background-color: #32b4ff;
+    background-color: #055082;
     border-radius: 5px;
     color: #fff;
     padding: 10px 15px;
@@ -1985,7 +1985,7 @@ a.button2 i.fa {
     text-decoration: underline;
 }
 .checkout .create_an_account_form a.button2 {
-    background: #32b4ff none repeat scroll 0 0;
+    background: #055082 none repeat scroll 0 0;
     color: #fff;
     margin: 0 0 10px;
     text-decoration: none;
@@ -2004,7 +2004,7 @@ a.button2 i.fa {
     color: #055082;
 }
 .accordion-navigation > a {
-    border-left: 2px solid #32b4ff;
+    border-left: 2px solid #055082;
     border-radius: 7px;
 }
 .button_acc a {
