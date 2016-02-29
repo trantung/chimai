@@ -401,6 +401,7 @@ a.quick_compare_button {
 
 .bottom {
     background: #ddd none repeat scroll 0 0;
+    border-top: 2px solid #ccc;
     padding-bottom: 20px;
     padding-top: 20px;
     font-size: 14px;
@@ -780,7 +781,7 @@ footer p {
     text-align: center;
 }
 .top_selling_col {
-    height: 260px;
+    height: 195px;
     margin-bottom: 15px;
 }
 .tab_bar .top_selling {
@@ -1497,7 +1498,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 }
 /*--------*/
 .top_selling_col1  {
-    height: 260px;
+    height: 195px;
     margin-bottom: 50px;
     margin-left: 10px;
     margin-right: 10px;
