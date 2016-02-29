@@ -12,7 +12,7 @@ class CreatePositionStatusTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('position_status', function(Blueprint $table) {
+		Schema::create('box_commons', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('model_id')->nullable();
 			$table->string('model_name', 256)->nullable();

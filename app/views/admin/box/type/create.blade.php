@@ -6,7 +6,7 @@
 
 @section('content')
 
-@include('admin.typenew.common')
+@include('admin.box.common')
 
 <div class="row">
 	<div class="col-xs-12">
@@ -14,21 +14,39 @@
 		{{ Form::open(array('action' => array('BoxTypeController@store'), 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên Vietnamese</label>
+					<label for="name">Tên menu Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name', null , textParentCategory('Tên thể loại tin')) }}
+						   {{ Form::text('name_menu', null , textPlaceHolder('Tên thể loại tin')) }}
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name">Tên English</label>
+					<label for="name">Tên content Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('en_name', null , textParentCategory('Name')) }}
+						   {{ Form::text('name_content', null , textPlaceHolder('Tên thể loại tin')) }}
 						</div>
 					</div>
 				</div>
+				@foreach($arrayLang as $keyLang => $singLang)
+					<div class="form-group">
+						<label for="name">Tên menu {{ $singLang }}</label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text($singLang.'_'.'name_menu', null , textPlaceHolder('Name')) }}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name">Tên content {{ $singLang }} </label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text($singLang.'_'.'name_content', null , textPlaceHolder('Name')) }}
+							</div>
+						</div>
+					</div>
+				@endforeach
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
@@ -37,7 +55,7 @@
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('weight_number', null , textParentCategory('Mức ưu tiên')) }}
+							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
 						</div>
 					</div>
 				</div>

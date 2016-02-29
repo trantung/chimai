@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class BoxType extends Eloquent implements SluggableInterface
+class BoxProduct extends Eloquent implements SluggableInterface
 {
 	use SoftDeletingTrait;
 	use SluggableTrait;
@@ -15,7 +15,7 @@ class BoxType extends Eloquent implements SluggableInterface
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(
-        'build_from' => 'name',
+        'build_from' => 'name_menu',
         'save_to'    => 'slug',
     );
 }

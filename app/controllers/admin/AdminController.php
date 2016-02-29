@@ -2,6 +2,8 @@
 class AdminController extends BaseController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin')));
+        $arrayLang = Common::getArrayLangNotVi();
+		View::share('arrayLang', $arrayLang);
     }
 	/**
 	 * Display a listing of the resource.

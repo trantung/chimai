@@ -169,6 +169,9 @@ define('LIMIT_HIGHTLIGHT_MOBILE', 1);
 
 define('MENU', 1);
 define('CONTENT', 2);
+define('FOOTER', 3);
 define('VI', 'vi');
 define('EN', 'en');
+define('FR', 'fr');
+define('CN', 'cn');
 
