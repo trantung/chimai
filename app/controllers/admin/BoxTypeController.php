@@ -16,17 +16,11 @@ class BoxTypeController extends BoxController {
 	public function store()
 	{
 		$input = Input::except('_token');
-		//create get id
 		$viId = Common::createBox($input, 'BoxType');
-		//upload image with id
-		// $imageUrl = Common::uploadImage($viId, UPLOADIMG, 'image_url', BOXTYPE);
-		// //update image name into table
-		// $update = Common::updateImageBox($imageUrl, $viId, $enId, 'BoxType');
-		//return 
-		// if ($update) {
-		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
-		// }
-		dd('sai cmnr');
+		if ($viId) {
+			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
 	}
 	public function edit($id)
 	{

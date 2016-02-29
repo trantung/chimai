@@ -23,6 +23,21 @@
 				</ul>
 
 			</li>
+			<li>
+				<a href="{{ action('ManagerController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý file pdf</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{ action('ManagerController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý ảnh</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{ action('ManagerController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý video</span>
+				</a>
+			</li>
 		</ul>
 	</section>
 </aside>

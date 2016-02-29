@@ -3,7 +3,7 @@ class Common {
 
 	public static function getArrayLang()
 	{
-		$lang = array(VI => VI, EN => EN);
+		$lang = array(VI => VI, EN => EN, FR=>FR, CN => CN);
 		return $lang;
 	}
 
@@ -102,13 +102,10 @@ class Common {
 	{
 		//get default array
 		$default = self::getDefaultValue($modelName, $input);
-		// $originInput = $input;
-		//remove input['image_url']
 		if ($input['image_url']) {
 			unset($input['image_url']);
 		}
 		//get viInput and enInput, frInput...
-		// $name = self::getInputLanguage($lang, $input);
 		$viInput = array();
 		$foreignInput = array();
 		$commonInput = array_diff($input, $default);
@@ -117,7 +114,6 @@ class Common {
 			//get enInput, frInput..
 			$strLang = substr($key, 0, 2);
 			if (in_array($strLang, $getArrayLangNotVi)) {
-				// $prefix = $strLang.'Input';
 				$foreignInput[$strLang][substr($key, 3)] = $value;
 			}
 			else {
@@ -133,6 +129,10 @@ class Common {
 		}
 		//create BoxCommon
 		self::createBoxCommon($id, $idRelates, $modelName, $default);
+		//upload image with viId, enId...
+		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName);
+		//update box with image name
+		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
 		return $id;
 	}
 	public static function create($modelName, $input, $default)
@@ -155,12 +155,12 @@ class Common {
 			return $imageSeo;
 		}
 	}
-	public static function updateImageBox($imageUrl, $viId, $enId, $modelName)
+	public static function updateImageBox($imageUrl, $viId, $idRelates, $modelName)
 	{
-		$updateVi = $modelName::find($viId);
-		$updateEn = $modelName::find($enId);
-		$updateVi->update(array('image_url' => $imageUrl));
-		$updateEn->update(array('image_url' => $imageUrl));
+		$viId = $modelName::find($viId)->update(array('image_url' => $imageUrl));;
+		foreach ($idRelates as $key => $value) {
+			$modelName::find($value)->update(array('image_url' => $imageUrl));
+		}
 		return $viId;
 	}
 
