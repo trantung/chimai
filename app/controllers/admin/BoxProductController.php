@@ -1,6 +1,6 @@
 <?php
 
-class BoxProductController extends AdminController {
+class BoxProductController extends BoxController {
 
 	/**
 	 * Display a listing of the resource.

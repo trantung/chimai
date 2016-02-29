@@ -8,7 +8,6 @@ class BaseController extends Controller {
         //agent check tablet mobile desktop
 		$agent = new Agent();
     }
-
 	/**
 	 * Setup the layout used by the controller.
 	 *

@@ -20,7 +20,7 @@ function selectRoleId()
 		SEO => 'SEO',
 	);
 }
-function textParentCategory($input, $isSeoMeta = NULL, $id = NULL)
+function textPlaceHolder($input, $isSeoMeta = NULL, $id = NULL)
 {
 	if(!Admin::isSeo() || $isSeoMeta) {
 		return array('placeholder' => $input, 'class' => 'form-control','id' => $id);

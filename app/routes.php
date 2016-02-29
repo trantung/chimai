@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 Route::group(['prefix' => 'admin'], function () {
 
 	Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
