@@ -87,14 +87,14 @@
 					<li><a href="products.html" title="">Sản phẩm</a></li>
 					<li><a href="products.html" title="">Khuyến mại</a></li>
 					<li class="has-dropdown">
-						<a href="#">Bộ sưu tập</a>
+						<a href="collection.html">Bộ sưu tập</a>
 						<ul class="dropdown">
-							<li><a href="#">Catelogue</a></li>
-							<li><a href="#">Showroom trưng bày</a></li>
+							<li><a href="catalogue.html">Catelogue</a></li>
+							<li><a href="catalogue1.html">Showroom trưng bày</a></li>
 							<li><a href="#">Công trình đã thực hiện</a></li>
 							<li><a href="#">Chứng nhận chất lượng</a></li>
 							<li><a href="#">Giải thưởng đạt được</a></li>
-							<li><a href="#">Videos</a></li>
+							<li><a href="videos.html">Videos</a></li>
 						</ul>
 					</li>
 					<li><a href="contact.html" title="">Liên hệ</a></li>
@@ -156,62 +156,56 @@
 
 <!--======================================================================================================================================-->
 
-<div class="main_container">
+<div class="main_container checkout">
 	<div class="row">
 		<div class="medium-9 medium-push-3 columns">
-			<div class="checkout row">
-				<div class="columns">
-					<h2>Đặt hàng</h2>
-					<form action="checkout_success.html" method="post">
-						<div class="contact_form_left">
-							<div class="row create_an_account_form">
-								<a href="shopping_cart.html" class="left"><i class="fa fa-angle-double-left"></i>&nbsp;Giỏ hàng</a>
-							</div>
-							<div class="row">
-								<ul class="medium-6 columns">
-									<li>
-										<label for="name">Họ tên <em>*</em></label>
-										<input type="text" value="" title="Họ tên" id="name" name="name" placeholder="" required>
-									</li>
-									<li>
-										<label for="email">Email <em>*</em></label>
-										<input type="email" value="" title="Email" id="email" name="email" placeholder="" required>
-									</li>
-									<li>
-										<label for="telephone">Điện thoại <em>*</em></label>
-										<input type="text" value="" title="Điện thoại" id="telephone" name="telephone" placeholder="" required>
-									</li>
-									<li>
-										<label for="address">Địa chỉ <em>*</em></label>
-										<input type="text" value="" title="Địa chỉ" id="address" name="address" placeholder="" required>
-									</li>
-								</ul>
-								<ul class="medium-6 columns">
-									<li>
-                                        <label for="order_type">Hình thức thanh toán<em>*</em></label>
-                                        <div class="input-box">
-                                            <select required title="Hình thức thanh toán" name="order_type" id="order_type">
-                                                <option value="">-- Lựa chọn --</option>
-                                                <option value="1">Thanh toán trực tiếp khi giao hàng</option>
-                                                <option value="2">Thanh toán qua ngân hàng</option>
-                                                <option value="3">Thanh toán bằng thẻ</option>
-                                            </select>
-                                        </div>
-                                    </li>
-									<li>
-										<label for="message">Nội dung</label>
-										<textarea placeholder="" rows="3" cols="5" title="Nội dung" id="message" name="message"></textarea>
-									</li>
-									<li>
-										<label class="left"><em>Mục có dấu * bắt buộc</em></label>
-										<button class="button right" title="Gửi" type="submit">Đặt hàng</button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</form>
+			<h2>Đặt hàng</h2>
+			<form class="submit-form" action="checkout_success.html" method="post">
+				<div class="row">
+					<a href="shopping_cart.html" class="left"><i class="fa fa-angle-double-left"></i>&nbsp;Giỏ hàng</a>
 				</div>
-			</div>
+				<div class="row">
+					<ul class="medium-6 columns">
+						<li>
+							<label for="name">Họ tên <em>*</em></label>
+							<input type="text" value="" title="Họ tên" id="name" name="name" placeholder="" required>
+						</li>
+						<li>
+							<label for="email">Email <em>*</em></label>
+							<input type="email" value="" title="Email" id="email" name="email" placeholder="" required>
+						</li>
+						<li>
+							<label for="telephone">Điện thoại <em>*</em></label>
+							<input type="text" value="" title="Điện thoại" id="telephone" name="telephone" placeholder="" required>
+						</li>
+						<li>
+							<label for="address">Địa chỉ <em>*</em></label>
+							<input type="text" value="" title="Địa chỉ" id="address" name="address" placeholder="" required>
+						</li>
+					</ul>
+					<ul class="medium-6 columns">
+						<li>
+                            <label for="order_type">Hình thức thanh toán<em>*</em></label>
+                            <div class="input-box">
+                                <select required title="Hình thức thanh toán" name="order_type" id="order_type">
+                                    <option value="">-- Lựa chọn --</option>
+                                    <option value="1">Thanh toán trực tiếp khi giao hàng</option>
+                                    <option value="2">Thanh toán qua ngân hàng</option>
+                                    <option value="3">Thanh toán bằng thẻ</option>
+                                </select>
+                            </div>
+                        </li>
+						<li>
+							<label for="message">Nội dung</label>
+							<textarea placeholder="" rows="3" cols="5" title="Nội dung" id="message" name="message"></textarea>
+						</li>
+						<li>
+							<label class="left"><em>Mục có dấu * bắt buộc</em></label>
+							<button class="button right" title="Gửi" type="submit">Đặt hàng</button>
+						</li>
+					</ul>
+				</div>
+			</form>
 		</div>
 		<!-- sidebar -->
 		<div class="medium-3 medium-pull-9 columns">

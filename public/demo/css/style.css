@@ -25,7 +25,12 @@ a {
 }
 a:hover,
 a:focus{
-    color: #ccc;
+    color: #055082;
+}
+.divider {
+    border-bottom: 1px solid #f4f4f4;
+    margin-bottom: 10px;
+    clear: both;
 }
 
 .tooltip{
@@ -36,8 +41,9 @@ a:focus{
 }
 
 .button {
-    background-color: #055082;
-    border-color: #055082;
+    background-color: #ed1c24;
+    border-color: #ed1c24;
+    border-radius: 5px;
 }
 .button:hover, .button:focus {
     background-color: #fc2b33;
@@ -778,22 +784,27 @@ footer p {
     background: rgba(0, 0, 0, 0) url("../imgs/slider-bar.png") no-repeat scroll right center;
 }
 /*--------------------*/
-.top_selling {
+.grid {
     text-align: center;
 }
-.top_selling_col {
-    height: 195px;
-    margin-bottom: 15px;
+.grid-item {
+    /*height: 195px;*/
+    margin-bottom: 5px;
+    position: relative;
 }
-.tab_bar .top_selling {
+.catalog1 .grid-item {
+    /*height: 340px;*/
+}
+.tab_bar .grid {
     padding-left: 10px;
     padding-right: 10px;
 }
-.top_selling_img {
+.grid_img {
     
 }
-.top_selling_text {
-    margin-top: 15px;
+.grid_text {
+    padding: 10px 5px;
+    height: 50px;
 }
 .pr_star {
  
@@ -863,8 +874,8 @@ footer p {
     color: #ED1C24;
 }
 .add_cart {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    /*background-color: #fff;
+    border: 1px solid #ccc;*/
     border-radius: 5px;
     color: #333;
     display: inline-block;
@@ -878,8 +889,8 @@ footer p {
 .add_cart:hover,
 .add_cart:focus {
     color: #fff;
-    background-color: #ED1C24;
-    border: 1px solid #ED1C24;
+    /*background-color: #ED1C24;
+    border: 1px solid #ED1C24;*/
 }
 .add_cart i.fa-shopping-cart {
     font-size: 20px;
@@ -907,20 +918,20 @@ footer p {
     color: #055082;
 }
 
-.top_selling_col:hover a.cart_heart,
-.top_selling_col1:hover a.cart_heart {
+.grid-item:hover a.cart_heart,
+.grid-item1:hover a.cart_heart {
     right: 0;
     visibility: visible;
     opacity: 1;
 }
-.top_selling_col:hover a.add_compare,
-.top_selling_col1:hover a.add_compare {
+.grid-item:hover a.add_compare,
+.grid-item1:hover a.add_compare {
     left: 0;
     visibility: visible;
     opacity: 1;
 }
-.top_selling_col:hover a.add_cart,
-.top_selling_col1:hover a.add_cart {
+.grid-item:hover a.add_cart,
+.grid-item1:hover a.add_cart {
     color: #fff;
     background-color: #ED1C24;
     border: 1px solid #ED1C24;
@@ -1033,6 +1044,45 @@ footer p {
     float: left;
 }
 
+.about h4 {
+    font-weight: bold;
+}
+.about .row {
+    margin-bottom: 20px;
+}
+
+.news {
+
+}
+
+.news-inner .row {
+    margin-bottom: 20px;
+}
+
+.detail {
+
+}
+.detail h1 {
+    color: #555;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 15px 0;
+}
+.summary {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.desc {
+    margin-bottom: 10px;
+}
+.desc table, .desc iframe, .desc img {
+    max-width: 100% !imporatnt;
+    height: auto !imporatnt;
+}
+
+
 /*=========================================================================================================================================*/
                             /* -- PRODUCT -- */
 /*=========================================================================================================================================*/
@@ -1143,6 +1193,7 @@ footer p {
 /*=========================================================================================================================================*/
 
 .paging {
+    clear: both;
     margin-bottom: 10px;
     text-align: right;
 }
@@ -1240,6 +1291,16 @@ footer p {
     padding-right: 7px;
     color: #055082;
 }
+
+.side-submit .button {
+    background: #055082;
+    width: 100%;
+}
+.side-submit .button:hover,
+.side-submit .button:focus {
+    
+}
+
 .sale_pr {
     border: none;
 }
@@ -1329,15 +1390,15 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding: 20px 0;
 }
 .detail_cart a.add_cart {
-    background-color: #ED1C24;
-    border-color: #ED1C24;
+    /*background-color: #ED1C24;
+    border-color: #ED1C24;*/
     color: #fff;
     padding: 5px 20px 5px 15px;
 }
-.detail_cart a.add_cart:hover,
+/*.detail_cart a.add_cart:hover,
 .detail_cart a.add_cart:focus {
     opacity: 0.9;
-}
+}*/
 .detail_cart .right {
     margin-top: 7px;
 }
@@ -1498,8 +1559,9 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     color: #ED1C24;
 }
 /*--------*/
-.top_selling_col1  {
-    height: 195px;
+.grid-item1  {
+    clear: both;
+    /*height: 195px;*/
     margin-bottom: 50px;
     margin-left: 10px;
     margin-right: 10px;
@@ -1561,27 +1623,27 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin-bottom: 2px;
 }
 /*------------------------*/
-.top_selling_col2 {
+.grid-item2 {
     border-bottom: 1px solid #e1e1e1;
     height: 120px;
     margin: 10px 5px;
 }
-.top_selling_col2:last-child {
+.grid-item2:last-child {
     border-bottom: none;
 }
-.top_selling_img2 {
+.grid_img2 {
     display: inline-block;
     margin-right: 10px;
     padding-left: 0;
     vertical-align: top;
     width: 45%;
 }
-.top_selling_text2 {
+.grid_text2 {
     display: inline-block;
     padding-left: 0;
     width: 45%;
 }
-.top_selling_text2 p {
+.grid_text2 p {
     font-size: 20px;
 }
 .tille_pr2 {
@@ -1613,6 +1675,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 }
 .about {
     margin-bottom: 30px;
+    margin-top: 10px;
 }
 .about h2 {
     text-transform: uppercase;
@@ -1859,7 +1922,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     text-transform: uppercase;
 }
 .forgotpassword h3,
-.create_an_account_form h3,
+.submit-form h3,
 .shopping_cart h3,
 .main_page h3 {
     margin-bottom: 0.5rem;
@@ -1873,34 +1936,34 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     margin-bottom: 10px;
 }
 .forgotpassword_form ul li,
-.create_an_account_form ul li,
+.submit-form ul li,
 .shopping_cart_form ul li {
 
     list-style: none;
 }
 .forgotpassword_form ul,
-.create_an_account_form ul,
+.submit-form ul,
 .shopping_cart_form ul {
     margin-left: 0;
     margin-right: 0;
 }
 .forgotpassword_form label em,
-.create_an_account_form label em,
+.submit-form label em,
 .shopping_cart form label em {
     color: #ED1C24;
 }
 .forgotpassword_form a,
-.create_an_account_form a,
+.submit-form a,
 .shopping_continue a {
     color: #ED1C24;
     text-decoration: underline;
 }
 .forgotpassword_form a i.fa,
-.create_an_account_form a i.fa {
+.submit-form a i.fa {
     color: #ED1C24;
 }
 .forgotpassword_form button,
-.create_an_account_form button,
+.submit-form button,
 .shopping_cart_form button,
 a.button2 {
     background-color: #ed1c24;
@@ -1979,21 +2042,21 @@ a.button2 i.fa {
     padding-bottom: 5px;
     padding-top: 10px;
 }
-.checkout .create_an_account_form a {
+.checkout .submit-form a {
     color: #ED1C24;
     margin-bottom: 10px;
     margin-left: 35px;
     margin-top: 10px;
     text-decoration: underline;
 }
-.checkout .create_an_account_form a.button2 {
+.checkout .submit-form a.button2 {
     background: #055082 none repeat scroll 0 0;
     color: #fff;
     margin: 0 0 10px;
     text-decoration: none;
 }
-.checkout .create_an_account_form a.button2:hover,
-.checkout .create_an_account_form a.button2:focus {
+.checkout .submit-form a.button2:hover,
+.checkout .submit-form a.button2:focus {
     background-color: #007095;
     border-color: #007095;
 }
@@ -2092,6 +2155,70 @@ a.button2 i.fa {
     text-transform: uppercase;
 }
 
+
+.catalog {
+    clear: both;
+}
+.catalog .grid_text {
+    background: #f4f4f4 none repeat scroll 0 0;
+}
+.catalog .tille_pr p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+.catalog .grid-item {
+    margin-bottom: 20px;
+}
+.catalog .grid-item:hover,
+.catalog .grid-item:focus {
+
+}
+.catalog .grid-item:hover .grid_text {
+    background: #ddd none repeat scroll 0 0;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    transition: opacity 0.25s ease 0s;
+    -webkit-transition: opacity .25s ease;
+    -moz-transition: opacity .25s ease;
+}
+
+.grid-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    display: block;
+    margin: 33% 10px;
+}
+.overlay span i.fa {
+    color: #fff;
+    font-size: 20px;
+}
+
+.collect-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+.collect-item span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+.collect-item:hover .overlay {
+    opacity: 1;
+}
+
 /*fancybox*/
 .fancybox {
     display: block;
@@ -2144,8 +2271,8 @@ ul.box-gallery li {
     .main1 {
         margin-top: 5px;
     }
-    .top_selling_col,
-    .top_selling_col1 {
+    .grid-item,
+    .grid-item1 {
         height: auto;
     }
     .footer_logo {

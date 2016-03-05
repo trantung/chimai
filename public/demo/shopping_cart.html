@@ -87,14 +87,14 @@
 					<li><a href="products.html" title="">Sản phẩm</a></li>
 					<li><a href="products.html" title="">Khuyến mại</a></li>
 					<li class="has-dropdown">
-						<a href="#">Bộ sưu tập</a>
+						<a href="collection.html">Bộ sưu tập</a>
 						<ul class="dropdown">
-							<li><a href="#">Catelogue</a></li>
-							<li><a href="#">Showroom trưng bày</a></li>
+							<li><a href="catalogue.html">Catelogue</a></li>
+							<li><a href="catalogue1.html">Showroom trưng bày</a></li>
 							<li><a href="#">Công trình đã thực hiện</a></li>
 							<li><a href="#">Chứng nhận chất lượng</a></li>
 							<li><a href="#">Giải thưởng đạt được</a></li>
-							<li><a href="#">Videos</a></li>
+							<li><a href="videos.html">Videos</a></li>
 						</ul>
 					</li>
 					<li><a href="contact.html" title="">Liên hệ</a></li>
@@ -156,95 +156,91 @@
 
 <!--======================================================================================================================================-->
 
-<div class="main_container">
+<div class="main_container shopping_cart">
 	<div class="row">
 		<div class="medium-9 medium-push-3 columns">
-			<div class="shopping_cart row">
-				<div class="columns">
-					<h2>Giỏ hàng</h2>
-					<form data-abide class="shopping_cart_form">
-						<table width="100%">
-							<thead>
-								<tr>
-									<th width="50"></th>
-									<th>Sản phẩm</th>
-									<th width="150">ĐVT</th>
-									<th width="150">Đơn giá</th>
-									<th width="150">Số lượng</th>
-									<th width="150">Thành tiền</th>
-									<th width="70"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><img src="imgs/a1.jpg"/></td>
-									<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
-									<td>m2</td>
-									<td>300.000</td>
-									<td>
-										<div class="qty-holder">
-											<input class="qty" type="text" value="1" name="qty[]">
-										</div>
-									</td>
-									<td>300.000</td>
-									<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
-								</tr>
-								<tr>
-									<td><img src="imgs/a1.jpg"/></td>
-									<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
-									<td>viên</td>
-									<td>300.000</td>
-									<td>
-										<div class="qty-holder">
-											<input class="qty" type="text" value="2" name="qty[]">
-										</div>
-									</td>
-									<td>600.000</td>
-									<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
-								</tr>
-								<tr>
-									<td colspan="4" class="order_table_right">Cộng</td>
-									<td></td>
-									<td colspan="2">900.000</td>
-								</tr>
-								<tr>
-									<td colspan="4" class="order_table_right">Chiết khấu</td>
-									<td>5%</td>
-									<td colspan="2">45.000</td>
-								</tr>
-								<tr>
-									<td colspan="4" class="order_table_right">Thành tiền</td>
-									<td></td>
-									<td colspan="2">855.000</td>
-								</tr>
-								<tr>
-									<td colspan="4" class="order_table_right">Số điểm tích lũy lần này</td>
-									<td></td>
-									<td colspan="2">8</td>
-								</tr>
-								<tr>
-									<td colspan="4" class="order_table_right">Số điểm tích lũy cộng dồn</td>
-									<td></td>
-									<td colspan="2">18</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="row shopping_cart_form2">
-							<div class="columns medium-6 medium-push-6">
-								<a href="checkout.html" title="" class="button button2 right">Đặt hàng <i class="fa fa-angle-double-right"></i></a>
-								<a class="button button2 right" title="">Cập nhật giỏ hàng</a>
-								<!-- <a class="button button2 right" title="Clear Shopping Cart">Xóa giỏ hàng</a> -->
-								<div class="clearfix"></div>
-							</div>
-							<div class="columns medium-6 medium-pull-6">
-								<div class="shopping_continue clearfix">
-									<a href="products.html" class="left"><i class="fa fa-angle-double-left"></i> Tiếp tục mua hàng</a>
+			<h2>Giỏ hàng</h2>
+			<form class="shopping_cart_form">
+				<table width="100%">
+					<thead>
+						<tr>
+							<th width="50"></th>
+							<th>Sản phẩm</th>
+							<th width="150">ĐVT</th>
+							<th width="150">Đơn giá</th>
+							<th width="150">Số lượng</th>
+							<th width="150">Thành tiền</th>
+							<th width="70"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="imgs/a1.jpg"/></td>
+							<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
+							<td>m2</td>
+							<td>300.000</td>
+							<td>
+								<div class="qty-holder">
+									<input class="qty" type="text" value="1" name="qty[]">
 								</div>
-							</div>
+							</td>
+							<td>300.000</td>
+							<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
+						</tr>
+						<tr>
+							<td><img src="imgs/a1.jpg"/></td>
+							<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
+							<td>viên</td>
+							<td>300.000</td>
+							<td>
+								<div class="qty-holder">
+									<input class="qty" type="text" value="2" name="qty[]">
+								</div>
+							</td>
+							<td>600.000</td>
+							<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
+						</tr>
+						<tr>
+							<td colspan="4" class="order_table_right">Cộng</td>
+							<td></td>
+							<td colspan="2">900.000</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="order_table_right">Chiết khấu</td>
+							<td>5%</td>
+							<td colspan="2">45.000</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="order_table_right">Thành tiền</td>
+							<td></td>
+							<td colspan="2">855.000</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="order_table_right">Số điểm tích lũy lần này</td>
+							<td></td>
+							<td colspan="2">8</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="order_table_right">Số điểm tích lũy cộng dồn</td>
+							<td></td>
+							<td colspan="2">18</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row shopping_cart_form2">
+					<div class="columns medium-6 medium-push-6">
+						<a href="checkout.html" title="" class="button button2 right">Đặt hàng <i class="fa fa-angle-double-right"></i></a>
+						<a class="button button2 right" title="">Cập nhật giỏ hàng</a>
+						<!-- <a class="button button2 right" title="Clear Shopping Cart">Xóa giỏ hàng</a> -->
+						<div class="clearfix"></div>
+					</div>
+					<div class="columns medium-6 medium-pull-6">
+						<div class="shopping_continue clearfix">
+							<a href="products.html" class="left"><i class="fa fa-angle-double-left"></i> Tiếp tục mua hàng</a>
 						</div>
-					</form>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		<!-- sidebar -->
 		<div class="medium-3 medium-pull-9 columns">
