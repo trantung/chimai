@@ -61,26 +61,47 @@ Route::group(
 	function()
 	{
 
+		// demo page
+		Route::get('/collection', 'SiteCatalogueController@collection');
+		Route::get('/catalogue', 'SiteCatalogueController@catalogue');
+		Route::get('/gallery', 'SiteCatalogueController@gallery');
+		Route::get('/video', 'SiteCatalogueController@video');
+
+		Route::get('/orders', 'SiteOrdersController@orders');
+		Route::get('/orders_detail', 'SiteOrdersController@orders_detail');
+
+		Route::get('/news', 'SiteNewsController@index');
+		Route::get('/news-detail', 'SiteNewsController@detail');
+
+		Route::get('/product', 'SiteProductController@index');
+		Route::get('/product-detail', 'SiteProductController@detail');
+		// END demo page
+
 		Route::post('/sendLang', 'SiteIndexController@sendLang');
-
-		Route::post('/sendContact', array('uses' => 'ContactController@contact', 'as' => 'contact'));
-
-		// Route::get('/tin-tuc/{slug}', array('uses' => 'SiteNewsController@show', 'as' =>'showNews'));
-		// Route::get('/tin-tuc', array('uses' => 'SiteNewsController@index', 'as' => 'listNews'));
 
 		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 		Route::resource('/', 'SiteIndexController');
-		// Route::resource(LaravelLocalization::transRoute('routes.slug'), 'SiteTypeController');
 
-		// Route::get(LaravelLocalization::transRoute('routes.about'),function(){
-		// 	return View::make('about');
-		// });
-		Route::get(LaravelLocalization::transRoute('routes.about'), 'AboutController@index');
-		Route::get(LaravelLocalization::transRoute('routes.contact'), 'ContactController@index');
+		Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteAboutController@index');
+		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
+		Route::post(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@contact');
+
+		Route::resource(LaravelLocalization::transRoute('routes.resetpassword'), 'PasswordController', array('only'=>array('store', 'index')));
+		Route::get(LaravelLocalization::transRoute('routes.login'), 'SiteController@login');
+		Route::post(LaravelLocalization::transRoute('routes.login'), 'SiteController@doLogin');
+		Route::get(LaravelLocalization::transRoute('routes.logout'), 'SiteController@logout');
+
+		Route::get(LaravelLocalization::transRoute('routes.register'), 'SiteUserController@create');
+		Route::post(LaravelLocalization::transRoute('routes.register'), 'SiteUserController@store');
+		Route::get(LaravelLocalization::transRoute('routes.account'), 'SiteUserController@account');
+		Route::put(LaravelLocalization::transRoute('routes.account'), 'SiteUserController@doAccount');
+
+		Route::get(LaravelLocalization::transRoute('routes.cart'), 'SiteCartController@index');
+		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'SiteCartController@checkout');
+		Route::get(LaravelLocalization::transRoute('routes.checkout_success'), 'SiteCartController@checkout_success');
+
 		Route::get(LaravelLocalization::transRoute('routes.slug'), 'SiteTypeController@showSlug');
 		Route::get(LaravelLocalization::transRoute('routes.slugDetail'), 'SiteTypeController@showChildSlug');
-		// Route::get(LaravelLocalization::transRoute('routes.view'),function($id){
-		// 	return View::make('view',array('id'=>$id));
-		// });
+
 	}
 );

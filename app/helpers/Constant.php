@@ -1,8 +1,8 @@
 <?php
 //menu category_parent
-define('MENU', 1);
+// define('MENU', 1);
 //content category_parent
-define('CONTENT', 2);
+// define('CONTENT', 2);
 //Relation parent
 define('MENU_RELATION', '1');
 define('CONTENT_RELATION', '2');

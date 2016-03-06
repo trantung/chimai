@@ -738,63 +738,6 @@ $(window).load(function() {
 			jQuery(".etalage li.etalage_thumb").zoom();
 		}
 
-//        reloadEtalage();
-//        jQuery(".etalage li.etalage_thumb").zoom();
-//        zoom_enabled = true;
-//        setTimeout(function(){reloadEtalage();}, 500);
-//        jQuery(window).resize(function(e){
-//            reloadEtalage();
-//            var width = jQuery(this).width();
-//        });
-//        jQuery('.etalage-prev').on('click', function(){ etalage_previous(); });
-//        jQuery('.etalage-next').on('click', function(){ etalage_next(); });
-//        jQuery("a.fancy-images").fancybox();
-//        function reloadEtalage(){
-//            var src_img_width = 900;
-//            var src_img_height = 900;
-//            var ratio_width = 900;
-//            var ratio_height = 900;
-//            var width, height, thumb_position, small_thumb_count;
-//            small_thumb_count = 4;
-//            width = jQuery(".detail_image").width()-10;
-//            height = width;
-//            thumb_position = "bottom";
-//
-//            jQuery('#etalage').etalage({
-//                thumb_image_width: width,
-//                thumb_image_height: height,
-//                source_image_width: src_img_width,
-//                source_image_height: src_img_height,
-//                zoom_area_width: width,
-//                zoom_area_height: height,
-//                zoom_enable: false,
-//                small_thumbs:small_thumb_count,
-//                smallthumb_hide_single: false,
-//                smallthumbs_position: thumb_position,
-//                small_thumbs_width_offset: 0,
-//                show_hint: false,
-//                show_icon: false,
-//                autoplay: false
-//            });
-//            if(jQuery(window).width()<768){
-//                var first_img = jQuery("#etalage img.etalage_thumb_image").first();
-//                var tmp_img = jQuery('<img src="" alt=""/>');
-//                tmp_img.attr("src",first_img.attr("src"));
-//                tmp_img.unbind("load");
-//                tmp_img.bind("load",function(){
-//                    jQuery("#etalage").height(Math.round(width*this.naturalHeight/this.naturalWidth+10)+"px");
-//                });
-//                jQuery('#etalage').removeClass("vertical");
-//                jQuery(".detail_image li.etalage_thumb").css({left:0});
-//            }
-//            var first_img = jQuery("#etalage img.etalage_thumb_image").first();
-//            var tmp_img = jQuery('<img src="" alt=""/>');
-//            tmp_img.attr("src",first_img.attr("src"));
-//            tmp_img.unbind("load");
-//            tmp_img.bind("load",function(){
-//                jQuery("#etalage").height(Math.round(width*this.naturalHeight/this.naturalWidth+10)+"px");
-//            });
-//        }
 	});
 </script>
 

@@ -2,6 +2,10 @@
 
 class SiteController extends BaseController {
 
+	public function __construct() {
+
+	}
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -82,5 +86,57 @@ class SiteController extends BaseController {
 		//
 	}
 
+	public function login()
+    {
+    	return View::make('site.user.login');
+    	
+    	$checkLogin = CommonSite::isLogin();
+        if($checkLogin) {
+    		return Redirect::action('SiteIndexController@index');
+        } else {
+            return View::make('site.user.login');
+        }
+    }
+
+    public function doLogin()
+    {
+        $rules = array(
+            'user_name'   => 'required',
+            'password'   => 'required',
+        );
+        $input = Input::except('_token');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::action('SiteController@login')
+                // ->withErrors($validator);
+            	->with('error', 'Sai tên truy cập hoặc mật khẩu');
+        } else {
+            if(Auth::user()->attempt($input)) {
+            	if(Auth::user()->get()->status == INACTIVE) {
+            		dd('Tài khoản của bạn đã bị khóa');
+            	}
+            	$inputUser = CommonSite::ipDeviceUser();
+            	CommonNormal::update(Auth::user()->get()->id, $inputUser, 'User');
+        		return Redirect::action('SiteIndexController@index');
+            }
+            else {
+                return Redirect::action('SiteController@login')->with('error', 'Sai tên truy cập hoặc mật khẩu');
+            }
+        }
+    }
+
+    public function logout()
+    {
+    	return View::make('site.user.login');
+
+    	$checkLogin = CommonSite::isLogin();
+        if($checkLogin) {
+        	Auth::user()->logout();
+	        //Session::flush();
+	        return Redirect::action('SiteController@login');
+        } else {
+            return Redirect::action('SiteIndexController@index');
+        }
+    }
 
 }

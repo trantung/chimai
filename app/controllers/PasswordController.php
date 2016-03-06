@@ -9,7 +9,7 @@ class PasswordController extends SiteController {
 	 */
 	public function index()
 	{
-		return View::make('password.index');
+		return View::make('site.user.forgot_password');
 	}
 
 
@@ -31,23 +31,7 @@ class PasswordController extends SiteController {
 	 */
 	public function store()
 	{
-		$data = Input::all();
-		$user = User::where('email', $data['email'])->first();
-		if(is_null($user)){
-			return Redirect::action('PasswordController@index')->with('error', 'Email không đúng!');
-		}
-		$url = route('password.changepass').'?param=';
-		$param = json_encode($data);
-		$encoded = ( urlencode(base64_encode($param)));
-		$url .= $encoded;
-		$mailData = ['url'=>$url];
-		Mail::send('emails.changepass', $mailData, function($message) use ($user,$data) {
-			$message->to($data['email'], 'Hello'.$user->name)->subject('Authorize password');
-		});
-		if(Mail::failures()){
-			return Redirect::action('PasswordController@index')->with('error', 'Email không đúng!');
-		}
-		return Redirect::action('PasswordController@index')->with('message', 'Thông tin đã được gửi vào email của bạn!');
+		//
 	}
 
 	/**
