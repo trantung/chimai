@@ -2217,6 +2217,30 @@ a.button2 i.fa {
     opacity: 1;
 }
 
+.collect-text {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    transition: opacity 0.25s ease 0s;
+    -webkit-transition: opacity .25s ease;
+    -moz-transition: opacity .25s ease;
+}
+.collect-text span {
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    margin: 33% 10px;
+    text-transform: uppercase;
+}
+.collect-text span:hover {
+    /*color: #ed1c24;*/
+}
+
 /*fancybox*/
 .fancybox {
     display: block;
