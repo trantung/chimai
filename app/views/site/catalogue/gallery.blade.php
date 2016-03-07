@@ -26,7 +26,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -39,7 +39,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -52,7 +52,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -65,7 +65,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -78,7 +78,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -91,7 +91,7 @@
 							<div class="grid_text">
 								<a href="#" class="tille_pr"><p>Calacatta</p></a>
 							</div>
-							<a href="#" class="overlay">
+							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
 								<span><i class="fa fa-search"></i></span>
 							</a>
 						</div>
@@ -100,5 +100,7 @@
 			</div>
 		</div>
 	</div>
+
+	@include('site.catalogue.script')
 
 @stop
