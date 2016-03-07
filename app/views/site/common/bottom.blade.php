@@ -29,6 +29,7 @@
 				<div class="bottom-social">
 					<a href="#"><i class="fa fa-facebook"></i></a>
 					<a href="#"><i class="fa fa-google-plus"></i></a>
+					<a href="#"><i class="fa fa-instagram"></i></a>
 				</div>
 				<p class="bt_newsletter_title">{{ trans('captions.newsletter') }}</p>
 				<form>
