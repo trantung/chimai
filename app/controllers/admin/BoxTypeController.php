@@ -25,8 +25,9 @@ class BoxTypeController extends BoxController {
 	public function edit($id)
 	{
 		$boxVi = Common::getObjectByLang('BoxType', $id, VI);
-		$boxEn = BoxCommon::where('model_name', 'BoxType')
-			->where('model_id', $id)->get();
+		$listId = BoxCommon::where('model_name', 'BoxType')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = BoxType::whereIn('id', $listId)->get();
 		return View::make('admin.box.type.edit')->with(compact('boxVi', 'boxEn'));
 	}
 

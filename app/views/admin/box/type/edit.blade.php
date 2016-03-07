@@ -29,20 +29,20 @@
 						</div>
 					</div>
 				</div>
-				@foreach($arrayLang as $singLang)
+				@foreach($boxEn as $singLang)
 					<div class="form-group">
-						<label for="name">Tên menu {{ $singLang }}</label>
+						<label for="name">Tên menu {{ $singLang->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name_menu', $boxEn->name_menu, textPlaceHolder('')) }}
+							   {{ Form::text($singLang->language.'_'.'name_menu', $singLang->name_menu, textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="name">Tên content {{ $singLang }}</label>
+						<label for="name">Tên name_content {{ $singLang->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name_content', $boxEn->name_content, textPlaceHolder('')) }}
+							   {{ Form::text($singLang->language.'_'.'name_content', $singLang->name_content, textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
