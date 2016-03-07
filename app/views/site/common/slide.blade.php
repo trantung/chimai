@@ -1,4 +1,4 @@
-<div class="main1">
+<div class="main1 show-for-medium-up">
 	<div class="homeslide" id="homeslide">
 		<div class="homeslide_item">
 			<a href="#" title="">

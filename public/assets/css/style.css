@@ -2309,6 +2309,9 @@ ul.box-gallery li {
     ul.box-gallery li {
         width: 27%;
     }
+    .top ul li a {
+        font-size: 10px;
+    }
 }
 /* min-width 641px, medium screens */
 @media only screen and (min-width: 40.063em) {
