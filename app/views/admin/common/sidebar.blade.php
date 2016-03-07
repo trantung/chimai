@@ -21,7 +21,21 @@
 				<ul class="treeview-menu">
 					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box sản phẩm</a></li>
 				</ul>
-
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-list"></i> <span>Quản lý thư mục hiển thị trong box</span>
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('BoxTypeChildController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục tin tức</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('BoxCollectionController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sản phẩm</a></li>
+				</ul>
 			</li>
 			<li>
 				<a href="{{ action('ManagerController@index') }}">

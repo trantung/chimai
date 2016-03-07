@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý box type' }}
+{{ $title='Quản lý box contact' }}
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
 -->
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('BoxTypeController@create') }}" class="btn btn-primary">Thêm box tin</a>
+		<a href="{{ action('AdminBoxContactController@create') }}" class="btn btn-primary">Thêm box contact</a>
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
 	<div class="col-xs-12">
 	  <div class="box">
 		<div class="box-header">
-		  <h3 class="box-title">Danh sách box</h3>
+		  <h3 class="box-title">Danh sách box contact</h3>
 		</div>
 		<div class="box-body table-responsive no-padding">
 			<table class="table table-hover">
@@ -30,14 +30,14 @@
 					<th>Hiển thị</th>
 					<th style="width:200px;">Action</th>
 				</tr>
-				@foreach(BoxType::whereIn('id', $list)->get() as $box)
+				@foreach($list as $box)
 				<tr>
 					<td>{{ $box->id }}</td>
 					<td>{{ Common::getNameBox($box) }}</td>
-					<td>{{ Common::getPositionName($box->position) }}</td>
+					<td>Footer</td>
 					<td>
-					<a href="{{ action('BoxTypeController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
-						{{ Form::open(array('method'=>'DELETE', 'action' => array('BoxTypeController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
+					<a href="{{ action('AdminBoxContactController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
+						{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminBoxContactController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
 						<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
 						{{ Form::close() }}
 					</td>

@@ -26,13 +26,15 @@
 				<tr>
 					<th>ID</th>
 					<th>Tên box Vietnamese</th>
+					<th>Tên box English</th>
 					<th>Vị trí</th>
 					<th>Hiển thị</th>
 					<th style="width:200px;">Action</th>
 				</tr>
-				@foreach(BoxType::whereIn('id', $list)->get() as $box)
+				@foreach($list as $box)
 				<tr>
 					<td>{{ $box->id }}</td>
+					<td>{{ Common::getNameBox($box) }}</td>
 					<td>{{ Common::getNameBox($box) }}</td>
 					<td>{{ Common::getPositionName($box->position) }}</td>
 					<td>

@@ -122,9 +122,11 @@ class Common {
 			}
 		}
 		//create vi ->id
+		$viInput['language'] = VI;
 		$id = self::create($modelName, $viInput, $default);
 		//create foreign
 		foreach ($foreignInput as $keyForeign => $valueForeign) {
+			$foreignInput[$keyForeign]['language'] = $keyForeign;
 			$idRelates[$keyForeign] = self::create($modelName, $foreignInput[$keyForeign], $default);
 		}
 		//create BoxCommon
@@ -137,6 +139,7 @@ class Common {
 	}
 	public static function create($modelName, $input, $default)
 	{
+
 		$data = array_merge($input, $default);
 		$id = $modelName::create($data)->id;
 		return $id;

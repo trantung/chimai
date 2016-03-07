@@ -4,7 +4,7 @@ class BoxTypeController extends BoxController {
 
 	public function index()
 	{
-		$list = BoxType::all();
+		$list = BoxCommon::where('model_name', 'BoxType')->lists('model_id');
 		return View::make('admin.box.type.index')->with(compact('list'));
 	}
 
@@ -25,7 +25,8 @@ class BoxTypeController extends BoxController {
 	public function edit($id)
 	{
 		$boxVi = Common::getObjectByLang('BoxType', $id, VI);
-		$boxEn = Common::getObjectByLang('BoxType', $id, EN);
+		$boxEn = BoxCommon::where('model_name', 'BoxType')
+			->where('model_id', $id)->get();
 		return View::make('admin.box.type.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
@@ -41,6 +42,7 @@ class BoxTypeController extends BoxController {
 
 	public function destroy($id)
 	{
+		BoxCommon::where('model_name', 'BoxType')->where('model_id', $id)->delete();
 		$result = $this->boxDelete('BoxType', $id);
 		if($result) {
 			return Redirect::action('BoxTypeController@index')->with('message', 'Xoá thành công');

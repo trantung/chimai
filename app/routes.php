@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::group(['prefix' => 'box'], function(){
 		//box tin tức hiển thị trên menu hoặc content
 		Route::resource('/type', 'BoxTypeController');
+		Route::resource('/type/child_type', 'BoxTypeChildController');
 		//box bộ sưu tập hiển thị trên menu hoặc content
 		Route::resource('/collection', 'BoxCollectionController');
 		//box sản phẩm hiển thị trên menu hoặc content

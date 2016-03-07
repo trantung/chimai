@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionStatusTable extends Migration {
+class CreateBoxCommonTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -33,7 +33,7 @@ class CreatePositionStatusTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('position_status');
+		Schema::drop('box_commons');
 	}
 
 }
