@@ -14,7 +14,16 @@
 				<ul class="left">
 					<li class="active"><a href="{{ url('/') }}" title="">{{ trans('captions.home') }}</a></li>
 					<li><a href="{{ action('SiteAboutController@index') }}" title="">{{ trans('captions.aboutus') }}</a></li>
-					<li><a href="{{ action('SiteProductController@index') }}" title="">Sản phẩm</a></li>
+					<li class="has-dropdown">
+						<a href="{{ action('SiteProductController@index') }}" title="">Sản phẩm</a>
+						<ul class="dropdown">
+							<li><a href="#">Gạch ốp lát Tây Ban Nha</a></li>
+							<li><a href="#">Gạch ốp lát Úc</a></li>
+							<li><a href="#">Gạch ốp lát Mỹ</a></li>
+							<li><a href="#">Gạch ốp lát Đức</a></li>
+							<li><a href="#">Gạch ốp lát Trung quốc</a></li>
+						</ul>
+					</li>
 					<li><a href="{{ action('SiteProductController@index') }}" title="">Khuyến mại</a></li>
 					<li class="has-dropdown">
 						<a href="{{ action('SiteCatalogueController@collection') }}">Bộ sưu tập</a>

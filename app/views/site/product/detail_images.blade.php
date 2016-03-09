@@ -4,27 +4,33 @@
 			<!-- This is the large (zoomed) image source: -->
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail2.jpg') }}" title="Calacatta" />
 			<!-- This is the thumb image source (if not provided, it will use the large image source and resize it): -->
-			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail2a.jpg') }}" />-->
+			<!-- <img class="etalage_thumb_image" src="{{ url('assets/imgs/detail2a.jpg') }}" /> -->
+			<p>BROWN</p>
 		</li>
 		 <li>
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail1.jpg') }}" title="Calacatta" />
 			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail1a.jpg') }}" />-->
+			<p>PINK</p>
 		</li>
 		<li>
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail3.jpg') }}" title="Calacatta" />
 			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail3a.jpg') }}" />-->
+			<p>GREEN</p>
 		</li>
 		<li>
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail4.jpg') }}" title="Calacatta" />
 			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail4a.jpg') }}" />-->
+			<p>BLACK</p>
 		</li>
 		<li>
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail5.jpg') }}" title="Calacatta" />
 			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail5a.jpg') }}" />-->
+			<p>WHITE</p>
 		</li>
 		<li>
 			<img class="etalage_source_image" src="{{ url('assets/imgs/detail6.jpg') }}" title="Calacatta" />
 			<!--<img class="etalage_thumb_image" src="{{ url('assets/imgs/detail6a.jpg') }}" />-->
+			<p>RED</p>
 		</li>
 	</ul>
 <!--                                <div class="etalage-control">
