@@ -13,6 +13,7 @@
 				<!-- Left Nav Section -->
 				<ul class="left">
 					<li class="active"><a href="{{ url('/') }}" title="">{{ trans('captions.home') }}</a></li>
+					
 					<li><a href="{{ action('SiteAboutController@index') }}" title="">{{ trans('captions.aboutus') }}</a></li>
 					<li class="has-dropdown">
 						<a href="{{ action('SiteProductController@index') }}" title="">Sản phẩm</a>
@@ -36,6 +37,7 @@
 							<li><a href="{{ action('SiteCatalogueController@video') }}">Videos</a></li>
 						</ul>
 					</li>
+					
 					<li><a href="{{ action('SiteContactController@index') }}" title="">{{ trans('captions.contact') }}</a></li>
 				</ul>
 				<!--right -->

@@ -211,6 +211,19 @@ class Common {
 		return $listId;
 	}	
 
+	public static function updateBoxCommon($modelName, $id, $default)
+	{	
+		$idRelates = self::getIdRelate($modelName, $id);
+		foreach ($idRelates as $key => $idRelate) {
+			BoxCommon::whereIn('relate_id', $idRelates)
+				->update(array(
+						'position' => $default['position'],
+						'weight_number' => $default['weight_number'],
+						'status' => $default['status'],
+					));
+		}
+	}
+
 	public static function getObjectByLang($modelName, $id, $lang)
 	{
 		if ($lang == VI) {
@@ -246,11 +259,16 @@ class Common {
 		$viInput = self::getInputVi($input, $default);
 		$foreignInput = self::getInputForeign($input, $default);
 		$imageUrl = $modelName::find($id)->image_url;
+		//update viId
 		self::update($modelName, $viInput, $default, $id);
+		//update boxCommon
+		self::updateBoxCommon($modelName, $id, $default);
+		//update foreign
 		$idRelates = self::getIdRelate($modelName, $id);
 		foreach ($idRelates as $key => $idRelate) {
 			$relate[$key] = $modelName::find($idRelate);
-			$relate[$key]->update($foreignInput[$relate[$key]->language]);
+			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], $default);
+			$relate[$key]->update($relateUpdate[$key]);
 		}
 		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
 		//update box with image name
