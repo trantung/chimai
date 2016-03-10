@@ -9,6 +9,15 @@ class SiteIndexController extends SiteController {
 	 */
 	public function index()
 	{
+		$menu = BoxCommon::where('position', MENU)
+			->where('status', ENABLED)
+			->get();
+		$content = BoxCommon::where('position', CONTENT)
+			->where('status', ENABLED)
+			->get();
+		$footer = BoxCommon::where('position', FOOTER)
+			->where('status', ENABLED)
+			->get();
 		return View::make('site.index');
 	}
 

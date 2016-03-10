@@ -3,7 +3,18 @@
 class SiteController extends BaseController {
 
 	public function __construct() {
-
+		$menu = BoxCommon::where('position', MENU)
+			->where('status', ENABLED)
+			->get();
+		$content = BoxCommon::where('position', CONTENT)
+			->where('status', ENABLED)
+			->get();
+		$footer = BoxCommon::where('position', FOOTER)
+			->where('status', ENABLED)
+			->get();
+		View::share('menu', $menu);
+		View::share('content', $content);
+		View::share('footer', $footer);
 	}
 	
 	/**
