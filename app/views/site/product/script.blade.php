@@ -33,7 +33,7 @@ $(window).load(function() {
 	jQuery(document).ready(function(){
 		
 		var src_img_width = 900;
-		var src_img_height = 900;
+		var src_img_height = 950;
 		var width, height, thumb_position, small_thumb_count;
 		small_thumb_count = 4;
 		width = jQuery(".detail_image").width()-10;

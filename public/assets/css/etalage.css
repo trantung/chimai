@@ -87,6 +87,21 @@
 
 
 /*Customize*/
+
+.etalage p {
+	background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    bottom: 6px;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    left: 6px;
+    margin: 0;
+    padding: 3px 15px;
+    position: absolute;
+    text-align: center;
+}
+
 /*.etalage-control {
     height: 0;
     left: 0;
