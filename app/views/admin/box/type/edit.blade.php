@@ -29,20 +29,20 @@
 						</div>
 					</div>
 				</div>
-				@foreach($boxEn as $singLang)
+				@foreach($boxEn as $value)
 					<div class="form-group">
-						<label for="name">Tên menu {{ $singLang->language }}</label>
+						<label for="name">Tên menu {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang->language.'_'.'name_menu', $singLang->name_menu, textPlaceHolder('')) }}
+							   {{ Form::text($value->language.'_'.'name_menu', $value->name_menu, textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="name">Tên name_content {{ $singLang->language }}</label>
+						<label for="name">Tên name_content {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang->language.'_'.'name_content', $singLang->name_content, textPlaceHolder('')) }}
+							   {{ Form::text($value->language.'_'.'name_content', $value->name_content, textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
@@ -50,6 +50,7 @@
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
+					<img class="image_boxtype" src="{{ url(UPLOADIMG . '/BoxType/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
 				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>
