@@ -6,7 +6,7 @@ class CommonImage {
 	* upload image and resize / fit image with background color (default: white (255, 255, 255))
 	**/
 
-	public static function uploadImage($id, $path, $imageUrl, $folder, $currentImage = NULL)
+	public static function uploadImage($id, $path, $imageUrl, $folder, $w = IMAGE_WIDTH, $h = IMAGE_HEIGHT, $currentImage = NULL)
 	{
 		$destinationPath = public_path().'/'.$path.'/'.$folder.'/'.$id.'/';
 		if(Input::hasFile($imageUrl)){
@@ -14,8 +14,6 @@ class CommonImage {
 			$filename = $file->getClientOriginalName();
 
 			$mode = 'fit';
-			$w = 600;
-			$h = 450;
 			
 			// Source image
 			$size = getimagesize($file);
