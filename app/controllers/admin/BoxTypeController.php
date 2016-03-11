@@ -34,20 +34,14 @@ class BoxTypeController extends BoxController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
-		$enId = BoxCommon::where('model_name', 'BoxType')
-			->where('model_id', $id)
-			->where('relate_name', 'Boxtype')
-			->first()->id;
 		Common::updateBox('BoxType', $id, $input);
+		return Redirect::action('BoxTypeController@index')->with('message', 'Sửa thành công');;
 	}
 
 	public function destroy($id)
 	{
-		BoxCommon::where('model_name', 'BoxType')->where('model_id', $id)->delete();
-		$result = $this->boxDelete('BoxType', $id);
-		if($result) {
-			return Redirect::action('BoxTypeController@index')->with('message', 'Xoá thành công');
-		}
+		Common::deleteBox('BoxType', $id);
+		return Redirect::action('BoxTypeController@index')->with('message', 'Xoá thành công');
 	}
 
 

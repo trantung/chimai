@@ -98,10 +98,20 @@ class Common {
 		$lang = array(EN => EN, FR=>FR, CN => CN);
 		return $lang;
 	}
-	public static function createBox($input, $modelName)
+	public static function getInputVi($input, $default)
 	{
-		//get default array
-		$default = self::getDefaultValue($modelName, $input);
+		$input = self::getInputCommon($input, $default);
+		$viInput = $input[0];
+		$viInput['language'] = VI;
+		return $viInput;
+	}
+	public static function getInputForeign($input, $default)
+	{
+		$input = self::getInputCommon($input, $default);
+		return $input[1];
+	}
+	public static function getInputCommon($input, $default)
+	{
 		if ($input['image_url']) {
 			unset($input['image_url']);
 		}
@@ -121,8 +131,16 @@ class Common {
 				$viInput[$key] = $value;
 			}
 		}
+		return [$viInput, $foreignInput];
+	}
+	public static function createBox($input, $modelName)
+	{
+		//get default array
+		$default = self::getDefaultValue($modelName, $input);
+		$viInput = self::getInputVi($input, $default);
+		$foreignInput = self::getInputForeign($input, $default);
 		//create vi ->id
-		$viInput['language'] = VI;
+		// $viInput['language'] = VI;
 		$id = self::create($modelName, $viInput, $default);
 		//create foreign
 		foreach ($foreignInput as $keyForeign => $valueForeign) {
@@ -139,9 +157,15 @@ class Common {
 	}
 	public static function create($modelName, $input, $default)
 	{
-
 		$data = array_merge($input, $default);
 		$id = $modelName::create($data)->id;
+		return $id;
+	}
+
+	public static function update($modelName, $input, $default, $id)
+	{
+		$data = array_merge($input, $default);
+		$modelName::find($id)->update($data);
 		return $id;
 	}
 
@@ -187,6 +211,19 @@ class Common {
 		return $listId;
 	}	
 
+	public static function updateBoxCommon($modelName, $id, $default)
+	{	
+		$idRelates = self::getIdRelate($modelName, $id);
+		foreach ($idRelates as $key => $idRelate) {
+			BoxCommon::whereIn('relate_id', $idRelates)
+				->update(array(
+						'position' => $default['position'],
+						'weight_number' => $default['weight_number'],
+						'status' => $default['status'],
+					));
+		}
+	}
+
 	public static function getObjectByLang($modelName, $id, $lang)
 	{
 		if ($lang == VI) {
@@ -208,16 +245,45 @@ class Common {
 			return null;
 		}
 	}
-
+	public static function getIdRelate($modelName, $modelId)
+	{
+		$idRelates = BoxCommon::where('model_name', $modelName)
+			->where('relate_name', $modelName)
+			->where('model_id', $modelId)
+			->lists('relate_id');
+		return $idRelates;
+	}
 	public static function updateBox($modelName, $id, $input)
 	{
-		$relate = $relate = BoxCommon::where('model_id', $id)
-			->where('model_name', $modelName)
-			->where('relate_name', $modelName)
-			->first();
-		if ($relate) {
-			$enId = $relate->relate_id;
+		$default = self::getDefaultValue($modelName, $input);
+		$viInput = self::getInputVi($input, $default);
+		$foreignInput = self::getInputForeign($input, $default);
+		$imageUrl = $modelName::find($id)->image_url;
+		//update viId
+		self::update($modelName, $viInput, $default, $id);
+		//update boxCommon
+		self::updateBoxCommon($modelName, $id, $default);
+		//update foreign
+		$idRelates = self::getIdRelate($modelName, $id);
+		foreach ($idRelates as $key => $idRelate) {
+			$relate[$key] = $modelName::find($idRelate);
+			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], $default);
+			$relate[$key]->update($relateUpdate[$key]);
 		}
+		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
+		//update box with image name
+		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
+	}
+	public static function deleteBox($modelName, $id)
+	{
+		$idRelates = self::getIdRelate($modelName, $id);
+		BoxCommon::where('model_name', $modelName)
+			->where('relate_name', $modelName)
+			->whereIn('relate_id', $idRelates)->delete();
+		foreach ($idRelates as $key => $idRelate) {
+			$modelName::find($idRelate)->delete();
+		}
+		$modelName::find($id)->delete();
 	}
 
 }
