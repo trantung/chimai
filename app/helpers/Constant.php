@@ -43,3 +43,10 @@ define('IMAGE_PARTNER_HEIGHT', 66);
 //catalogue size
 define('IMAGE_CATALOG_WIDTH', 400);
 define('IMAGE_CATALOG_HEIGHT', 600);
+
+//define type config code
+define('LAT', '1');
+define('LONG', '2');
+define('LOGO', '3');
+define('CHAT_SCRIPT', '4');
+define('PHONE', '5');
