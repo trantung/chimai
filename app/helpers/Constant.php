@@ -29,3 +29,28 @@ define('EN', 'en');
 define('FR', 'fr');
 define('CN', 'cn');
 
+//products size image to width & height
+define('IMAGE_WIDTH', 600);
+define('IMAGE_HEIGHT', 450);
+//product detail slide size
+define('IMAGE_PRODUCT_WIDTH', 900);
+define('IMAGE_PRODUCT_HEIGHT', 900);
+//banner slider
+define('IMAGE_SLIDE_WIDTH', 1350);
+define('IMAGE_SLIDE_HEIGHT', 540);
+//home box size
+define('IMAGE_HOME_WIDTH', 420);
+define('IMAGE_HOME_HEIGHT', 300);
+//partner size
+define('IMAGE_PARTNER_WIDTH', 136);
+define('IMAGE_PARTNER_HEIGHT', 66);
+//catalogue size
+define('IMAGE_CATALOG_WIDTH', 400);
+define('IMAGE_CATALOG_HEIGHT', 600);
+
+//define type config code
+define('LAT', '1');
+define('LONG', '2');
+define('LOGO', '3');
+define('CHAT_SCRIPT', '4');
+define('PHONE', '5');
