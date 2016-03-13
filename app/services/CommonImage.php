@@ -6,14 +6,12 @@ class CommonImage {
 	* upload image and resize / fit image with background color (default: white (255, 255, 255))
 	**/
 
-	public static function uploadImage($id, $path, $imageUrl, $folder, $w = IMAGE_WIDTH, $h = IMAGE_HEIGHT, $currentImage = NULL)
+	public static function uploadImage($id, $path, $imageUrl, $folder, $w = IMAGE_WIDTH, $h = IMAGE_HEIGHT, $mode = IMAGE_MODE_FIT, $currentImage = NULL)
 	{
 		$destinationPath = public_path().'/'.$path.'/'.$folder.'/'.$id.'/';
 		if(Input::hasFile($imageUrl)){
 			$file = Input::file($imageUrl);
 			$filename = $file->getClientOriginalName();
-
-			$mode = 'fit';
 			
 			// Source image
 			$size = getimagesize($file);
@@ -39,9 +37,14 @@ class CommonImage {
 			// All Magic is here
 			self::scale_image($src, $dst, $mode);
 			
+			// create folder to upload image
+			if (!file_exists($destinationPath)) {
+		    	mkdir($destinationPath, 0777, true);
+			}
+
 			// Output to the browser
 			// Header('Content-Type: image/jpeg');
-			imagejpeg($dst, $destinationPath . $filename);
+			imagejpeg($dst, $destinationPath . $filename, 100);
 
 			// $uploadSuccess = $file->move($destinationPath, imagejpeg($dst));
 			return $filename;
@@ -51,7 +54,7 @@ class CommonImage {
 		}
 	}
 
-	public static function scale_image($src_image, $dst_image, $op = 'fit') {
+	public static function scale_image($src_image, $dst_image, $op = IMAGE_MODE_FIT) {
 	    $src_width = imagesx($src_image);
 	    $src_height = imagesy($src_image);
 	 
@@ -65,7 +68,7 @@ class CommonImage {
 	    $new_y = round(($dst_height-$new_height)/2);
 	 
 	    // FILL and FIT mode are mutually exclusive
-	    if ($op =='fill')
+	    if ($op == IMAGE_MODE_FILL)
 	        $next = $new_height < $dst_height;
 	     else
 	        $next = $new_height > $dst_height;

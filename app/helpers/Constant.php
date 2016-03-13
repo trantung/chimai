@@ -48,6 +48,10 @@ define('IMAGE_PARTNER_HEIGHT', 66);
 define('IMAGE_CATALOG_WIDTH', 400);
 define('IMAGE_CATALOG_HEIGHT', 600);
 
+//mode image
+define('IMAGE_MODE_FIT', 'fit');
+define('IMAGE_MODE_FILL', 'fill');
+
 //define type config code
 define('LAT', '1');
 define('LONG', '2');
