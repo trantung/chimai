@@ -14,10 +14,10 @@
 		{{ Form::open(array('action' => array('BoxTypeController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên menu Vietnamese</label>
+					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_menu', $boxVi->name_menu , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_menu', $boxVi->name_menu , textPlaceHolder('Tên') + ['required'=>'']) }}
 						</div>
 					</div>
 				</div>
@@ -25,7 +25,7 @@
 					<label for="name">Tên content Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_content', $boxVi->name_content , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_content', $boxVi->name_content , textPlaceHolder('')) }}
 						</div>
 					</div>
 				</div>
@@ -33,17 +33,17 @@
 					<label for="name">Tên footer Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_footer', $boxVi->name_footer , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_footer', $boxVi->name_footer , textPlaceHolder('')) }}
 						</div>
 					</div>
 				</div>
 
 				@foreach($boxEn as $value)
 					<div class="form-group">
-						<label for="name">Tên menu {{ $value->language }}</label>
+						<label for="name">Tên {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($value->language.'_'.'name_menu', $value->name_menu, textPlaceHolder('')) }}
+							   {{ Form::text($value->language.'_'.'name_menu', $value->name_menu, textPlaceHolder('Name') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>

@@ -11,7 +11,7 @@
 -->
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('BoxCollectionController@create') }}" class="btn btn-primary">Thêm box</a>
+		<a href="{{ action('BoxCollectionController@create') }}" class="btn btn-primary">Thêm</a>
 	</div>
 </div>
 
@@ -25,7 +25,7 @@
 			<table class="table table-hover">
 				<tr>
 					<th>ID</th>
-					<th>Tên box Vietnamese</th>
+					<th>Tên Vietnamese</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				@foreach(BoxCollection::whereIn('id', $list)->get() as $box)

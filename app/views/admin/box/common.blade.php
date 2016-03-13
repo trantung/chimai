@@ -4,10 +4,10 @@
 			<a href="{{ action('BoxTypeController@index') }} " class="btn btn-success">Danh sách Box tin</a>
 		@endif
 		@if(Request::segment(3) == 'collection')
-			<a href="{{ action('BoxCollection@index') }} " class="btn btn-success">Danh sách Box sưu tập</a>
+			<a href="{{ action('BoxCollectionController@index') }} " class="btn btn-success">Danh sách Box sưu tập</a>
 		@endif
 		@if(Request::segment(3) == 'product')
-			<a href="{{ action('BoxProduct@index') }} " class="btn btn-success">Danh sách Box sản phẩm</a>
+			<a href="{{ action('BoxProductController@index') }} " class="btn btn-success">Danh sách Box sản phẩm</a>
 		@endif
 	</div>
 </div>

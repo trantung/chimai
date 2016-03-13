@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới box tin' }}
+{{ $title='Thêm mới box collection' }}
 @stop
 
 @section('content')
@@ -11,13 +11,13 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxTypeController@store'), 'files' => true)) }}
+		{{ Form::open(array('action' => array('BoxCollectionController@store'), 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên menu Vietnamese</label>
+					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_menu', null , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_menu', null , textPlaceHolder('Tên') + ['required'=>'']) }}
 						</div>
 					</div>
 				</div>
@@ -25,7 +25,7 @@
 					<label for="name">Tên content Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_content', null , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_content', null , textPlaceHolder('')) }}
 						</div>
 					</div>
 				</div>
@@ -33,16 +33,16 @@
 					<label for="name">Tên footer Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name_footer', null , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name_footer', null , textPlaceHolder('')) }}
 						</div>
 					</div>
 				</div>
 				@foreach($arrayLang as $keyLang => $singLang)
 					<div class="form-group">
-						<label for="name">Tên menu {{ $singLang }}</label>
+						<label for="name">Tên {{ $singLang }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name_menu', null , textPlaceHolder('Name')) }}
+							   {{ Form::text($singLang.'_'.'name_menu', null , textPlaceHolder('') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 						<label for="name">Tên content {{ $singLang }} </label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name_content', null , textPlaceHolder('Name')) }}
+							   {{ Form::text($singLang.'_'.'name_content', null , textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 						<label for="name">Tên footer {{ $singLang }} </label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name_footer', null , textPlaceHolder('Name')) }}
+							   {{ Form::text($singLang.'_'.'name_footer', null , textPlaceHolder('')) }}
 							</div>
 						</div>
 					</div>
