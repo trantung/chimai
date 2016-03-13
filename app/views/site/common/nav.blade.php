@@ -14,31 +14,36 @@
 				<ul class="left">
 					<li class="active"><a href="{{ url('/') }}" title="">{{ trans('captions.home') }}</a></li>
 					@foreach($menu as $menu)
-						<li>
-							<a href="{{ action('SiteAboutController@index') }}" title="">{{ trans('captions.aboutus') }}</a>
-						</li>
-						<li class="has-dropdown">
-							<a href="{{ action('SiteProductController@index') }}" title="">Sản phẩm</a>
-							<ul class="dropdown">
-								<li><a href="#">Gạch ốp lát Tây Ban Nha</a></li>
-								<li><a href="#">Gạch ốp lát Úc</a></li>
-								<li><a href="#">Gạch ốp lát Mỹ</a></li>
-								<li><a href="#">Gạch ốp lát Đức</a></li>
-								<li><a href="#">Gạch ốp lát Trung quốc</a></li>
-							</ul>
-						</li>
-						<li><a href="{{ action('SiteProductController@index') }}" title="">Khuyến mại</a></li>
-						<li class="has-dropdown">
-							<a href="{{ action('SiteCatalogueController@collection') }}">Bộ sưu tập</a>
-							<ul class="dropdown">
-								<li><a href="{{ action('SiteCatalogueController@catalogue') }}">Catelogue</a></li>
-								<li><a href="{{ action('SiteCatalogueController@gallery') }}">Showroom trưng bày</a></li>
-								<li><a href="{{ action('SiteCatalogueController@gallery') }}">Công trình đã thực hiện</a></li>
-								<li><a href="{{ action('SiteCatalogueController@gallery') }}">Chứng nhận chất lượng</a></li>
-								<li><a href="{{ action('SiteCatalogueController@gallery') }}">Giải thưởng đạt được</a></li>
-								<li><a href="{{ action('SiteCatalogueController@video') }}">Videos</a></li>
-							</ul>
-						</li>
+						@if($menu->model_name == 'BoxType')
+							<li>
+								<a href="{{ action('SiteBoxTypeController@index') }}" title="">{{ trans('captions.aboutus') }}</a>
+							</li>
+						@endif
+						@if($menu->model_name == 'BoxProduct')
+							<li class="has-dropdown">
+								<a href="{{ action('SiteBoxProductController@index') }}" title="">Sản phẩm</a>
+								<ul class="dropdown">
+									<li><a href="#">Gạch ốp lát Tây Ban Nha</a></li>
+									<li><a href="#">Gạch ốp lát Úc</a></li>
+									<li><a href="#">Gạch ốp lát Mỹ</a></li>
+									<li><a href="#">Gạch ốp lát Đức</a></li>
+									<li><a href="#">Gạch ốp lát Trung quốc</a></li>
+								</ul>
+							</li>
+						@endif
+						@if($menu->model_name == 'BoxCollection')
+							<li class="has-dropdown">
+								<a href="{{ action('SiteBoxCollectionController@collection') }}">Bộ sưu tập</a>
+								<ul class="dropdown">
+									<li><a href="{{ action('SiteBoxCollectionController@catalogue') }}">Catelogue</a></li>
+									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Showroom trưng bày</a></li>
+									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Công trình đã thực hiện</a></li>
+									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Chứng nhận chất lượng</a></li>
+									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Giải thưởng đạt được</a></li>
+									<li><a href="{{ action('SiteBoxCollectionController@video') }}">Videos</a></li>
+								</ul>
+							</li>
+						@endif
 					@endforeach
 					<li><a href="{{ action('SiteContactController@index') }}" title="">{{ trans('captions.contact') }}</a></li>
 				</ul>

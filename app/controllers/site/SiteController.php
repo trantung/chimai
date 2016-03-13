@@ -5,12 +5,15 @@ class SiteController extends BaseController {
 	public function __construct() {
 		$menu = BoxCommon::where('position', MENU)
 			->where('status', ENABLED)
+			->orderBy('weight_number', 'asc')
 			->get();
 		$content = BoxCommon::where('position', CONTENT)
 			->where('status', ENABLED)
+			->orderBy('weight_number', 'asc')
 			->get();
 		$footer = BoxCommon::where('position', FOOTER)
 			->where('status', ENABLED)
+			->orderBy('weight_number', 'asc')
 			->get();
 		View::share('menu', $menu);
 		View::share('content', $content);

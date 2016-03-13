@@ -1,6 +1,6 @@
 <?php
 
-class SiteCatalogueController extends SiteController {
+class SiteBoxCollectionController extends SiteController {
 
 	public function collection()
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class SiteProductController extends SiteController {
+class SiteBoxProductController extends SiteController {
 
 	public function index()
 	{

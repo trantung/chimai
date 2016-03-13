@@ -63,10 +63,10 @@ Route::group(
 	{
 
 		// demo page
-		Route::get('/collection', 'SiteCatalogueController@collection');
-		Route::get('/catalogue', 'SiteCatalogueController@catalogue');
-		Route::get('/gallery', 'SiteCatalogueController@gallery');
-		Route::get('/video', 'SiteCatalogueController@video');
+		Route::get('/collection', 'SiteBoxCollectionController@collection');
+		Route::get('/catalogue', 'SiteBoxCollectionController@catalogue');
+		Route::get('/gallery', 'SiteBoxCollectionController@gallery');
+		Route::get('/video', 'SiteBoxCollectionController@video');
 
 		Route::get('/orders', 'SiteOrdersController@orders');
 		Route::get('/orders_detail', 'SiteOrdersController@orders_detail');
@@ -74,8 +74,8 @@ Route::group(
 		Route::get('/news', 'SiteNewsController@index');
 		Route::get('/news-detail', 'SiteNewsController@detail');
 
-		Route::get('/product', 'SiteProductController@index');
-		Route::get('/product-detail', 'SiteProductController@detail');
+		Route::get('/product', 'SiteBoxProductController@index');
+		Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
 
 		Route::post('/sendLang', 'SiteIndexController@sendLang');
@@ -83,7 +83,7 @@ Route::group(
 		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 		Route::resource('/', 'SiteIndexController');
 
-		Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteAboutController@index');
+		Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteBoxTypeController@index');
 		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
 		Route::post(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@contact');
 
