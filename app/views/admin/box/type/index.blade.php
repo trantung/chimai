@@ -36,7 +36,7 @@
 					<td>{{ Common::getNameBox($box) }}</td>
 					<td>{{ Common::getPositionName($box->position) }}</td>
 					<td>
-					<a href="{{ action('BoxTypeController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
+						<a href="{{ action('BoxTypeController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
 						{{ Form::open(array('method'=>'DELETE', 'action' => array('BoxTypeController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
 						<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
 						{{ Form::close() }}

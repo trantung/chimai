@@ -29,6 +29,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="name">Tên footer Vietnamese</label>
+					<div class="row">
+						<div class="col-sm-6">	                  	
+						   {{ Form::text('name_footer', null , textPlaceHolder('Tên thể loại tin')) }}
+						</div>
+					</div>
+				</div>
 				@foreach($arrayLang as $keyLang => $singLang)
 					<div class="form-group">
 						<label for="name">Tên menu {{ $singLang }}</label>
@@ -46,40 +54,26 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="name">Tên footer {{ $singLang }} </label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text($singLang.'_'.'name_footer', null , textPlaceHolder('Name')) }}
+							</div>
+						</div>
+					</div>
 				@endforeach
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
 				</div>
-				<div class="form-group">
-					<label>Mức ưu tiên</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-	                <label>Vị trí</label>
-	                <div class="row">
-						<div class="col-sm-6">
-		                	{{ Form::select('position', Common::getPosition(), '', array('class' => 'form-control')) }}
-		                </div>
-					</div>
-              	</div>
-				<div class="form-group">
-	                <label>Trạng thái</label>
-	                <div class="row">
-						<div class="col-sm-6">
-		                	{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
-		                </div>
-					</div>
-              	</div>
-              	
-			 	<div class="box-footer">
+
+				@include('admin.box.tab')
+		  
+				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			 	</div>
-		  	</div>
+				</div>
+			</div>
 		{{ Form::close() }}
 	</div>
 </div>

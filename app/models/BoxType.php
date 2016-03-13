@@ -10,7 +10,7 @@ class BoxType extends Eloquent implements SluggableInterface
 	use SluggableTrait;
     protected $table = 'box_types';
     protected $fillable = ['name_menu', 'name_content', 'weight_number',
-    	'status', 'position', 'image_url', 'slug', 'language'];
+    	'status', 'position', 'image_url', 'slug', 'language', 'name_footer'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(

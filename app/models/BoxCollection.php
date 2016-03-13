@@ -11,7 +11,7 @@ class BoxCollection extends Eloquent implements SluggableInterface
 	use SluggableTrait;
     protected $table = 'box_types';
     protected $fillable = ['name_menu', 'name_content', 'weight_number',
-    	'status', 'position', 'image_url', 'slug'];
+    	'status', 'position', 'image_url', 'slug', 'name_footer', 'language'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(

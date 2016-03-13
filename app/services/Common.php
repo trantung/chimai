@@ -3,7 +3,7 @@ class Common {
 
 	public static function getArrayLang()
 	{
-		$lang = array(VI => VI, EN => EN, FR=>FR, CN => CN);
+		$lang = array(VI => VI, EN => EN);
 		return $lang;
 	}
 
@@ -95,7 +95,7 @@ class Common {
 	}
 	public static function getArrayLangNotVi()
 	{
-		$lang = array(EN => EN, FR=>FR, CN => CN);
+		$lang = array(EN => EN);
 		return $lang;
 	}
 	public static function getInputVi($input, $default)
@@ -118,6 +118,7 @@ class Common {
 		//get viInput and enInput, frInput...
 		$viInput = array();
 		$foreignInput = array();
+		// dd($input);
 		$commonInput = array_diff($input, $default);
 		$getArrayLangNotVi = self::getArrayLangNotVi();
 		foreach ($commonInput as $key => $value) {
@@ -137,15 +138,18 @@ class Common {
 	{
 		//get default array
 		$default = self::getDefaultValue($modelName, $input);
-		$viInput = self::getInputVi($input, $default);
-		$foreignInput = self::getInputForeign($input, $default);
+		unset($input['position']);
+		unset($input['status']);
+		unset($input['weight_number']);
+		$viInput = self::getInputVi($input, []);
+		$foreignInput = self::getInputForeign($input, []);
 		//create vi ->id
 		// $viInput['language'] = VI;
-		$id = self::create($modelName, $viInput, $default);
+		$id = self::create($modelName, $viInput, []);
 		//create foreign
 		foreach ($foreignInput as $keyForeign => $valueForeign) {
 			$foreignInput[$keyForeign]['language'] = $keyForeign;
-			$idRelates[$keyForeign] = self::create($modelName, $foreignInput[$keyForeign], $default);
+			$idRelates[$keyForeign] = self::create($modelName, $foreignInput[$keyForeign], []);
 		}
 		//create BoxCommon
 		self::createBoxCommon($id, $idRelates, $modelName, $default);
@@ -193,20 +197,24 @@ class Common {
 
 	public static function createBoxCommon($id, $arrayRelateId, $modelName, $default)
 	{	
+		// dd($default);
 		foreach ($arrayRelateId as $key => $value) {
 			$input['model_id'] = $id;
 			$input['model_name'] = $modelName;
 			$input['relate_id'] = $value;
 			$input['relate_name'] = $modelName;
-			$listId[] = BoxCommon::create(array(
-				'model_id' => $id,
-				'model_name' => $modelName,
-				'relate_id' => $value,
-				'relate_name' => $modelName,
-				'position' => $default['position'],
-				'status' => $default['status'],
-				'weight_number' => $default['weight_number'],
-			));
+			foreach($default['position'] as $k => $v) {
+				$listId[] = BoxCommon::create(array(
+					'model_id' => $id,
+					'model_name' => $modelName,
+					'relate_id' => $value,
+					'relate_name' => $modelName,
+					'position' => $default['position'][$k],
+					'status' => $default['status'][$k],
+					'weight_number' => $default['weight_number'][$k],
+				));
+			}
+			
 		}
 		return $listId;
 	}	
@@ -214,13 +222,18 @@ class Common {
 	public static function updateBoxCommon($modelName, $id, $default)
 	{	
 		$idRelates = self::getIdRelate($modelName, $id);
+		// dd($default);
 		foreach ($idRelates as $key => $idRelate) {
-			BoxCommon::whereIn('relate_id', $idRelates)
-				->update(array(
-						'position' => $default['position'],
-						'weight_number' => $default['weight_number'],
-						'status' => $default['status'],
-					));
+			foreach($default['position'] as $k => $v) {
+				$test = BoxCommon::where('position', $default['position'][$k])
+					->where('relate_id', $idRelate)
+					->where('model_name', $modelName)
+					->first()
+					->update(array(
+							'weight_number' => $default['weight_number'][$k],
+							'status' => $default['status'][$k],
+						));
+			}
 		}
 	}
 
@@ -256,18 +269,21 @@ class Common {
 	public static function updateBox($modelName, $id, $input)
 	{
 		$default = self::getDefaultValue($modelName, $input);
-		$viInput = self::getInputVi($input, $default);
-		$foreignInput = self::getInputForeign($input, $default);
+		unset($input['position']);
+		unset($input['status']);
+		unset($input['weight_number']);
+		$viInput = self::getInputVi($input, []);
+		$foreignInput = self::getInputForeign($input, []);
 		$imageUrl = $modelName::find($id)->image_url;
 		//update viId
-		self::update($modelName, $viInput, $default, $id);
+		self::update($modelName, $viInput, [], $id);
 		//update boxCommon
 		self::updateBoxCommon($modelName, $id, $default);
 		//update foreign
 		$idRelates = self::getIdRelate($modelName, $id);
 		foreach ($idRelates as $key => $idRelate) {
 			$relate[$key] = $modelName::find($idRelate);
-			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], $default);
+			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
 			$relate[$key]->update($relateUpdate[$key]);
 		}
 		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
@@ -277,13 +293,25 @@ class Common {
 	public static function deleteBox($modelName, $id)
 	{
 		$idRelates = self::getIdRelate($modelName, $id);
-		BoxCommon::where('model_name', $modelName)
-			->where('relate_name', $modelName)
-			->whereIn('relate_id', $idRelates)->delete();
 		foreach ($idRelates as $key => $idRelate) {
-			$modelName::find($idRelate)->delete();
+			$delete = BoxCommon::where('model_name', $modelName)
+				->where('relate_name', $modelName)
+				->where('relate_id', $idRelate)
+				->delete();
+			if ($modelName::find($idRelate)) {
+				$modelName::find($idRelate)->delete();
+			}
 		}
 		$modelName::find($id)->delete();
+	}
+
+	public static function getValueCommonBox($modelId, $modelName, $position, $field)
+	{
+		$value = BoxCommon::where('model_id', $modelId)->where('model_name', $modelName)->where('position', $position)->first();
+		if($value) {
+			return $value->$field;
+		}
+		return null;
 	}
 
 }
