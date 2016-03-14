@@ -315,6 +315,30 @@ class Common {
 		}
 		return null;
 	}
+	public static function getNameByBoxCommon($value)
+	{
+		$ob = $value->model_name;
+		if ($box = $ob::find($value->model_id)) {
+			return $box->name_menu;
+		}
+		return null;
+	}
+	public static function getBoxNameByBoxCommon($value)
+	{
+		if ($value->model_name == 'BoxType') {
+			return 'Box tin tức';
+		}
+		if ($value->model_name == 'BoxCollection') {
+			return 'Box sưu tâp';
+		}
+		if ($value->model_name == 'BoxProduct') {
+			return 'Box sản phẩm';
+		}
+		if ($value->model_name == 'BoxPromotion') {
+			return 'Box khuyến mãi';
+		}
+		return null;
+	}
 
 }
 

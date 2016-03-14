@@ -24,6 +24,21 @@
 			</li>
 			<li class="treeview">
 				<a href="#">
+					<i class="fa fa-list"></i> <span>Box hiển thị trang chủ</span>
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminMenuController@index') }}"><i class="fa fa-circle-o"></i> Quản lý menu</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminContentController@index') }}"><i class="fa fa-circle-o"></i> Quản lý content</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminFooterController@index') }}"><i class="fa fa-circle-o"></i> Quản lý footer</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
 					<i class="fa fa-list"></i> <span>Quản lý thư mục hiển thị trong box</span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>

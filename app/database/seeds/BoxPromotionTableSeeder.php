@@ -20,6 +20,7 @@ class BoxPromotionTableSeeder extends Seeder {
 			'language' => 'en',
 			'slug' => 'promotion',
 		]);
+		
 	}
 
 }
