@@ -52,6 +52,11 @@
 					<i class="fa fa-users"></i> <span>Quản lý video</span>
 				</a>
 			</li>
+			<li>
+				<a href="{{ action('ConfigCodeController@editConfig') }}">
+					<i class="fa fa-cogs"></i> <span>Cài đặt</span>
+				</a>
+			</li>
 		</ul>
 	</section>
 </aside>

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('RoleTableSeeder');
 		$this->call('AdminTableSeeder');
+		$this->call('ConfigCodeTableSeeder');
 	}
 
 }
