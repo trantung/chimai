@@ -12,7 +12,14 @@ class CreateProductCategoryTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('category_products', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('description', 256)->nullable();
+			$table->integer('product_id')->nullable();
+			$table->integer('category_id')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreateProductCategoryTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('category_products');
 	}
 
 }

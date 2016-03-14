@@ -14,8 +14,11 @@ class CreateLanguageTable extends Migration {
 	{
 		Schema::create('languages', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name_menu', 256)->nullable();
-			$table->string('name_content', 256)->nullable();
+			$table->string('model_name', 256)->nullable();
+			$table->string('relate_name', 256)->nullable();
+			$table->integer('model_id')->nullable();
+			$table->integer('relate_id')->nullable();
+			$table->integer('status')->nullable();
 			$table->integer('weight_number')->nullable();
 			$table->softDeletes();
 			$table->timestamps();

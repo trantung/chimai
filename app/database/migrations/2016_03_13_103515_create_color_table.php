@@ -12,7 +12,16 @@ class CreateColorTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('colors', function(Blueprint $table) {
+			$table->increments('id');
+			$table->integer('product_id')->nullable();
+			$table->string('name', 256)->nullable();
+			$table->string('image_url', 256)->nullable();
+			$table->integer('weight_number')->nullable();
+			$table->integer('status')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +31,7 @@ class CreateColorTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('colors');
 	}
 
 }

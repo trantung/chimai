@@ -12,7 +12,14 @@ class CreateProductSizeTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('size_products', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('description', 256)->nullable();
+			$table->integer('product_id')->nullable();
+			$table->integer('size_id')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreateProductSizeTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('size_products');
 	}
 
 }

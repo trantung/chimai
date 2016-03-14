@@ -12,7 +12,16 @@ class CreateMaterialTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('materials', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('name', 256)->nullable();
+			$table->integer('weight_number')->nullable();
+			$table->integer('status')->nullable();
+			$table->string('language', 256)->nullable();
+			$table->string('slug', 256)->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +31,7 @@ class CreateMaterialTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('materials');
 	}
 
 }

@@ -12,7 +12,17 @@ class CreateBoxPromotionTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('box_promotions', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('name_menu', 256)->nullable();
+			$table->string('name_content', 256)->nullable();
+			$table->string('name_footer', 256)->nullable();
+			$table->string('language', 256)->nullable();
+			$table->string('image_url', 256)->nullable();
+			$table->string('slug', 256)->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +32,7 @@ class CreateBoxPromotionTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('box_promotions');
 	}
 
 }

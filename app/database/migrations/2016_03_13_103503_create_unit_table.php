@@ -12,7 +12,14 @@ class CreateUnitTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('units', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('name', 256)->nullable();
+			$table->integer('weight_number')->nullable();
+			$table->integer('status')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreateUnitTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('units');
 	}
 
 }
