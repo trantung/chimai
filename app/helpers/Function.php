@@ -164,3 +164,11 @@ function convert_string_vi_to_en($str){
     }
     return $str;
 }
+
+function getSlideType($typeId) {
+	$data = array(
+		SLIDE_BANNER_VALUE => SLIDE_BANNER,
+		SLIDE_PARTNER_VALUE => SLIDE_PARTNER,
+	);
+	return $data[$typeId];
+}

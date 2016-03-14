@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới quảng cáo header và footer' }}
+{{ $title='Sửa slide' }}
 @stop
 
 @section('content')
@@ -19,88 +19,46 @@
 			{{ Form::open(array('action' => array('AdminSlideController@update', $slide->id), 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Name</label>
-					<div class="row">
-						<div class="col-sm-6">	
-							{{ Form::text('name', $slide->name , textParentCategory('tên slide')) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="name">Auto Play</label>
-					<div class="row">
-						<div class="col-sm-6">	                  	
-						   {{ Form::select('autoplay', [ENABLED => 'Tự động chạy', DISABLED => 'Không tự động chạy'], $slide->autoplay) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="name">Hiển thị nút prev và next</label>
-					<div class="row">
-						<div class="col-sm-6">	                  	
-						   {{ Form::select('navigation', [DISABLED => 'Không', ENABLED => 'Có'], $slide->navigation) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="name">Hiển thị nút phân trang cho slide</label>
-					<div class="row">
-						<div class="col-sm-6">	                  	
-						   {{ Form::select('pagination', [DISABLED => 'Không', ENABLED => 'Có'], $slide->pagination) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="name">Thời gian slide chạy</label>
-					<div class="row">
-						<div class="col-sm-6">	
-							{{ Form::text('config_time', $slide->config_time , textParentCategory('Time')) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="name">Chọn list ảnh mới, xoá hết ảnh cũ</label>
+					<label for="name">Type</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::file('image_url[]', array('id' => 'image_url', 'multiple' => true)) }}
+						   {{ Form::select('type', [SLIDE_BANNER_VALUE => SLIDE_BANNER, SLIDE_PARTNER_VALUE => SLIDE_PARTNER], $slide->type, array('class' => 'form-control')) }}
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					@foreach($slide->images as $key => $image)
-						<label for="name">Image thứ {{$key + 1}}</label>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="name">Đổi ảnh</label>
-								{{ Form::file('image[' .$image->id. ']', array('id' => 'image_url')) }}
-								<img src="{{ url(UPLOAD_IMAGE_SLIDE . '/image'. '/' . $slide->id . '/' . $image->image_url) }}" ,width="100px", height="100px"  />
-		                    	<a href="javascript:;" onclick="deleteImageRelate()" data-id="{{ $image->id }}" class="image_relate btn btn-danger">Xoá</a>
-							</div>
+					<label for="name">Name</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('name', $slide->name , textPlaceHolder('Name')) }}
 						</div>
-						<div>
-	                @endforeach
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name">Link</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('link', $slide->link , textPlaceHolder('Đường dẫn')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="name">Upload ảnh</label>
+							<p>Kích thước: {{ SLIDE_BANNER }}: {{ IMAGE_SLIDE_WIDTH }}x{{ IMAGE_SLIDE_HEIGHT }} / {{ SLIDE_PARTNER }}: {{ IMAGE_PARTNER_WIDTH }}x{{ IMAGE_PARTNER_HEIGHT }} / Dung lượng < 1Mb</p>
+							{{ Form::file('image_url') }}
+							<img src="{{ url(UPLOADIMG . '/AdminSlide/' . $slide->id . '/' . $slide->image_url) }}" width="200px" height="auto"  />
+						</div>
+					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="name">Kiểu slide</label>
-					<div class="row">
-						<div class="col-sm-6">	                  	
-						   {{ Form::select('type', [DISABLED => 'Chạy ngang']) }}
-						</div>
-					</div>
+				<div class="box-footer">
+					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>
-			  <div class="box-footer">
-				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			  </div>
 			{{ Form::close() }}
 		  </div>
 		  <!-- /.box -->
 	</div>
 </div>
-@include('admin.slider.script')
 @stop

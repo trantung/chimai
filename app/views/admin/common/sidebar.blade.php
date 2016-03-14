@@ -53,6 +53,11 @@
 				</a>
 			</li>
 			<li>
+				<a href="{{ action('AdminSlideController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý Slide</span>
+				</a>
+			</li>
+			<li>
 				<a href="{{ action('ConfigCodeController@editConfig') }}">
 					<i class="fa fa-cogs"></i> <span>Cài đặt</span>
 				</a>

@@ -42,8 +42,8 @@ define('IMAGE_SLIDE_HEIGHT', 540);
 define('IMAGE_HOME_WIDTH', 420);
 define('IMAGE_HOME_HEIGHT', 300);
 //partner size
-define('IMAGE_PARTNER_WIDTH', 136);
-define('IMAGE_PARTNER_HEIGHT', 66);
+define('IMAGE_PARTNER_WIDTH', 140);
+define('IMAGE_PARTNER_HEIGHT', 70);
 //catalogue size
 define('IMAGE_CATALOG_WIDTH', 400);
 define('IMAGE_CATALOG_HEIGHT', 600);
@@ -70,3 +70,8 @@ define('CONTACT_ADDRESS', 10);
 define('CONTACT_PHONE', 11);
 define('CONTACT_EMAIL', 12);
 define('CONTACT_WORKING_TIME', 13);
+
+define('SLIDE_BANNER', 'Banner trang chủ');
+define('SLIDE_PARTNER', 'Logo đối tác');
+define('SLIDE_BANNER_VALUE', 1);
+define('SLIDE_PARTNER_VALUE', 2);
