@@ -13,14 +13,22 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('RoleTableSeeder');
 		$this->call('AdminTableSeeder');
+		//Box khuyen mai
 		$this->call('BoxPromotionTableSeeder');
+		//category
 		$this->call('CategoryTableSeeder');
+		//chat lieu
 		$this->call('MaterialTableSeeder');
+		//made in
 		$this->call('OriginTableSeeder');
+		//size
 		$this->call('SizeTableSeeder');
+		//be mat
 		$this->call('SurfaceTableSeeder');
 		$this->call('BoxCommonTableSeeder');
+		//language		
 		$this->call('LanguageTableSeeder');
+		
 		$this->call('ConfigCodeTableSeeder');
 	}
 

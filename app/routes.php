@@ -18,6 +18,14 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/logout', array('uses' => 'AdminController@logout', 'as' => 'admin.logout'));
 	Route::resource('/', 'AdminController');
 	Route::group(['prefix' => 'box'], function(){
+		//menu
+		Route::post('/menu/updateIndexData', 'AdminMenuController@updateIndexData');
+		Route::resource('/menu', 'AdminMenuController');
+		//content
+		Route::resource('/content', 'AdminContentController');
+		//footer
+		Route::resource('/footer', 'AdminFooterController');
+
 		//box tin tức hiển thị trên menu hoặc content
 		Route::resource('/type', 'BoxTypeController');
 		Route::resource('/type/child_type', 'BoxTypeChildController');

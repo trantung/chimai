@@ -22,6 +22,15 @@ class BoxCommonTableSeeder extends Seeder {
 			'status' => 1,
 			'weight_number' => 2,
 		]);
+		BoxCommon::create([
+			'model_name' => 'BoxPromotion',
+			'relate_name' => 'BoxPromotion',
+			'model_id' => 1,
+			'relate_id' => 2,
+			'position' => 3,
+			'status' => 1,
+			'weight_number' => 4,
+		]);
 	}
 
 }
