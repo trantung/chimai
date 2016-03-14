@@ -48,9 +48,25 @@ define('IMAGE_PARTNER_HEIGHT', 66);
 define('IMAGE_CATALOG_WIDTH', 400);
 define('IMAGE_CATALOG_HEIGHT', 600);
 
+//mode image
+define('IMAGE_MODE_FIT', 'fit');
+define('IMAGE_MODE_FILL', 'fill');
+
+//default lat long
+define('DEFAULT_LAT', '21.045384');
+define('DEFAULT_LONG', '105.805123');
+
 //define type config code
-define('LAT', '1');
-define('LONG', '2');
-define('LOGO', '3');
-define('CHAT_SCRIPT', '4');
-define('PHONE', '5');
+define('LAT', 1);
+define('LONG', 2);
+define('LOGO', 3);
+define('CHAT_SCRIPT', 4);
+define('HOTLINE_PHONE', 5);
+define('FOOTER_TEXT', 6);
+define('SOCIAL_URL_FACEBOOK',7);
+define('SOCIAL_URL_GOOGLE', 8);
+define('SOCIAL_URL_INSTAGRAM', 9);
+define('CONTACT_ADDRESS', 10);
+define('CONTACT_PHONE', 11);
+define('CONTACT_EMAIL', 12);
+define('CONTACT_WORKING_TIME', 13);

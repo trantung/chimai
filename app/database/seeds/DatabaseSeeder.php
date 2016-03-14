@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('SurfaceTableSeeder');
 		$this->call('BoxCommonTableSeeder');
 		$this->call('LanguageTableSeeder');
+		$this->call('ConfigCodeTableSeeder');
 	}
 
 }

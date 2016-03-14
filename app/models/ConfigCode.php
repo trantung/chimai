@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class ConfigCode extends Eloquent
 {
 	use SoftDeletingTrait;
-	protected $table = 'contacts';
-	protected $fillable = ['type', 'code'];
+	protected $table = 'config_code';
+	protected $fillable = ['type', 'code', 'language'];
 	protected $dates = ['deleted_at'];
 
 }

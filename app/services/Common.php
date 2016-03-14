@@ -64,7 +64,7 @@ class Common {
 	}
 	public static function getStatus()
 	{
-		$array = [ACTIVE => 'Hiển thị', INACTIVE => 'Ẩn'];
+		$array = [INACTIVE => 'Ẩn', ACTIVE => 'Hiển thị'];
 		return $array;
 	}
 
@@ -154,7 +154,8 @@ class Common {
 		//create BoxCommon
 		self::createBoxCommon($id, $idRelates, $modelName, $default);
 		//upload image with viId, enId...
-		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName);
+		// $imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName);
+		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
 		return $id;
@@ -286,7 +287,8 @@ class Common {
 			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
 			$relate[$key]->update($relateUpdate[$key]);
 		}
-		$imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
+		// $imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
+		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL, $imageUrl);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
 	}

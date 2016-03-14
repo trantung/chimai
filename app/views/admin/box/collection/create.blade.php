@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới box tin' }}
+{{ $title='Thêm mới box collection' }}
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxTypeController@store'), 'files' => true)) }}
+		{{ Form::open(array('action' => array('BoxCollectionController@store'), 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>

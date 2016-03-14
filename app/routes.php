@@ -27,6 +27,9 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::resource('/product', 'BoxProductController');
 	});
 
+	Route::get('/configcode', 'ConfigCodeController@editConfig');
+	Route::post('/configcode', 'ConfigCodeController@updateConfig');
+
 	Route::get('/manager/changepassword/{id}', array('uses' => 'ManagerController@changePassword', 'as' => 'admin.manager.chanpassword'));
 	Route::post('/manager/updatePassword/{id}', array('uses' => 'ManagerController@updatePassword'));
 	Route::get('/manager/search', array('uses' => 'ManagerController@search', 'as' => 'admin.manager.search'));
