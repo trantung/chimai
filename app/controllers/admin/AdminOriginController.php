@@ -32,14 +32,14 @@ class AdminOriginController extends AdminController {
 	 */
 	public function store()
 	{
-    	$viId = CommonProperty::createBox($input, 'Origin');
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'Origin', CommonProperty::getDefaultValue('Origin', $input));
 		if ($viId) {
-			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
+			return Redirect::action('AdminOriginController@index')
+				->with('message', 'Tạo mới thành công');
 		}
-		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
+		return Redirect::action('AdminOriginController@index')->with('message', 'Tạo mới thất bại');
 	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -60,9 +60,10 @@ class AdminOriginController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		$ob = CommonProperty::getObjectByModelId('Origin', $id);
-		$boxVi = $ob[0];
-		$boxEn = $ob[1];
+		$boxVi = CommonLanguage::getObjectByLang('Origin', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'Origin')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = Origin::whereIn('id', $listId)->get();
 		return View::make('admin.origin.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
@@ -75,17 +76,9 @@ class AdminOriginController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('Origin');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('AdminOriginController@edit', $id)
-				->withErrors($validator);
-		} else {
-			// CommonProperty::updateBox('Origin', $id, $input);
-			CommonProperty::update('Origin', $id, $input);
-			return Redirect::action('AdminOriginController@index')->with('message', 'Sửa thành công');;
-		}
+		CommonLanguage::updateModel('Origin', $id, $input, CommonProperty::getDefaultValue('Origin', $input));
+		return Redirect::action('AdminOriginController@index')->with('message', 'Sửa thành công');
 	}
 
 
@@ -97,7 +90,8 @@ class AdminOriginController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('Origin', $id);
+		return Redirect::action('AdminOriginController@index')->with('message', 'Xoá thành công');
 	}
 
 

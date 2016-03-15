@@ -120,7 +120,7 @@ class CommonLanguage {
 		//update viId
 		Common::update($modelName, $viInput, [], $id);
 		//update AdminLanguage
-		// Common::updateModelCommon($modelName, $id, $default);
+		self::updateModelCommon($modelName, $id, $inputCommon);
 		//update foreign
 		$idRelates = self::getIdRelate($modelName, $id);
 		foreach ($idRelates as $key => $idRelate) {

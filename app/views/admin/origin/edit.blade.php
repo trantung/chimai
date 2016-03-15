@@ -34,6 +34,22 @@
 						</div>
 					</div>
 				@endforeach
+				<div class="form-group">
+					<label>Mức ưu tiên</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Trạng thái</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
+						</div>
+					</div>
+				</div>
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>

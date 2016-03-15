@@ -25,18 +25,22 @@
 			<table class="table table-hover">
 				<tr>
 					<th>ID</th>
-					<th>Tên Vietnamese</th>
+					<th>Tên nước tiếng việt</th>
+					<th>Thứ tự</th>
+					<th>Trạng thái</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				@foreach(Origin::whereIn('id', $list)->get() as $box)
 					<tr>
 						<td>{{ $box->id }}</td>
 						<td>{{ $box->name }}</td>
+						<td>{{ $box->weight_number }}</td>
+						<td>{{ Common::getStatusProperty($box->status) }}</td>
 						<td>
 							<a href="{{ action('AdminOriginController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
-							{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminOriginController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
+							<!-- {{ Form::open(array('method'=>'DELETE', 'action' => array('AdminOriginController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
 							<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
-							{{ Form::close() }}
+							{{ Form::close() }} -->
 						</td>
 					</tr>
 				@endforeach

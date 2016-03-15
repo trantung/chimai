@@ -351,6 +351,16 @@ class Common extends CommonParent
 		$array = [0 => $boxVi, 1 => $boxEn];
 		return $array;
 	}
+	public static function getStatusProperty($status)
+	{
+		if ($status == ACTIVE) {
+			return 'Hiển thị';
+		}
+		if ($status == INACTIVE) {
+			return 'Không hiển thị';
+		}
+
+	}
 
 }
 

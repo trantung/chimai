@@ -18,54 +18,57 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/logout', array('uses' => 'AdminController@logout', 'as' => 'admin.logout'));
 	Route::resource('/', 'AdminController');
 	Route::group(['prefix' => 'box'], function(){
-		//menu
+		//menu->ok
 		Route::post('/menu/updateIndexData', 'AdminMenuController@updateIndexData');
+		//content->ok
 		Route::get('/content', 'AdminMenuController@content');
+		//footer->ok
 		Route::get('/footer', 'AdminMenuController@footer');
 		Route::resource('/menu', 'AdminMenuController');
-		//content
-		// Route::resource('/content', 'AdminContentController');
-		//footer
-		// Route::resource('/footer', 'AdminFooterController');
-
-		//box tin tức hiển thị trên menu hoặc content
+		//box tin tức hiển thị trên menu hoặc content->ok
 		Route::resource('/type', 'BoxTypeController');
-		Route::resource('/type/child_type', 'BoxTypeChildController');
-		//box bộ sưu tập hiển thị trên menu hoặc content
+		//box bộ sưu tập hiển thị trên menu hoặc content->ok
 		Route::resource('/collection', 'BoxCollectionController');
-		//box sản phẩm hiển thị trên menu hoặc content
+		//box sản phẩm hiển thị trên menu hoặc content->ok
 		Route::resource('/product', 'BoxProductController');
-		//box khuyến mãi hiển thị trên menu hoặc content
+		//box khuyến mãi hiển thị trên menu hoặc content->ok
 		Route::resource('/promotion', 'BoxPromotionController');
 
 	});
 	Route::group(['prefix' => 'property'], function(){
+		//category->no
 		Route::resource('/category', 'AdminCategoryController');
+		//chat lieu ->no
 		Route::resource('/material', 'AdminMaterialController');
+		//xuat xu->ok
 		Route::resource('/origin', 'AdminOriginController');
+		//kich co->no
 		Route::resource('/size', 'AdminSizeController');
+		//be mat->no
 		Route::resource('/surface', 'AdminSurfaceController');
-
 	});
+	//product->no
+
+	//ok
 	Route::get('/configcode', 'ConfigCodeController@editConfig');
 	Route::post('/configcode', 'ConfigCodeController@updateConfig');
-
+	//ok
 	Route::get('/manager/changepassword/{id}', array('uses' => 'ManagerController@changePassword', 'as' => 'admin.manager.chanpassword'));
 	Route::post('/manager/updatePassword/{id}', array('uses' => 'ManagerController@updatePassword'));
 	Route::get('/manager/search', array('uses' => 'ManagerController@search', 'as' => 'admin.manager.search'));
 	Route::resource('/manager', 'ManagerController');
-
+	//ok
 	Route::post('/contact/deleteSelected', 'AdminContactController@deleteSelected');
 	Route::resource('/contact', 'AdminContactController');
-
+	//no
 	Route::resource('/newstype', 'NewsTypeController');
-
 	Route::get('/news/search', array('uses' => 'NewsController@search', 'as' => 'admin.news.search'));
 	Route::resource('/news', 'NewsController');
-
+	//ok
 	Route::resource('/slider', 'AdminSlideController');
-
+	//
 	Route::resource('/video', 'AdminVideoController');
+	//upload pdf->no
 
 });
 
