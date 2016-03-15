@@ -16,10 +16,11 @@ define('PAGINATE', 20);
 define('FRONENDPAGINATE', 8);
 //url upload img
 define('UPLOADIMG', '/images');
-//url upload boxtype, boxcollection, boxproduct
+//url upload boxtype, boxcollection, boxproduct, boxpromotion
 define('BOXTYPE', '/box_type');
 define('BOXCOLLECTION', '/box_collection');
 define('BOXPRODUCT', '/box_product');
+define('BOXPROMOTION', '/box_promotion');
 
 define('MENU', 1);
 define('CONTENT', 2);

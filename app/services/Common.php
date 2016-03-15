@@ -1,5 +1,6 @@
 <?php
-class Common {
+class Common extends CommonParent
+{
 
 	public static function getArrayLang()
 	{
@@ -86,7 +87,7 @@ class Common {
 
 	public static function getDefaultValue($modelName, $input)
 	{	
-		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct'])) {
+		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct', 'BoxPromotion'])) {
 			return self::getDefaultArrayBox($input);
 		}
 		if (in_array($modelName, ['Product'])) {
@@ -112,7 +113,7 @@ class Common {
 	}
 	public static function getInputCommon($input, $default)
 	{
-		if ($input['image_url']) {
+		if (isset($input['image_url']) && $input['image_url']) {
 			unset($input['image_url']);
 		}
 		//get viInput and enInput, frInput...
@@ -280,13 +281,14 @@ class Common {
 		self::update($modelName, $viInput, [], $id);
 		//update boxCommon
 		self::updateBoxCommon($modelName, $id, $default);
-		//update foreign
-		$idRelates = self::getIdRelate($modelName, $id);
-		foreach ($idRelates as $key => $idRelate) {
-			$relate[$key] = $modelName::find($idRelate);
-			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
-			$relate[$key]->update($relateUpdate[$key]);
-		}
+			//update foreign
+		// $idRelates = self::getIdRelate($modelName, $id);
+		// foreach ($idRelates as $key => $idRelate) {
+		// 	$relate[$key] = $modelName::find($idRelate);
+		// 	$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
+		// 	$relate[$key]->update($relateUpdate[$key]);
+		// }
+		$idRelates = CommonParent::updateCommonParent('BoxCommon', $modelName, $modelId, $foreignInput);
 		// $imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL, $imageUrl);
 		//update box with image name
@@ -338,6 +340,16 @@ class Common {
 			return 'Box khuyến mãi';
 		}
 		return null;
+	}
+
+	public static function getObjectByModelId($modelName, $modelId)
+	{
+		$boxVi = Common::getObjectByLang($modelName, $modelId, VI);
+		$listId = BoxCommon::where('model_name', $modelName)
+			->where('model_id', $modelId)->lists('relate_id');
+		$boxEn = $modelName::whereIn('id', $listId)->get();
+		$array = [0 => $boxVi, 1 => $boxEn];
+		return $array;
 	}
 
 }

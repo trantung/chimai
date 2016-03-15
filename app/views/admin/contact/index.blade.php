@@ -6,7 +6,6 @@
 
 @section('content')
 
-@include('admin.contact.scriptindex')
 
  @if(Admin::isAdmin())
 <div class="row margin-bottom">
@@ -70,6 +69,6 @@
 		</ul>
 	</div>
 </div>
-
+@include('admin.contact.scriptindex')
 @stop
 

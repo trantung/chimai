@@ -1,6 +1,6 @@
 <?php
 
-class BoxPromotionController extends AdminController {
+class AdminSizeController extends AdminController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,8 +9,7 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function index()
 	{
-		// $promotion = 
-		return View::make('admin.box.promotion.index');
+		//
 	}
 
 
@@ -56,10 +55,7 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		$ob = Common::getObjectByModelId('BoxPromotion', $id);
-		$boxVi = $ob[0];
-		$boxEn = $ob[1];
-		return View::make('admin.box.promotion.edit')->with(compact('boxVi', 'boxEn'));
+		//
 	}
 
 
@@ -71,16 +67,7 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('BoxPromotion');
-		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxPromotionController@edit', $id)
-				->withErrors($validator);
-		} else {
-			Common::updateBox('BoxPromotion', $id, $input);
-			return Redirect::action('AdminMenuController@index')->with('message', 'Sửa thành công');;
-		}
+		//
 	}
 
 

@@ -58,7 +58,7 @@
 						@endif
 						<td>
 						@if(Admin::isAdmin())
-							<a href="{{ action('AdminMenuController@edit', $value->id) }}" class="btn btn-danger">Sửa tên</a>
+							<a href="{{ action('AdminMenuController@edit', $value->id) }}" class="btn btn-danger">Sửa</a>
 						@endif
 						</td>
 					</tr>

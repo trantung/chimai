@@ -1,6 +1,6 @@
 <?php
 
-class BoxPromotionController extends AdminController {
+class AdminOriginController extends AdminController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,8 +9,8 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function index()
 	{
-		// $promotion = 
-		return View::make('admin.box.promotion.index');
+		$list = AdminLanguage::where('model_name', 'Origin')->lists('model_id');
+		return View::make('admin.origin.index')->with(compact('list'));
 	}
 
 
@@ -21,7 +21,7 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.origin.create');
 	}
 
 
@@ -32,7 +32,11 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+    	$viId = CommonProperty::createBox($input, 'Origin');
+		if ($viId) {
+			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
 	}
 
 
@@ -56,10 +60,10 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		$ob = Common::getObjectByModelId('BoxPromotion', $id);
+		$ob = CommonProperty::getObjectByModelId('Origin', $id);
 		$boxVi = $ob[0];
 		$boxEn = $ob[1];
-		return View::make('admin.box.promotion.edit')->with(compact('boxVi', 'boxEn'));
+		return View::make('admin.origin.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 
@@ -71,15 +75,16 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('BoxPromotion');
+		$rules = CommonRule::getRules('Origin');
 		$input = Input::except('_token');
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
-			return Redirect::action('BoxPromotionController@edit', $id)
+			return Redirect::action('AdminOriginController@edit', $id)
 				->withErrors($validator);
 		} else {
-			Common::updateBox('BoxPromotion', $id, $input);
-			return Redirect::action('AdminMenuController@index')->with('message', 'Sửa thành công');;
+			// CommonProperty::updateBox('Origin', $id, $input);
+			CommonProperty::update('Origin', $id, $input);
+			return Redirect::action('AdminOriginController@index')->with('message', 'Sửa thành công');;
 		}
 	}
 
