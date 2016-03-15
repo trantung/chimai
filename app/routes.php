@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::resource('/slider', 'AdminSlideController');
 
+	Route::resource('/video', 'AdminVideoController');
+
 });
 
 Route::group(

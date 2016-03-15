@@ -19,6 +19,7 @@
 				<h2>{{ trans('captions.account_info') }}</h2>
 				<form class="submit-form">
 					<div class="row">
+						<div class="column">@include('message')</div>
 						<ul class="medium-6 columns">
 							<li>
 								<label for="name">{{ trans('captions.fullname') }} <em>*</em></label>

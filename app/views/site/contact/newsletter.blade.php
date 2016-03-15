@@ -17,11 +17,11 @@
 		<div class="row">
 			<div class="column">
 				<h2>{{ trans('captions.newsletter') }}</h2>
-				@include('message')
 				{{ Form::open(array('action' => 'SiteContactController@newsletterSend', 'method' => 'POST', 'class' => 'submit-form')) }}
 					{{ Form::hidden('type', CONTACT_TYPE_NEWSLETTER) }}
 					<div class="row">
                 		<ul class="medium-6 columns">
+                			<li>@include('message')</li>
 							<li>
 								<label for="email">{{ trans('captions.email') }} <em>*</em></label>
 								<input type="email" value="" id="email" name="email" required>

@@ -21,8 +21,8 @@
 						{{ Form::open(array('action' => 'SiteContactController@contact', 'method' => 'POST')) }}
 							{{ Form::hidden('type', CONTACT_TYPE_NORMAL) }}
 							<h3>{{ trans('captions.contact') }}</h3>
-							@include('message')
 							<ul>
+								<li>@include('message')</li>
 								<li>
 									<label for="name">{{ trans('captions.fullname') }} <em>*</em></label>
 									<input type="text" value="" id="name" name="name" required>

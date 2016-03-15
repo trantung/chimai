@@ -21,6 +21,7 @@
                     <p>{{ trans('captions.change_password_message') }}</p>
                     <div class="row">
                         <ul class="medium-6 columns">
+                            <li>@include('message')</li>
                             <li>
                                 <label for="email">{{ trans('captions.email') }} <em>*</em></label>
                                 <input class="column" type="email" value="" id="email" name="email" required>

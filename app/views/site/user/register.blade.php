@@ -20,6 +20,7 @@
 				<form class="submit-form">
 					<div class="row">
 						<ul class="medium-6 columns">
+							<li>@include('message')</li>
 							<li>
 								<label for="name">{{ trans('captions.fullname') }} <em>*</em></label>
 								<input type="text" value="" id="name" name="name" required>
