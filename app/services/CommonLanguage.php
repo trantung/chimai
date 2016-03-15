@@ -29,7 +29,7 @@ class CommonLanguage {
 		$imageConfig = array('w' => IMAGE_WIDTH, 'h' => IMAGE_HEIGHT, 'mode' => IMAGE_MODE_FIT))
 	{
 		//get default array
-		$default = Common::getDefaultValue($modelName, $input);
+		// $default = Common::getDefaultValue($modelName, $input);
 		$viInput = Common::getInputVi($input, []);
 		$foreignInput = Common::getInputForeign($input, []);
 		//create vi ->id
@@ -110,10 +110,11 @@ class CommonLanguage {
 			->lists('relate_id');
 		return $idRelates;
 	}
+
 	public static function updateModel($modelName, $id, $input, $inputCommon,
 		$imageConfig = array('w' => IMAGE_WIDTH, 'h' => IMAGE_HEIGHT, 'mode' => IMAGE_MODE_FIT))
 	{
-		$default = Common::getDefaultValue($modelName, $input);
+		// $default = Common::getDefaultValue($modelName, $input);
 		$viInput = Common::getInputVi($input, []);
 		$foreignInput = Common::getInputForeign($input, []);
 		$imageUrl = $modelName::find($id)->image_url;
