@@ -9,7 +9,7 @@ class AdminSlideController extends AdminController {
 	 */
 	public function index()
 	{
-		$slides = AdminSlide::orderBy('id', 'desc')->get();
+		$slides = AdminSlide::where('language', VI)->orderBy('id', 'desc')->paginate(PAGINATE);
 		return View::make('admin.slider.index')->with(compact('slides'));
 	}
 
@@ -30,12 +30,12 @@ class AdminSlideController extends AdminController {
 	 */
 	public function store()
 	{
-		$input = Input::except('_token', 'image_url');
-		$id = AdminSlide::create($input)->id;
-		$size = self::getSlideWidthHeight($input['type']);
-		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', 'AdminSlide', $size['width'], $size['height'], IMAGE_MODE_FILL);
-		AdminSlide::find($id)->update(['image_url' => $imageUrl]);
-		return Redirect::action('AdminSlideController@index')->with('message', 'Thêm thành công');
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'AdminSlide', self::getCommonInput($input), self::getConfigImage($input));
+		if ($viId) {
+			return Redirect::action('AdminSlideController@index')->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('AdminSlideController@index')->with('message', 'Tạo mới thất bại');
 	}
 
 	/**
@@ -57,8 +57,11 @@ class AdminSlideController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		$slide = AdminSlide::find($id);
-		return View::make('admin.slider.edit')->with(compact('slide'));
+		$boxVi = CommonLanguage::getObjectByLang('AdminSlide', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'AdminSlide')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = AdminSlide::whereIn('id', $listId)->get();
+		return View::make('admin.slider.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 	/**
@@ -69,13 +72,8 @@ class AdminSlideController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$input = Input::except('_token', 'image_url');
-		$slide = AdminSlide::find($id);
-		$slide->update($input);
-		$imageSlide = AdminSlide::find($id);
-		$size = self::getSlideWidthHeight($input['type']);
-		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', 'AdminSlide', $size['width'], $size['height'], IMAGE_MODE_FILL, $imageSlide->image_url);
-		$slide->update(['image_url' => $imageUrl]);
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('AdminSlide', $id, $input, self::getCommonInput($input), self::getConfigImage($input));
 		return Redirect::action('AdminSlideController@index')->with('message', 'Sửa thành công');
 	}
 
@@ -87,11 +85,11 @@ class AdminSlideController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		AdminSlide::find($id)->delete();
-		return Redirect::action('AdminSlideController@index')->with('message', 'Xóa thành công');
+		CommonLanguage::deleteModel('AdminSlide', $id);
+		return Redirect::action('AdminSlideController@index')->with('message', 'Xoá thành công');
 	}
 
-	private function getSlideWidthHeight($type)
+	private function getWidthHeight($type)
 	{
 		switch ($type) {
 			case SLIDE_BANNER_VALUE:
@@ -104,6 +102,25 @@ class AdminSlideController extends AdminController {
 				return ['width' => IMAGE_SLIDE_WIDTH, 'height' => IMAGE_SLIDE_HEIGHT];
 				break;
 		}
+	}
+
+	private function getConfigImage($input)
+	{
+		$size = self::getWidthHeight($input['type']);
+		return array(
+				'w' => $size['width'], 
+				'h' => $size['height'], 
+				'mode' => IMAGE_MODE_FILL
+			);
+	}
+
+	private function getCommonInput($input)
+	{
+		return [
+				'type' => $input['type'], 
+				'status' => $input['status'], 
+				'weight_number' => $input['weight_number']
+			];
 	}
 
 }

@@ -10,7 +10,7 @@ class CommonRule {
 			case 'BoxCollection':
 				return self::getRulesRequired(['name_menu']);
 				break;
-			case 'BoxProduct':
+			case 'Box':
 				return self::getRulesRequired(['name_menu']);
 				break;
 			case 'Contact':
