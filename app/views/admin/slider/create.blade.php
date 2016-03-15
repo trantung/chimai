@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name">Name</label>
+					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">
 							{{ Form::text('name', null , textPlaceHolder('Name')) }}
@@ -35,19 +35,53 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name">Link</label>
+					<label for="name">Link Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">
 							{{ Form::text('link', null , textPlaceHolder('Đường dẫn')) }}
 						</div>
 					</div>
 				</div>
+				@foreach($arrayLang as $keyLang => $singLang)
+					<div class="form-group">
+						<label for="name">Tên {{ $singLang }}</label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('')) }}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name">Link {{ $singLang }} </label>
+						<div class="row">
+							<div class="col-sm-6">	                  	
+							   {{ Form::text($singLang.'_'.'link', null , textPlaceHolder('')) }}
+							</div>
+						</div>
+					</div>
+				@endforeach
 				<div class="form-group">
 					<label for="name">Image</label>
 					<p>Kích thước: {{ SLIDE_BANNER }}: {{ IMAGE_SLIDE_WIDTH }}x{{ IMAGE_SLIDE_HEIGHT }} / {{ SLIDE_PARTNER }}: {{ IMAGE_PARTNER_WIDTH }}x{{ IMAGE_PARTNER_HEIGHT }} / Dung lượng < 1Mb</p>
 					<div class="row">
 						<div class="col-sm-6">
 							{{ Form::file('image_url', array('required' => '')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Mức ưu tiên</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('weight_number', '' , textPlaceHolder('Mức ưu tiên')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Trạng thái</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
 						</div>
 					</div>
 				</div>
