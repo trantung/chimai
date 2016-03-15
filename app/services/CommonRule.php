@@ -10,6 +10,12 @@ class CommonRule {
 			case 'BoxCollection':
 				return self::getRulesRequired(['name_menu']);
 				break;
+			case 'BoxProduct':
+				return self::getRulesRequired(['name_menu']);
+				break;
+			case 'Contact':
+				return ['name' => 'required', 'email' => 'required', 'phone' => 'required'];
+				break;
 			
 			default:
 				# code...

@@ -9,7 +9,7 @@ class BoxProduct extends Eloquent implements SluggableInterface
 {
 	use SoftDeletingTrait;
 	use SluggableTrait;
-    protected $table = 'box_types';
+    protected $table = 'box_products';
     protected $fillable = ['name_menu', 'name_content', 'weight_number',
     	'status', 'position', 'image_url', 'slug', 'name_footer', 'language'];
     protected $dates = ['deleted_at'];

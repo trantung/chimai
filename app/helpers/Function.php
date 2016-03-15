@@ -164,3 +164,54 @@ function convert_string_vi_to_en($str){
     }
     return $str;
 }
+
+function getSlideType($typeId) {
+	$data = array(
+		SLIDE_BANNER_VALUE => SLIDE_BANNER,
+		SLIDE_PARTNER_VALUE => SLIDE_PARTNER,
+	);
+	return $data[$typeId];
+}
+
+function getYouTubeVideoId($url)
+{
+    $video_id = false;
+    $url = parse_url($url);
+    if (strcasecmp($url['host'], 'youtu.be') === 0)
+    {
+        #### (dontcare)://youtu.be/<video id>
+        $video_id = substr($url['path'], 1);
+    }
+    elseif (strcasecmp($url['host'], 'www.youtube.com') === 0)
+    {
+        if (isset($url['query']))
+        {
+            parse_str($url['query'], $url['query']);
+            if (isset($url['query']['v']))
+            {
+                #### (dontcare)://www.youtube.com/(dontcare)?v=<video id>
+                $video_id = $url['query']['v'];
+            }
+        }
+        if ($video_id == false)
+        {
+            $url['path'] = explode('/', substr($url['path'], 1));
+            if (in_array($url['path'][0], array('e', 'embed', 'v')))
+            {
+                #### (dontcare)://www.youtube.com/(whitelist)/<video id>
+                $video_id = $url['path'][1];
+            }
+        }
+    }
+    return $video_id;
+}
+
+function getFullPriceInVnd($number)
+{
+    if ($number > 0)
+        $text = number_format($number, 0, ",", ".");
+    else
+        $text = 0;
+
+    return $text;
+}

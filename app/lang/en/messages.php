@@ -13,6 +13,8 @@ return array(
 	|
 	*/
 
-	'welcome' => 'welcome',
+	"required" => "Required fields marked *.",
+	"success" => "Success",
+	"failure" => "Failure",
 
 );

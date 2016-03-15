@@ -1,18 +1,20 @@
-<form method="post" action="">
+{{ Form::open(array('action' => 'SiteContactController@contact', 'method' => 'POST')) }}
+	{{ Form::hidden('type', CONTACT_TYPE_PRODUCT) }}
+	@include('message')
 	<div class="contact_form_left">
 		<div class="row">
 			<ul class="medium-6 columns">
 				<li>
 					<label for="name">{{ trans('captions.fullname') }}</label>
-					<input type="text" value="" id="name" name="name">
+					<input type="text" value="" id="name" name="name" required>
 				</li>
 				<li>
 					<label for="email">{{ trans('captions.email') }} <em>*</em></label>
 					<input type="email" value="" id="email" name="email" required>
 				</li>
 				<li>
-					<label for="telephone">{{ trans('captions.phone') }} <em>*</em></label>
-					<input type="text" value="" id="telephone" name="telephone" required>
+					<label for="phone">{{ trans('captions.phone') }} <em>*</em></label>
+					<input type="text" value="" id="phone" name="phone" required>
 				</li>
 				<li>
 					<label for="address">{{ trans('captions.address') }}</label>
@@ -30,4 +32,4 @@
 			<ul class="medium-6 columns"></ul>
 		</div>
 	</div>
-</form>
+{{ Form::close() }}

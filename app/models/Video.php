@@ -1,21 +1,22 @@
 <?php
+
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class BoxCollection extends Eloquent implements SluggableInterface
+class Video extends Eloquent implements SluggableInterface
 {
-	use SoftDeletingTrait;
+    use SoftDeletingTrait;
 	use SluggableTrait;
-    protected $table = 'box_collections';
-    protected $fillable = ['name_menu', 'name_content', 'weight_number',
-    	'status', 'position', 'image_url', 'slug', 'name_footer', 'language'];
+    protected $table = 'video';
+    protected $fillable = ['name', 'slug', 'description', 'link', 'type', 'video_id', 'image_url', 'status', 'weight_number', 'language'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(
-        'build_from' => 'name_menu',
+        'build_from' => 'name',
         'save_to'    => 'slug',
     );
+
 }

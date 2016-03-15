@@ -13,6 +13,8 @@ return array(
 	|
 	*/
 
-	'welcome' => 'chao mung',
+	"required" => "Mục có dấu * là bắt buộc phải nhập.",
+	"success" => "Đã gửi thành công",
+	"failure" => "Gửi thất bại",
 
 );
