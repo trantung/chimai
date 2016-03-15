@@ -69,7 +69,20 @@ class AdminMenuController extends BoxController {
 	 */
 	public function edit($id)
 	{
-		//
+		$box = BoxCommon::find($id);
+		if ($box->model_name == 'BoxPromotion') {
+			return View::make('admin.box.promotion.edit')->with(compact('box'));
+		}
+		if ($box->model_name == 'BoxType') {
+			return View::make('admin.box.type.edit')->with(compact('box'));
+		}
+		if ($box->model_name == 'BoxCollection') {
+			return View::make('admin.box.collection.edit')->with(compact('box'));
+		}
+		if ($box->model_name == 'BoxProduct') {
+			return View::make('admin.box.collection.edit')->with(compact('box'));
+		}
+
 	}
 
 

@@ -34,6 +34,7 @@
 						<th>Thể loại</th>
 						<th>Mức ưu tiên</th>
 						<th>Trạng thái</th>
+						<th>Action</th>
 					</tr>
 					@foreach($boxs as $value)
 					<tr>
@@ -51,10 +52,15 @@
 						@if(Admin::isAdmin())
 							<td>
 								{{ Form::select('status[]', Common::getStatus(), Common::getValueCommonBox($value->model_id, $value->model_name, MENU, 'status'), array('class' => 'form-control')) }}
-							</td{{>
+							</td>
 						@else
 							<td> </td>
 						@endif
+						<td>
+						@if(Admin::isAdmin())
+							<a href="{{ action('AdminMenuController@edit', $value->id) }}" class="btn btn-danger">Sửa tên</a>
+						@endif
+						</td>
 					</tr>
 					@endforeach
 			    </table>
