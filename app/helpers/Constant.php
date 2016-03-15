@@ -71,7 +71,13 @@ define('CONTACT_PHONE', 11);
 define('CONTACT_EMAIL', 12);
 define('CONTACT_WORKING_TIME', 13);
 
+// type of slide
 define('SLIDE_BANNER', 'Banner trang chủ');
 define('SLIDE_PARTNER', 'Logo đối tác');
 define('SLIDE_BANNER_VALUE', 1);
 define('SLIDE_PARTNER_VALUE', 2);
+
+// type contact
+define('CONTACT_TYPE_NORMAL', 1);
+define('CONTACT_TYPE_PRODUCT', 2);
+define('CONTACT_TYPE_NEWSLETTER', 3);

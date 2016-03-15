@@ -2328,3 +2328,6 @@ ul.box-gallery li {
     
 }
 
+.clearfix {
+    clear: both !important;
+}

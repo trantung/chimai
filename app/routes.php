@@ -43,11 +43,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/manager/search', array('uses' => 'ManagerController@search', 'as' => 'admin.manager.search'));
 	Route::resource('/manager', 'ManagerController');
 
-	Route::get('/feedback', 'AdminContactController@feedback');
-
+	Route::post('/contact/deleteSelected', 'AdminContactController@deleteSelected');
 	Route::resource('/contact', 'AdminContactController');
-
-	Route::resource('/bottomtext', 'BottomTextController');
 
 	Route::resource('/newstype', 'NewsTypeController');
 
@@ -55,11 +52,6 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('/news', 'NewsController');
 
 	Route::resource('/slider', 'AdminSlideController');
-
-	Route::resource('/des_content', 'DesContentController');
-	Route::resource('/introduce', 'AdminIntroduceController');
-	Route::resource('/about_us_company', 'AdminAboutUsController');
-	Route::resource('/type_about_us', 'AdminTypeAboutController');
 
 });
 
@@ -88,6 +80,9 @@ Route::group(
 		// END demo page
 
 		Route::post('/sendLang', 'SiteIndexController@sendLang');
+
+		Route::get('/newsletter', 'SiteContactController@newsletter');
+		Route::post('/newsletter', 'SiteContactController@newsletterSend');
 
 		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 		Route::resource('/', 'SiteIndexController');

@@ -2,94 +2,48 @@
 
 class SiteContactController extends SiteController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		return View::make('site.contact.index');
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 	public function contact()
 	{
+		$rules = CommonRule::getRules('Contact');
 		$input = Input::except('_token');
-		$id = Contact::create($input)->id;
-		if($id) {
-			return Redirect::action('SiteContactController@index')->with('message', 'Đã gửi thành công');
+		$validator = Validator::make($input,$rules);
+		if($validator->fails()) {
+			return Redirect::action('SiteContactController@index')
+	            ->with('error', trans('messages.required'));
+        } else {
+			$id = Contact::create($input)->id;
+			if($id) {
+				return Redirect::action('SiteContactController@index')->with('message', trans('messages.success'));
+			}
+			return Redirect::action('SiteContactController@index')->with('message', trans('messages.failure'));
 		}
-		return Redirect::action('SiteContactController@index')->with('message', 'Gửi thất bại');
+	}
+
+	public function newsletter()
+	{
+		return View::make('site.contact.newsletter');
+	}
+
+	public function newsletterSend()
+	{
+		$rules = ['email' => 'required'];
+		$input = Input::except('_token');
+		$validator = Validator::make($input,$rules);
+		if($validator->fails()) {
+			return Redirect::action('SiteContactController@newsletter')
+	            ->with('error', trans('messages.required'));
+        } else {
+			$id = Contact::create($input)->id;
+			if($id) {
+				return Redirect::action('SiteContactController@newsletter')->with('message', trans('messages.success'));
+			}
+			return Redirect::action('SiteContactController@newsletter')->with('message', trans('messages.failure'));
+		}
 	}
 
 }

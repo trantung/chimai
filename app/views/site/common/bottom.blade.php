@@ -32,11 +32,12 @@
 					<a href="#"><i class="fa fa-instagram"></i></a>
 				</div>
 				<p class="bt_newsletter_title">{{ trans('captions.newsletter') }}</p>
-				<form>
+				{{ Form::open(array('action' => 'SiteContactController@newsletter', 'method' => 'POST')) }}
+					{{ Form::hidden('type', CONTACT_TYPE_NEWSLETTER) }}
 					<div class="row collapse">
 						<div class="small-7 columns">
 							<div class="row collapse postfix-round">
-								<input type="text" placeholder="{{ trans('captions.enter_email') }}" class="bt_newsletter_text">
+								<input type="email" name="email" placeholder="{{ trans('captions.enter_email') }}" class="bt_newsletter_text">
 							</div>
 						</div>
 						<div class="small-3 columns">
@@ -46,7 +47,7 @@
 						</div>
 						<div class="small-2 columns"></div>
 					</div>
-				</form>
+				{{ Form::close() }}
 			</div>
 		</div>
 	</div>

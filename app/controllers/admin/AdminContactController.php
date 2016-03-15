@@ -2,84 +2,31 @@
 
 class AdminContactController extends ADminController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	
 	public function index()
 	{
-		//
+		$data = Contact::orderBy('id', 'desc')->paginate(PAGINATE);
+		return View::make('admin.contact.index')->with(compact('data'));
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		Contact::find($id)->delete();
+        return Redirect::action('AdminContactController@index')->with('message', 'Đã xóa');
+	}
+
+	public function deleteSelected()
+	{
+		$ids = Input::get('id');
+		if($ids) {
+			foreach($ids as $key => $value) {
+				$data = Contact::find($value);
+				if($data) {
+					$data->delete();
+				}
+			}
+		}
+		dd(1);
 	}
 
 
