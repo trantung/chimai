@@ -31,10 +31,10 @@
 					<li><a href="{{ action('AdminMenuController@index') }}"><i class="fa fa-circle-o"></i> Quản lý menu</a></li>
 				</ul>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminContentController@index') }}"><i class="fa fa-circle-o"></i> Quản lý content</a></li>
+					<li><a href="{{ action('AdminMenuController@content') }}"><i class="fa fa-circle-o"></i> Quản lý content</a></li>
 				</ul>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminFooterController@index') }}"><i class="fa fa-circle-o"></i> Quản lý footer</a></li>
+					<li><a href="{{ action('AdminMenuController@footer') }}"><i class="fa fa-circle-o"></i> Quản lý footer</a></li>
 				</ul>
 			</li>
 			<li class="treeview">
@@ -52,6 +52,30 @@
 					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sản phẩm</a></li>
 				</ul>
 			</li>
+
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-list"></i> <span>Properties sản phẩm</span>
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminOriginController@index') }}"><i class="fa fa-circle-o"></i> Quản lý xuất xứ</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminMaterialController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chất liệu</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminCategoryController@index') }}"><i class="fa fa-circle-o"></i> Quản lý category</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminSizeController@index') }}"><i class="fa fa-circle-o"></i> Quản lý kích cỡ</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminSurfaceController@index') }}"><i class="fa fa-circle-o"></i> Quản lý bề mặt</a></li>
+				</ul>
+
+			</li>
+
 			<li>
 				<a href="{{ action('ManagerController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý file pdf</span>

@@ -12,7 +12,16 @@ class AdminMenuController extends BoxController {
 		$boxs = BoxCommon::where('position', MENU)->get();
 		return View::make('admin.menu.index')->with(compact('boxs'));
 	}
-
+	public function content()
+	{
+		$boxs = BoxCommon::where('position', CONTENT)->get();
+		return View::make('admin.menu.index')->with(compact('boxs'));
+	}
+	public function footer()
+	{
+		$boxs = BoxCommon::where('position', FOOTER)->get();
+		return View::make('admin.menu.index')->with(compact('boxs'));
+	}
 	public function updateIndexData()
 	{
 		$boxId = Input::get('box_id');
@@ -69,7 +78,33 @@ class AdminMenuController extends BoxController {
 	 */
 	public function edit($id)
 	{
-		//
+		$box = BoxCommon::find($id);
+		$modelId = $box->model_id;
+		if ($box->model_name == 'BoxPromotion') {
+			$ob = Common::getObjectByModelId('BoxPromotion', $modelId);
+			$boxVi = $ob[0];
+			$boxEn = $ob[1];
+			return View::make('admin.box.promotion.edit')->with(compact('boxVi', 'boxEn'));
+		}
+		if ($box->model_name == 'BoxType') {
+			$ob = Common::getObjectByModelId('BoxType', $modelId);
+			$boxVi = $ob[0];
+			$boxEn = $ob[1];
+			return View::make('admin.box.type.edit')->with(compact('boxVi', 'boxEn'));
+		}
+		if ($box->model_name == 'BoxCollection') {
+			$ob = Common::getObjectByModelId('BoxCollection', $modelId);
+			$boxVi = $ob[0];
+			$boxEn = $ob[1];
+			return View::make('admin.box.collection.edit')->with(compact('boxVi', 'boxEn'));
+		}
+		if ($box->model_name == 'BoxProduct') {
+			$ob = Common::getObjectByModelId('BoxProduct', $modelId);
+			$boxVi = $ob[0];
+			$boxEn = $ob[1];
+			return View::make('admin.box.product.edit')->with(compact('boxVi', 'boxEn'));
+		}
+
 	}
 
 

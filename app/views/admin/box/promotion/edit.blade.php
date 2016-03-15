@@ -11,7 +11,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxTypeController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
+		{{ Form::open(array('action' => array('BoxPromotionController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>
@@ -67,7 +67,7 @@
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
-					<img class="image_boxtype" src="{{ url(UPLOADIMG . '/BoxType/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
+					<img class="image_BoxPromotion" src="{{ url(UPLOADIMG . '/BoxPromotion/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
 				</div>
 
 				<div class="nav-tabs-custom">
@@ -82,7 +82,7 @@
 								<label>Mức ưu tiên</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxType', MENU, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
+										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxPromotion', MENU, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
 									</div>
 								</div>
 							</div>
@@ -91,7 +91,7 @@
 								<label>Trạng thái</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('status[]', Common::getStatus(), Common::getValueCommonBox($boxVi->id, 'BoxType', MENU, 'status'), array('class' => 'form-control')) }}
+										{{ Form::select('status[]', Common::getStatus(), Common::getValueCommonBox($boxVi->id, 'BoxPromotion', MENU, 'status'), array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>
@@ -102,7 +102,7 @@
 								<label>Mức ưu tiên</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxType', CONTENT, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
+										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxPromotion', CONTENT, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
 									</div>
 								</div>
 							</div>
@@ -111,7 +111,7 @@
 								<label>Trạng thái</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('status[]', Common::getStatus(),  Common::getValueCommonBox($boxVi->id, 'BoxType', CONTENT, 'status'), array('class' => 'form-control')) }}
+										{{ Form::select('status[]', Common::getStatus(),  Common::getValueCommonBox($boxVi->id, 'BoxPromotion', CONTENT, 'status'), array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>
@@ -122,7 +122,7 @@
 								<label>Mức ưu tiên</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxType', FOOTER, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
+										{{ Form::text('weight_number[]', Common::getValueCommonBox($boxVi->id, 'BoxPromotion', FOOTER, 'weight_number'), textPlaceHolder('Mức ưu tiên')) }}
 									</div>
 								</div>
 							</div>
@@ -131,7 +131,7 @@
 								<label>Trạng thái</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('status[]', Common::getStatus(),  Common::getValueCommonBox($boxVi->id, 'BoxType', FOOTER, 'status'), array('class' => 'form-control')) }}
+										{{ Form::select('status[]', Common::getStatus(),  Common::getValueCommonBox($boxVi->id, 'BoxPromotion', FOOTER, 'status'), array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>

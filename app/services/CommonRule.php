@@ -3,24 +3,20 @@ class CommonRule {
 
 	public static function getRules($modelName)
 	{
-		switch ($modelName) {
-			case 'BoxType':
-				return self::getRulesRequired(['name_menu']);
-				break;
-			case 'BoxCollection':
-				return self::getRulesRequired(['name_menu']);
-				break;
-			case 'Box':
-				return self::getRulesRequired(['name_menu']);
-				break;
-			case 'Contact':
-				return ['name' => 'required', 'email' => 'required', 'phone' => 'required'];
-				break;
-			
-			default:
-				# code...
-				break;
+		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct', 'BoxPromotion'])) {
+			$array = self::getRulesRequired(['name_menu']);
+			$arrayRule = array_merge($array, ['weight_number' => 'array_number']);
+			return $arrayRule;
 		}
+		if ($modelName == 'Contact') {
+			return ['name' => 'required', 'email' => 'required', 'phone' => 'required'];
+		}
+		if ($modelName == 'Origin') {
+			$array = self::getRulesRequired(['name']);
+			$arrayRule = array_merge($array, ['name' => 'required']);
+			return $arrayRule;
+		}
+		return [];
 	}
 
 	// fields = array()

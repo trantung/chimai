@@ -20,11 +20,13 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::group(['prefix' => 'box'], function(){
 		//menu
 		Route::post('/menu/updateIndexData', 'AdminMenuController@updateIndexData');
+		Route::get('/content', 'AdminMenuController@content');
+		Route::get('/footer', 'AdminMenuController@footer');
 		Route::resource('/menu', 'AdminMenuController');
 		//content
-		Route::resource('/content', 'AdminContentController');
+		// Route::resource('/content', 'AdminContentController');
 		//footer
-		Route::resource('/footer', 'AdminFooterController');
+		// Route::resource('/footer', 'AdminFooterController');
 
 		//box tin tức hiển thị trên menu hoặc content
 		Route::resource('/type', 'BoxTypeController');
@@ -33,8 +35,18 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::resource('/collection', 'BoxCollectionController');
 		//box sản phẩm hiển thị trên menu hoặc content
 		Route::resource('/product', 'BoxProductController');
-	});
+		//box khuyến mãi hiển thị trên menu hoặc content
+		Route::resource('/promotion', 'BoxPromotionController');
 
+	});
+	Route::group(['prefix' => 'property'], function(){
+		Route::resource('/category', 'AdminCategoryController');
+		Route::resource('/material', 'AdminMaterialController');
+		Route::resource('/origin', 'AdminOriginController');
+		Route::resource('/size', 'AdminSizeController');
+		Route::resource('/surface', 'AdminSurfaceController');
+
+	});
 	Route::get('/configcode', 'ConfigCodeController@editConfig');
 	Route::post('/configcode', 'ConfigCodeController@updateConfig');
 
