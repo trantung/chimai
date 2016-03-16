@@ -10,3 +10,7 @@
 
 {{ HTML::script('assets/js/foundation.min.js') }}
 {{ HTML::script('assets/js/home.js') }}
+
+@if(isset($script))
+	{{ $script->footer_script }}
+@endif

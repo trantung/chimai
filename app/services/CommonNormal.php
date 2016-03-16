@@ -30,7 +30,7 @@ class CommonNormal
 			$name = Request::segment(2);
 		}
 		if ($name == '') {
-			return 'CategoryParent';
+			return 'AdminNew';
 		}
 	}
 }

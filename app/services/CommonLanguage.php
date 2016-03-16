@@ -50,6 +50,8 @@ class CommonLanguage {
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageConfig['w'], $imageConfig['h'], $imageConfig['mode']);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
+		//update seo
+		CommonSeo::updateSeo($modelName, $id);
 		return $id;
 	}
 	
@@ -135,6 +137,8 @@ class CommonLanguage {
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageConfig['w'], $imageConfig['h'], $imageConfig['mode'], $imageUrl);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
+		//update seo
+		CommonSeo::updateSeo($modelName, $id);
 	}
 	public static function deleteModel($modelName, $id)
 	{
@@ -167,6 +171,15 @@ class CommonLanguage {
 			$modelName::find($value)->update($input);
 		}
 		return $viId;
+	}
+
+	public static function getCurrentLang()
+	{
+		$lang = LaravelLocalization::setLocale();
+		if($lang == NULL || $lang == 'vi') {
+			return 'vi';
+		}
+		return $lang;
 	}
 
 }

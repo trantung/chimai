@@ -2,24 +2,21 @@
 use Carbon\Carbon;
 class CommonSeo
 {
-	public static function createSeo($modelName, $modelId, $uploadFolder)
+	public static function createSeo($modelName, $modelId)
 	{
 		$input = self::getInputSeo();
-		$input['image_url_fb'] = CommonSeo::uploadImage($modelId, UPLOADIMG, 'image_url_fb', $uploadFolder);
 		$input['model_name'] = $modelName;
 		$input['model_id'] = $modelId;
 		$id = AdminSeo::create($input)->id;
 		return $id;
 	}
-	public static function updateSeo($modelName, $modelId, $uploadFolder)
+
+	public static function updateSeo($modelName, $modelId)
 	{
 		$input = self::getInputSeo();
-		$imageSeo = CommonSeo::getImageSeoUrl($modelName, $modelId);
-
-		$input['image_url_fb']= CommonSeo::uploadImage($modelId, UPLOADIMG, 'image_url_fb', $uploadFolder, $imageSeo);
 		$seo = self::getIdSeo($modelId, $modelName);
 		if (!$seo) {
-			$id = self::createSeo($modelName, $modelId, $uploadFolder);
+			$id = self::createSeo($modelName, $modelId);
 			return $id;
 		}
 		AdminSeo::find($seo->id)->update($input);
@@ -36,35 +33,6 @@ class CommonSeo
 		return $seo = AdminSeo::where('model_name', $modelName)
 						->where('model_id', $modelId)->first();
 	}
-	/**
-	*uploadImage Upload image
-	*/
-
-	public static function uploadImage($id, $path, $imageUrl, $folder, $imageSeo = NULL)
-	{
-		$destinationPath = public_path().'/'.$path.'/'.$folder.'/'.$id.'/';
-		if(Input::hasFile($imageUrl)){
-			$file = Input::file($imageUrl);
-			$filename = $file->getClientOriginalName();
-			$uploadSuccess = $file->move($destinationPath, $filename);
-			return $filename;
-		}
-		if ($imageSeo) {
-			return $imageSeo;
-		}
-	}
-
-	public static function getImageSeoUrl($modelName, $modelId)
-	{
-		$inputSeoImage = AdminSeo::where('model_name',$modelName)
-									->where('model_id', $modelId)
-									->first();
-		if ($inputSeoImage->image_url_fb) {
-			return $inputSeoImage->image_url_fb;
-		}
-		
-		return NULL;
-	}
 
 	public static function getInputSeo()
 	{
@@ -72,13 +40,26 @@ class CommonSeo
 				'title_site',
 				'description_site',
 				'keyword_site',
-				'title_fb',
-				'description_fb',
-				'image_url_fb',
 				'header_script',
-				'status_seo'
+				'footer_script'
 			);
 		return $input;
 	}
+
+	public static function getMetaSeo($modelName, $modelId = null)
+    {
+        if(!$modelId) {
+            $seoMeta = AdminSeo::where('model_name', $modelName)
+                    ->first();
+            return $seoMeta;
+        }
+        $seoMeta = AdminSeo::where('model_name', $modelName)
+                ->where('model_id', $modelId)
+                ->first();
+        if($seoMeta) {
+	        return $seoMeta;
+        }
+        return null;
+    }
 
 }

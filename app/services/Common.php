@@ -159,6 +159,8 @@ class Common extends CommonParent
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
+		//update seo
+		CommonSeo::updateSeo($modelName, $id);
 		return $id;
 	}
 	public static function create($modelName, $input, $default)
@@ -288,11 +290,13 @@ class Common extends CommonParent
 		// 	$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
 		// 	$relate[$key]->update($relateUpdate[$key]);
 		// }
-		$idRelates = CommonParent::updateCommonParent('BoxCommon', $modelName, $modelId, $foreignInput);
+		$idRelates = CommonParent::updateCommonParent('BoxCommon', $modelName, $id, $foreignInput);
 		// $imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL, $imageUrl);
 		//update box with image name
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
+		//update seo
+		CommonSeo::updateSeo($modelName, $id);
 	}
 	public static function deleteBox($modelName, $id)
 	{

@@ -15,6 +15,17 @@ class SiteController extends BaseController {
 			->where('status', ENABLED)
 			->orderBy('weight_number', 'asc')
 			->get();
+
+		if (Cache::has(SEO_DEFAULT)) {
+            $seoDefault = Cache::get(SEO_DEFAULT);
+        } else {
+        	$seoDefault = AdminSeo::whereNull('model_id')->where('model_name', SEO_DEFAULT)->first();
+            Cache::put(SEO_DEFAULT, $seoDefault, CACHETIME);
+        }
+		if(isset($seoDefault)) {
+			View::share('script', $seoDefault);
+		}
+
 		View::share('menu', $menu);
 		View::share('content', $content);
 		View::share('footer', $footer);

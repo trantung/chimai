@@ -43,7 +43,7 @@
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('BoxTypeChildController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục tin tức</a></li>
+					<li><a href="{{-- action('BoxTypeChildController@index') --}}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục tin tức</a></li>
 				</ul>
 				<ul class="treeview-menu">
 					<li><a href="{{ action('BoxCollectionController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a></li>
@@ -99,6 +99,11 @@
 			<li>
 				<a href="{{ action('AdminContactController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý liên hệ</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{ action('SeoController@editSeo') }}">
+					<i class="fa fa-users"></i> <span>Quản lý SEO</span>
 				</a>
 			</li>
 			<li>

@@ -70,6 +70,10 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('/video', 'AdminVideoController');
 	//upload pdf->no
 
+	//seo default
+	Route::get('/seo', 'SeoController@editSeo');
+	Route::put('/seo', 'SeoController@updateSeo');
+
 });
 
 Route::group(

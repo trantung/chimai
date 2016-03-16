@@ -82,3 +82,9 @@ define('SLIDE_PARTNER_VALUE', 2);
 define('CONTACT_TYPE_NORMAL', 1);
 define('CONTACT_TYPE_PRODUCT', 2);
 define('CONTACT_TYPE_NEWSLETTER', 3);
+
+//define seo default (Script+meta):
+define('SEO_DEFAULT', 'Seo_Default');
+
+//cache time
+define('CACHETIME', 1);

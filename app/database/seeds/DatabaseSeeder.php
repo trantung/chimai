@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder {
 		$this->call('LanguageTableSeeder');
 		
 		$this->call('ConfigCodeTableSeeder');
+
+		$this->call('AdminSeoSeeder');
+		
 	}
 
 }

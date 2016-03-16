@@ -1,7 +1,11 @@
-@extends('site.layout.default')
+@extends('site.layout.default', array('seoMeta' => CommonSeo::getMetaSeo(SEO_DEFAULT)))
 
 @section('title')
-	{{ $title = trans('captions.home'); }}
+	@if($seoMeta = CommonSeo::getMetaSeo(SEO_DEFAULT))
+		{{ $title = $seoMeta->title_site }}
+	@else
+		{{ $title = trans('captions.home') }}
+	@endif
 @stop
 
 @section('content')

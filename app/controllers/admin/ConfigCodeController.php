@@ -4,8 +4,7 @@ class ConfigCodeController extends BoxController {
 
 	public function editConfig()
 	{
-		$langs = Common::getArrayLang();
-		return View::make('admin.configcode.edit')->with(compact('langs'));
+		return View::make('admin.configcode.edit');
 	}
 
 	public function updateConfig()

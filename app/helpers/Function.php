@@ -23,9 +23,9 @@ function selectRoleId()
 function textPlaceHolder($input, $isSeoMeta = NULL, $id = NULL)
 {
 	if(!Admin::isSeo() || $isSeoMeta) {
-		return array('placeholder' => $input, 'class' => 'form-control','id' => $id);
+		return array('placeholder' => $input, 'class' => 'form-control', 'rows' => 4,'id' => $id);
 	} else {
-		return array('placeholder' => $input, 'class' => 'form-control', 'readonly' => true,'id' => $id);
+		return array('placeholder' => $input, 'class' => 'form-control', 'rows' => 4, 'readonly' => true, 'id' => $id);
 	}
 }
 

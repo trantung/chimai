@@ -69,6 +69,8 @@
 				</div>
 
 				@include('admin.box.tab')
+
+				@include('admin.common.meta')
 		  
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

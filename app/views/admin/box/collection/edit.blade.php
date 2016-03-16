@@ -140,7 +140,9 @@
 					</div>
 					<!-- /.tab-content -->
 				</div>
-              	
+
+				@include('admin.common.meta', ['modelName' => 'BoxCollection', 'modelId' => $boxVi->id])
+
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>
