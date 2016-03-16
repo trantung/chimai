@@ -3,6 +3,10 @@
 define('ADMIN', 1);
 define('EDITOR', 2);
 define('SEO', 3);
+//define attach, detach, sync
+define('ATTACH', 1);
+define('DETACH', 2);
+define('SYNC', 3);
 //disable or enable
 define('ENABLED', 1);
 define('DISABLED', 2);

@@ -9,7 +9,7 @@ Validator::extend('unique_delete', function($attribute, $value, $parameters)
 Validator::extend('array_number', function($attribute, $value, $parameters)
 {
 	foreach ($value as $k => $v) {
-		if (is_int($v) || $v <= 0) {
+		if (is_int($v)) {
 			return false;
 		}
 	}

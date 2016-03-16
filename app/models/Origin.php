@@ -20,4 +20,8 @@ class Origin extends Eloquent implements SluggableInterface
 		'build_from' => 'name',
 		'save_to'    => 'slug',
 	);
+	public function originBoxProduct()
+	{
+		return $this->hasMany('OriginBoxProduct', 'origin_id', 'id');
+	}
 }

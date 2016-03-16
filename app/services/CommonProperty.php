@@ -54,7 +54,7 @@ class CommonProperty extends CommonParent
 	// }
 	public static function getDefaultValue($modelName, $input)
 	{
-		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface'])) {
+		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface', 'TypeNew'])) {
 			return [
 				'status' => $input['status'], 
 				'weight_number' => $input['weight_number']
