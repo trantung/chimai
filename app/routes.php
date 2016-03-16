@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/logout', array('uses' => 'AdminController@logout', 'as' => 'admin.logout'));
 	Route::resource('/', 'AdminController');
 	Route::group(['prefix' => 'box'], function(){
+		Route::resource('/child', 'BoxTypeChildController');
 		//menu->ok
 		Route::post('/menu/updateIndexData', 'AdminMenuController@updateIndexData');
 		//content->ok
@@ -36,15 +37,15 @@ Route::group(['prefix' => 'admin'], function () {
 
 	});
 	Route::group(['prefix' => 'property'], function(){
-		//category->no
+		//category->ok
 		Route::resource('/category', 'AdminCategoryController');
-		//chat lieu ->no
+		//chat lieu ->ok
 		Route::resource('/material', 'AdminMaterialController');
 		//xuat xu->ok
 		Route::resource('/origin', 'AdminOriginController');
-		//kich co->no
+		//kich co->ok
 		Route::resource('/size', 'AdminSizeController');
-		//be mat->no
+		//be mat->ok
 		Route::resource('/surface', 'AdminSurfaceController');
 	});
 	//product->no

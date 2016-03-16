@@ -365,7 +365,52 @@ class Common extends CommonParent
 		}
 
 	}
+	public static function getOrigin($id = null)
+	{
+		if ($id) {
+			return $listOriginId = OriginBoxProduct::where('box_product_id', $id)
+				->groupBy('origin_id')->lists('origin_id');
+		}
+		return Origin::where('language', VI)->lists('name', 'id');
+	}
 
+	public static function attachCommon($table, $modelName, $modelId, $method, $input)
+	{
+		$vi = $modelName::find($modelId);
+		$vi->$method()->attach($input);
+		self::tableGetRelateId($table, $modelName, $modelId, $method, ATTACH, $input);
+	}
+	public static function syncCommon($table, $modelName, $modelId, $method, $input)
+	{
+		$vi = $modelName::find($modelId);
+		$vi->$method()->sync($input);
+		self::tableGetRelateId($table, $modelName, $modelId, $method, SYNC, $input);
+	}	
+	public static function detachCommon($table, $modelName, $modelId, $method)
+	{
+		$vi = $modelName::find($modelId);
+		$vi->$method()->detach($modelId);
+		self::tableGetRelateId($table, $modelName, $modelId, $method, DETACH);
+	}
+	public static function tableGetRelateId($table, $modelName, $modelId, $method, $status, $input = null)
+	{
+		$listId = $table::where('model_name', $modelName)
+			->where('model_id', $modelId)
+			->groupBy('relate_id')
+			->lists('relate_id');
+		foreach ($listId as $key => $value) {
+			$box = $modelName::find($value);
+			if ($status == ATTACH) {
+				$box->$method()->attach($input);
+			}
+			if ($status == SYNC) {
+				$box->$method()->sync($input);
+			}
+			if ($status == DETACH) {
+				$box->$method()->detach($modelId);
+			}
+		}
+	}
 }
 
 

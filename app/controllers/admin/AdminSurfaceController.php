@@ -9,7 +9,8 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function index()
 	{
-		//
+		$list = AdminLanguage::where('model_name', 'Surface')->lists('model_id');
+		return View::make('admin.surface.index')->with(compact('list'));
 	}
 
 
@@ -20,7 +21,7 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.surface.create');
 	}
 
 
@@ -31,10 +32,14 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'Surface', CommonProperty::getDefaultValue('Surface', $input));
+		if ($viId) {
+			return Redirect::action('AdminSurfaceController@index')
+				->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('AdminSurfaceController@index')->with('message', 'Tạo mới thất bại');
 	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -55,7 +60,11 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		//
+		$boxVi = CommonLanguage::getObjectByLang('Surface', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'Surface')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = Surface::whereIn('id', $listId)->get();
+		return View::make('admin.surface.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 
@@ -67,7 +76,9 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('Surface', $id, $input, CommonProperty::getDefaultValue('Surface', $input));
+		return Redirect::action('AdminSurfaceController@index')->with('message', 'Sửa thành công');
 	}
 
 
@@ -79,7 +90,8 @@ class AdminSurfaceController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('Surface', $id);
+		return Redirect::action('AdminSurfaceController@index')->with('message', 'Xoá thành công');
 	}
 
 

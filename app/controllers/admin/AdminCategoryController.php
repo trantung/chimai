@@ -9,7 +9,8 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function index()
 	{
-		//
+		$list = AdminLanguage::where('model_name', 'Category')->lists('model_id');
+		return View::make('admin.category.index')->with(compact('list'));
 	}
 
 
@@ -20,7 +21,7 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.category.create');
 	}
 
 
@@ -31,10 +32,14 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'Category', CommonProperty::getDefaultValue('Category', $input));
+		if ($viId) {
+			return Redirect::action('AdminCategoryController@index')
+				->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('AdminCategoryController@index')->with('message', 'Tạo mới thất bại');
 	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -55,7 +60,11 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		//
+		$boxVi = CommonLanguage::getObjectByLang('Category', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'Category')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = Category::whereIn('id', $listId)->get();
+		return View::make('admin.category.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 
@@ -67,7 +76,9 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('Category', $id, $input, CommonProperty::getDefaultValue('Category', $input));
+		return Redirect::action('AdminCategoryController@index')->with('message', 'Sửa thành công');
 	}
 
 
@@ -79,7 +90,8 @@ class AdminCategoryController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('Category', $id);
+		return Redirect::action('AdminCategoryController@index')->with('message', 'Xoá thành công');
 	}
 
 

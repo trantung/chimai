@@ -9,7 +9,8 @@ class BoxTypeChildController extends AdminController {
 	 */
 	public function index()
 	{
-		return View::make('admin.box.type.child.index');
+		$list = AdminLanguage::where('model_name', 'TypeNew')->lists('model_id');
+		return View::make('admin.box.type.child.index')->with(compact('list'));
 	}
 
 
@@ -31,10 +32,14 @@ class BoxTypeChildController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'TypeNew', CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
+		if ($viId) {
+			return Redirect::action('BoxTypeChildController@index')
+				->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('BoxTypeChildController@index')->with('message', 'Tạo mới thất bại');
 	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -55,7 +60,11 @@ class BoxTypeChildController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		//
+		$boxVi = CommonLanguage::getObjectByLang('TypeNew', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'TypeNew')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = TypeNew::whereIn('id', $listId)->get();
+		return View::make('admin.box.type.child.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 
@@ -67,7 +76,9 @@ class BoxTypeChildController extends AdminController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('TypeNew', $id, $input, CommonProperty::getDefaultValue('TypeNew', $input));
+		return Redirect::action('BoxTypeChildController@index')->with('message', 'Sửa thành công');
 	}
 
 
@@ -79,8 +90,16 @@ class BoxTypeChildController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('TypeNew', $id);
+		return Redirect::action('BoxTypeChildController@index')->with('message', 'Xoá thành công');
 	}
-
+	private function getConfigImage($input)
+	{
+		return array(
+				'w' => IMAGE_WIDTH, 
+				'h' => IMAGE_HEIGHT, 
+				'mode' => IMAGE_MODE_FILL
+			);
+	}
 
 }
