@@ -1,17 +1,17 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới category' }}
+{{ $title='Thêm mới' }}
 @stop
 
 @section('content')
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('AdminCategoryController@store'))) }}
+		{{ Form::open(array('action' => array('AdminSizeController@store'))) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên Vietnamese</label>
+					<label for="name">Tên</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
 						   {{ Form::text('name', null , textPlaceHolder('Tên') + ['required'=>'']) }}
