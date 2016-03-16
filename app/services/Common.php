@@ -119,7 +119,6 @@ class Common extends CommonParent
 		//get viInput and enInput, frInput...
 		$viInput = array();
 		$foreignInput = array();
-		// dd($input);
 		$commonInput = array_diff($input, $default);
 		$getArrayLangNotVi = self::getArrayLangNotVi();
 		foreach ($commonInput as $key => $value) {
@@ -373,7 +372,14 @@ class Common extends CommonParent
 		}
 		return Origin::where('language', VI)->lists('name', 'id');
 	}
-
+	public static function getCollection($id = null)
+	{
+		if ($id) {
+			return $listOriginId = CollectionBoxPdf::where('pdf_id', $id)
+				->groupBy('box_collection_id')->lists('box_collection_id');
+		}
+		return BoxCollection::where('language', VI)->lists('name_menu', 'id');
+	}
 	public static function attachCommon($table, $modelName, $modelId, $method, $input)
 	{
 		$vi = $modelName::find($modelId);
@@ -394,10 +400,7 @@ class Common extends CommonParent
 	}
 	public static function tableGetRelateId($table, $modelName, $modelId, $method, $status, $input = null)
 	{
-		$listId = $table::where('model_name', $modelName)
-			->where('model_id', $modelId)
-			->groupBy('relate_id')
-			->lists('relate_id');
+		$listId = self::getRelatedId($table, $modelName, $modelId);
 		foreach ($listId as $key => $value) {
 			$box = $modelName::find($value);
 			if ($status == ATTACH) {
@@ -410,6 +413,15 @@ class Common extends CommonParent
 				$box->$method()->detach($modelId);
 			}
 		}
+	}
+
+	public static function getRelatedId($table, $modelName, $modelId)
+	{
+		$listId = $table::where('model_name', $modelName)
+			->where('model_id', $modelId)
+			->groupBy('relate_id')
+			->lists('relate_id');
+		return $listId;
 	}
 }
 

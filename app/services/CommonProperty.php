@@ -54,11 +54,31 @@ class CommonProperty extends CommonParent
 	// }
 	public static function getDefaultValue($modelName, $input)
 	{
-		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface', 'TypeNew'])) {
-			return [
+		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface', 'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf'])) {
+
+			if($modelName == 'AdminVideo') {
+				$input['video_id'] = getYouTubeVideoId($input['link']);
+				return array_merge(self::defaultValueProperty($input), 
+					['link' => $input['link'], 'video_id' => $input['video_id']]);
+			}
+			if($modelName == 'AdminPdf') {
+				return array_merge(self::defaultValueProperty($input), 
+					['image_url' => $input['image_url'], 'file' => $input['filePdf'], 'type' => $input['type']]);
+			}
+			if($modelName == 'BoxPdf') {
+				return array_merge(self::defaultValueProperty($input), 
+					['image_url' => $input['image_url']]);
+			}
+
+			return self::defaultValueProperty($input);
+		}
+	}
+
+	public static function defaultValueProperty($input)
+	{
+		return [
 				'status' => $input['status'], 
 				'weight_number' => $input['weight_number']
 			];
-		}
 	}
 }

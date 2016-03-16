@@ -1,17 +1,17 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới' }}
+{{ $title='Thêm mới Video' }}
 @stop
 
 @section('content')
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxTypeChildController@store'), 'files' => true)) }}
+		{{ Form::open(array('action' => array('AdminVideoController@store'))) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên</label>
+					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
 						   {{ Form::text('name', null , textPlaceHolder('Tên') + ['required'=>'']) }}
@@ -29,11 +29,10 @@
 					</div>
 				@endforeach
 				<div class="form-group">
-					<label for="name">Image</label>
-					<p>Kích thước: {{ SLIDE_BANNER }}: {{ IMAGE_SLIDE_WIDTH }}x{{ IMAGE_SLIDE_HEIGHT }} / {{ SLIDE_PARTNER }}: {{ IMAGE_PARTNER_WIDTH }}x{{ IMAGE_PARTNER_HEIGHT }} / Dung lượng < 1Mb</p>
+					<label>Đường dẫn video youtube</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::file('image_url', array('required' => '')) }}
+							{{ Form::text('link', '' , textPlaceHolder('Đường dẫn')) }}
 						</div>
 					</div>
 				</div>

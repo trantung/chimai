@@ -16,6 +16,14 @@
 			</div>
 			{{ Form::hidden('position[]', MENU) }}
 			<div class="form-group">
+				<label>Xuất xứ</label>
+				<div class="row">
+					<div class="col-sm-6">
+						{{ Form::select('origin_id[]', Common::getOrigin(), '', array('class' => 'form-control', 'multiple' => true)) }}
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
 				<label>Trạng thái</label>
 				<div class="row">
 					<div class="col-sm-6">

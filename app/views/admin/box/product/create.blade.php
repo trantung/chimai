@@ -68,7 +68,9 @@
 					{{ Form::file('image_url') }}
 				</div>
 
-				@include('admin.box.tab')
+				@include('admin.box.tab_product')
+
+				@include('admin.common.meta')
 		  
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

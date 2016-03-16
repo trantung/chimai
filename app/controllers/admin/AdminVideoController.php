@@ -9,8 +9,10 @@ class AdminVideoController extends AdminController {
 	 */
 	public function index()
 	{
-		//
+		$list = AdminLanguage::where('model_name', 'AdminVideo')->lists('model_id');
+		return View::make('admin.video.index')->with(compact('list'));
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -19,8 +21,9 @@ class AdminVideoController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.video.create');
 	}
+
 
 	/**
 	 * Store a newly created resource in storage.
@@ -29,9 +32,14 @@ class AdminVideoController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'AdminVideo', CommonProperty::getDefaultValue('AdminVideo', $input));
+		if ($viId) {
+			return Redirect::action('AdminVideoController@index')
+				->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('AdminVideoController@index')->with('message', 'Tạo mới thất bại');
 	}
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -43,6 +51,7 @@ class AdminVideoController extends AdminController {
 		//
 	}
 
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -51,8 +60,13 @@ class AdminVideoController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		//
+		$boxVi = CommonLanguage::getObjectByLang('AdminVideo', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'AdminVideo')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = AdminVideo::whereIn('id', $listId)->get();
+		return View::make('admin.video.edit')->with(compact('boxVi', 'boxEn'));
 	}
+
 
 	/**
 	 * Update the specified resource in storage.
@@ -62,8 +76,11 @@ class AdminVideoController extends AdminController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('AdminVideo', $id, $input, CommonProperty::getDefaultValue('AdminVideo', $input));
+		return Redirect::action('AdminVideoController@index')->with('message', 'Sửa thành công');
 	}
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -73,7 +90,9 @@ class AdminVideoController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('AdminVideo', $id);
+		return Redirect::action('AdminVideoController@index')->with('message', 'Xoá thành công');
 	}
+
 
 }

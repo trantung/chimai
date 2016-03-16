@@ -46,7 +46,11 @@
 					<li><a href="{{-- action('BoxTypeChildController@index') --}}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục tin tức</a></li>
 				</ul>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('BoxCollectionController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a></li>
+					<li><a href="#"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a>
+						<ul class="treeview-menu">
+							<li><a href="{{ action('BoxPdfController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box pdf</a></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="treeview-menu">
 					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sản phẩm</a></li>
@@ -77,7 +81,7 @@
 			</li>
 
 			<li>
-				<a href="{{ action('ManagerController@index') }}">
+				<a href="{{ action('AdminPdfController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý file pdf</span>
 				</a>
 			</li>
@@ -87,7 +91,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{ action('ManagerController@index') }}">
+				<a href="{{ action('AdminVideoController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý video</span>
 				</a>
 			</li>

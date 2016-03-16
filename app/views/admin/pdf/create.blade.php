@@ -1,17 +1,17 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới' }}
+{{ $title='Thêm mới file PDF' }}
 @stop
 
 @section('content')
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxTypeChildController@store'), 'files' => true)) }}
+		{{ Form::open(array('action' => array('AdminPdfController@store'), 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
-					<label for="name">Tên</label>
+					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
 						   {{ Form::text('name', null , textPlaceHolder('Tên') + ['required'=>'']) }}
@@ -29,11 +29,26 @@
 					</div>
 				@endforeach
 				<div class="form-group">
-					<label for="name">Image</label>
-					<p>Kích thước: {{ SLIDE_BANNER }}: {{ IMAGE_SLIDE_WIDTH }}x{{ IMAGE_SLIDE_HEIGHT }} / {{ SLIDE_PARTNER }}: {{ IMAGE_PARTNER_WIDTH }}x{{ IMAGE_PARTNER_HEIGHT }} / Dung lượng < 1Mb</p>
+					<label>Upload file PDF</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::file('image_url', array('required' => '')) }}
+							{{ Form::file('filePdf') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Upload ảnh</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::file('image_url') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Box Pdf</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('type', BoxPdf::where('language', VI)->lists("name", "id"), '', array('class' => 'form-control')) }}
 						</div>
 					</div>
 				</div>
@@ -53,9 +68,6 @@
 						</div>
 					</div>
 				</div>
-
-				@include('admin.common.meta')
-				
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>

@@ -1,20 +1,20 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa' }}
+{{ $title='Chỉnh sửa video' }}
 @stop
 
 @section('content')
 
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách</a>
+		<a href="{{ action('AdminVideoController@index') }} " class="btn btn-success">Danh sách</a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('AdminSurfaceController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
+		{{ Form::open(array('action' => array('AdminVideoController@update', $boxVi->id) , 'method' => 'PUT')) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>
@@ -35,6 +35,22 @@
 					</div>
 				@endforeach
 				<div class="form-group">
+					<label>Đường dẫn video youtube</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('link', $boxVi->link , textPlaceHolder('Đường dẫn')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Box Video</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('type', BoxVideo::where('language', VI)->lists("name", "id"), $boxVi->type, array('class' => 'form-control')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
@@ -51,8 +67,8 @@
 					</div>
 				</div>
 
-				@include('admin.common.meta', ['modelName' => 'BoxTypeChild', 'modelId' => $boxVi->id])
-				
+				@include('admin.common.meta', ['modelName' => 'AdminVideo', 'modelId' => $boxVi->id])
+
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>

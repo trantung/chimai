@@ -1,20 +1,15 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa' }}
+{{ $title='Chỉnh sửa box Product' }}
 @stop
 
 @section('content')
 
-<div class="row margin-bottom">
-	<div class="col-xs-12">
-		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách</a>
-	</div>
-</div>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('AdminSurfaceController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
+		{{ Form::open(array('action' => array('BoxPdfController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>
@@ -29,16 +24,30 @@
 						<label for="name">Tên {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($value->language.'_'.'name', $value->name, textPlaceHolder('Name') + ['required'=>'']) }}
+							   {{ Form::text($value->language.'_'.'name', $value->name, textPlaceHolder('') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>
 				@endforeach
+
+				<div class="form-group">
+					<label>Upload ảnh</label>
+					{{ Form::file('image_url') }}
+					<img class="image_boxProduct" src="{{ url(UPLOADIMG . '/BoxPdf/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
+				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
+							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Bộ sưu tập</label>
+					<div class="row">
+						<div class="col-sm-6">
+						{{ Form::select('box_collection_id[]', Common::getCollection(), Common::getCollection($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
 						</div>
 					</div>
 				</div>
@@ -51,8 +60,8 @@
 					</div>
 				</div>
 
-				@include('admin.common.meta', ['modelName' => 'BoxTypeChild', 'modelId' => $boxVi->id])
-				
+				@include('admin.common.meta', ['modelName' => 'BoxPdf', 'modelId' => $boxVi->id])
+              	
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>

@@ -35,6 +35,8 @@ Route::group(['prefix' => 'admin'], function () {
 		//box khuyến mãi hiển thị trên menu hoặc content->ok
 		Route::resource('/promotion', 'BoxPromotionController');
 
+		Route::resource('/pdf', 'BoxPdfController');
+
 	});
 	Route::group(['prefix' => 'property'], function(){
 		//category->ok
@@ -70,7 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//
 	Route::resource('/video', 'AdminVideoController');
 	//upload pdf->no
-
+	Route::resource('/pdf', 'AdminPdfController');
 	//seo default
 	Route::get('/seo', 'SeoController@editSeo');
 	Route::put('/seo', 'SeoController@updateSeo');
