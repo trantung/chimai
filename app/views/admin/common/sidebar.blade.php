@@ -50,6 +50,12 @@
 						<ul class="treeview-menu">
 							<li><a href="{{ action('BoxPdfController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box pdf</a></li>
 						</ul>
+						<ul class="treeview-menu">
+							<li><a href="{{ action('BoxVideoController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box video</a></li>
+						</ul>
+						<ul class="treeview-menu">
+							<li><a href="{{ action('BoxShowRoomController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box showroom</a></li>
+						</ul>
 					</li>
 				</ul>
 				<ul class="treeview-menu">

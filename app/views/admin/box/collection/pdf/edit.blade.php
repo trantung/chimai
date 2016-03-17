@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa box Product' }}
+{{ $title='Chỉnh sửa box Pdf' }}
 @stop
 
 @section('content')
@@ -39,7 +39,7 @@
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+							{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
 						</div>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<label>Bộ sưu tập</label>
 					<div class="row">
 						<div class="col-sm-6">
-						{{ Form::select('box_collection_id[]', Common::getCollection(), Common::getCollection($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
+						{{ Form::select('box_collection_id[]', Common::getCollection('CollectionBoxPdf', 'pdf_id'), Common::getCollection('CollectionBoxPdf', 'pdf_id', $boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
 						</div>
 					</div>
 				</div>
