@@ -1,14 +1,16 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới Video' }}
+{{ $title='Thêm mới box Video' }}
 @stop
 
 @section('content')
+
+
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('AdminVideoController@store'))) }}
+		{{ Form::open(array('action' => array('BoxVideoController@store'), 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>
@@ -29,26 +31,22 @@
 					</div>
 				@endforeach
 				<div class="form-group">
-					<label>Đường dẫn video youtube</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::text('link', '' , textPlaceHolder('Đường dẫn')) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label>Box Video</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::select('type', BoxVideo::where('language', VI)->lists("name", "id"), '', array('class' => 'form-control')) }}
-						</div>
-					</div>
+					<label>Upload ảnh</label>
+					{{ Form::file('image_url') }}
 				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('weight_number', '' , textPlaceHolder('Mức ưu tiên')) }}
+							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Bộ sưu tập</label>
+					<div class="row">
+						<div class="col-sm-6">
+						{{ Form::select('box_collection_id[]', Common::getCollection('CollectionBoxVideo', 'video_id'), '', array('class' => 'form-control', 'multiple' => true)) }}
 						</div>
 					</div>
 				</div>
@@ -62,7 +60,7 @@
 				</div>
 
 				@include('admin.common.meta')
-				
+		  
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>

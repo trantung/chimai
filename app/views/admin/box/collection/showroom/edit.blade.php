@@ -1,44 +1,45 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới box Pdf' }}
+{{ $title='Chỉnh sửa box Showroom' }}
 @stop
 
 @section('content')
 
-
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
-		{{ Form::open(array('action' => array('BoxPdfController@store'), 'files' => true)) }}
+		{{ Form::open(array('action' => array('BoxShowRoomController@update', $boxVi->id) , 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
 				<div class="form-group">
 					<label for="name">Tên Vietnamese</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name', null , textPlaceHolder('Tên') + ['required'=>'']) }}
+						   {{ Form::text('name', $boxVi->name , textPlaceHolder('Tên') + ['required'=>'']) }}
 						</div>
 					</div>
 				</div>
-				@foreach($arrayLang as $keyLang => $singLang)
+				@foreach($boxEn as $value)
 					<div class="form-group">
-						<label for="name">Tên {{ $singLang }}</label>
+						<label for="name">Tên {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('') + ['required'=>'']) }}
+							   {{ Form::text($value->language.'_'.'name', $value->name, textPlaceHolder('') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>
 				@endforeach
+
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
+					<img class="image_boxProduct" src="{{ url(UPLOADIMG . '/BoxShowroom/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
 				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+							{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
 						</div>
 					</div>
 				</div>
@@ -46,7 +47,7 @@
 					<label>Bộ sưu tập</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::select('box_collection_id[]', Common::getCollection('CollectionBoxPdf', 'pdf_id'), '', array('class' => 'form-control', 'multiple' => true)) }}
+						{{ Form::select('box_collection_id[]', Common::getCollection('CollectionBoxShowroom', 'box_show_room_id'), Common::getCollection('CollectionBoxShowroom', 'box_show_room_id', $boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
 						</div>
 					</div>
 				</div>
@@ -54,17 +55,17 @@
 					<label>Trạng thái</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
+							{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
 						</div>
 					</div>
 				</div>
 
-				@include('admin.common.meta')
-		  
-				<div class="box-footer">
+				@include('admin.common.meta', ['modelName' => 'BoxPdf', 'modelId' => $boxVi->id])
+              	
+			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-				</div>
-			</div>
+			 	</div>
+		  	</div>
 		{{ Form::close() }}
 	</div>
 </div>

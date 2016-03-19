@@ -37,6 +37,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 		Route::resource('/pdf', 'BoxPdfController');
 
+		Route::resource('/video', 'BoxVideoController');
+		
+		Route::resource('/showroom', 'BoxShowRoomController');
+
 	});
 	Route::group(['prefix' => 'property'], function(){
 		//category->ok

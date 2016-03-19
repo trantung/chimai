@@ -372,10 +372,10 @@ class Common extends CommonParent
 		}
 		return Origin::where('language', VI)->lists('name', 'id');
 	}
-	public static function getCollection($id = null)
+	public static function getCollection($relationTable, $field, $id = null)
 	{
 		if ($id) {
-			return $listOriginId = CollectionBoxPdf::where('pdf_id', $id)
+			return $listOriginId = $relationTable::where($field, $id)
 				->groupBy('box_collection_id')->lists('box_collection_id');
 		}
 		return BoxCollection::where('language', VI)->lists('name_menu', 'id');
@@ -387,7 +387,7 @@ class Common extends CommonParent
 		self::tableGetRelateId($table, $modelName, $modelId, $method, ATTACH, $input);
 	}
 	public static function syncCommon($table, $modelName, $modelId, $method, $input)
-	{
+	{	
 		$vi = $modelName::find($modelId);
 		$vi->$method()->sync($input);
 		self::tableGetRelateId($table, $modelName, $modelId, $method, SYNC, $input);
