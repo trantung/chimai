@@ -20,15 +20,18 @@ class AdminPdf extends Eloquent implements SluggableInterface
 		'build_from' => 'name',
 		'save_to'    => 'slug',
 	);
-
-	public function collectionBoxPdf()
+	public function slide()
 	{
-		return $this->hasMany('CollectionBoxPdf', 'pdf_id', 'id');
+		return $this->belongsTo('BoxPdf', 'type', 'id');
 	}
-	public function collectionBoxs() 
-	{
-		return $this->belongsToMany('BoxCollection', 'collection_box_pdf', 'pdf_id', 'box_collection_id');
+	// public function collectionBoxPdf()
+	// {
+	// 	return $this->hasMany('CollectionBoxPdf', 'pdf_id', 'id');
+	// }
+	// public function collectionBoxs() 
+	// {
+	// 	return $this->belongsToMany('BoxCollection', 'collection_box_pdf', 'pdf_id', 'box_collection_id');
 
-	}
+	// }
 
 }
