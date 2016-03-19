@@ -121,6 +121,17 @@
 					<i class="fa fa-cogs"></i> <span>Cài đặt</span>
 				</a>
 			</li>
+			<li>
+				<a href="{{ action('TestUploadImageController@index') }}">
+					<i class="fa fa-file-image-o"></i> <span>Test upload images</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{ action('TestUploadImageController@index') }}">
+					<i class="fa fa-file-image-o"></i> <span>Test upload images</span>
+				</a>
+			</li>
+			
 		</ul>
 	</section>
 </aside>

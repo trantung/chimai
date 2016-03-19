@@ -54,6 +54,54 @@ class CommonImage {
 		}
 	}
 
+	public static function uploadImageFile($id, $path, $imageObject, $folder, $w = IMAGE_WIDTH, $h = IMAGE_HEIGHT, $mode = IMAGE_MODE_FIT, $currentImage = NULL)
+	{
+		$destinationPath = public_path().'/'.$path.'/'.$folder.'/'.$id.'/';
+		if(isset($_FILES)){
+			$file = $_FILES['Filedata']['tmp_name'];
+			$filename = $_FILES['Filedata']['name'];
+			
+			// Source image
+			$size = getimagesize($file);
+			switch ($size['mime']) {
+			    case "image/gif":
+			        $src = imagecreatefromgif($file);
+			        break;
+			    case "image/jpeg":
+			        $src = imagecreatefromjpeg($file);
+			        break;
+			    case "image/png":
+			        $src = imagecreatefrompng($file);
+			        break;
+			    case "image/bmp":
+			        $src = imagecreatefromwbmp($file);
+			        break;
+			}
+			
+			// Destination image with white background
+			$dst = imagecreatetruecolor($w, $h);
+			imagefill($dst, 0, 0, imagecolorallocate($dst, 255, 255, 255));
+			
+			// All Magic is here
+			self::scale_image($src, $dst, $mode);
+			
+			// create folder to upload image
+			if (!file_exists($destinationPath)) {
+		    	mkdir($destinationPath, 0777, true);
+			}
+
+			// Output to the browser
+			// Header('Content-Type: image/jpeg');
+			imagejpeg($dst, $destinationPath . $filename, 100);
+
+			// $uploadSuccess = $file->move($destinationPath, imagejpeg($dst));
+			return $filename;
+		}
+		if ($currentImage) {
+			return $currentImage;
+		}
+	}
+
 	public static function scale_image($src_image, $dst_image, $op = IMAGE_MODE_FIT) {
 	    $src_width = imagesx($src_image);
 	    $src_height = imagesy($src_image);

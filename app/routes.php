@@ -84,6 +84,13 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/seo', 'SeoController@editSeo');
 	Route::put('/seo', 'SeoController@updateSeo');
 
+	// test ajax upload image
+	Route::get('/test-upload-image', 'TestUploadImageController@index');
+	Route::post('/test_get_image', 'TestUploadImageController@testGetImage');
+	Route::post('/test_upload_image', 'TestUploadImageController@testUploadImage');
+	Route::post('/test_delete_image', 'TestUploadImageController@testDeleteImage');
+	Route::post('/test_update_text', 'TestUploadImageController@testUpdateText');
+
 });
 
 Route::group(
