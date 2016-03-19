@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('AdminSeoSeeder');
 		
+		$this->call('UnitTableSeeder');
+		
 	}
 
 }

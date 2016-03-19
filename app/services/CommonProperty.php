@@ -55,7 +55,7 @@ class CommonProperty extends CommonParent
 	public static function getDefaultValue($modelName, $input)
 	{
 		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface',
-			'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage'])) {
+			'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage', 'Product'])) {
 
 			if($modelName == 'AdminVideo') {
 				$input['video_id'] = getYouTubeVideoId($input['link']);
@@ -73,6 +73,10 @@ class CommonProperty extends CommonParent
 			if($modelName == 'BoxShowRoom') {
 				return array_merge(self::defaultValueProperty($input), 
 					['image_url' => $input['image_url']]);
+			}
+			if($modelName == 'Product') {
+				return array_merge(self::defaultValueProperty($input), 
+					['image_url' => $input['image_url'], 'qty' => $input['qty'], 'code' => $input['code'], 'origin_id' => $input['origin_id'], 'material_id' => $input['material_id'], 'surface_id' => $input['surface_id'], 'unit_id' => $input['unit_id']]);
 			}
 
 			return self::defaultValueProperty($input);

@@ -68,6 +68,22 @@ class LanguageTableSeeder extends Seeder {
 			'status' => 1,
 			'weight_number' => 2,
 		]);
+		AdminLanguage::create([
+			'model_name' => 'Material',
+			'model_id' => 1,
+			'relate_name' => 'Material',
+			'relate_id' => 2,
+			'status' => 1,
+			'weight_number' => 2,
+		]);
+		AdminLanguage::create([
+			'model_name' => 'Material',
+			'model_id' => 3,
+			'relate_name' => 'Material',
+			'relate_id' => 4,
+			'status' => 1,
+			'weight_number' => 2,
+		]);
 
 	}
 

@@ -24,6 +24,7 @@ class MaterialTableSeeder extends Seeder {
 			'language' => 'en',
 			'slug' => 'pocelaine',
 		]);
+		
 	}
 
 }

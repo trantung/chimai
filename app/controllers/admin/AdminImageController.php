@@ -79,7 +79,7 @@ class AdminImageController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
-		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input));
+		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
 		return Redirect::action('AdminImageController@index')->with('message', 'Sửa thành công');
 	}
 

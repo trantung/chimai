@@ -30,9 +30,20 @@
 						<th>Trạng thái</th>
 						<th style="width:200px;">Action</th>
 					</tr>
-					
-
-
+					@foreach(Product::whereIn('id', $list)->get() as $value)
+						<tr>
+							<td>{{ $value->id }}</td>
+							<td>{{ $value->image_url }}</td>
+							<td>{{ $value->name }}</td>
+							<td>{{ Common::getStatusProperty($value->status) }}</td>
+							<td>
+								<a href="{{ action('AdminProductController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>
+								{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminProductController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
+								<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
+								{{ Form::close() }}
+							</td>
+						</tr>
+					@endforeach
 				</table>
 			</div>
 	    </div>

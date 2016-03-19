@@ -1,6 +1,7 @@
 <?php
+
 class AdminProductController extends AdminController {
-    
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -8,8 +9,11 @@ class AdminProductController extends AdminController {
 	 */
 	public function index()
 	{
-        return View::make('admin.product.index');
+		$list = AdminLanguage::where('model_name', 'Product')->lists('model_id');
+		return View::make('admin.product.index')->with(compact('list'));
 	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -17,8 +21,10 @@ class AdminProductController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.product.create');
 	}
+
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -26,8 +32,24 @@ class AdminProductController extends AdminController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::except('_token', 'size_id', 'category_id');
+		// size_id, category_id
+		//'origin_id', 'material_id', 'unit_id', 'surface_id'
+		$viId = CommonLanguage::createModel($input, 'Product', CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
+		if ($viId) {
+			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productCategories', Input::get('category_id'));
+			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productSizes', Input::get('size_id'));
+			
+			Common::commonUpdateField('Surface', $viId, 'surface_id');
+			Common::commonUpdateField('Material', $viId, 'material_id');
+			Common::commonUpdateField('Origin', $viId, 'origin_id');
+			Common::commonUpdateField('AdminUnit', $viId, 'unit_id');
+			
+			return Redirect::action('AdminProductController@edit', $viId);
+		}
+		return Redirect::action('AdminProductController@index')->with('message', 'Tạo mới thất bại');
 	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -38,6 +60,8 @@ class AdminProductController extends AdminController {
 	{
 		//
 	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -46,8 +70,18 @@ class AdminProductController extends AdminController {
 	 */
 	public function edit($id)
 	{
-	
-    }
+		$boxVi = CommonLanguage::getObjectByLang('Product', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'Product')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = Product::whereIn('id', $listId)->get();
+
+		$images = ProductImage::orderByRaw(DB::raw("weight_number = '0', weight_number"))->get();
+		$images = View::make('admin.product.box_images')->with(compact('images'));
+
+		return View::make('admin.product.edit')->with(compact('boxVi', 'boxEn', 'images'));
+	}
+
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -56,8 +90,12 @@ class AdminProductController extends AdminController {
 	 */
 	public function update($id)
 	{
-		
+		$input = Input::except('_token');
+		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
+		return Redirect::action('AdminProductController@index')->with('message', 'Sửa thành công');
 	}
+
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -66,7 +104,17 @@ class AdminProductController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CommonLanguage::deleteModel('Product', $id);
+		return Redirect::action('AdminProductController@index')->with('message', 'Xoá thành công');
 	}
-}
 
+	private function getConfigImage($input)
+	{
+		return array(
+				'w' => IMAGE_WIDTH, 
+				'h' => IMAGE_HEIGHT, 
+				'mode' => IMAGE_MODE_FILL
+			);
+	}
+
+}

@@ -58,15 +58,13 @@ Route::group(['prefix' => 'admin'], function () {
 	//product->no
 	Route::group(['prefix' => 'product'], function(){
 		//product
-		Route::resource('/', 'AdminProductController');
+		Route::resource('/normal', 'AdminProductController');
 		//product images color
-		Route::get('/color', 'AdminColorController@colorIndex');
 		Route::post('/color_get_image', 'AdminColorController@colorGetImage');
 		Route::post('/color_upload_image', 'AdminColorController@colorUploadImage');
 		Route::post('/color_delete_image', 'AdminColorController@colorDeleteImage');
 		Route::post('/color_update_text', 'AdminColorController@colorUpdateText');
 		//product images 
-		Route::get('/picture', 'AdminPictureController@pictureIndex');
 		Route::post('/picture_get_image', 'AdminPictureController@pictureGetImage');
 		Route::post('/picture_upload_image', 'AdminPictureController@pictureUploadImage');
 		Route::post('/picture_delete_image', 'AdminPictureController@pictureDeleteImage');

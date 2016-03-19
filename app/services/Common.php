@@ -423,6 +423,61 @@ class Common extends CommonParent
 			->lists('relate_id');
 		return $listId;
 	}
+	public static function getSurface($id = null)
+	{
+		if ($id) {
+			//
+		}
+		return Surface::where('language', VI)->lists('name', 'id');
+	}
+	public static function getMaterial($id = null)
+	{
+		if ($id) {
+			//
+		}
+		return Material::where('language', VI)->lists('name', 'id');
+	}
+	public static function getCategory($id = null)
+	{
+		if ($id) {
+			//
+		}
+		return Category::where('language', VI)->lists('name', 'id');
+	}
+	public static function getSize($id = null)
+	{
+		if ($id) {
+			//
+		}
+		return Size::where('language', VI)->lists('name', 'id');
+	}
+	public static function getUnit($id = null)
+	{
+		if ($id) {
+			//
+		}
+		return AdminUnit::where('language', VI)->lists('name', 'id');
+	}
+	public static function commonUpdateField($modelName, $modelId, $field)
+	{
+		// related_id product 
+		$relateIdProduct = Common::getRelatedId('AdminLanguage', 'Product', $modelId);
+		//list id product -> lang + surface_id
+		$listProduct = Product::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
+		foreach ($listProduct as $key => $value) {
+			//Language table-> relateId of surface: by model_id = surface_id
+			$relateIds = AdminLanguage::where('model_name', $modelName)->where('model_id', $value->$field)->lists('relate_id');
+			//surface table: find(relateId of surface)->language
+			foreach ($relateIds as $k => $v) {
+				$surface = $modelName::find($v);
+				//if language surface = language relateId product->update relateId product : surface_id = surface_id
+				if ($surface->language == $value->language) {
+					Product::find($value->id)->update([$field => $v]);
+				}
+			}
+		}
+	}
+
 }
 
 
