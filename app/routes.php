@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
 		
 		Route::resource('/showroom', 'BoxShowRoomController');
 
+
 	});
 	Route::group(['prefix' => 'property'], function(){
 		//category->ok
@@ -90,10 +91,12 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('/news', 'NewsController');
 	//ok
 	Route::resource('/slider', 'AdminSlideController');
-	//
+	//upload video 
 	Route::resource('/video', 'AdminVideoController');
-	//upload pdf->no
+	//upload pdf->ok
 	Route::resource('/pdf', 'AdminPdfController');
+	//upload các hình ảnh khác 
+	Route::resource('/showroom/image', 'AdminImageController');
 	//seo default
 	Route::get('/seo', 'SeoController@editSeo');
 	Route::put('/seo', 'SeoController@updateSeo');

@@ -93,7 +93,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{ action('ManagerController@index') }}">
+				<a href="{{ action('AdminImageController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý ảnh</span>
 				</a>
 			</li>

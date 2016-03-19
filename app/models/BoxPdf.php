@@ -25,6 +25,10 @@ class BoxPdf extends Eloquent implements SluggableInterface
 	{
 		return $this->hasMany('CollectionBoxPdf', 'pdf_id', 'id');
 	}
+	public function adminPdfs()
+	{
+		return $this->hasMany('AdminPdf', 'type', 'id');
+	}
 	public function boxCollections() 
 	{
 		return $this->belongsToMany('BoxCollection', 'collection_box_pdf', 'pdf_id', 'box_collection_id');

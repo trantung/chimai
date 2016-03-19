@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class AdminImage extends Eloquent
 {
 	use SoftDeletingTrait;
-    protected $table = 'images';
-    protected $fillable = ['slider_id', 'image_url', 'name'];
-    protected $dates = ['deleted_at'];
+	protected $table = 'images';
+	protected $fillable = [
+		'name', 'weight_number', 'status', 'link', 'image_url', 'type', 'file',
+		'slug', 'language'
+	];
+	protected $dates = ['deleted_at'];
 
-    public function slide()
-    {
-    	return $this->belongsTo('AdminSlide', 'slider_id', 'id');
-    }
+	public function slide()
+	{
+		return $this->belongsTo('BoxShowRoom', 'type', 'id');
+	}
 
 }
