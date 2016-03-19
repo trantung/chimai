@@ -3,10 +3,34 @@
 		<ul class="sidebar-menu">
 			<li class="header">Menu</li>
 			<li>
-				<a href="{{ action('ManagerController@index') }}">
-					<i class="fa fa-users"></i> <span>Quản lý thành viên</span>
+				<a href="{{ action('AdminProductController@index') }}">
+					<i class="fa fa-dropbox"></i> <span>Quản lý sản phẩm</span>
 				</a>
 			</li>
+
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-list"></i> <span>Properties sản phẩm</span>
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminOriginController@index') }}"><i class="fa fa-circle-o"></i> Quản lý xuất xứ</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminMaterialController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chất liệu</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminCategoryController@index') }}"><i class="fa fa-circle-o"></i> Quản lý category</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminSizeController@index') }}"><i class="fa fa-circle-o"></i> Quản lý kích cỡ</a></li>
+				</ul>
+				<ul class="treeview-menu">
+					<li><a href="{{ action('AdminSurfaceController@index') }}"><i class="fa fa-circle-o"></i> Quản lý bề mặt</a></li>
+				</ul>
+
+			</li>
+
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-list"></i> <span>Quản lý box</span>
@@ -63,29 +87,6 @@
 				</ul>
 			</li>
 
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-list"></i> <span>Properties sản phẩm</span>
-					<i class="fa fa-angle-left pull-right"></i>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminOriginController@index') }}"><i class="fa fa-circle-o"></i> Quản lý xuất xứ</a></li>
-				</ul>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminMaterialController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chất liệu</a></li>
-				</ul>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminCategoryController@index') }}"><i class="fa fa-circle-o"></i> Quản lý category</a></li>
-				</ul>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminSizeController@index') }}"><i class="fa fa-circle-o"></i> Quản lý kích cỡ</a></li>
-				</ul>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminSurfaceController@index') }}"><i class="fa fa-circle-o"></i> Quản lý bề mặt</a></li>
-				</ul>
-
-			</li>
-
 			<li>
 				<a href="{{ action('AdminPdfController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý file pdf</span>
@@ -122,8 +123,8 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{ action('TestUploadImageController@index') }}">
-					<i class="fa fa-file-image-o"></i> <span>Test upload images</span>
+				<a href="{{ action('ManagerController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý thành viên</span>
 				</a>
 			</li>
 			<li>

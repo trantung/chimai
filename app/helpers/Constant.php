@@ -94,5 +94,9 @@ define('SEO_DEFAULT', 'Seo_Default');
 //cache time
 define('CACHETIME', 1);
 
-//unique_salt
+//unique_salt for ajax upload images
 define('UNIQUE_SALT', '1458397504');
+
+//product images type: color + picture
+define('PRODUCT_COLOR', 1);
+define('PRODUCT_PICTURE', 2);
