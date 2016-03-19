@@ -93,3 +93,6 @@ define('SEO_DEFAULT', 'Seo_Default');
 
 //cache time
 define('CACHETIME', 1);
+
+//unique_salt
+define('UNIQUE_SALT', '1458397504');
