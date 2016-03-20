@@ -21,6 +21,7 @@ class CreateBoxCommonTable extends Migration {
 			$table->integer('position')->nullable();
 			$table->integer('status')->nullable();
 			$table->integer('weight_number')->nullable();
+			$table->string('language', 256)->nullable();
 			$table->softDeletes();
 			$table->timestamps();
 		});

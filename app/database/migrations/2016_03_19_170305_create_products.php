@@ -19,6 +19,7 @@ class CreateProducts extends Migration {
 			$table->string('code', 256)->nullable();
 			$table->string('image_url', 256)->nullable();
 			$table->string('description', 500)->nullable();
+			$table->integer('qty')->nullable();
 			$table->string('price', 256)->nullable();
 			$table->string('price_old', 256)->nullable();
 			$table->integer('category_id')->nullable();

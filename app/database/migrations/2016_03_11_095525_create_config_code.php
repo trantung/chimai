@@ -16,6 +16,7 @@ class CreateConfigCode extends Migration {
             $table->increments('id');
             $table->integer('type')->nullable();
             $table->text('code', 500)->nullable();
+            $table->string('language', 256)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
