@@ -27,14 +27,14 @@
 			<tr>
 			  <th>ID</th>
 			  <th>Tên thể loai</th>
-			  <th>Lượt xem</th>
+			  <th>Ảnh đại diện</th>
 			  <th style="width:200px;">&nbsp;</th>
 			</tr>
 			 @foreach($inputNewType as $newstype)
 			<tr>
 			  <td>{{ $newstype->id }}</td>
 			  <td>{{ $newstype->name }}</td>
-			  <td>{{ AdminNew::where('type_new_id', $newstype->id)->sum('count_view') }}</td>
+			  <td><img src="{{ UPLOADIMG . '/TypeNew/' . $newstype->id . '/' . $newstype->image_url }}" width="70px" /></td>
 			  <td>
 				<a href="{{ action('NewsTypeController@edit', $newstype->id) }}" class="btn btn-primary">Sửa</a>
 				{{ Form::open(array('method'=>'DELETE', 'action' => array('NewsTypeController@destroy', $newstype->id), 'style' => 'display: inline-block;')) }}

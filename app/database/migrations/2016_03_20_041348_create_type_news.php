@@ -16,7 +16,7 @@ class CreateTypeNews extends Migration {
 			$table->increments('id');
 			$table->string('name', 256)->nullable();
 			$table->string('slug', 256)->nullable();
-			$table->integer('parent_id')->nullable();
+			$table->integer('box_type_id')->nullable();
 			$table->string('image_url', 256)->nullable();
 			$table->string('sapo', 500)->nullable();
 			$table->integer('weight_number')->nullable();
