@@ -70,15 +70,13 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::post('/picture_update_text', 'AdminPictureController@pictureUpdateText');
 
 	});
-	Route::group(['prefix' => 'tin-tuc'], function(){
+	Route::group(['prefix' => 'news'], function(){
 		//type new
 		Route::resource('/type', 'NewsTypeController');
 		//new
 		Route::resource('/normal', 'NewsController');
 
 	});
-
-	Route::resource('/news', 'NewsController');
 
 	//ok
 	Route::get('/configcode', 'ConfigCodeController@editConfig');

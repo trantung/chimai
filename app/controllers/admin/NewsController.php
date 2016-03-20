@@ -23,8 +23,9 @@ class NewsController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
-		$viId = CommonLanguage::createModel($input, 'AdminNew', CommonProperty::defaultValueProperty($input), self::getConfigImage($input));
+		$viId = CommonLanguage::createModel($input, 'AdminNew', CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
 		if ($viId) {
+			Common::commonUpdateField('TypeNew', $viId, 'type_new_id', 'AdminNew', 'AdminLanguage');
 			return Redirect::action('NewsController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -49,6 +50,7 @@ class NewsController extends AdminController {
 	{
 		$input = Input::except('_token');
 		CommonLanguage::updateModel('AdminNew', $id, $input, CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
+		Common::commonUpdateField('TypeNew', $id, 'type_new_id', 'AdminNew', 'AdminLanguage');
 		return Redirect::action('NewsController@index')->with('message', 'Sửa thành công');
 	}
 

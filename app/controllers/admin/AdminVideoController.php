@@ -35,6 +35,7 @@ class AdminVideoController extends AdminController {
 		$input = Input::except('_token');
 		$viId = CommonLanguage::createModel($input, 'AdminVideo', CommonProperty::getDefaultValue('AdminVideo', $input));
 		if ($viId) {
+			Common::commonUpdateField('BoxVideo', $viId, 'type', 'AdminVideo', 'AdminLanguage');
 			return Redirect::action('AdminVideoController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -78,6 +79,7 @@ class AdminVideoController extends AdminController {
 	{
 		$input = Input::except('_token');
 		CommonLanguage::updateModel('AdminVideo', $id, $input, CommonProperty::getDefaultValue('AdminVideo', $input));
+		Common::commonUpdateField('BoxVideo', $id, 'type', 'AdminVideo', 'AdminLanguage');
 		return Redirect::action('AdminVideoController@index')->with('message', 'Sửa thành công');
 	}
 
