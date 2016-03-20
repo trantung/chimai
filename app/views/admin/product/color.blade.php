@@ -19,7 +19,8 @@
 			type : 'post',
 			url : '{{ url("admin/product/color_delete_image") }}',
 			data : {
-				'id' : id
+				'id' : id,
+				'product_id': {{ $productId }}
 			},
 			beforeSend: function(){
 	            $('#color_load_msg_'+id).html('Đang xóa...');
@@ -41,7 +42,8 @@
 			data : {
 				'id' : id,
 				'name' : $('#color_name_'+id).val(),
-				'weight_number' : $('#color_weight_number_'+id).val()
+				'weight_number' : $('#color_weight_number_'+id).val(),
+				'product_id': {{ $productId }}
 			},
 			beforeSend: function(){
 	            $('#color_load_msg_'+id).html('Đang sửa...');

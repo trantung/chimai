@@ -24,15 +24,16 @@ class AdminColorController extends AdminController {
 
 	public function colorGetImage()
 	{
-		$id = Input::get('product_id');
-		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
+		$productId = Input::get('product_id');
+		return CommonProduct::getProductBoxImages($productId, PRODUCT_COLOR, 'color_box_images');
 	}
 
 	public function colorDeleteImage()
 	{
 		$id = Input::get('id');
+		$productId = Input::get('product_id');
 		ProductImage::find($id)->delete();
-		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
+		return CommonProduct::getProductBoxImages($productId, PRODUCT_COLOR, 'color_box_images');
 	}
 
 	public function colorUpdateText()
@@ -40,11 +41,12 @@ class AdminColorController extends AdminController {
 		$id = Input::get('id');
 		$name = Input::get('name');
 		$weight_number = Input::get('weight_number');
+		$productId = Input::get('product_id');
 		ProductImage::find($id)->update([
 				'name' => $name,
 				'weight_number' => $weight_number
 			]);
-		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
+		return CommonProduct::getProductBoxImages($productId, PRODUCT_COLOR, 'color_box_images');
 	}
 
 }
