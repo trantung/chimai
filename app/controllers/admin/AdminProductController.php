@@ -75,10 +75,10 @@ class AdminProductController extends AdminController {
 			->where('model_id', $id)->lists('relate_id');
 		$boxEn = Product::whereIn('id', $listId)->get();
 
-		$images = ProductImage::orderByRaw(DB::raw("weight_number = '0', weight_number"))->get();
-		$images = View::make('admin.product.box_images')->with(compact('images'));
-
-		return View::make('admin.product.edit')->with(compact('boxVi', 'boxEn', 'images'));
+		$colors = CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
+		$pictures = CommonProduct::getProductBoxImages($id, PRODUCT_PICTURE, 'picture_box_images');
+		
+		return View::make('admin.product.edit')->with(compact('boxVi', 'boxEn', 'colors', 'pictures'));
 	}
 
 

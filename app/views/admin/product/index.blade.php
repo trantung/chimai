@@ -25,7 +25,7 @@
 				<table class="table table-hover">
 					<tr>
 						<th>ID</th>
-						<th>Ảnh</th>
+						<th>Ảnh đại diện</th>
 						<th>Tên</th>
 						<th>Trạng thái</th>
 						<th style="width:200px;">Action</th>
@@ -33,7 +33,7 @@
 					@foreach(Product::whereIn('id', $list)->get() as $value)
 						<tr>
 							<td>{{ $value->id }}</td>
-							<td>{{ $value->image_url }}</td>
+							<td><img src="{{ UPLOADIMG . '/Product/' . $value->id . '/' . $value->image_url }}" width="70px" /></td>
 							<td>{{ $value->name }}</td>
 							<td>{{ Common::getStatusProperty($value->status) }}</td>
 							<td>

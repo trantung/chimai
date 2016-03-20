@@ -3,13 +3,19 @@ class AdminColorController extends AdminController {
 
 	public function colorUploadImage()
 	{
+		$productId = $_POST['product_id'];
 		$verifyToken = md5(UNIQUE_SALT . $_POST['timestamp']);
 		if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 			$fileTypes = array('jpg','jpeg','gif','png');
 			$fileParts = pathinfo($_FILES['Filedata']['name']);
 			if (in_array($fileParts['extension'], $fileTypes)) {
-				$imageUrl = CommonImage::uploadImageFile('1', UPLOADIMG, 1, 'test', IMAGE_PRODUCT_WIDTH, IMAGE_PRODUCT_HEIGHT, IMAGE_MODE_FIT);
-				ProductImage::create(['image_url' => $imageUrl, 'weight_number' => 0]);
+				$imageUrl = CommonImage::uploadImageFile($productId, UPLOADIMG, 1, UPLOAD_FOLDER_COLOR, IMAGE_PRODUCT_COLOR_WIDTH, IMAGE_PRODUCT_COLOR_HEIGHT, IMAGE_MODE_FIT);
+				ProductImage::create([
+						'product_id' => $productId,
+						'image_url' => $imageUrl,
+						'type' => PRODUCT_COLOR,
+						'weight_number' => 0
+					]);
 			} else {
 				echo 'Invalid file type.';
 			}
@@ -18,16 +24,15 @@ class AdminColorController extends AdminController {
 
 	public function colorGetImage()
 	{
-		$images = ProductImage::orderByRaw(DB::raw("weight_number = '0', weight_number"))->get();
-		return View::make('admin.product.box_images')->with(compact('images'));
+		$id = Input::get('product_id');
+		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
 	}
 
 	public function colorDeleteImage()
 	{
 		$id = Input::get('id');
 		ProductImage::find($id)->delete();
-		$images = ProductImage::orderByRaw(DB::raw("weight_number = '0', weight_number"))->get();
-		return View::make('admin.product.box_images')->with(compact('images'));	
+		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
 	}
 
 	public function colorUpdateText()
@@ -39,8 +44,7 @@ class AdminColorController extends AdminController {
 				'name' => $name,
 				'weight_number' => $weight_number
 			]);
-		$images = ProductImage::orderByRaw(DB::raw("weight_number = '0', weight_number"))->get();
-		return View::make('admin.product.box_images')->with(compact('images'));	
+		return CommonProduct::getProductBoxImages($id, PRODUCT_COLOR, 'color_box_images');
 	}
 
 }

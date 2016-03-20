@@ -72,7 +72,7 @@
 								<label for="name">Thông tin</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::textarea('description', null , textPlaceHolder('Thông tin')) }}
+									   {{ Form::textarea('description', null, array('placeholder' => 'Thông tin', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
 									</div>
 								</div>
 							</div>
@@ -141,6 +141,8 @@
 									</div>
 								</div>
 							</div>
+
+							@include('admin.common.meta')
 							
 						</div>
 						@foreach($arrayLang as $keyLang => $singLang)
@@ -173,7 +175,7 @@
 								<label for="name">Thông tin {{ $singLang }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::textarea($singLang.'_'.'description', null , textPlaceHolder('')) }}
+									   {{ Form::textarea($singLang.'_'.'description', null, array('maxlength' => 250, 'class' => 'textarea form-control', 'rows' => '6')) }}
 									</div>
 								</div>
 							</div>
@@ -184,7 +186,7 @@
 					</div>
 					<!-- /.tab-content -->
 				</div>
-              	
+
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>

@@ -38,9 +38,15 @@ define('CN', 'cn');
 //products size image to width & height
 define('IMAGE_WIDTH', 600);
 define('IMAGE_HEIGHT', 450);
-//product detail slide size
-define('IMAGE_PRODUCT_WIDTH', 900);
-define('IMAGE_PRODUCT_HEIGHT', 900);
+//product detail slide color
+define('IMAGE_PRODUCT_WIDTH', 600);
+define('IMAGE_PRODUCT_HEIGHT', 450);
+//product detail slide color
+define('IMAGE_PRODUCT_COLOR_WIDTH', 900);
+define('IMAGE_PRODUCT_COLOR_HEIGHT', 900);
+//product picture
+define('IMAGE_PRODUCT_PICTURE_WIDTH', 1000);
+define('IMAGE_PRODUCT_PICTURE_HEIGHT', 800);
 //banner slider
 define('IMAGE_SLIDE_WIDTH', 1350);
 define('IMAGE_SLIDE_HEIGHT', 540);
@@ -100,3 +106,6 @@ define('UNIQUE_SALT', '1458397504');
 //product images type: color + picture
 define('PRODUCT_COLOR', 1);
 define('PRODUCT_PICTURE', 2);
+//product images folder: color + picture
+define('UPLOAD_FOLDER_COLOR', 'ProductColor');
+define('UPLOAD_FOLDER_PICTURE', 'ProductPicture');

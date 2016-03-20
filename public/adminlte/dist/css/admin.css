@@ -52,3 +52,37 @@ img.image_fb {
 	margin: 0;
 	padding: 5px 10px;
 }
+
+/*BOX IMAGE AJAX*/
+.box_images ul {
+	padding: 0;
+}
+.box_images ul li {
+	list-style: none;
+	float: left;
+	width: 22%;
+	margin: 3px;
+}
+.box-image {
+	
+}
+.box-image img {
+	height: auto;
+	width: 100%;
+	max-width: 100%;
+}
+.box-text {
+    margin-top: 10px;
+	margin-bottom: 10px;
+}
+.box-text input {
+	width: 100%;
+}
+.box-text .row {
+	margin-bottom: 3px;
+}
+.box-action span {
+	display: none;
+	font-weight: bold;
+	color: red;
+}

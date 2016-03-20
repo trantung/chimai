@@ -22,7 +22,7 @@
 	<!-- Daterange picker -->
 	{{-- {{HTML::style('adminlte/plugins/daterangepicker/daterangepicker-bs3.css') }} --}}
 	<!-- bootstrap wysihtml5 - text editor -->
-	{{-- {{HTML::style('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }} --}}
+	{{ HTML::style('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
 	<!-- Date Time Picker -->
 	{{HTML::style('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.css') }}
 	
@@ -51,13 +51,17 @@
 	<!-- datepicker -->
 	{{-- {{ HTML::script('adminlte/plugins/datepicker/bootstrap-datepicker.js') }} --}}
 	<!-- Bootstrap WYSIHTML5 -->
-	{{-- {{ HTML::script('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }} --}}
+	{{ HTML::script('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}
 	<!-- datetimepicker -->
 	{{ HTML::script('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.js') }}
 	<!-- FastClick -->
 	{{ HTML::script('adminlte/plugins/fastclick/fastclick.js') }}
 	<!-- AdminLTE App -->
 	{{ HTML::script('adminlte/dist/js/app.min.js') }}
+
+	<!-- uploadify -->
+	{{ HTML::style('adminlte/plugins/uploadify/uploadify.css') }}
+	{{ HTML::script('adminlte/plugins/uploadify/jquery.uploadify.min.js') }}
 
 	<script>
 	  $(function () {
@@ -100,6 +104,22 @@
 	    $('#datepickerEnddate').datepicker({
 	    	dateFormat: 'yy-mm-dd',
 			});
+
+	    //bootstrap WYSIHTML5 - text editor
+		$(".textarea").wysihtml5({
+			toolbar: {
+			    "font-styles": false, // Font styling, e.g. h1, h2, etc.
+			    "emphasis": true, // Italics, bold, etc.
+			    "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
+			    "html": false, // Button which allows you to edit the generated HTML.
+			    "link": true, // Button to insert a link.
+			    "image": false, // Button to insert an image.
+			    "color": true, // Button to change color of font
+			    "blockquote": false, // Blockquote
+			    //"size": <buttonsize> // options are xs, sm, lg
+		    }
+		});
+		
 	  });
 	</script>
 

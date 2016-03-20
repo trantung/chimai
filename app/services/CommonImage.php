@@ -2,6 +2,23 @@
 class CommonImage {
 
 	/**
+	* upload image no resize
+	**/
+	public static function uploadImageNoResize($id, $path, $imageUrl, $folder, $currentImage = NULL)
+	{
+		$destinationPath = public_path().'/'.$path.'/'.$folder.'/'.$id.'/';
+		if(Input::hasFile($imageUrl)){
+			$file = Input::file($imageUrl);
+			$filename = $file->getClientOriginalName();
+			$uploadSuccess = $file->move($destinationPath, $filename);
+			return $filename;
+		}
+		if ($currentImage) {
+			return $currentImage;
+		}
+	}
+
+	/**
 	* uploadImage Upload image
 	* upload image and resize / fit image with background color (default: white (255, 255, 255))
 	**/

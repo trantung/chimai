@@ -52,6 +52,8 @@
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::file('image_url') }}
+										<br />
+										<img src="{{ UPLOADIMG . '/Product/' . $boxVi->id . '/' . $boxVi->image_url }}" width="100px" />
 									</div>
 								</div>
 							</div>
@@ -75,7 +77,7 @@
 								<label for="name">Thông tin</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::textarea('description', $boxVi->description , textPlaceHolder('Thông tin')) }}
+									   {{ Form::textarea('description', $boxVi->description, array('placeholder' => 'Thông tin', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
 									</div>
 								</div>
 							</div>
@@ -144,6 +146,8 @@
 									</div>
 								</div>
 							</div>
+
+							@include('admin.common.meta', ['modelName' => 'Product', 'modelId' => $boxVi->id])
 							
 						</div>
 						@foreach($boxEn as $value)
@@ -176,7 +180,7 @@
 								<label for="name">Thông tin {{ $value->language }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::textarea($value->language.'_'.'description', $value->description , textPlaceHolder('')) }}
+									   {{ Form::textarea($value->language.'_'.'description', $value->description , array('maxlength' => 250, 'class' => 'textarea form-control', 'rows' => '6')) }}
 									</div>
 								</div>
 							</div>
@@ -186,25 +190,15 @@
 						@endforeach
 
 						<div class="tab-pane" id="tab_1">
-							<input type="file" name="file_upload" id="file_upload" />
-			                <input id="process_url" name="process_url" type="hidden" value="{{ url('admin/product/color_upload_image') }}" />
-			                <p>Kích thước: {{ IMAGE_PRODUCT_WIDTH }}x{{ IMAGE_PRODUCT_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
-			                <div id="box_images">
-			                    <ul>
-			                        @if(isset($images))
-			                            {{ $images }}
-			                        @endif
-			                    </ul>
-			                </div>
-
+							@include('admin.product.color', array('images' => $colors, 'productId' => $boxVi->id))
 						</div>
 						<div class="tab-pane" id="tab_2">
-							sadf 2
+							@include('admin.product.picture', array('images' => $pictures, 'productId' => $boxVi->id))
 						</div>
 					</div>
 					<!-- /.tab-content -->
 				</div>
-              	<div class="clearfix"></div>
+              	
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 			 	</div>
@@ -212,7 +206,5 @@
 		{{ Form::close() }}
 	</div>
 </div>
-
-@include('admin.product.uploadify')
 
 @stop
