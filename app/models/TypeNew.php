@@ -12,7 +12,7 @@ class TypeNew extends Eloquent implements SluggableInterface
 	use SluggableTrait;
     protected $table = 'type_news';
     protected $fillable = ['name', 'slug', 'weight_number', 'status', 'image_url', 
-        'language', 'parent_id', 'sapo'];
+        'language', 'box_type_id', 'sapo'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(

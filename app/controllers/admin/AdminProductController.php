@@ -40,10 +40,10 @@ class AdminProductController extends AdminController {
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productCategories', Input::get('category_id'));
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productSizes', Input::get('size_id'));
 			
-			Common::commonUpdateField('Surface', $viId, 'surface_id');
-			Common::commonUpdateField('Material', $viId, 'material_id');
-			Common::commonUpdateField('Origin', $viId, 'origin_id');
-			Common::commonUpdateField('AdminUnit', $viId, 'unit_id');
+			Common::commonUpdateField('Surface', $viId, 'surface_id', 'Product', 'AdminLanguage');
+			Common::commonUpdateField('Material', $viId, 'material_id', 'Product', 'AdminLanguage');
+			Common::commonUpdateField('Origin', $viId, 'origin_id', 'Product', 'AdminLanguage');
+			Common::commonUpdateField('AdminUnit', $viId, 'unit_id', 'Product', 'AdminLanguage');
 			
 			return Redirect::action('AdminProductController@edit', $viId);
 		}

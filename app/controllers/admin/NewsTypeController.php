@@ -9,7 +9,7 @@ class NewsTypeController extends AdminController {
 	 */
 	public function index()
 	{
-		$inputNewType = TypeNew::orderBy('id', 'asc')->paginate(PAGINATE);
+		$inputNewType = TypeNew::where('language', VI)->orderBy('id', 'asc')->paginate(PAGINATE);
 		return View::make('admin.typenew.index')->with(compact('inputNewType'));
 	}
 
@@ -32,21 +32,14 @@ class NewsTypeController extends AdminController {
 	 */
 	public function store()
 	{
-		$rules = array(
-			'name'   => 'required',
-			'weight_number' => 'numeric|min:1'
-		);
-		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('NewstypeController@create')
-	            ->withErrors($validator)
-	            ->withInput(Input::except('name'));
-        } else {
-        	$inputNameTypeNew = Input::only('name', 'weight_number', 'status');
-			CommonNormal::create($inputNameTypeNew);
-			return Redirect::action('NewsTypeController@index');
-        }
+    	$input = Input::except('_token');
+		$viId = CommonLanguage::createModel($input, 'TypeNew', CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
+		if ($viId) {
+			Common::commonUpdateField('BoxType', $viId, 'box_type_id', 'TypeNew', 'BoxCommon');
+			return Redirect::action('NewsTypeController@index')
+				->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('NewsTypeController@index')->with('message', 'Tạo mới thất bại');
 	}
 
 
@@ -70,8 +63,11 @@ class NewsTypeController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		$inputTypeNew = TypeNew::find($id);
-		return View::make('admin.typenew.edit')->with(compact('inputTypeNew'));
+		$boxVi = CommonLanguage::getObjectByLang('TypeNew', $id, VI);
+		$listId = AdminLanguage::where('model_name', 'TypeNew')
+			->where('model_id', $id)->lists('relate_id');
+		$boxEn = TypeNew::whereIn('id', $listId)->get();
+		return View::make('admin.typenew.edit')->with(compact('boxVi', 'boxEn'));
 	}
 
 
@@ -83,20 +79,10 @@ class NewsTypeController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = array(
-            'name'   => 'required',
-            'weight_number' => 'numeric|min:1'
-        );
         $input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('NewsTypeController@edit', $id)
-	            ->withErrors($validator);
-        } else {
-        	$inputNameTypeNew = Input::only('name', 'weight_number', 'status');
-        	CommonNormal::update($id,$inputNameTypeNew);
-			return Redirect::action('NewsTypeController@index');
-        }
+		CommonLanguage::updateModel('TypeNew', $id, $input, CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
+		Common::commonUpdateField('BoxType', $id, 'box_type_id', 'TypeNew', 'BoxCommon');
+		return Redirect::action('NewsTypeController@index')->with('message', 'Sửa thành công');
 	}
 
 
@@ -108,9 +94,16 @@ class NewsTypeController extends AdminController {
 	 */
 	public function destroy($id)
 	{
-		CommonNormal::delete($id);
+		TypeNew::find($id)->delete();
 		return Redirect::action('NewsTypeController@index');
 	}
-
+	private function getConfigImage($input)
+	{
+		return array(
+				'w' => IMAGE_CATALOG_WIDTH, 
+				'h' => IMAGE_CATALOG_HEIGHT, 
+				'mode' => IMAGE_MODE_FILL
+			);
+	}
 
 }

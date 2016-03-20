@@ -67,7 +67,18 @@
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="{{-- action('BoxTypeChildController@index') --}}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục tin tức</a></li>
+					<li>
+						<a href="#">
+							<i class="fa fa-circle-o"></i>Box tin tuc
+						</a>
+						<ul class="treeview-menu">
+							<li>
+								<a href="{{ action('NewsTypeController@index') }}">
+									<i class="fa fa-users"></i> <span>Quản lý thể loại tin</span>
+								</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="treeview-menu">
 					<li><a href="#"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a>
@@ -112,6 +123,7 @@
 					<i class="fa fa-users"></i> <span>Quản lý Slide</span>
 				</a>
 			</li>
+			
 			<li>
 				<a href="{{ action('AdminContactController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý liên hệ</span>

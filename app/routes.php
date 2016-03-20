@@ -18,7 +18,6 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/logout', array('uses' => 'AdminController@logout', 'as' => 'admin.logout'));
 	Route::resource('/', 'AdminController');
 	Route::group(['prefix' => 'box'], function(){
-		Route::resource('/child', 'BoxTypeChildController');
 		//menu->ok
 		Route::post('/menu/updateIndexData', 'AdminMenuController@updateIndexData');
 		//content->ok
@@ -69,6 +68,13 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::post('/picture_upload_image', 'AdminPictureController@pictureUploadImage');
 		Route::post('/picture_delete_image', 'AdminPictureController@pictureDeleteImage');
 		Route::post('/picture_update_text', 'AdminPictureController@pictureUpdateText');
+
+	});
+	Route::group(['prefix' => 'tin-tuc'], function(){
+		//type new
+		Route::resource('/type', 'NewsTypeController');
+		//new
+		Route::resource('/normal', 'NewsController');
 
 	});
 

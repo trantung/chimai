@@ -109,3 +109,4 @@ define('PRODUCT_PICTURE', 2);
 //product images folder: color + picture
 define('UPLOAD_FOLDER_COLOR', 'ProductColor');
 define('UPLOAD_FOLDER_PICTURE', 'ProductPicture');
+
