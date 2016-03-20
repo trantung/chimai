@@ -72,6 +72,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 	});
 
+	Route::resource('/news', 'NewsController');
+
 	//ok
 	Route::get('/configcode', 'ConfigCodeController@editConfig');
 	Route::post('/configcode', 'ConfigCodeController@updateConfig');

@@ -86,7 +86,12 @@
 					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sản phẩm</a></li>
 				</ul>
 			</li>
-
+			
+			<li>
+				<a href="{{ action('NewsController@index') }}">
+					<i class="fa fa-list"></i> <span>Quản lý tin tức</span>
+				</a>
+			</li>
 			<li>
 				<a href="{{ action('AdminPdfController@index') }}">
 					<i class="fa fa-users"></i> <span>Quản lý file pdf</span>

@@ -15,47 +15,67 @@
 			{{ Form::open(array('action' => array('NewsController@store'), 'files'=> true)) }}
 				<div class="box-body">
 					<div class="form-group">
-						<label for="title">Tiêu đề</label>
+						<label for="name">Tên Vietnamese</label>
 						<div class="row">
-							<div class="col-sm-6">
-							   {{ Form::text('title', null , textParentCategory('Tiêu đề tin')) }}
+							<div class="col-sm-6">	                  	
+							   {{ Form::text('name', null , textPlaceHolder('Tên') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="start_date">Ngày xuất bản</label>
+						<label>Thể loại</label>
 						<div class="row">
 							<div class="col-sm-6">
-							   <input type="text" class="form-control" name="start_date" id="start_date">
+								{{ Form::select('type_new_id', CommonNews::getTypeNews(), '', array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="name">Thể loại tin</label>
+						<label for="name">Mô tả ngắn</label>
 						<div class="row">
-							<div class="col-sm-6">
-							   {{  Form::select('type_new_id', returnList('TypeNew'),null,array('class' => 'form-control' )) }}
+							<div class="col-sm-6">	                  	
+							   {{ Form::textarea('sapo', null, textPlaceHolder('Mô tả ngắn') + ['required'=>'']) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Mức ưu tiên</label>
+						<label for="name">Nội dung</label>
 						<div class="row">
-							<div class="col-sm-6">
-								{{ Form::text('weight_number', null , textParentCategory('Mức ưu tiên')) }}
+							<div class="col-sm-12">	                  	
+							   {{ Form::textarea('description', null, array('class' => 'form-control', "rows" => 6, 'id' => 'editor1', 'required' => true)) }}
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Vị trí</label>
-						<div class="row">
-							<div class="col-sm-6">
-							   {{  Form::select('position', [''=>'Mặc định', '1'=>'Bên phải'],null,array('class' => 'form-control' )) }}
+
+					@foreach($arrayLang as $keyLang => $singLang)
+						<div class="form-group">
+							<label for="name">Tên {{ $singLang }}</label>
+							<div class="row">
+								<div class="col-sm-6">	                  	
+								   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('') + ['required'=>'']) }}
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="form-group">
+							<label for="name">Mô tả ngắn {{ $singLang }}</label>
+							<div class="row">
+								<div class="col-sm-6">	                  	
+								   {{ Form::textarea($singLang.'_'.'sapo', null, textPlaceHolder('Mô tả ngắn') + ['required'=>'']) }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name">Nội dung {{ $singLang }}</label>
+							<div class="row">
+								<div class="col-sm-12">	                  	
+								{{ Form::textarea($singLang.'_'.'description', null, array('class' => 'form-control', "rows" => 6, 'id' => 'editor2', 'required' => true)) }}
+								</div>
+							</div>
+						</div>
+					@endforeach
+
 					<div class="form-group">
-						<label for="image_url">Upload ảnh tin</label>
+						<label>Upload ảnh đại diện</label>
 						<div class="row">
 							<div class="col-sm-6">
 								{{ Form::file('image_url') }}
@@ -63,18 +83,18 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="sapo">Mô tả ngắn</label>
+						<label>Mức ưu tiên</label>
 						<div class="row">
-							<div class="col-sm-12">
-							   {{ Form::textarea('sapo', '' , array('class' => 'form-control',"rows"=>6)) }}
+							<div class="col-sm-6">
+								{{ Form::text('weight_number', '' , textPlaceHolder('Mức ưu tiên')) }}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="description">Nội dung tin</label>
+						<label>Trạng thái</label>
 						<div class="row">
-							<div class="col-sm-12">
-							   {{ Form::textarea('description', '' , array('class' => 'form-control',"rows"=>6, 'id' => 'editor1')) }}
+							<div class="col-sm-6">
+								{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
@@ -90,5 +110,7 @@
 	  	</div>
 	</div>
 </div>
+
 @include('admin.common.ckeditor')
+
 @stop

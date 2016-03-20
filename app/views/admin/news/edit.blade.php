@@ -12,97 +12,116 @@
 	<div class="col-xs-12">
 		<div class="box box-primary">
 			<!-- form start -->
-			{{ Form::open(array('action' => array('NewsController@update', $inputNew->id), 'method' => 'PUT', 'files' => true)) }}
+			{{ Form::open(array('action' => array('NewsController@update', $boxVi->id), 'method' => 'PUT', 'files' => true)) }}
 			<div class="box-body">
-				<div class="form-group">
-					<label for="title">Tiêu đề</label>
-					<div class="row">
-						<div class="col-sm-6">
-						   {{ Form::text('title', $inputNew->name , textParentCategory('Tiêu đề tin')) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="name">Thể loại tin</label>
-					<div class="row">
-						<div class="col-sm-6">
-							@if(!Admin::isSeo()) 
-						   {{  Form::select('type_new_id', returnList('TypeNew'), $inputNew->type_new_id ,array('class' => 'form-control' )) }}
-						   	@else
-						   	{{  Form::select('type_new_id', returnList('TypeNew'), $inputNew->type_new_id ,array('class' => 'form-control', 'disabled'=>'true' )) }}
-						   	@endif
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label>Mức ưu tiên</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::text('weight_number',  $inputNew->weight_number, textParentCategory('Mức ưu tiên')) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label>Vị trí</label>
-					<div class="row">
-						<div class="col-sm-6">
-						   {{  Form::select('position', [''=>'Mặc định', '1'=>'Bên phải'], $inputNew->position,array('class' => 'form-control' )) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="image_url">Upload ảnh tin</label>
-					<div class="row">
-						<div class="col-sm-6">
-							@if(Admin::isSeo())         
-							{{ Form::file('image_url', array('disabled' => 'true' )) }}
-							<img class="image_fb" src="{{ url(UPLOADIMG . '/news'.'/'. $inputNew->id . '/' . $inputNew->image_url) }}" />
-							@else
-							{{ Form::file('image_url') }}
-							<img class="image_fb" src="{{ url(UPLOADIMG . '/news'.'/'. $inputNew->id . '/' . $inputNew->image_url) }}" />
-							@endif
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="sapo">Mô tả ngắn</label>
-					<div class="row">
-						<div class="col-sm-12">
-						   {{ Form::textarea('sapo', $inputNew->sapo, array('class' => 'form-control',"rows"=>6)) }}
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="description">Nội dung tin</label>
-					<div class="row">
-						<div class="col-sm-12">	 
-							@if(!Admin::isSeo())                 	
-						   	{{ Form::textarea('description', $inputNew->description  , array('class' => 'form-control',"rows"=>6, 'id' => 'editor1'  )) }}
-						   	@else                 	
-						   	{{ Form::textarea('description', $inputNew->description  , array('class' => 'form-control',"rows"=>6, 'id' => 'editor1', 'disabled' =>'true'  )) }}
-						   	@endif
-						</div>
-					</div>
-				</div>
-				@if(!Admin::isSeo())
-				<div class="form-group">
-					<label for="start_date">Ngày xuất bản</label>
-					<div class="row">
-						<div class="col-sm-6">
-						   <input type="text" class="form-control" name="start_date" value="{{ $inputNew->start_date }}" id="start_date">
-						</div>
-					</div>
-				</div>
-				@endif
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab_vi" data-toggle="tab">VI</a></li>
+						@foreach($arrayLang as $keyLang => $singLang)
+						<li><a href="#tab_{{ $singLang }}" data-toggle="tab">{{ $singLang }}</a></li>
+						@endforeach
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab_vi">
+							<div class="form-group">
+								<label for="name">Tên Vietnamese</label>
+								<div class="row">
+									<div class="col-sm-6">	                  	
+									   {{ Form::text('name', $boxVi->name , textPlaceHolder('Tên') + ['required'=>'']) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Thể loại</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::select('type_new_id', CommonNews::getTypeNews(), $boxVi->type_new_id, array('class' => 'form-control')) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name">Mô tả ngắn</label>
+								<div class="row">
+									<div class="col-sm-6">	                  	
+									   {{ Form::textarea('sapo', $boxVi->sapo, textPlaceHolder('Mô tả ngắn') + ['required'=>'']) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name">Nội dung</label>
+								<div class="row">
+									<div class="col-sm-12">	                  	
+									   {{ Form::textarea('description', $boxVi->description, array('class' => 'form-control', "rows" => 6, 'id' => 'editor1', 'required' => true)) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Upload ảnh đại diện</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::file('image_url') }}
+										<br />
+										<img src="{{ UPLOADIMG . '/AdminNew/' . $boxVi->id . '/' . $boxVi->image_url }}" width="100px" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Mức ưu tiên</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::text('weight_number', $boxVi->weight_number, textPlaceHolder('Mức ưu tiên')) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Trạng thái</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
+									</div>
+								</div>
+							</div>
 
-			    <!-- @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id]) -->
+						    <!-- @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id]) -->
 
-			  <div class="box-footer">
-				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			  </div>
+						</div>
+
+						@foreach($boxEn as $value)
+							<div class="tab-pane" id="tab_{{ $singLang }}">
+								<div class="form-group">
+									<label for="name">Tên {{ $value->language }}</label>
+									<div class="row">
+										<div class="col-sm-6">	                  	
+										   {{ Form::text($value->language.'_'.'name', $value->name , textPlaceHolder('') + ['required'=>'']) }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name">Mô tả ngắn {{ $value->language }}</label>
+									<div class="row">
+										<div class="col-sm-6">	                  	
+										   {{ Form::textarea($value->language.'_'.'sapo', $value->sapo, textPlaceHolder('Mô tả ngắn') + ['required'=>'']) }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name">Nội dung {{ $value->language }}</label>
+									<div class="row">
+										<div class="col-sm-12">	                  	
+										{{ Form::textarea($value->language.'_'.'description', $value->description, array('class' => 'form-control', "rows" => 6, 'id' => 'editor2', 'required' => true)) }}
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					</div>
+				</div>
+		  		<div class="box-footer">
+					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
+			  	</div>
 			{{ Form::close() }}
-		  </div>
-		  <!-- /.box -->
+	  	</div>
+	  	<!-- /.box -->
 	</div>
 </div>
 @include('admin.common.ckeditor')
