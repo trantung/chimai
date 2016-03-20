@@ -33,10 +33,9 @@ class AdminImageController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
-		// dd($input);
 		$viId = CommonLanguage::createModel($input, 'AdminImage', CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
-		// CommonFile::uploadPdf($viId, UPLOADPDF, 'filePdf');
 		if ($viId) {
+			Common::commonUpdateField('BoxShowRoom', $viId, 'type', 'AdminImage', 'AdminLanguage');
 			return Redirect::action('AdminImageController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -80,6 +79,7 @@ class AdminImageController extends AdminController {
 	{
 		$input = Input::except('_token');
 		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
+		Common::commonUpdateField('BoxShowRoom', $id, 'type', 'AdminImage', 'AdminLanguage');
 		return Redirect::action('AdminImageController@index')->with('message', 'Sửa thành công');
 	}
 

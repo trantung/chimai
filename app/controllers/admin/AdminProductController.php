@@ -94,6 +94,12 @@ class AdminProductController extends AdminController {
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));
+
+		Common::commonUpdateField('Surface', $id, 'surface_id', 'Product', 'AdminLanguage');
+		Common::commonUpdateField('Material', $id, 'material_id', 'Product', 'AdminLanguage');
+		Common::commonUpdateField('Origin', $id, 'origin_id', 'Product', 'AdminLanguage');
+		Common::commonUpdateField('AdminUnit', $id, 'unit_id', 'Product', 'AdminLanguage');
+		
 		return Redirect::action('AdminProductController@index')->with('message', 'Sửa thành công');
 	}
 

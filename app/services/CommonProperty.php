@@ -60,7 +60,7 @@ class CommonProperty extends CommonParent
 			if($modelName == 'AdminVideo') {
 				$input['video_id'] = getYouTubeVideoId($input['link']);
 				return array_merge(self::defaultValueProperty($input), 
-					['link' => $input['link'], 'video_id' => $input['video_id']]);
+					['link' => $input['link'], 'video_id' => $input['video_id'], 'type' => $input['type']]);
 			}
 			if($modelName == 'AdminPdf') {
 				return array_merge(self::defaultValueProperty($input), 
@@ -80,11 +80,15 @@ class CommonProperty extends CommonParent
 			}
 			if($modelName == 'AdminNew') {
 				return array_merge(self::defaultValueProperty($input), 
-					['image_url' => $input['image_url']]);
+					['image_url' => $input['image_url'], 'type_new_id' => $input['type_new_id']]);
 			}
 			if($modelName == 'TypeNew') {
 				return array_merge(self::defaultValueProperty($input), 
 					['box_type_id' => $input['box_type_id']]);
+			}
+			if($modelName == 'AdminImage') {
+				return array_merge(self::defaultValueProperty($input), 
+					['type' => $input['type']]);
 			}
 
 			return self::defaultValueProperty($input);
