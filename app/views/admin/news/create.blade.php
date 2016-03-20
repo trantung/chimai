@@ -63,6 +63,14 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="sapo">Mô tả ngắn</label>
+						<div class="row">
+							<div class="col-sm-12">
+							   {{ Form::textarea('sapo', '' , array('class' => 'form-control',"rows"=>6)) }}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="description">Nội dung tin</label>
 						<div class="row">
 							<div class="col-sm-12">
@@ -71,18 +79,8 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-sm-6">
-							<hr />
-							<h1>SEO META</h1>
-							{{-- include common/meta.blade.php --}}
-							@include('admin.common.meta')
-						</div>
-						<div class="col-sm-6"></div>
-					</div>
-
-					<!-- /.box-body -->
-
+					@include('admin.common.meta')
+					
 					<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 					</div>

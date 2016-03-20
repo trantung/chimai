@@ -39,11 +39,12 @@
 		                </div>
 					</div>
               	</div>
-			  <!-- /.box-body -->
+			  	
+			  	@include('admin.common.meta')
 
-			  <div class="box-footer">
-				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			  </div>
+				<div class="box-footer">
+					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
+				</div>
 			{{ Form::close() }}
 		  </div>
 		  <!-- /.box -->

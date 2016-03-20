@@ -134,7 +134,7 @@
 								<label>Category</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('category_id[]', Common::getCategory(), '', array('class' => 'form-control', 'multiple' => true)) }}
+										{{ Form::select('category_id[]', Common::getCategory(), Common::getCategory($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
 									</div>
 								</div>
 							</div>
@@ -142,7 +142,7 @@
 								<label>Kích cỡ</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('size_id[]', Common::getSize(), '', array('class' => 'form-control', 'multiple' => true)) }}
+										{{ Form::select('size_id[]', Common::getSize(), Common::getSize($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
 									</div>
 								</div>
 							</div>

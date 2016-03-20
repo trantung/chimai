@@ -21,7 +21,7 @@ class Common extends CommonParent
 	{
 		$default = array(
 			'status' => $input['status'],
-			'position' => $input['position'],
+			// 'position' => $input['position'],
 			'weight_number' => $input['weight_number']
 		);
 		return $default;
@@ -440,14 +440,16 @@ class Common extends CommonParent
 	public static function getCategory($id = null)
 	{
 		if ($id) {
-			//
+			return CategoryProduct::where('product_id', $id)
+				->groupBy('category_id')->lists('category_id');
 		}
 		return Category::where('language', VI)->lists('name', 'id');
 	}
 	public static function getSize($id = null)
 	{
 		if ($id) {
-			//
+			return SizeProduct::where('product_id', $id)
+				->groupBy('size_id')->lists('size_id');
 		}
 		return Size::where('language', VI)->lists('name', 'id');
 	}

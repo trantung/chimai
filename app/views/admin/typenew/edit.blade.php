@@ -38,11 +38,12 @@
 	                	</div>
 					</div>
               	</div>
-			  <!-- /.box-body -->
 
-			  <div class="box-footer">
-				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-			  </div>
+              	<!-- @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id]) -->
+
+				<div class="box-footer">
+					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
+				</div>
 			{{ Form::close() }}
 		  </div>
 		  <!-- /.box -->

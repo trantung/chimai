@@ -10,7 +10,6 @@ class NewsTypeController extends AdminController {
 	public function index()
 	{
 		$inputNewType = TypeNew::orderBy('id', 'asc')->paginate(PAGINATE);
-
 		return View::make('admin.typenew.index')->with(compact('inputNewType'));
 	}
 

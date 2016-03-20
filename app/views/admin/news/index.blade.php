@@ -37,7 +37,7 @@
 			 @foreach($inputNew as $value)
 			<tr>
 			  <td>{{ $value->id }}</td>
-			  <td>{{ $value->title }}</td>
+			  <td>{{ $value->name }}</td>
 			  <td>{{ TypeNew::find($value->type_new_id)->name }}</td>
 			  <td>{{ $value->count_view }}</td>
 			  <td>{{ $value->start_date }}</td>

@@ -18,7 +18,7 @@
 					<label for="title">Tiêu đề</label>
 					<div class="row">
 						<div class="col-sm-6">
-						   {{ Form::text('title', $inputNew->title , textParentCategory('Tiêu đề tin')) }}
+						   {{ Form::text('title', $inputNew->name , textParentCategory('Tiêu đề tin')) }}
 						</div>
 					</div>
 				</div>
@@ -65,6 +65,14 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="sapo">Mô tả ngắn</label>
+					<div class="row">
+						<div class="col-sm-12">
+						   {{ Form::textarea('sapo', $inputNew->sapo, array('class' => 'form-control',"rows"=>6)) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="description">Nội dung tin</label>
 					<div class="row">
 						<div class="col-sm-12">	 
@@ -86,16 +94,8 @@
 					</div>
 				</div>
 				@endif
-				<div class="row">
-					<div class="col-sm-6">
-						<hr />
-						<h1>SEO META</h1>
-						{{-- include common/meta.blade.php --}}
-						@include('admin.common.meta', array('inputSeo' => $inputSeo, 'pathToImageSeo' => UPLOADIMG . '/'.FOLDER_SEO_NEWS.'/'. $inputNew->id . '/'))
-					</div>
-				</div>
 
-			  <!-- /.box-body -->
+			    <!-- @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id]) -->
 
 			  <div class="box-footer">
 				{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

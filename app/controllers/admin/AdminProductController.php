@@ -90,8 +90,10 @@ class AdminProductController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$input = Input::except('_token');
+		$input = Input::except('_token', 'size_id', 'category_id');
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
+		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
+		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));
 		return Redirect::action('AdminProductController@index')->with('message', 'Sửa thành công');
 	}
 
