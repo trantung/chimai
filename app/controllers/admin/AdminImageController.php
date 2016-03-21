@@ -33,6 +33,10 @@ class AdminImageController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminImageCreate');
+		if(isset($validator)) {
+			return Redirect::action('AdminImageController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'AdminImage', CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::commonUpdateField('BoxShowRoom', $viId, 'type', 'AdminImage', 'AdminLanguage');
@@ -78,6 +82,10 @@ class AdminImageController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminImageEdit');
+		if(isset($validator)) {
+			return Redirect::action('AdminImageController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
 		Common::commonUpdateField('BoxShowRoom', $id, 'type', 'AdminImage', 'AdminLanguage');
 		return Redirect::action('AdminImageController@index')->with('message', 'Sửa thành công');

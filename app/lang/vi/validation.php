@@ -72,6 +72,7 @@ return array(
 	"url"                  => "The :attribute format is invalid.",
 	"unique_delete"		=> "The :attribute has already been taken.",
 	"array_number"		=> "The :attribute has already integer and must greater than 0",
+	"youtube_url"		=> "Url youtube is invalid",
 
 	/*
 	|--------------------------------------------------------------------------

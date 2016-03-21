@@ -38,7 +38,7 @@
 					<label>Đường dẫn video youtube</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::text('link', $boxVi->link , textPlaceHolder('Đường dẫn')) }}
+							{{ Form::text('link', $boxVi->link , textPlaceHolder('Đường dẫn') + ['required'=>'']) }}
 						</div>
 					</div>
 				</div>

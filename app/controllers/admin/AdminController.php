@@ -16,7 +16,7 @@ class AdminController extends BaseController {
 	{
 		$checkLogin = Auth::admin()->check();
         if($checkLogin) {
-    		return Redirect::action('ManagerController@edit', Auth::admin()->get()->id);
+    		return Redirect::action('AdminProductController@index', Auth::admin()->get()->id);
         } else {
             return View::make('admin.layout.login');
         }
@@ -84,7 +84,7 @@ class AdminController extends BaseController {
     	$checkLogin = Auth::admin()->check();
         if($checkLogin) {
 	    	if (Auth::admin()->get()->status == ACTIVE) {
-	    		return Redirect::action('ManagerController@edit', Auth::admin()->get()->id);
+	    		return Redirect::action('AdminProductController@index', Auth::admin()->get()->id);
 	    	}else{
 	    		return View::make('admin.layout.login')->with(compact('message','chưa kich hoat'));
 	    	}
@@ -116,7 +116,7 @@ class AdminController extends BaseController {
 					// $inputHistory = AdminHistory::where('model_name', 'Admin')->where('model_id', Auth::admin()->get()->id)->first();
 					// $history_id = CommonLog::updateHistory('Admin', Auth::admin()->get()->id);
 					// CommonLog::insertLogEdit('Admin', Auth::admin()->get()->id, $history_id, LOGIN);
-	        		return Redirect::action('ManagerController@index');
+	        		return Redirect::action('AdminProductController@index');
             	}
             	else{
             		return View::make('admin.layout.login');

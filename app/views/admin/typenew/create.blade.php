@@ -18,7 +18,7 @@
 					<label for="name">Tên thể loại</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name', null , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name', null , textPlaceHolder('Tên thể loại tin') + ['required' => '']) }}
 						</div>
 					</div>
 				</div>
@@ -26,7 +26,7 @@
 					<label for="name">Giới thiệu</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::textarea('sapo', null, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
+						   {{ Form::textarea('sapo', null, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6', 'required' => '')) }}
 						</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 						<label for="name">Tên thể loại {{ $singLang }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('Tên thể loại tin')) }}
+							   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('Tên thể loại tin') + ['required' => '']) }}
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 						<label for="name">Giới thiệu {{ $singLang }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::textarea($singLang.'_'.'sapo', null, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
+							   {{ Form::textarea($singLang.'_'.'sapo', null, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6', 'required' => '')) }}
 							</div>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 					<label>Upload ảnh</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::file('image_url') }}
+							{{ Form::file('image_url', array('required' => '')) }}
 						</div>
 					</div>
 				</div>

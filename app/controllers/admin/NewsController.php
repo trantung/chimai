@@ -23,6 +23,10 @@ class NewsController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminNewCreate');
+		if(isset($validator)) {
+			return Redirect::action('NewsController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'AdminNew', CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::commonUpdateField('TypeNew', $viId, 'type_new_id', 'AdminNew', 'AdminLanguage');
@@ -49,6 +53,10 @@ class NewsController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminNewEdit');
+		if(isset($validator)) {
+			return Redirect::action('NewsController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('AdminNew', $id, $input, CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
 		Common::commonUpdateField('TypeNew', $id, 'type_new_id', 'AdminNew', 'AdminLanguage');
 		return Redirect::action('NewsController@index')->with('message', 'Sửa thành công');

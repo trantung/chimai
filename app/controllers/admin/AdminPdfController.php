@@ -33,6 +33,10 @@ class AdminPdfController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminPdfCreate');
+		if(isset($validator)) {
+			return Redirect::action('AdminPdfController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'AdminPdf', CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage($input));
 		CommonFile::uploadPdf($viId, UPLOADPDF, 'filePdf');
 		if ($viId) {
@@ -79,6 +83,10 @@ class AdminPdfController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminPdf');
+		if(isset($validator)) {
+			return Redirect::action('AdminPdfController@edit', $id)->withErrors($validator);
+		}
 		$input['filePdf'] = CommonFile::uploadPdf($id, UPLOADPDF, 'filePdf', AdminPdf::find($id)->file);
 		CommonLanguage::updateModel('AdminPdf', $id, $input, CommonProperty::getDefaultValue('AdminPdf', $input));
 		Common::commonUpdateField('BoxPdf', $id, 'type', 'AdminPdf', 'AdminLanguage');

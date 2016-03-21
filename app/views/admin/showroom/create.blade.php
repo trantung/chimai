@@ -32,7 +32,7 @@
 					<label>Upload ảnh</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::file('image_url') }}
+							{{ Form::file('image_url', array('required' => '')) }}
 						</div>
 					</div>
 				</div>
