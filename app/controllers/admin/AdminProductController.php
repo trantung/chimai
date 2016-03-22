@@ -33,7 +33,7 @@ class AdminProductController extends AdminController {
 	 */
 	public function store()
 	{
-		$input = Input::except('_token', 'size_id', 'category_id');
+		$input = Input::except('_token', 'size_id', 'category_id', 'material_id');
 		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductCreate');
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@create')->withErrors($validator);
@@ -44,11 +44,18 @@ class AdminProductController extends AdminController {
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productCategories', Input::get('category_id'));
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productSizes', Input::get('size_id'));
+			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productMaterials', Input::get('material_id'));
 			
 			Common::commonUpdateField('Surface', $viId, 'surface_id', 'Product', 'AdminLanguage');
-			Common::commonUpdateField('Material', $viId, 'material_id', 'Product', 'AdminLanguage');
 			Common::commonUpdateField('Origin', $viId, 'origin_id', 'Product', 'AdminLanguage');
 			Common::commonUpdateField('AdminUnit', $viId, 'unit_id', 'Product', 'AdminLanguage');
+			
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
+				'Material', 'MaterialProduct', 'material_id', 'product_id');
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
+				'Category', 'CategoryProduct', 'category_id', 'product_id');
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
+				'Size', 'SizeProduct', 'size_id', 'product_id');
 			
 			return Redirect::action('AdminProductController@edit', $viId);
 		}
@@ -95,7 +102,7 @@ class AdminProductController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$input = Input::except('_token', 'size_id', 'category_id');
+		$input = Input::except('_token', 'size_id', 'category_id', 'material_id');
 		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductEdit');
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@edit', $id)->withErrors($validator);
@@ -103,12 +110,18 @@ class AdminProductController extends AdminController {
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));
+		Common::syncCommon('AdminLanguage', 'Product', $id, 'productMaterials', Input::get('material_id'));
 
 		Common::commonUpdateField('Surface', $id, 'surface_id', 'Product', 'AdminLanguage');
-		Common::commonUpdateField('Material', $id, 'material_id', 'Product', 'AdminLanguage');
 		Common::commonUpdateField('Origin', $id, 'origin_id', 'Product', 'AdminLanguage');
 		Common::commonUpdateField('AdminUnit', $id, 'unit_id', 'Product', 'AdminLanguage');
 		
+		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
+				'Material', 'MaterialProduct', 'material_id', 'product_id');
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
+				'Category', 'CategoryProduct', 'category_id', 'product_id');
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
+				'Size', 'SizeProduct', 'size_id', 'product_id');
 		return Redirect::action('AdminProductController@index')->with('message', 'Sửa thành công');
 	}
 
@@ -121,6 +134,9 @@ class AdminProductController extends AdminController {
 	 */
 	public function destroy($id)
 	{
+		Common::detachCommon('AdminLanguage', 'Product', $id, 'productCategories');
+		Common::detachCommon('AdminLanguage', 'Product', $id, 'productSizes');
+		Common::detachCommon('AdminLanguage', 'Product', $id, 'productMaterials');
 		CommonLanguage::deleteModel('Product', $id);
 		return Redirect::action('AdminProductController@index')->with('message', 'Xoá thành công');
 	}

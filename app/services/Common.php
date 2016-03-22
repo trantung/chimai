@@ -433,7 +433,8 @@ class Common extends CommonParent
 	public static function getMaterial($id = null)
 	{
 		if ($id) {
-			//
+			return MaterialProduct::where('product_id', $id)
+				->groupBy('material_id')->lists('material_id');
 		}
 		return Material::where('language', VI)->lists('name', 'id');
 	}

@@ -26,12 +26,14 @@
 				<tr>
 					<th>ID</th>
 					<th>Tên Vietnamese</th>
+					<th>Hình ảnh</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				@foreach(BoxPdf::whereIn('id', $list)->get() as $box)
 					<tr>
 						<td>{{ $box->id }}</td>
 						<td>{{ $box->name }}</td>
+						<td><img src="{{ UPLOADIMG . '/BoxPdf/' . $box->id . '/' . $box->image_url }}" width="70px" /></td>
 						<td>
 							<a href="{{ action('BoxPdfController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
 							{{ Form::open(array('method'=>'DELETE', 'action' => array('BoxPdfController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
