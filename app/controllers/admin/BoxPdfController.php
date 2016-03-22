@@ -103,6 +103,8 @@ class BoxPdfController extends AdminController {
 		$input = Input::except('_token', 'box_collection_id');
 		CommonLanguage::updateModel('BoxPdf', $id, $input, CommonProperty::getDefaultValue('BoxPdf', $input));
 		Common::syncCommon('AdminLanguage', 'BoxPdf', $id, 'boxCollections', Input::get('box_collection_id'));
+		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxPdf',
+				'BoxCollection', 'CollectionBoxPdf', 'box_collection_id', 'pdf_id');
 		return Redirect::action('BoxPdfController@index')->with('message', 'Sửa thành công');
 	}
 
