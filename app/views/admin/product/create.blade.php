@@ -121,7 +121,7 @@
 								<label>Chất liệu</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('material_id', Common::getMaterial(), '', array('class' => 'form-control')) }}
+										{{ Form::select('material_id[]', Common::getMaterial(), '', array('class' => 'form-control', 'multiple' => true)) }}
 									</div>
 								</div>
 							</div>
