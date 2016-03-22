@@ -93,9 +93,6 @@
 						</ul>
 					</li>
 				</ul>
-				<ul class="treeview-menu">
-					<li><a href="{{ action('BoxProductController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sản phẩm</a></li>
-				</ul>
 			</li>
 			
 			<li>
