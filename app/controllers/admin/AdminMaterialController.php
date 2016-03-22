@@ -33,6 +33,10 @@ class AdminMaterialController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Material');
+		if(isset($validator)) {
+			return Redirect::action('AdminMaterialController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'Material', CommonProperty::getDefaultValue('Material', $input));
 		if ($viId) {
 			return Redirect::action('AdminMaterialController@index')
@@ -77,6 +81,10 @@ class AdminMaterialController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Material');
+		if(isset($validator)) {
+			return Redirect::action('AdminMaterialController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Material', $id, $input, CommonProperty::getDefaultValue('Material', $input));
 		return Redirect::action('AdminMaterialController@index')->with('message', 'Sửa thành công');
 	}

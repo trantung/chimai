@@ -33,6 +33,10 @@ class NewsTypeController extends AdminController {
 	public function store()
 	{
     	$input = Input::except('_token');
+    	$validator = CommonRule::checkRules($input, 'TypeNewCreate');
+		if(isset($validator)) {
+			return Redirect::action('NewsTypeController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'TypeNew', CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::commonUpdateField('BoxType', $viId, 'box_type_id', 'TypeNew', 'BoxCommon');
@@ -80,6 +84,10 @@ class NewsTypeController extends AdminController {
 	public function update($id)
 	{
         $input = Input::except('_token');
+        $validator = CommonRule::checkRules($input, 'TypeNewEdit');
+		if(isset($validator)) {
+			return Redirect::action('NewsTypeController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('TypeNew', $id, $input, CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
 		Common::commonUpdateField('BoxType', $id, 'box_type_id', 'TypeNew', 'BoxCommon');
 		return Redirect::action('NewsTypeController@index')->with('message', 'Sửa thành công');

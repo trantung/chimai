@@ -33,6 +33,10 @@ class AdminOriginController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Origin');
+		if(isset($validator)) {
+			return Redirect::action('AdminOriginController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'Origin', CommonProperty::getDefaultValue('Origin', $input));
 		if ($viId) {
 			return Redirect::action('AdminOriginController@index')
@@ -77,6 +81,10 @@ class AdminOriginController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Origin');
+		if(isset($validator)) {
+			return Redirect::action('AdminOriginController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Origin', $id, $input, CommonProperty::getDefaultValue('Origin', $input));
 		return Redirect::action('AdminOriginController@index')->with('message', 'Sửa thành công');
 	}

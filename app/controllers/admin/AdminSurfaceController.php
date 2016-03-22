@@ -33,6 +33,10 @@ class AdminSurfaceController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Surface');
+		if(isset($validator)) {
+			return Redirect::action('AdminSurfaceController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'Surface', CommonProperty::getDefaultValue('Surface', $input));
 		if ($viId) {
 			return Redirect::action('AdminSurfaceController@index')
@@ -77,6 +81,10 @@ class AdminSurfaceController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Surface');
+		if(isset($validator)) {
+			return Redirect::action('AdminSurfaceController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Surface', $id, $input, CommonProperty::getDefaultValue('Surface', $input));
 		return Redirect::action('AdminSurfaceController@index')->with('message', 'Sửa thành công');
 	}

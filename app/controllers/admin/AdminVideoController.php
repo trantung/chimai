@@ -33,6 +33,10 @@ class AdminVideoController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminVideo');
+		if(isset($validator)) {
+			return Redirect::action('AdminVideoController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'AdminVideo', CommonProperty::getDefaultValue('AdminVideo', $input));
 		if ($viId) {
 			Common::commonUpdateField('BoxVideo', $viId, 'type', 'AdminVideo', 'AdminLanguage');
@@ -78,6 +82,10 @@ class AdminVideoController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminVideo');
+		if(isset($validator)) {
+			return Redirect::action('AdminVideoController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('AdminVideo', $id, $input, CommonProperty::getDefaultValue('AdminVideo', $input));
 		Common::commonUpdateField('BoxVideo', $id, 'type', 'AdminVideo', 'AdminLanguage');
 		return Redirect::action('AdminVideoController@index')->with('message', 'Sửa thành công');

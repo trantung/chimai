@@ -58,7 +58,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá</label>
+								<label for="name">Giá hiện tại (hoặc giá khuyến mại)</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text('price', $boxVi->price , textPlaceHolder('Giá') + ['required'=>'']) }}
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá cũ</label>
+								<label for="name">Giá cũ (trước khuyến mại)</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text('price_old', $boxVi->price_old , textPlaceHolder('Giá cũ')) }}
@@ -134,7 +134,7 @@
 								<label>Category</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('category_id[]', Common::getCategory(), Common::getCategory($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
+										{{ Form::select('category_id[]', Common::getCategory(), Common::getCategory($boxVi->id), array('class' => 'form-control', 'multiple' => true, 'required' => '')) }}
 									</div>
 								</div>
 							</div>
@@ -142,7 +142,7 @@
 								<label>Kích cỡ</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('size_id[]', Common::getSize(), Common::getSize($boxVi->id), array('class' => 'form-control', 'multiple' => true)) }}
+										{{ Form::select('size_id[]', Common::getSize(), Common::getSize($boxVi->id), array('class' => 'form-control', 'multiple' => true, 'required' => '')) }}
 									</div>
 								</div>
 							</div>
@@ -161,7 +161,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá {{ $value->language }}</label>
+								<label for="name">Giá hiện tại (hoặc giá khuyến mại) {{ $value->language }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text($value->language.'_'.'price', $value->price , textPlaceHolder('') + ['required'=>'']) }}
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá cũ {{ $value->language }}</label>
+								<label for="name">Giá cũ (trước khuyến mại) {{ $value->language }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text($value->language.'_'.'price_old', $value->price_old , textPlaceHolder('')) }}

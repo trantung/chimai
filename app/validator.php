@@ -25,3 +25,19 @@ Validator::extend('greater_than', function($attribute, $value, $parameters)
       return true;
    }
 });
+Validator::extend('youtube_url', function($attribute, $value, $parameters)
+{
+	$rx = '~
+    ^(?:https?://)?              # Optional protocol
+     (?:www\.)?                  # Optional subdomain
+     (?:youtube\.com|youtu\.be)  # Mandatory domain name
+     /watch\?v=([^&]+)           # URI with video id as capture group 1
+     ~x';
+
+	$has_match = preg_match($rx, $value, $matches);
+	if($has_match) {
+		return true;
+	}
+	return false;
+
+});

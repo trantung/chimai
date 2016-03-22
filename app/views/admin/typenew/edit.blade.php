@@ -18,7 +18,7 @@
 					<label for="name">Tên thể loại</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::text('name', $boxVi->name , textPlaceHolder('Tên thể loại tin')) }}
+						   {{ Form::text('name', $boxVi->name , textPlaceHolder('Tên thể loại tin') + ['required' => '']) }}
 						</div>
 					</div>
 				</div>
@@ -26,7 +26,7 @@
 					<label for="name">Giới thiệu</label>
 					<div class="row">
 						<div class="col-sm-6">	                  	
-						   {{ Form::textarea('sapo', $boxVi->sapo, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
+						   {{ Form::textarea('sapo', $boxVi->sapo, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6', 'required' => '')) }}
 						</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 						<label for="name">Tên thể loại {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text($value->language.'_'.'name', $value->name , textPlaceHolder('Tên thể loại tin')) }}
+							   {{ Form::text($value->language.'_'.'name', $value->name , textPlaceHolder('Tên thể loại tin') + ['required' => '']) }}
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 						<label for="name">Giới thiệu {{ $value->language }}</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::textarea($value->language.'_'.'sapo', $value->sapo, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6')) }}
+							   {{ Form::textarea($value->language.'_'.'sapo', $value->sapo, array('placeholder' => 'Giới thiệu', 'maxlength' => 500, 'class' => 'textarea form-control', 'rows' => '6', 'required' => '')) }}
 							</div>
 						</div>
 					</div>

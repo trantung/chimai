@@ -19,7 +19,7 @@
 	<div class="col-xs-12">
 	    <div class="box">
 			<div class="box-header">
-			  <h3 class="box-title">Danh sách sản phẩm</h3>
+			  <h3 class="box-title">Danh sách sản phẩm (Total: {{ $list->getTotal() }})</h3>
 			</div>
 			<div class="box-body table-responsive no-padding">
 				<table class="table table-hover">
@@ -30,7 +30,7 @@
 						<th>Trạng thái</th>
 						<th style="width:200px;">Action</th>
 					</tr>
-					@foreach(Product::whereIn('id', $list)->get() as $value)
+					@foreach($list as $value)
 						<tr>
 							<td>{{ $value->id }}</td>
 							<td><img src="{{ UPLOADIMG . '/Product/' . $value->id . '/' . $value->image_url }}" width="70px" /></td>
@@ -47,6 +47,14 @@
 				</table>
 			</div>
 	    </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<ul class="pagination">
+		{{ $list->appends(Request::except('page'))->links() }}
+		</ul>
 	</div>
 </div>
 

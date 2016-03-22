@@ -33,6 +33,10 @@ class AdminCategoryController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Category');
+		if(isset($validator)) {
+			return Redirect::action('AdminCategoryController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'Category', CommonProperty::getDefaultValue('Category', $input));
 		if ($viId) {
 			return Redirect::action('AdminCategoryController@index')
@@ -77,6 +81,10 @@ class AdminCategoryController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Category');
+		if(isset($validator)) {
+			return Redirect::action('AdminCategoryController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Category', $id, $input, CommonProperty::getDefaultValue('Category', $input));
 		return Redirect::action('AdminCategoryController@index')->with('message', 'Sửa thành công');
 	}

@@ -31,6 +31,10 @@ class AdminSlideController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminSlideCreate');
+		if(isset($validator)) {
+			return Redirect::action('AdminSlideController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'AdminSlide', self::getCommonInput($input), self::getConfigImage($input));
 		if ($viId) {
 			return Redirect::action('AdminSlideController@index')->with('message', 'Tạo mới thành công');
@@ -73,6 +77,10 @@ class AdminSlideController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'AdminSlideEdit');
+		if(isset($validator)) {
+			return Redirect::action('AdminSlideController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('AdminSlide', $id, $input, self::getCommonInput($input), self::getConfigImage($input));
 		return Redirect::action('AdminSlideController@index')->with('message', 'Sửa thành công');
 	}
