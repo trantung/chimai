@@ -33,9 +33,15 @@ class BoxShowRoomController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxShowRoomCreate');
+		if(isset($validator)) {
+			return Redirect::action('BoxShowRoomController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'BoxShowRoom', CommonProperty::getDefaultValue('BoxShowRoom', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'BoxShowRoom', $viId, 'boxCollections', Input::get('box_collection_id'));
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxShowRoom',
+				'BoxCollection', 'CollectionBoxShowroom', 'box_collection_id', 'box_show_room_id');
 			return Redirect::action('BoxShowRoomController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -78,9 +84,14 @@ class BoxShowRoomController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxShowRoomEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxShowRoomController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('BoxShowRoom', $id, $input, CommonProperty::getDefaultValue('BoxShowRoom', $input));
-		// dd($input);
 		Common::syncCommon('AdminLanguage', 'BoxShowRoom', $id, 'boxCollections', Input::get('box_collection_id'));
+		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxShowRoom',
+				'BoxCollection', 'CollectionBoxShowroom', 'box_collection_id', 'box_show_room_id');
 		return Redirect::action('BoxShowRoomController@index')->with('message', 'Sửa thành công');
 	}
 

@@ -33,11 +33,13 @@ class BoxPdfController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxPdfCreate');
+		if(isset($validator)) {
+			return Redirect::action('BoxPdfController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'BoxPdf', CommonProperty::getDefaultValue('BoxPdf', $input), self::getConfigImage($input));
-
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'BoxPdf', $viId, 'boxCollections', Input::get('box_collection_id'));
-			
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $viId, 'BoxPdf',
 				'BoxCollection', 'CollectionBoxPdf', 'box_collection_id', 'pdf_id');
 			// $relatePdfId = AdminLanguage::where('model_name', 'BoxPdf')
@@ -101,6 +103,10 @@ class BoxPdfController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxPdfEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxPdfController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('BoxPdf', $id, $input, CommonProperty::getDefaultValue('BoxPdf', $input));
 		Common::syncCommon('AdminLanguage', 'BoxPdf', $id, 'boxCollections', Input::get('box_collection_id'));
 		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxPdf',

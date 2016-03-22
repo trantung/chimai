@@ -15,19 +15,16 @@ class BoxTypeController extends BoxController {
 
 	public function store()
 	{
-		$rules = CommonRule::getRules('BoxType');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxTypeController@create')
-	            ->withErrors($validator);
-        } else {
-        	$viId = Common::createBox($input, 'BoxType');
-			if ($viId) {
-				return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
-			}
-			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
+		$validator = CommonRule::checkRules($input, 'BoxTypeCreate');
+		if(isset($validator)) {
+			return Redirect::action('BoxTypeController@create')->withErrors($validator);
 		}
+		$viId = Common::createBox($input, 'BoxType');
+		if ($viId) {
+			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
 	}
 
 	public function edit($id)
@@ -41,16 +38,13 @@ class BoxTypeController extends BoxController {
 
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('BoxType');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxTypeController@edit', $id)
-	            ->withErrors($validator);
-        } else {
-			Common::updateBox('BoxType', $id, $input);
-			return Redirect::action('BoxTypeController@index')->with('message', 'Sửa thành công');;
-        }
+		$validator = CommonRule::checkRules($input, 'BoxTypeEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxTypeController@edit', $id)->withErrors($validator);
+		}
+		Common::updateBox('BoxType', $id, $input);
+		return Redirect::action('BoxTypeController@index')->with('message', 'Sửa thành công');
 	}
 
 	public function destroy($id)

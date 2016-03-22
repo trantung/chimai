@@ -33,10 +33,15 @@ class BoxVideoController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxVideoCreate');
+		if(isset($validator)) {
+			return Redirect::action('BoxVideoController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'BoxVideo', CommonProperty::getDefaultValue('BoxVideo', $input), self::getConfigImage($input));
-
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'BoxVideo', $viId, 'boxCollections', Input::get('box_collection_id'));
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $viId, 'BoxVideo',
+				'BoxCollection', 'CollectionBoxVideo', 'box_collection_id', 'video_id');
 			return Redirect::action('BoxVideoController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -79,9 +84,14 @@ class BoxVideoController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token', 'box_collection_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'BoxVideoEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxVideoController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('BoxVideo', $id, $input, CommonProperty::getDefaultValue('BoxVideo', $input));
-		// dd($input);
 		Common::syncCommon('AdminLanguage', 'BoxVideo', $id, 'boxCollections', Input::get('box_collection_id'));
+		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxVideo',
+				'BoxCollection', 'CollectionBoxVideo', 'box_collection_id', 'video_id');
 		return Redirect::action('BoxVideoController@index')->with('message', 'Sửa thành công');
 	}
 

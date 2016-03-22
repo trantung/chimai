@@ -15,19 +15,16 @@ class BoxCollectionController extends BoxController {
 
 	public function store()
 	{
-		$rules = CommonRule::getRules('BoxCollection');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxCollectionController@create')
-				->withErrors($validator);
-		} else {
-			$viId = Common::createBox($input, 'BoxCollection');
-			if ($viId) {
-				return Redirect::action('BoxCollectionController@index')->with('message', 'Tạo mới thành công');
-			}
-			return Redirect::action('BoxCollectionController@index')->with('message', 'Tạo mới thất bại');
+		$validator = CommonRule::checkRules($input, 'BoxCollectionCreate');
+		if(isset($validator)) {
+			return Redirect::action('BoxCollectionController@create')->withErrors($validator);
 		}
+		$viId = Common::createBox($input, 'BoxCollection');
+		if ($viId) {
+			return Redirect::action('BoxCollectionController@index')->with('message', 'Tạo mới thành công');
+		}
+		return Redirect::action('BoxCollectionController@index')->with('message', 'Tạo mới thất bại');
 	}
 
 	public function edit($id)
@@ -41,16 +38,13 @@ class BoxCollectionController extends BoxController {
 
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('BoxCollection');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxCollectionController@edit', $id)
-				->withErrors($validator);
-		} else {
-			Common::updateBox('BoxCollection', $id, $input);
-			return Redirect::action('BoxCollectionController@index')->with('message', 'Sửa thành công');;
+		$validator = CommonRule::checkRules($input, 'BoxCollectionEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxCollectionController@edit', $id)->withErrors($validator);
 		}
+		Common::updateBox('BoxCollection', $id, $input);
+		return Redirect::action('BoxCollectionController@index')->with('message', 'Sửa thành công');
 	}
 
 	public function destroy($id)

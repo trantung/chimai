@@ -71,16 +71,13 @@ class BoxPromotionController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = CommonRule::getRules('BoxPromotion');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
-		if($validator->fails()) {
-			return Redirect::action('BoxPromotionController@edit', $id)
-				->withErrors($validator);
-		} else {
-			Common::updateBox('BoxPromotion', $id, $input);
-			return Redirect::action('AdminMenuController@index')->with('message', 'Sửa thành công');;
+		$validator = CommonRule::checkRules($input, 'BoxPromotionEdit');
+		if(isset($validator)) {
+			return Redirect::action('BoxPromotionController@edit', $id)->withErrors($validator);
 		}
+		Common::updateBox('BoxPromotion', $id, $input);
+		return Redirect::action('AdminMenuController@index')->with('message', 'Sửa thành công');
 	}
 
 

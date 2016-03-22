@@ -3,16 +3,26 @@ class CommonRule {
 
 	public static function checkRules($input, $modelName)
 	{
-		if($modelName == 'ProductCreate' || $modelName == 'ProductEdit') {
+		if(in_array($modelName, ['ProductCreate', 'ProductEdit'])) {
 			if(!isset($input['category_id'])) {
 				$input['category_id'] = array();
 			}
 			if(!isset($input['size_id'])) {
 				$input['size_id'] = array();
 			}
-			$rules = CommonRule::getRules($modelName, $input);	
+			$rules = CommonRule::getRules($modelName, $input);
+		} else if(in_array($modelName, ['BoxPdfCreate', 'BoxPdfEdit', 'BoxVideoCreate', 'BoxVideoEdit', 'BoxShowRoomCreate', 'BoxShowRoomEdit'])) {
+			if(!isset($input['box_collection_id'])) {
+				$input['box_collection_id'] = array();
+			}
+			$rules = CommonRule::getRules($modelName);
+		} else if (in_array($modelName, ['BoxProductCreate', 'BoxProductEdit'])) {
+			if(!isset($input['origin_id'])) {
+				$input['origin_id'] = array();
+			}
+			$rules = CommonRule::getRules($modelName);
 		} else {
-			$rules = CommonRule::getRules($modelName);	
+			$rules = CommonRule::getRules($modelName);
 		}
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
@@ -23,9 +33,34 @@ class CommonRule {
 
 	public static function getRules($modelName, $input = null)
 	{
-		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct', 'BoxPromotion'])) {
+		if (in_array($modelName, ['BoxTypeCreate', 'BoxCollectionCreate'])) {
 			$array = self::getRulesRequired(['name_menu']);
-			$arrayRule = array_merge($array, ['weight_number' => 'array_number']);
+			$arrayRule = array_merge($array, ['name_menu' => 'required', 'weight_number' => 'array_number', 'image_url' => 'required|image']);
+			return $arrayRule;
+		}
+		if (in_array($modelName, ['BoxTypeEdit', 'BoxCollectionEdit', 'BoxPromotionEdit'])) {
+			$array = self::getRulesRequired(['name_menu']);
+			$arrayRule = array_merge($array, ['name_menu' => 'required', 'weight_number' => 'array_number']);
+			return $arrayRule;
+		}
+		if (in_array($modelName, ['BoxPdfCreate', 'BoxVideoCreate', 'BoxShowRoomCreate'])) {
+			$array = self::getRulesRequired(['name']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'box_collection_id' => 'required', 'image_url' => 'required|image']);
+			return $arrayRule;
+		}
+		if (in_array($modelName, ['BoxPdfEdit', 'BoxVideoEdit', 'BoxShowRoomEdit'])) {
+			$array = self::getRulesRequired(['name']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'box_collection_id' => 'required']);
+			return $arrayRule;
+		}
+		if ($modelName == 'BoxProductCreate') {
+			$array = self::getRulesRequired(['name_menu']);
+			$arrayRule = array_merge($array, ['name_menu' => 'required', 'weight_number' => 'array_number', 'origin_id' => 'required', 'image_url' => 'required|image']);
+			return $arrayRule;
+		}
+		if ($modelName == 'BoxProductEdit') {
+			$array = self::getRulesRequired(['name_menu']);
+			$arrayRule = array_merge($array, ['name_menu' => 'required', 'weight_number' => 'array_number', 'origin_id' => 'required']);
 			return $arrayRule;
 		}
 		if ($modelName == 'Contact') {
