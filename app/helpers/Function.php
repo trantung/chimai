@@ -215,3 +215,12 @@ function getFullPriceInVnd($number)
 
     return $text;
 }
+function getLanguage()
+{
+	$lang = LaravelLocalization::setLocale();
+	if ($lang == NULL || $lang == VI) {
+		return VI;
+	} else {
+		return $lang;
+	}
+}

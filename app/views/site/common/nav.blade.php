@@ -13,35 +13,37 @@
 				<!-- Left Nav Section -->
 				<ul class="left">
 					<li class="active"><a href="{{ url('/') }}" title="">{{ trans('captions.home') }}</a></li>
-					@foreach($menu as $menu)
-						@if($menu->model_name == 'BoxType')
+					@foreach($menu as $value)
+						@if($value->model_name == 'BoxType')
 							<li>
-								<a href="{{ action('SiteBoxTypeController@index') }}" title="">{{ trans('captions.aboutus') }}</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxType')->name_menu }}</a>
 							</li>
 						@endif
-						@if($menu->model_name == 'BoxProduct')
+						@if($value->model_name == 'BoxProduct')
 							<li class="has-dropdown">
-								<a href="{{ action('SiteBoxProductController@index') }}" title="">Sản phẩm</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxProduct')->name_menu }}</a>
 								<ul class="dropdown">
-									<li><a href="#">Gạch ốp lát Tây Ban Nha</a></li>
-									<li><a href="#">Gạch ốp lát Úc</a></li>
-									<li><a href="#">Gạch ốp lát Mỹ</a></li>
-									<li><a href="#">Gạch ốp lát Đức</a></li>
-									<li><a href="#">Gạch ốp lát Trung quốc</a></li>
+									@foreach(CommonSlug::getOriginByLanguage() as $k => $v )
+										<li><a href="{{ action('SiteIndexController@slug', Origin::find($k)->slug) }}">{{ $v }}</a></li>
+									@endforeach
 								</ul>
 							</li>
 						@endif
-						@if($menu->model_name == 'BoxCollection')
+						@if($value->model_name == 'BoxCollection')
 							<li class="has-dropdown">
-								<a href="{{ action('SiteBoxCollectionController@collection') }}">Bộ sưu tập</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) }}">{{ CommonSlug::getSlugByLanguage($value, 'BoxCollection')->name_menu }}</a>
 								<ul class="dropdown">
-									<li><a href="{{ action('SiteBoxCollectionController@catalogue') }}">Catelogue</a></li>
-									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Showroom trưng bày</a></li>
-									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Công trình đã thực hiện</a></li>
-									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Chứng nhận chất lượng</a></li>
-									<li><a href="{{ action('SiteBoxCollectionController@gallery') }}">Giải thưởng đạt được</a></li>
-									<li><a href="{{ action('SiteBoxCollectionController@video') }}">Videos</a></li>
+									@foreach(CommonSlug::getCollectionContain(CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) as $valueCollection)
+										@foreach($valueCollection as $box)
+											<li><a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, $box->model_name)->slug) }}">{{ CommonSlug::getNameObjectByLanguage($box) }}</a></li>
+										@endforeach
+									@endforeach
 								</ul>
+							</li>
+						@endif
+						@if($value->model_name == 'BoxPromotion')
+							<li>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->name_menu }}</a>
 							</li>
 						@endif
 					@endforeach

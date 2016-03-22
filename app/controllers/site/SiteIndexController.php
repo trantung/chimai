@@ -92,7 +92,24 @@ class SiteIndexController extends SiteController {
 	}
 
 	public function slug($slug)
-	{
+	{	
+		dd(1);
+		//from $slug to get model_name and model_id in the menus table
+		$menu = Menu::findBySlug($slug);
+		if (empty($menu)) {
+			return Redirect::action('SiteIndexController@404');
+		}
+		if ($menu->model_name == 'AboutUs') {
+			return Redirect::action('SiteIndexController@aboutUs');
+		}
+		if ($menu->model_name == 'Contact') {
+			return Redirect::action('SiteIndexController@contact');
+		}
+		return Redirect::action('SiteIndexController@typeNew');
+	}
+	public function slugChild($slug, $slugChild)
+	{	
+		dd(1);
 		//from $slug to get model_name and model_id in the menus table
 		$menu = Menu::findBySlug($slug);
 		if (empty($menu)) {

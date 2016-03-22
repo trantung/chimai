@@ -13,30 +13,49 @@
 
 	<div class="homebox">
 		<div class="row">
-			<div class="medium-4 columns">
-				<div class="homebox-item">
-					<strong>Bộ sưu tập mới</strong>
-					<a href="#" title="">
-						<img src="{{ url('assets/imgs/image1.jpg') }}" alt="" />
-					</a>
-				</div>
-			</div>
-			<div class="medium-4 columns">
-				<div class="homebox-item">
-					<strong>Khuyến mại</strong>
-					<a href="#" title="">
-						<img src="{{ url('assets/imgs/image1.jpg') }}" alt="" />
-					</a>
-				</div>
-			</div>
-			<div class="medium-4 columns">
-				<div class="homebox-item">
-					<strong>Tin tức</strong>
-					<a href="#" title="">
-						<img src="{{ url('assets/imgs/image1.jpg') }}" alt="" />
-					</a>
-				</div>
-			</div>
+			@foreach($content as $value)
+				@if($value->model_name == 'BoxType')
+					<div class="medium-4 columns">
+						<div class="homebox-item">
+							<strong>{{ CommonSlug::getSlugByLanguage($value, 'BoxType')->name_content }}</strong>
+							<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxType')->slug) }}" title="">
+								<img src="{{ url(CommonSlug::getImageUrlByModel('BoxType', $value)) }}" alt="" />
+							</a>
+						</div>
+					</div>
+				@endif
+				@if($value->model_name == 'BoxProduct')
+					<div class="medium-4 columns">
+						<div class="homebox-item">
+							<strong>{{ CommonSlug::getSlugByLanguage($value, 'BoxProduct')->name_content }}</strong>
+							<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxProduct')->slug) }}" title="">
+								<img src="{{ url(CommonSlug::getImageUrlByModel('BoxProduct', $value)) }}" alt="" />
+							</a>
+						</div>
+					</div>
+				@endif
+				@if($value->model_name == 'BoxCollection')
+					<div class="medium-4 columns">
+						<div class="homebox-item">
+							<strong>{{ CommonSlug::getSlugByLanguage($value, 'BoxCollection')->name_content }}</strong>
+							<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) }}" title="">
+								<img src="{{ url(CommonSlug::getImageUrlByModel('BoxCollection', $value)) }}" alt="" />
+							</a>
+						</div>
+					</div>
+				@endif
+				@if($value->model_name == 'BoxPromotion')
+					<div class="medium-4 columns">
+						<div class="homebox-item">
+							<strong>{{ CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->name_content }}</strong>
+							<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->slug) }}" title="">
+								<img src="{{ url(CommonSlug::getImageUrlByModel('BoxPromotion', $value)) }}" alt="" />
+							</a>
+						</div>
+					</div>
+				@endif
+			@endforeach
+			
 		</div>
 	</div>
 

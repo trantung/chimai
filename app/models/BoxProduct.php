@@ -25,6 +25,5 @@ class BoxProduct extends Eloquent implements SluggableInterface
 	public function origins() 
 	{
 		return $this->belongsToMany('Origin', 'origin_box_products', 'box_product_id', 'origin_id');
-
 	}
 }

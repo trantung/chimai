@@ -37,6 +37,28 @@ class BoxPdfController extends AdminController {
 
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'BoxPdf', $viId, 'boxCollections', Input::get('box_collection_id'));
+			
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $viId, 'BoxPdf',
+				'BoxCollection', 'CollectionBoxPdf', 'box_collection_id', 'pdf_id');
+			// $relatePdfId = AdminLanguage::where('model_name', 'BoxPdf')
+			// 	->where('model_id', $viId)
+			// 	->groupBy('relate_id')->lists('relate_id');
+			// $pdfRelate = BoxPdf::whereIn('id', $relatePdfId)->get();
+			// foreach(Input::get('box_collection_id') as $valueBox){
+			// 	$relateIds = BoxCommon::where('model_name', 'BoxCollection')
+			// 		->where('model_id', $valueBox)
+			// 		->groupBy('relate_id')->lists('relate_id');
+			// 	$collectionRelate = BoxCollection::whereIn('id', $relateIds)->get();
+			// 	foreach ($collectionRelate as $value) {
+			// 		foreach ($pdfRelate as $v) {
+			// 			if ($v->language = $value->language) {
+			// 				CollectionBoxPdf::where('box_collection_id', $valueBox)
+			// 					->where('pdf_id', $v->id)
+			// 					->update(['box_collection_id' => $value->id]);
+			// 			}
+			// 		}
+			// 	}
+			// }
 			return Redirect::action('BoxPdfController@index')
 				->with('message', 'Tạo mới thành công');
 		}

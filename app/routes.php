@@ -1,5 +1,5 @@
 <?php
-
+// dd(getLanguage());
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+// dd(CommonSlug::getCollectionContain('abc'));
 Route::group(['prefix' => 'admin'], function () {
 
 	Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
@@ -138,11 +138,11 @@ Route::group(
 		Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
 
-		Route::post('/sendLang', 'SiteIndexController@sendLang');
+		Route::get('/{slug}', 'SiteIndexController@slug');
+		Route::get('/{slug}/{slugChild}', 'SiteIndexController@slugChild');
 
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
-
 		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 		Route::resource('/', 'SiteIndexController');
 

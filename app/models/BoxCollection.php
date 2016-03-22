@@ -18,4 +18,16 @@ class BoxCollection extends Eloquent implements SluggableInterface
         'build_from' => 'name_menu',
         'save_to'    => 'slug',
     );
+    public function boxPdfs() 
+    {
+        return $this->belongsToMany('BoxPdf', 'collection_box_pdf', 'box_collection_id', 'pdf_id');
+    }
+    public function boxVideos() 
+    {
+        return $this->belongsToMany('BoxVideo', 'collection_box_videos', 'box_collection_id', 'video_id');
+    }
+    public function boxShowRooms() 
+    {
+        return $this->belongsToMany('BoxShowRoom', 'collection_box_showrooms', 'box_collection_id', 'box_show_room_id');
+    }
 }

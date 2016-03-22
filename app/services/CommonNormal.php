@@ -33,4 +33,27 @@ class CommonNormal
 			return 'AdminNew';
 		}
 	}
+	public static function commonUpdateManyRelateMany($adminLang, $boxCommon, $viId,
+		 $modelName, $viewModelName, $relateModelName, $fieldBoxView, $field)
+	{
+		$relatePdfId = $adminLang::where('model_name', $modelName)
+			->where('model_id', $viId)
+			->groupBy('relate_id')->lists('relate_id');
+		$pdfRelate = $modelName::whereIn('id', $relatePdfId)->get();
+		foreach(Input::get($fieldBoxView) as $valueBox){
+			$relateIds = $boxCommon::where('model_name', $viewModelName)
+				->where('model_id', $valueBox)
+				->groupBy('relate_id')->lists('relate_id');
+			$collectionRelate = $viewModelName::whereIn('id', $relateIds)->get();
+			foreach ($collectionRelate as $value) {
+				foreach ($pdfRelate as $v) {
+					if ($v->language = $value->language) {
+						CollectionBoxPdf::where($fieldBoxView, $valueBox)
+							->where($field, $v->id)
+							->update([$fieldBoxView => $value->id]);
+					}
+				}
+			}
+		}
+	}
 }
