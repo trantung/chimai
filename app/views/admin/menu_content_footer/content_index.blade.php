@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý Menu' }}
+{{ $title='Quản lý Content' }}
 @stop
 
 @section('content')

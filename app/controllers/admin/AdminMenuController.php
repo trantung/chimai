@@ -10,17 +10,17 @@ class AdminMenuController extends BoxController {
 	public function index()
 	{
 		$boxs = BoxCommon::where('position', MENU)->get();
-		return View::make('admin.menu.index')->with(compact('boxs'));
+		return View::make('admin.menu_content_footer.index')->with(compact('boxs'));
 	}
 	public function content()
 	{
 		$boxs = BoxCommon::where('position', CONTENT)->get();
-		return View::make('admin.content.index')->with(compact('boxs'));
+		return View::make('admin.menu_content_footer.content_index')->with(compact('boxs'));
 	}
 	public function footer()
 	{
 		$boxs = BoxCommon::where('position', FOOTER)->get();
-		return View::make('admin.menu.index')->with(compact('boxs'));
+		return View::make('admin.menu_content_footer.footer_index')->with(compact('boxs'));
 	}
 	public function updateIndexData()
 	{
