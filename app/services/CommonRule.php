@@ -33,7 +33,7 @@ class CommonRule {
 
 	public static function getRules($modelName, $input = null)
 	{
-		if (in_array($modelName, ['BoxTypeCreate', 'BoxCollectionCreate'])) {
+		if (in_array($modelName, ['BoxTypeCreate', 'BoxCollectionCreate', 'BoxPromotionCreate'])) {
 			$array = self::getRulesRequired(['name_menu']);
 			$arrayRule = array_merge($array, ['name_menu' => 'required', 'weight_number' => 'array_number', 'image_url' => 'required|image']);
 			return $arrayRule;
