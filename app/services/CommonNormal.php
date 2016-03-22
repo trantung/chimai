@@ -48,7 +48,7 @@ class CommonNormal
 			foreach ($collectionRelate as $value) {
 				foreach ($pdfRelate as $v) {
 					if ($v->language = $value->language) {
-						CollectionBoxPdf::where($fieldBoxView, $valueBox)
+						$relateModelName::where($fieldBoxView, $valueBox)
 							->where($field, $v->id)
 							->update([$fieldBoxView => $value->id]);
 					}

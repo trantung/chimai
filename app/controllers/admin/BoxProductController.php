@@ -24,6 +24,10 @@ class BoxProductController extends BoxController {
 		} else {
 			$viId = Common::createBox($input, 'BoxProduct');
 			Common::attachCommon('BoxCommon', 'BoxProduct', $viId, 'origins', Input::get('origin_id'));
+
+			CommonNormal::commonUpdateManyRelateMany('BoxCommon', 'AdminLanguage', $viId, 'BoxProduct',
+				'Origin', 'OriginBoxProduct', 'origin_id', 'box_product_id');
+
 			if ($viId) {
 				return Redirect::action('BoxProductController@index')->with('message', 'Tạo mới thành công');
 			}
@@ -54,6 +58,8 @@ class BoxProductController extends BoxController {
 		} else {
 			Common::updateBox('BoxProduct', $id, $input);
 			Common::syncCommon('BoxCommon', 'BoxProduct', $id, 'origins', Input::get('origin_id'));
+			CommonNormal::commonUpdateManyRelateMany('BoxCommon', 'AdminLanguage', $id, 'BoxProduct',
+				'Origin', 'OriginBoxProduct', 'origin_id', 'box_product_id');
 			return Redirect::action('BoxProductController@index')->with('message', 'Sửa thành công');;
 		}
 	}

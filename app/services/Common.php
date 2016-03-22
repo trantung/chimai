@@ -395,7 +395,7 @@ class Common extends CommonParent
 	public static function detachCommon($table, $modelName, $modelId, $method)
 	{
 		$vi = $modelName::find($modelId);
-		$vi->$method()->detach($modelId);
+		$vi->$method()->detach();
 		self::tableGetRelateId($table, $modelName, $modelId, $method, DETACH);
 	}
 	public static function tableGetRelateId($table, $modelName, $modelId, $method, $status, $input = null)
@@ -410,7 +410,7 @@ class Common extends CommonParent
 				$box->$method()->sync($input);
 			}
 			if ($status == DETACH) {
-				$box->$method()->detach($modelId);
+				$box->$method()->detach();
 			}
 		}
 	}
