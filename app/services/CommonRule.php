@@ -3,7 +3,17 @@ class CommonRule {
 
 	public static function checkRules($input, $modelName)
 	{
-		$rules = CommonRule::getRules($modelName);
+		if($modelName == 'ProductCreate' || $modelName == 'ProductEdit') {
+			if(!isset($input['category_id'])) {
+				$input['category_id'] = array();
+			}
+			if(!isset($input['size_id'])) {
+				$input['size_id'] = array();
+			}
+			$rules = CommonRule::getRules($modelName, $input);	
+		} else {
+			$rules = CommonRule::getRules($modelName);	
+		}
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
 			return $validator;
@@ -11,7 +21,7 @@ class CommonRule {
         return null;
 	}
 
-	public static function getRules($modelName)
+	public static function getRules($modelName, $input = null)
 	{
 		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct', 'BoxPromotion'])) {
 			$array = self::getRulesRequired(['name_menu']);
@@ -21,9 +31,9 @@ class CommonRule {
 		if ($modelName == 'Contact') {
 			return ['name' => 'required', 'email' => 'required', 'phone' => 'required'];
 		}
-		if ($modelName == 'Origin') {
+		if (in_array($modelName, ['Origin', 'Surface', 'Size', 'Material', 'Category'])) {
 			$array = self::getRulesRequired(['name']);
-			$arrayRule = array_merge($array, ['name' => 'required']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0']);
 			return $arrayRule;
 		}
 		if ($modelName == 'AdminSlideCreate') {
@@ -77,9 +87,14 @@ class CommonRule {
 			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500']);
 			return $arrayRule;
 		}
-		if ($modelName == 'Category') {
-			$array = self::getRulesRequired(['name']);
-			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0']);
+		if ($modelName == 'ProductCreate') {
+			$array = self::getRulesRequired(['name', 'price', 'price_old']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required', 'image_url' => 'required|image']);
+			return $arrayRule;
+		}
+		if ($modelName == 'ProductEdit') {
+			$array = self::getRulesRequired(['name', 'price', 'price_old'], $input);
+			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required']);
 			return $arrayRule;
 		}
 
@@ -87,7 +102,7 @@ class CommonRule {
 	}
 
 	// fields = array()
-	public static function getRulesRequired($fields)
+	public static function getRulesRequired($fields, $input = null)
 	{
 		$array = [];
 		$arrayLang = Common::getArrayLangNotVi();
@@ -95,7 +110,15 @@ class CommonRule {
 			foreach($fields as $value) {
 				$array = array_merge($array, [$value => 'required']);
 				foreach($arrayLang as $keyLang => $singLang) {
-					$array[$singLang.'_'.$value] = 'required';
+					if($value == 'price') {
+						$array[$singLang.'_price'] = 'required|integer|min:0';	
+					} else if($value == 'price_old') {
+						$array[$singLang.'_price_old'] = 'integer|min:0|greater_than:'.$singLang.'_'.'price,' . $input[$singLang.'_price'];
+					} else if($value == 'sapo') {
+						$array[$singLang.'_sapo'] = 'required|max:500';
+					} else {
+						$array[$singLang.'_'.$value] = 'required';
+					}
 				}
 			}
 		}

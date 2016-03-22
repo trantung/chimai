@@ -48,12 +48,12 @@
 								<label>Upload ảnh đại diện</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::file('image_url') }}
+										{{ Form::file('image_url', array('required' => '')) }}
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá</label>
+								<label for="name">Giá hiện tại (hoặc giá khuyến mại)</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text('price', null , textPlaceHolder('Giá') + ['required'=>'']) }}
@@ -61,7 +61,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá cũ</label>
+								<label for="name">Giá cũ (trước khuyến mại)</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text('price_old', null , textPlaceHolder('Giá cũ')) }}
@@ -156,7 +156,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá {{ $singLang }}</label>
+								<label for="name">Giá hiện tại (hoặc giá khuyến mại) {{ $singLang }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text($singLang.'_'.'price', null , textPlaceHolder('') + ['required'=>'']) }}
@@ -164,7 +164,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Giá cũ {{ $singLang }}</label>
+								<label for="name">Giá cũ (trước khuyến mại) {{ $singLang }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
 									   {{ Form::text($singLang.'_'.'price_old', null , textPlaceHolder('')) }}

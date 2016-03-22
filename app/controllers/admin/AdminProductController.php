@@ -9,7 +9,8 @@ class AdminProductController extends AdminController {
 	 */
 	public function index()
 	{
-		$list = AdminLanguage::where('model_name', 'Product')->lists('model_id');
+		$list = Product::where('language', VI)->orderBy('id', 'desc')->paginate(PAGINATE);
+		// $list = AdminLanguage::where('model_name', 'Product')->lists('model_id');
 		return View::make('admin.product.index')->with(compact('list'));
 	}
 
@@ -33,6 +34,10 @@ class AdminProductController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token', 'size_id', 'category_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductCreate');
+		if(isset($validator)) {
+			return Redirect::action('AdminProductController@create')->withErrors($validator);
+		}
 		// size_id, category_id
 		//'origin_id', 'material_id', 'unit_id', 'surface_id'
 		$viId = CommonLanguage::createModel($input, 'Product', CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
@@ -91,6 +96,10 @@ class AdminProductController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token', 'size_id', 'category_id');
+		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductEdit');
+		if(isset($validator)) {
+			return Redirect::action('AdminProductController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));
@@ -119,8 +128,8 @@ class AdminProductController extends AdminController {
 	private function getConfigImage($input)
 	{
 		return array(
-				'w' => IMAGE_WIDTH, 
-				'h' => IMAGE_HEIGHT, 
+				'w' => IMAGE_PRODUCT_WIDTH, 
+				'h' => IMAGE_PRODUCT_HEIGHT, 
 				'mode' => IMAGE_MODE_FILL
 			);
 	}

@@ -33,6 +33,10 @@ class AdminSizeController extends AdminController {
 	public function store()
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Size');
+		if(isset($validator)) {
+			return Redirect::action('AdminSizeController@create')->withErrors($validator);
+		}
 		$viId = CommonLanguage::createModel($input, 'Size', CommonProperty::getDefaultValue('Size', $input));
 		if ($viId) {
 			return Redirect::action('AdminSizeController@index')
@@ -77,6 +81,10 @@ class AdminSizeController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
+		$validator = CommonRule::checkRules($input, 'Size');
+		if(isset($validator)) {
+			return Redirect::action('AdminSizeController@edit', $id)->withErrors($validator);
+		}
 		CommonLanguage::updateModel('Size', $id, $input, CommonProperty::getDefaultValue('Size', $input));
 		return Redirect::action('AdminSizeController@index')->with('message', 'Sửa thành công');
 	}
