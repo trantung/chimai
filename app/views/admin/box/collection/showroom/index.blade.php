@@ -26,12 +26,14 @@
 				<tr>
 					<th>ID</th>
 					<th>Tên Vietnamese</th>
+					<th>Hình ảnh</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				@foreach(BoxShowRoom::whereIn('id', $list)->get() as $box)
 					<tr>
 						<td>{{ $box->id }}</td>
 						<td>{{ $box->name }}</td>
+						<td><img src="{{ UPLOADIMG . '/BoxShowRoom/' . $box->id . '/' . $box->image_url }}" width="70px" /></td>
 						<td>
 							<a href="{{ action('BoxShowRoomController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
 							{{ Form::open(array('method'=>'DELETE', 'action' => array('BoxShowRoomController@destroy', $box->id), 'style' => 'display: inline-block;')) }}

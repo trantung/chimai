@@ -20,11 +20,13 @@
 				<tr>
 					<th>ID</th>
 					<th>Tên Vietnamese</th>
+					<th>Hình ảnh</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				<tr>
 					<td>{{ $box->id }}</td>
 					<td>{{ Common::getNameBox($box) }}</td>
+					<td><img src="{{ UPLOADIMG . '/BoxPromotion/' . $box->id . '/' . $box->image_url }}" width="70px" /></td>
 					<td>
 						<a href="{{ action('BoxTypeController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
 					</td>

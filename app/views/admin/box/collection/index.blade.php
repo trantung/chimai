@@ -26,12 +26,14 @@
 				<tr>
 					<th>ID</th>
 					<th>Tên Vietnamese</th>
+					<th>Hình ảnh</th>
 					<th style="width:200px;">Action</th>
 				</tr>
 				@foreach(BoxCollection::whereIn('id', $list)->get() as $box)
 					<tr>
 						<td>{{ $box->id }}</td>
 						<td>{{ Common::getNameBox($box) }}</td>
+						<td><img src="{{ UPLOADIMG . '/BoxCollection/' . $box->id . '/' . $box->image_url }}" width="70px" /></td>
 						<td>
 							<a href="{{ action('BoxCollectionController@edit', $box->id) }}" class="btn btn-primary">Sửa</a>
 							{{ Form::open(array('method'=>'DELETE', 'action' => array('BoxCollectionController@destroy', $box->id), 'style' => 'display: inline-block;')) }}
