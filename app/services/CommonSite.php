@@ -47,6 +47,18 @@ class CommonSite
         }
         return array_values($commonModel)[0];
     }
-
+    public static function getDataByModelSlug($object, $modelName, $field, $paginate = null)
+    {
+        $data = $modelName::where($field, $object['model_object']->id)
+                ->where('status', ACTIVE)
+                ->orderBy('weight_number', 'asc');
+        if ($paginate) {
+            $data = $data->take(TAKE_NUMBER_BOX_TYPE)->get();
+        }
+        else {
+            $data = $data->paginate(FRONENDPAGINATE);
+        }
+        return $data;
+    }
 
 }
