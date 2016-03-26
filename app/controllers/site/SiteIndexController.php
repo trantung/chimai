@@ -93,19 +93,24 @@ class SiteIndexController extends SiteController {
 
 	public function slug($slug)
 	{	
+		$object = CommonSite::getObjectBySlug($slug);
+		if ($object['model_name'] == 'BoxType') {
+			$boxType = $object['model_object'];
+			$data = TypeNew::where('box_type_id', $boxType->id)
+				->where('status', ACTIVE)
+				->orderBy('weight_number', 'asc')
+				->take(TAKE_NUMBER_BOX_TYPE)
+				->get();
+			return View::make('site.about.index')->with(compact('data'));
+		}
+		if ($object['model_name'] == 'TypeNew') {
+			$data = AdminNew::where('type_new_id', $object['model_object']->id)
+				->where('status', ACTIVE)
+				->orderBy('weight_number', 'asc')
+				->paginate(FRONENDPAGINATE);
+			return View::make('site.news.list')->with(compact('data'));
+		}
 		dd(1);
-		//from $slug to get model_name and model_id in the menus table
-		$menu = Menu::findBySlug($slug);
-		if (empty($menu)) {
-			return Redirect::action('SiteIndexController@404');
-		}
-		if ($menu->model_name == 'AboutUs') {
-			return Redirect::action('SiteIndexController@aboutUs');
-		}
-		if ($menu->model_name == 'Contact') {
-			return Redirect::action('SiteIndexController@contact');
-		}
-		return Redirect::action('SiteIndexController@typeNew');
 	}
 	public function slugChild($slug, $slugChild)
 	{	

@@ -114,7 +114,7 @@ class CommonRule {
 		}
 		if ($modelName == 'TypeNewCreate') {
 			$array = self::getRulesRequired(['name', 'sapo']);
-			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500', 'image_url' => 'required|image']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500']);
 			return $arrayRule;
 		}
 		if ($modelName == 'TypeNewEdit') {

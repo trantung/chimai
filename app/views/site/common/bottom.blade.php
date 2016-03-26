@@ -22,25 +22,25 @@
 						@if($valueFooter->model_name == 'BoxType')
 							<li>
 								<i class="fa fa-caret-right"></i>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxType')->name_footer }}</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxType')->name_footer }}</a>
 							</li>
 						@endif
 						@if($valueFooter->model_name == 'BoxProduct')
 							<li>
 								<i class="fa fa-caret-right"></i>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxProduct')->name_footer }}</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxProduct')->name_footer }}</a>
 							</li>
 						@endif
 						@if($valueFooter->model_name == 'BoxCollection')
 							<li>
 								<i class="fa fa-caret-right"></i>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxCollection')->name_footer }}</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxCollection')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxCollection')->name_footer }}</a>
 							</li>
 						@endif
 						@if($valueFooter->model_name == 'BoxPromotion')
 							<li>
 								<i class="fa fa-caret-right"></i>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->name_footer }}</a>
+								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxPromotion')->name_footer }}</a>
 							</li>
 						@endif
 					@endforeach
