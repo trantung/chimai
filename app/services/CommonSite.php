@@ -31,9 +31,10 @@ class CommonSite
 
 	public static function getArrayModelSite()
 	{
-		$array = ['BoxType', 'BoxProduct', 'BoxCollection', 'Origin', 'BoxPdf',
-			'BoxVideo', 'BoxShowRoom', 'TypeNew'
-		];
+		$array = array_merge(Common::getArrayAdminLanguage(), Common::getArrayBoxCommon());
+        unset($array[3]);
+        unset($array[2]);
+        unset($array[11]);
 		return $array;
 	}
 
@@ -47,7 +48,10 @@ class CommonSite
 				$commonModel[$key]['model_name'] = $value;
 			}
 		}
-		return $commonModel[0];
+        if(isset($commonModel)) {
+            return array_values($commonModel)[0];    
+        }
+        dd(1);
 	}
 
 	public static function getDataByModelSlug($object, $modelName, $field, $paginate = null)
@@ -67,53 +71,74 @@ class CommonSite
 	public static function getUrlByLang($lang)
 	{
 		$currentLang = getLanguage();
-		$currentUrl = URL::current();
-		$currentUri = $_SERVER['REQUEST_URI'];
-		$currentSegment1 = Request::segment(1);
-		if(isset($currentSegment1)) {
-			if (in_array($currentSegment1, Common::getArrayLang())) {
-				$currentSegment1 = substr($currentUri, 4);
-			}
-			else{
-				$currentSegment1 = substr($currentUri, 1);
-			}
-			if($currentLang == $lang) {
-				return $currentUrl;
-			}
-			//can lay slug là currentSegment1
-			$obj = self::getObjectBySlug($currentSegment1);
-			if(in_array($obj['model_name'], ['BoxType', 'BoxProduct', 'BoxCollection', 'BoxPdf',
-			'BoxVideo', 'BoxShowRoom'])) {
-				if($currentLang == VI) {
-					$ids = self::getListBoxCommon($obj['model_name'], $obj['model_object']->id);
-				} else {
-					$ids = BoxCommon::where('model_name', $obj['model_name'])
-								->where('relate_id', $obj['model_object']->id)
-								->lists('model_id');
-					if($lang == VI) {
-						$ids = $ids;
-					} else {
-						$idVi = $ids[0];
-						$ids = self::getListBoxCommon($obj['model_name'], $idVi);
-					}
-
-				}
-				$data = $obj['model_name']::where('language', $lang)->whereIn('id', $ids)->first();
-				$slug = $data->slug;
-				return url($lang .'/'. $slug);
-			}
-
-
+		$endSlug = getSlug();
+        if ($endSlug == '' || in_array($endSlug, Common::getArrayLang())) {
+            return url($lang);
+        }
+		if($currentLang == $lang) {
+			return URL::current();
 		}
+		$obj = self::getObjectBySlug($endSlug);
+		if(in_array($obj['model_name'], Common::getArrayBoxCommon())) {
+            return self::getSlugByObject('BoxCommon', $obj, $lang);
+		}
+        if (in_array($obj['model_name'], Common::getArrayAdminLanguage())) {
+            return self::getSlugByObject('AdminLanguage', $obj, $lang);
+        }
 
 	}
 
-	public static function getListBoxCommon($modelName, $modelId)
+	public static function getListIdsCommon($table, $modelName, $modelId)
 	{
-		$ids = BoxCommon::where('model_name', $modelName)
+		$ids = $table::where('model_name', $modelName)
 							->where('model_id', $modelId)
 							->groupBy('relate_id')->lists('relate_id');
 		return $ids;
 	}
+
+    public static function getSlugByObject($table, $obj, $lang)
+    {
+        $currentLang = getLanguage();
+        if($currentLang == VI) {
+            $ids = self::getListIdsCommon($table, $obj['model_name'], $obj['model_object']->id);
+        } else {
+            $ids = $table::where('model_name', $obj['model_name'])
+                        ->where('relate_id', $obj['model_object']->id)
+                        ->lists('model_id');
+            if($lang == VI) {
+                $ids = $ids;
+            } else {
+                $idVi = $ids[0];
+                $ids = self::getListIdsCommon($obj['model_name'], $idVi);
+            }
+        }
+        $data = $obj['model_name']::where('language', $lang)->whereIn('id', $ids)->first();
+        $slug = $data->slug;
+        return url($lang .'/'. $slug);
+    }
+
+    public static function getOriginByProduct($orginId)
+    {
+    	$origin = Origin::find($orginId);
+    	if(isset($origin)) {
+    		return $origin->slug;	
+    	}
+    	return '';
+    }
+    public static function getSizeNameProduct($product)
+    {
+    	$listSize = $product->productSizes->lists('name');
+    	return $listSize;
+    }
+    public static function getMaterialNameProduct($product)
+    {
+    	$listSize = $product->productMaterials->lists('name');
+    	return $listSize;
+    }
+ 	public static function getCategoryNameProduct($product)
+    {
+    	$listSize = $product->productCategories->lists('name');
+    	return $listSize;
+    }
 
 }

@@ -1,21 +1,23 @@
 <div class="detail_shop">
-	<h1>Calacatta (AR-18FSSSCWK1)</h1>
+	<h1>{{ $data->name }}</h1>
 	<ul class="detail_shop_spec">
-		<li>Origin: Thailand</li>
-		<li>Type: Wall, 1 pm 12000 Btu / h</li>
-		<li>Cooling Turbo</li>
-		<li>Cooling faster, farther and evenly around the room</li>
-		<li>Triple Protection Strengthening</li>
-		<li>The deodorizing filter, catechin. Automated Cleaning</li>
-		<li>Installation, use and maintenance of intelligent</li>
-		<li>Warranty: 24 months</li>
+		<li>Origin: {{ Origin::find($data->origin_id)->name }}</li>
+		<li>Size: 
+			{{ implode(",", CommonSite::getSizeNameProduct($data)) }}    
+		</li>
+		<li>Material: {{ implode(",", CommonSite::getMaterialNameProduct($data)) }}</li>
+		<li>Category: {{ implode(",", CommonSite::getCategoryNameProduct($data)) }}</li>
+		<li>Surface: {{ Surface::find($data->surface_id)->name }}</li>
+		<li>Description: {{ $data->description }}</li>
 	</ul>
 	<div class="regular_price">
-		<span>750.000 &#273;</span>
-		<p>600.000 &#273;</p>
+		@if($data->price_old)
+		<span>{{ getFullPriceInVnd($data->price_old) }} &#273;</span>
+		@endif
+		<p>{{ getFullPriceInVnd($data->price) }} &#273;</p>
 	</div>
-	<p><strong>Availability:</strong> In Stock</p>
+	<p><strong>{{ trans('captions.availability') }}:</strong> {{ getQtyProduct($data->qty) }}</p>
 	<div class="detail_cart">
-		<a class="button add_cart"><i class="fa fa-shopping-cart"></i><span>Đặt mua</span></a>
+		<a class="button add_cart"><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.order_by') }}</span></a>
 	</div>
 </div>

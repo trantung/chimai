@@ -84,5 +84,4 @@ class CommonSlug
 		}
 		return $imageUrl;
 	}
-
 }

@@ -54,8 +54,7 @@ class CommonProperty extends CommonParent
 	// }
 	public static function getDefaultValue($modelName, $input)
 	{
-		if (in_array($modelName, ['Origin', 'Category', 'Material', 'Size', 'Surface',
-			'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage', 'Product', 'AdminNew'])) {
+		if (in_array($modelName, Common::getArrayAdminLanguage())) {
 
 			if($modelName == 'AdminVideo') {
 				$input['video_id'] = getYouTubeVideoId($input['link']);

@@ -87,7 +87,7 @@ class Common extends CommonParent
 
 	public static function getDefaultValue($modelName, $input)
 	{	
-		if (in_array($modelName, ['BoxType', 'BoxCollection', 'BoxProduct', 'BoxPromotion'])) {
+		if (in_array($modelName, self::getArrayBoxCommon())) {
 			return self::getDefaultArrayBox($input);
 		}
 		if (in_array($modelName, ['Product'])) {
@@ -486,6 +486,17 @@ class Common extends CommonParent
 				}
 			}
 		}
+	}
+
+	public static function getArrayBoxCommon()
+	{
+		return ['BoxType', 'BoxProduct', 'BoxCollection', 'BoxPromotion'];
+	}	
+
+	public static function getArrayAdminLanguage()
+	{
+		return ['Origin', 'Category', 'Material', 'Size', 'Surface',
+            'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage', 'Product', 'AdminNew'];
 	}
 
 }

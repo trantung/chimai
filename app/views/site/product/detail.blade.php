@@ -7,12 +7,11 @@
 @section('content')
 
 	<?php
-		$breadcrumb = array(
-			['name' => trans('captions.product'), 'link' => action('SiteProductController@index')],
-			['name' => 'Calacatta (AR-18FSSSCWK1)', 'link' => '']
-		);
+		// $breadcrumb = array(
+		// 	['name' => trans('captions.product'), 'link' => action('SiteProductController@index')],
+		// 	['name' => 'Calacatta (AR-18FSSSCWK1)', 'link' => '']
+		// );
 	?>
-	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
 
 	<div class="main_container">
 		<div class="row">

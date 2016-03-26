@@ -8,7 +8,7 @@
 
 	<?php
 		$breadcrumb = array(
-			['name' => trans('captions.collection'), 'link' => '']
+			['name' => $data->name_menu, 'link' => '']
 		);
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
@@ -18,66 +18,46 @@
 			<div class="column">
 				<!--catalog list-->
 				<div class="row">
+					@foreach($boxPdfs as $kBoxPdf => $vBoxPdf)
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@catalogue') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
+								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxPdf', $vBoxPdf)) }}"/></a>
 							</div>
-							<a href="{{ action('SiteCatalogueController@catalogue') }}" class="collect-text">
-								<span>Catalogue</span>
+							<a href="#" class="collect-text">
+								<span>{{ $vBoxPdf->name}}</span>
 							</a>
 						</div>
 					</div>
+					@endforeach
+
+					@foreach($boxShowRooms as $kBoxShowRoom => $vBoxShowRoom)
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@gallery') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
+								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxShowRoom', $vBoxShowRoom)) }}"/></a>
 							</div>
-							<a href="{{ action('SiteCatalogueController@gallery') }}" class="collect-text">
-								<span>Showroom trưng bày</span>
+							<a href="#" class="collect-text">
+								<span>{{ $vBoxShowRoom->name}}</span>
 							</a>
 						</div>
 					</div>
+					@endforeach
+
+					@foreach($boxVideos as $kBoxVideo => $vBoxVideo)
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@gallery') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
+								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxVideo', $vBoxVideo)) }}"/></a>
 							</div>
-							<a href="{{ action('SiteCatalogueController@gallery') }}" class="collect-text">
-								<span>Công trình đã thực hiện</span>
+							<a href="#" class="collect-text">
+								<span>{{ $vBoxVideo->name}}</span>
 							</a>
 						</div>
 					</div>
-					<div class="medium-3 columns">
-						<div class="collect-item">
-							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@gallery') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<a href="{{ action('SiteCatalogueController@gallery') }}" class="collect-text">
-								<span>Công nhận chất lượng</span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-3 columns">
-						<div class="collect-item">
-							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@gallery') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<a href="{{ action('SiteCatalogueController@gallery') }}" class="collect-text">
-								<span>Giải thưởng đạt được</span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-3 columns end">
-						<div class="collect-item">
-							<div class="grid_img">
-								<a href="{{ action('SiteCatalogueController@video') }}"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<a href="{{ action('SiteCatalogueController@video') }}" class="collect-text">
-								<span>Video</span>
-							</a>
-						</div>
-					</div>
+					@endforeach
+
+					
 					
 				</div>
 			</div>

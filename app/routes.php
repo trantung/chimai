@@ -123,22 +123,20 @@ Route::group(
 	{
 
 		// demo page
-		Route::get('/collection', 'SiteBoxCollectionController@collection');
-		Route::get('/catalogue', 'SiteBoxCollectionController@catalogue');
-		Route::get('/gallery', 'SiteBoxCollectionController@gallery');
-		Route::get('/video', 'SiteBoxCollectionController@video');
+		// Route::get('/collection', 'SiteBoxCollectionController@collection');
+		// Route::get('/catalogue', 'SiteBoxCollectionController@catalogue');
+		// Route::get('/gallery', 'SiteBoxCollectionController@gallery');
+		// Route::get('/video', 'SiteBoxCollectionController@video');
 
-		Route::get('/orders', 'SiteOrdersController@orders');
-		Route::get('/orders_detail', 'SiteOrdersController@orders_detail');
+		// Route::get('/orders', 'SiteOrdersController@orders');
+		// Route::get('/orders_detail', 'SiteOrdersController@orders_detail');
 
-		Route::get('/news', 'SiteNewsController@index');
-		Route::get('/news-detail', 'SiteNewsController@detail');
+		// Route::get('/news', 'SiteNewsController@index');
+		// Route::get('/news-detail', 'SiteNewsController@detail');
 
-		Route::get('/product', 'SiteBoxProductController@index');
-		Route::get('/product-detail', 'SiteBoxProductController@detail');
+		// Route::get('/product', 'SiteBoxProductController@index');
+		// Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
-
-		
 
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');

@@ -9,15 +9,6 @@ class SiteIndexController extends SiteController {
 	 */
 	public function index()
 	{
-		$menu = BoxCommon::where('position', MENU)
-			->where('status', ENABLED)
-			->get();
-		$content = BoxCommon::where('position', CONTENT)
-			->where('status', ENABLED)
-			->get();
-		$footer = BoxCommon::where('position', FOOTER)
-			->where('status', ENABLED)
-			->get();
 		return View::make('site.index');
 	}
 
@@ -95,105 +86,56 @@ class SiteIndexController extends SiteController {
 	{	
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
-			// $boxType = $object['model_object'];
-			// $data = TypeNew::where('box_type_id', $boxType->id)
-			// 	->where('status', ACTIVE)
-			// 	->orderBy('weight_number', 'asc')
-			// 	->take(TAKE_NUMBER_BOX_TYPE)
-			// 	->get();
 			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id', TAKE_NUMBER_BOX_TYPE);
 			return View::make('site.about.index')->with(compact('data'));
 		}
 		if ($object['model_name'] == 'TypeNew') {
-			// $data = AdminNew::where('type_new_id', $object['model_object']->id)
-			// 	->where('status', ACTIVE)
-			// 	->orderBy('weight_number', 'asc')
-			// 	->paginate(FRONENDPAGINATE);
 			$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
 			return View::make('site.news.list')->with(compact('data'));
 		}
-		dd(1);
+		if ($object['model_name'] == 'BoxPromotion') {
+			$data = BoxPromotion::findbySlug($slug);
+			$products = Product::where('status', ACTIVE)
+							->where('price_old', '!=', '')
+							->where('language', getLanguage())
+							->paginate(FRONENDPAGINATE);
+			return View::make('site.product.list')->with(compact('products', 'data'));
+		}
+		if ($object['model_name'] == 'BoxCollection') {
+			$data = BoxCollection::findbySlug($slug);
+			$boxPdfs = $data->boxPdfs;
+			$boxVideos = $data->boxVideos;
+			$boxShowRooms = $data->boxShowRooms;
+			return View::make('site.catalogue.collection')->with(compact('boxPdfs', 'boxVideos', 'boxShowRooms', 'data'));
+		}
+		if ($object['model_name'] == 'BoxProduct') {
+			$data = BoxProduct::findbySlug($slug);
+			$origins = $data->origins;
+			foreach ($origins as $key => $value) {
+				$arrayOriginId[] = $value->id;
+			}
+			$products = Product::whereIn('origin_id', $arrayOriginId)->paginate(FRONENDPAGINATE);
+			return View::make('site.product.list')->with(compact('products', 'data'));
+		}
+		if ($object['model_name'] == 'Origin') {
+			$data = Origin::findbySlug($slug);
+			$products = Product::where('status', ACTIVE)
+							->where('origin_id', $data->id)
+							->where('language', getLanguage())
+							->paginate(FRONENDPAGINATE);
+			return View::make('site.product.list')->with(compact('products', 'data'));
+		}
+
+		dd(4);
 	}
 	public function slugChild($slug, $slugChild)
 	{	
-		dd(1);
-		//from $slug to get model_name and model_id in the menus table
-		$menu = Menu::findBySlug($slug);
-		if (empty($menu)) {
-			return Redirect::action('SiteIndexController@404');
-		}
-		if ($menu->model_name == 'AboutUs') {
-			return Redirect::action('SiteIndexController@aboutUs');
-		}
-		if ($menu->model_name == 'Contact') {
-			return Redirect::action('SiteIndexController@contact');
-		}
-		return Redirect::action('SiteIndexController@typeNew');
-	}
+		$object = CommonSite::getObjectBySlug($slugChild);
+		if ($object['model_name'] == 'Product') {
 
-	public function sendLang()
-	{
-		$input = Input::all();
-		if ($input['lang'] == $input['lang_current']) {
-			return $input['url'];
-		}
-		else{
-			if($input['lang_current'] == 'vi') {
-				if($input['link_url'] == 'gioi-thieu') {
-					return url('/en/about');
-				}
-				if($input['link_url'] == 'lien-he') {
-					return url('/en/contact');
-				}
-				if(!empty($input['link_url'])) {
-					$type = TypeNew::findBySlug($input['link_url']);
-					if(!empty($type)) {
-						$obj = Common::objectLanguage2('TypeNew', $type->id, LANG_VI);
-						$slug = $obj->slug;
-					}
-				} else {
-					$slug = '';
-				}
-				if(!empty($input['link_url2'])){
-					$news = AdminNew::findBySlug($input['link_url2']);
-					if(!empty($news)) {
-						$obj = Common::objectLanguage2('AdminNew', $news->id, LANG_VI);
-						$slugChild = $obj->slug;
-					}
-				} else {
-					$slugChild = '';
-				}
-				return url('/en/'.$slug.'/'.$slugChild);
-			}
-			if($input['lang_current'] == 'en') {
-				if($input['link_url'] == 'about') {
-					return url('/vi/gioi-thieu');
-				}
-				if($input['link_url'] == 'contact') {
-					return url('/vi/lien-he');
-				}
-				if(!empty($input['link_url'])) {
-					$type = TypeNew::findBySlug($input['link_url']);
-					if(!empty($type)) {
-						$obj = Common::objectLanguage2('TypeNew', $type->id, LANG_EN);
-						$slug = $obj->slug;
-					}
-				} else {
-					$slug = '';
-				}
-				if(!empty($input['link_url2'])){
-					$news = AdminNew::findBySlug($input['link_url2']);
-					if(!empty($news)) {
-						$obj = Common::objectLanguage2('AdminNew', $news->id, LANG_EN);
-						$slugChild = $obj->slug;
-					}
-				} else {
-					$slugChild = '';
-				}
-				return url('/vi/'.$slug.'/'.$slugChild);
-			}
+			$data = Product::findbySlug($slugChild);
+			return View::make('site.product.detail')->with(compact('data'));
 		}
 	}
-
 
 }

@@ -224,3 +224,17 @@ function getLanguage()
 		return $lang;
 	}
 }
+function getSlug()
+{
+	$currentUri = $_SERVER['REQUEST_URI'];
+	$array = explode('/', $currentUri);
+	$array2 = explode('?', end($array));
+	return $array2[0];
+}
+function getQtyProduct($qty)
+{
+	if ($qty > 0) {
+		return trans('captions.instock');
+	}
+	return trans('captions.notinstock');
+}

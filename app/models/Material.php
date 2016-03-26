@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Material extends Eloquent
+class Material extends Eloquent implements SluggableInterface
 {
 	use SoftDeletingTrait;
 	use SluggableTrait;
