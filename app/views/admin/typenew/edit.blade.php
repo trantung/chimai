@@ -78,7 +78,7 @@
 	                <label>Trạng thái</label>
 	                <div class="row">
 						<div class="col-sm-6">
-		                	{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
+		                	{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
 		                </div>
 					</div>
               	</div>
