@@ -138,10 +138,12 @@ Route::group(
 		Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
 
+		
+
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
 
-		Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteBoxTypeController@index');
+		// Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteBoxTypeController@index');
 		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
 		Route::post(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@contact');
 

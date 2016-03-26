@@ -18,26 +18,26 @@
 			<div class="bt-box">
 				<h3>{{ trans('captions.support') }}</h3>
 				<ul>
-					@foreach($footer as $value)
-						@if($value->model_name == 'BoxType')
+					@foreach($footer as $valueFooter)
+						@if($valueFooter->model_name == 'BoxType')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxType')->name_footer }}</a>
 							</li>
 						@endif
-						@if($value->model_name == 'BoxProduct')
+						@if($valueFooter->model_name == 'BoxProduct')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxProduct')->name_footer }}</a>
 							</li>
 						@endif
-						@if($value->model_name == 'BoxCollection')
+						@if($valueFooter->model_name == 'BoxCollection')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxCollection')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxCollection')->name_footer }}</a>
 							</li>
 						@endif
-						@if($value->model_name == 'BoxPromotion')
+						@if($valueFooter->model_name == 'BoxPromotion')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($valueFooter, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($valueFooter, 'BoxPromotion')->name_footer }}</a>

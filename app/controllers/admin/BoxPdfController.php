@@ -130,8 +130,8 @@ class BoxPdfController extends AdminController {
 	private function getConfigImage($input)
 	{
 		return array(
-				'w' => IMAGE_CATALOG_WIDTH, 
-				'h' => IMAGE_CATALOG_HEIGHT, 
+				'w' => IMAGE_WIDTH, 
+				'h' => IMAGE_HEIGHT, 
 				'mode' => IMAGE_MODE_FILL
 			);
 	}
