@@ -18,26 +18,26 @@
 			<div class="bt-box">
 				<h3>{{ trans('captions.support') }}</h3>
 				<ul>
-					@foreach($footer as $valueFooter)
-						@if($valueFooter->model_name == 'BoxType')
+					@foreach($footer as $value)
+						@if($value->model_name == 'BoxType')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxType')->name_footer }}</a>
 							</li>
 						@endif
-						@if($valueFooter->model_name == 'BoxProduct')
+						@if($value->model_name == 'BoxProduct')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxProduct')->name_footer }}</a>
 							</li>
 						@endif
-						@if($valueFooter->model_name == 'BoxCollection')
+						@if($value->model_name == 'BoxCollection')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxCollection')->name_footer }}</a>
 							</li>
 						@endif
-						@if($valueFooter->model_name == 'BoxPromotion')
+						@if($value->model_name == 'BoxPromotion')
 							<li>
 								<i class="fa fa-caret-right"></i>
 								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->name_footer }}</a>
@@ -52,9 +52,9 @@
 			<div class="bt_newsletter">
 				<h3>{{ trans('captions.follow') }}</h3>
 				<div class="bottom-social">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-google-plus"></i></a>
-					<a href="#"><i class="fa fa-instagram"></i></a>
+					<a href="{{ CommonConfig::getCode(SOCIAL_URL_FACEBOOK) }}"><i class="fa fa-facebook"></i></a>
+					<a href="{{ CommonConfig::getCode(SOCIAL_URL_GOOGLE) }}"><i class="fa fa-google-plus"></i></a>
+					<a href="{{ CommonConfig::getCode(SOCIAL_URL_INSTAGRAM) }}"><i class="fa fa-instagram"></i></a>
 				</div>
 				<p class="bt_newsletter_title">{{ trans('captions.newsletter') }}</p>
 				{{ Form::open(array('action' => 'SiteContactController@newsletter', 'method' => 'POST')) }}

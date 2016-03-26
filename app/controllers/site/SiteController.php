@@ -3,6 +3,9 @@
 class SiteController extends BaseController {
 
 	public function __construct() {
+
+		$lang = getLanguage();
+
 		$menu = BoxCommon::where('position', MENU)
 			->where('status', ENABLED)
 			->orderBy('weight_number', 'asc')
@@ -26,6 +29,7 @@ class SiteController extends BaseController {
 			View::share('script', $seoDefault);
 		}
 
+		View::share('lang', $lang);
 		View::share('menu', $menu);
 		View::share('content', $content);
 		View::share('footer', $footer);

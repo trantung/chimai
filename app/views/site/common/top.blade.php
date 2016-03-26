@@ -34,9 +34,10 @@
 		<div class="medium-4 columns cart-area">
 			<div class="custom-block">
 				<ul>
-					<li><i class="fa fa-phone"></i>1900 561 252</li>
-					<li><a href="#" class="custom-block-lang">VIE</a></li>
-					<li><a href="#" class="custom-block-lang">ENG</a></li>
+					<li><i class="fa fa-phone"></i>{{ CommonConfig::getCode(HOTLINE_PHONE) }}</li>
+
+					@include('site.common.lang')
+
 					<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">2</span></a></li>
 				</ul> 
 			</div>
@@ -64,9 +65,10 @@
 	<div class="columns cart-area">
 		<div class="custom-block">
 			<ul>
-				<li><i class="fa fa-phone"></i>1900 561 252</li>
-				<li><a href="#" class="custom-block-lang">VIE</a></li>
-				<li><a href="#" class="custom-block-lang">ENG</a></li>
+				<li><i class="fa fa-phone"></i>{{ CommonConfig::getCode(HOTLINE_PHONE) }}</li>
+				
+				@include('site.common.lang')
+
 				<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">2</span></a></li>
 			</ul> 
 		</div>

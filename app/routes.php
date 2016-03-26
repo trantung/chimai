@@ -138,13 +138,11 @@ Route::group(
 		Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
 
-		Route::get('/{slug}', 'SiteIndexController@slug');
-		Route::get('/{slug}/{slugChild}', 'SiteIndexController@slugChild');
+		
 
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
-		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-		Route::resource('/', 'SiteIndexController');
+		
 
 		Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteBoxTypeController@index');
 		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
@@ -166,6 +164,11 @@ Route::group(
 
 		Route::get(LaravelLocalization::transRoute('routes.slug'), 'SiteTypeController@showSlug');
 		Route::get(LaravelLocalization::transRoute('routes.slugDetail'), 'SiteTypeController@showChildSlug');
+
+		/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+		Route::resource('/', 'SiteIndexController');
+		Route::get('/{slug}', 'SiteIndexController@slug');
+		Route::get('/{slug}/{slugChild}', 'SiteIndexController@slugChild');
 
 	}
 );

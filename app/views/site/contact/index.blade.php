@@ -60,28 +60,28 @@
 										<i class="fa fa-map-marker"></i>
 										<p>
 										<strong>{{ trans('captions.address') }}:</strong>
-										<span>123 Street Name, City, England</span>
+										<span>{{ CommonConfig::getCode(CONTACT_ADDRESS) }}</span>
 										</p>
 									</li>
 									<li>
 										<i class="fa fa-phone"></i>
 										<p>
 										<strong>{{ trans('captions.phone') }}:</strong>
-										<span>(123) 456-7890</span>
+										<span>{{ CommonConfig::getCode(CONTACT_PHONE) }}</span>
 										</p>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o"></i>
 										<p>
 										<strong>{{ trans('captions.email') }}:</strong>
-										<span>aircoller@himani.com</span>
+										<span>{{ CommonConfig::getCode(CONTACT_EMAIL) }}</span>
 										</p>
 									</li>
 									<li>
 										<i class="fa fa-clock-o"></i>
 										<p>
 										<strong>{{ trans('captions.working_time') }}:</strong>
-										<span>Mon - Sun / 9:00AM - 8:00PM</span>
+										<span>{{ CommonConfig::getCode(CONTACT_WORKING_TIME) }}</span>
 										</p>
 									</li>
 								</ul>
