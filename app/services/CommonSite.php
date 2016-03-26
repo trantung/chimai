@@ -28,6 +28,7 @@ class CommonSite
         $input['device'] = getDevice();
         return $input;
     }
+
     public static function getArrayModelSite()
     {
         $array = ['BoxType', 'BoxProduct', 'BoxCollection', 'Origin', 'BoxPdf',
@@ -35,6 +36,7 @@ class CommonSite
         ];
         return $array;
     }
+
     public static function getObjectBySlug($slug)
     {
         $arrayBox = self::getArrayModelSite();
@@ -45,8 +47,9 @@ class CommonSite
                 $commonModel[$key]['model_name'] = $value;
             }
         }
-        return array_values($commonModel)[0];
+        return $commonModel[0];
     }
+
     public static function getDataByModelSlug($object, $modelName, $field, $paginate = null)
     {
         $data = $modelName::where($field, $object['model_object']->id)
@@ -59,6 +62,52 @@ class CommonSite
             $data = $data->paginate(FRONENDPAGINATE);
         }
         return $data;
+    }
+
+    public static function getUrlByLang($lang)
+    {
+        $currentLang = getLanguage();
+        $currentUrl = URL::current();
+        $currentUri = $_SERVER['REQUEST_URI'];
+        $currentSegment1 = Request::segment(1);
+        if(isset($currentSegment1)) {
+            $currentSegment1 = substr($currentUri, 4);
+            if($currentLang == $lang) {
+                return $currentUrl;
+            }
+            $obj = self::getObjectBySlug($currentSegment1);
+            if(in_array($obj['model_name'], ['BoxType', 'BoxProduct', 'BoxCollection', 'BoxPdf',
+            'BoxVideo', 'BoxShowRoom'])) {
+                if($currentLang == VI) {
+                    $ids = self::getListBoxCommon($obj['model_name'], $obj['model_object']->id);
+                } else {
+                    $ids = BoxCommon::where('model_name', $obj['model_name'])
+                                ->where('relate_id', $obj['model_object']->id)
+                                ->lists('model_id');
+                    if($lang == VI) {
+                        $ids = $ids;
+                    } else {
+                        $idVi = $ids[0];
+                        $ids = self::getListBoxCommon($obj['model_name'], $idVi);
+                    }
+
+                }
+                $data = $obj['model_name']::where('language', $lang)->whereIn('id', $ids)->first();
+                $slug = $data->slug;
+                return url($lang .'/'. $slug);
+            }
+
+
+        }
+
+    }
+
+    public static function getListBoxCommon($modelName, $modelId)
+    {
+        $ids = BoxCommon::where('model_name', $modelName)
+                            ->where('model_id', $modelId)
+                            ->groupBy('relate_id')->lists('relate_id');
+        return $ids;
     }
 
 }
