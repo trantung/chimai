@@ -1,5 +1,6 @@
-@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+<?php $arrayLang = Common::getArrayLangNotVi(); ?>
+@foreach($arrayLang as $key => $value)
 	<li>
-		<a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode) }}" class="custom-block-lang">{{ $localeCode }}</a>
+		<a rel="alternate" hreflang="{{ $value }}" href="{{ CommonSite::getUrlByLang($value) }}" class="custom-block-lang">{{ $value }}</a>
 	</li>
 @endforeach
