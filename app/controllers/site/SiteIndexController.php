@@ -95,19 +95,21 @@ class SiteIndexController extends SiteController {
 	{	
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
-			$boxType = $object['model_object'];
-			$data = TypeNew::where('box_type_id', $boxType->id)
-				->where('status', ACTIVE)
-				->orderBy('weight_number', 'asc')
-				->take(TAKE_NUMBER_BOX_TYPE)
-				->get();
+			// $boxType = $object['model_object'];
+			// $data = TypeNew::where('box_type_id', $boxType->id)
+			// 	->where('status', ACTIVE)
+			// 	->orderBy('weight_number', 'asc')
+			// 	->take(TAKE_NUMBER_BOX_TYPE)
+			// 	->get();
+			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id', TAKE_NUMBER_BOX_TYPE);
 			return View::make('site.about.index')->with(compact('data'));
 		}
 		if ($object['model_name'] == 'TypeNew') {
-			$data = AdminNew::where('type_new_id', $object['model_object']->id)
-				->where('status', ACTIVE)
-				->orderBy('weight_number', 'asc')
-				->paginate(FRONENDPAGINATE);
+			// $data = AdminNew::where('type_new_id', $object['model_object']->id)
+			// 	->where('status', ACTIVE)
+			// 	->orderBy('weight_number', 'asc')
+			// 	->paginate(FRONENDPAGINATE);
+			$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
 			return View::make('site.news.list')->with(compact('data'));
 		}
 		dd(1);
