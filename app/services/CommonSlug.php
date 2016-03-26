@@ -16,7 +16,11 @@ class CommonSlug
 			}
 		}
 	}
+	public static function getSlugByModel($data, $modelName, $lang = null)
+	{
+		return $modelName::find($data->id);
 
+	}
 	public static function getOriginByLanguage()
 	{
 		$listOrigins = AdminLanguage::where('model_name', 'Origin')
@@ -59,8 +63,25 @@ class CommonSlug
 	}
 	public static function getImageUrlByModel($modelName, $data)
 	{
+		// UPLOADIMG . '/BoxType/' . $boxVi->id . '/' . $boxVi->image_url
 		$ob = self::getSlugByLanguage($data, $modelName, VI);
 		$imageUrl = 'images/'. $modelName . '/' . $ob->id .'/'. $ob->image_url;
+		return $imageUrl;
+	}
+	public static function getImageUrlNotBox($modelName, $data)
+	{
+		if (getLanguage() == VI) {
+			$imageUrl = UPLOADIMG . '/'. $modelName .'/' . $data->id . '/' . $data->image_url;
+		} else {
+			$obModel = AdminLanguage::where('model_name', $modelName)
+				->where('relate_id', $data->id)
+				->where('status', ACTIVE)
+				->first();
+			if ($obModel) {
+				$dataModel = $modelName::find($obModel->model_id);
+				$imageUrl = UPLOADIMG . '/'. $modelName .'/' . $dataModel->id . '/' . $dataModel->image_url;
+			}
+		}
 		return $imageUrl;
 	}
 

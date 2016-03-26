@@ -28,5 +28,25 @@ class CommonSite
         $input['device'] = getDevice();
         return $input;
     }
+    public static function getArrayModelSite()
+    {
+        $array = ['BoxType', 'BoxProduct', 'BoxCollection', 'Origin', 'BoxPdf',
+            'BoxVideo', 'BoxShowRoom', 'TypeNew'
+        ];
+        return $array;
+    }
+    public static function getObjectBySlug($slug)
+    {
+        $arrayBox = self::getArrayModelSite();
+        foreach ($arrayBox as $key => $value) {
+            $ob = $value::findBySlug($slug);
+            if (isset($ob)) {
+                $commonModel[$key]['model_object'] = $ob;
+                $commonModel[$key]['model_name'] = $value;
+            }
+        }
+        return array_values($commonModel)[0];
+    }
+
 
 }

@@ -44,22 +44,12 @@
 						<td>{{ $value->model_id }}</td>
 						<td>{{ Common::getNameByBoxCommon($value) }} </td>
 						<td>{{ Common::getBoxNameByBoxCommon($value) }}</td>
-						@if(Admin::isAdmin())
-							<td><input type="text" name="weight_number[]" value="{{ $value->weight_number }}" class="only_number" style="width: 50px; text-align: center;" /></td>
-						@else
-							<td> </td>
-						@endif
-						@if(Admin::isAdmin())
-							<td>
-								{{ Form::select('status[]', Common::getStatus(), Common::getValueCommonBox($value->model_id, $value->model_name, MENU, 'status'), array('class' => 'form-control')) }}
-							</td>
-						@else
-							<td> </td>
-						@endif
+						<td><input type="text" name="weight_number[]" value="{{ $value->weight_number }}" class="only_number" style="width: 50px; text-align: center;" /></td>
 						<td>
-						@if(Admin::isAdmin())
+							{{ Form::select('status[]', Common::getStatus(), Common::getValueCommonBox($value->model_id, $value->model_name, MENU, 'status'), array('class' => 'form-control')) }}
+						</td>
+						<td>
 							<a href="{{ action('AdminMenuController@edit', $value->id) }}" class="btn btn-danger">Sửa</a>
-						@endif
 						</td>
 					</tr>
 					@endforeach
