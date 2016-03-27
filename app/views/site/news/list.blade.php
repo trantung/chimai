@@ -23,7 +23,7 @@
 							<img src="{{ url(CommonSlug::getImageUrlNotBox('AdminNew', $new)) }}" />
 						</div>
 						<div class="medium-9 columns">
-							<h4><a href="{{ url(LaravelLocalization::setLocale() . '/' . TypeNew::find($new->type_new_id)->slug . '/' . $new->slug) }}">{{ $new->name }}</a></h4>
+							<h4><a href="{{ CommonSlug::getUrlSlug(TypeNew::find($new->type_new_id)->slug, $new->slug) }}">{{ $new->name }}</a></h4>
 							<p>{{ CommonSlug::getSlugByModel($new, 'AdminNew')->sapo }}</p>
 						</div>
 					</div>

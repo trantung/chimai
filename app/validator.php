@@ -41,3 +41,17 @@ Validator::extend('youtube_url', function($attribute, $value, $parameters)
 	return false;
 
 });
+// check unique slug
+Validator::extend('unique_value', function($attribute, $value, $parameters)
+{
+	//list table with slug
+	$tables = ['BoxType', 'BoxProduct', 'BoxCollection', 'BoxPromotion', 'Origin', 'Category', 'Material', 'Surface', 'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'Product', 'AdminNew'];
+	$slug = convert_string_vi_to_en($value);
+	foreach($tables as $k => $v) {
+		$checkSlug = $v::where('slug', $slug)->first();
+		if(isset($checkSlug)) {
+			return false;
+		}
+	}
+	return true;
+});

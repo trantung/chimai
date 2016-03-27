@@ -84,4 +84,14 @@ class CommonSlug
 		}
 		return $imageUrl;
 	}
+	// duong dan slug, bo vi/ tren duong dan khi ngon ngu = VI
+	public static function getUrlSlug($slug, $slugChild = NULL)
+	{
+		if(isset($slugChild)) {
+			return url(LaravelLocalization::setLocale() . '/' . $slug . '/' . $slugChild);
+		} else {
+			return url(LaravelLocalization::setLocale() . '/' . $slug);	
+		}
+	}
+
 }

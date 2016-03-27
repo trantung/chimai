@@ -21,14 +21,7 @@
 					<div class="grid">
 						<div class="row">
 							@foreach($products as $kProduct => $vProduct)
-							<?php 
-								if($kProduct == $products->getTotal()-1) {
-									$end = 'end';
-								} else {
-									$end = '';
-								} 
-							?>
-							<div class="medium-3 columns {{ $end }}">
+							<div class="medium-3 columns {{ CommonSite::getClassEnd($kProduct, $products) }}">
 								<div class="grid-item">
 									<div class="grid_img">
 										<a href="{{ url(LaravelLocalization::setLocale() . '/' . CommonSite::getOriginByProduct($vProduct->origin_id) . '/' . $vProduct->slug) }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('Product', $vProduct)) }}" /></a>

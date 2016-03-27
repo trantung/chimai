@@ -1,6 +1,5 @@
 <?php
 return array(
-	"about" => "gioi-thieu", //we add a route parameter
 	"contact" => "lien-he",
 	"account" => "thong-tin-tai-khoan",
 	"register" => "dang-ky",

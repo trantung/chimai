@@ -81,10 +81,12 @@ class CommonSite
 			
 			foreach($array1 as $k1 => $v1) {
 				if ($endSlug == $v1) {
-					$url = url($lang . '/' . $array2[$k1]);
+					// $url = url($lang . '/' . $array2[$k1]);
+					$url = self::getUrlLang($lang, $array2[$k1]);
 				}
 				if ($endSlug == $array2[$k1]) {
-					$url = url($lang . '/' . $v1);
+					// $url = url($lang . '/' . $v1);
+					$url = self::getUrlLang($lang, $v1);
 				}
 			}
 			return $url;
@@ -92,7 +94,8 @@ class CommonSite
 
 		if(checkSlug() == false) {
 			if ($endSlug == '' || in_array($endSlug, Common::getArrayLang())) {
-	            return url($lang);
+	            // return url($lang);
+	            return self::getUrlLang($lang);
 	        }
 			$obj = self::getObjectBySlug($endSlug);
 			if(in_array($obj['model_name'], Common::getArrayBoxCommon())) {
@@ -110,7 +113,8 @@ class CommonSite
 				$slug = self::commonSlugByObject('AdminLanguage', $obj, $lang);
 				$origin = Origin::find(Product::findBySlug($slug)->origin_id);
 				$originSlug = $origin->slug;
-				return url($lang .'/'. $originSlug. '/' . $slug);
+				// return url($lang .'/'. $originSlug. '/' . $slug);
+				return self::getUrlLang($lang, $originSlug. '/' . $slug);
 			}
 			//new
 			if ($obj['model_name'] == 'AdminNew') {
@@ -118,8 +122,18 @@ class CommonSite
 				$slug = self::commonSlugByObject('AdminLanguage', $obj, $lang);
 				$type_new = TypeNew::find(AdminNew::findBySlug($slug)->type_new_id);
 				$type_newSlug = $type_new->slug;
-				return url($lang .'/'. $type_newSlug. '/' . $slug);
+				// return url($lang .'/'. $type_newSlug. '/' . $slug);
+				return self::getUrlLang($lang, $type_newSlug. '/' . $slug);
 			}
+		}
+	}
+	// bo vi/ tren duong dan khi ngon ngu = VI
+	public static function getUrlLang($lang, $url = '')
+	{
+		if($lang == VI) {
+			return url($url);
+		} else {
+			return url($lang . '/' . $url);
 		}
 	}
 	public static function getListIdsCommon($table, $modelName, $modelId)
@@ -133,7 +147,8 @@ class CommonSite
     public static function getSlugByObject($table, $obj, $lang)
     {
         $slug = self::commonSlugByObject($table, $obj, $lang);
-        return url($lang .'/'. $slug);
+        // return url($lang .'/'. $slug);
+        return self::getUrlLang($lang, $slug);
     }
     public static function commonSlugByObject($table, $obj, $lang)
     {
@@ -179,5 +194,13 @@ class CommonSite
     	$listSize = $product->productCategories->lists('name');
     	return $listSize;
     }
-
+    public static function getClassEnd($key, $data)
+    {
+    	if($key == ceil($data->getTotal()/FRONENDPAGINATE)-1) {
+			$end = 'end';
+		} else {
+			$end = '';
+		}
+		return $end;
+    }
 }

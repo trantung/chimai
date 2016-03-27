@@ -133,6 +133,11 @@ class SiteIndexController extends SiteController {
 							->paginate(FRONENDPAGINATE);
 			return View::make('site.product.list')->with(compact('products', 'data'));
 		}
+		if ($object['model_name'] == 'BoxPdf') {
+			$data = CommonSite::getDataByModelSlug($object, 'AdminPdf', 'type');
+			$title = $object['model_object']->name;
+			return View::make('site.catalogue.catalogue')->with(compact('data', 'title'));
+		}
 		dd(4);
 	}
 	public function slugChild($slug, $slugChild)

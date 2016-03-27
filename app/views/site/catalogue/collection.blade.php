@@ -22,9 +22,9 @@
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxPdf', $vBoxPdf)) }}"/></a>
+								<a href="{{ CommonSlug::getUrlSlug($vBoxPdf->slug) }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxPdf', $vBoxPdf)) }}"/></a>
 							</div>
-							<a href="#" class="collect-text">
+							<a href="{{ CommonSlug::getUrlSlug($vBoxPdf->slug) }}" class="collect-text">
 								<span>{{ $vBoxPdf->name}}</span>
 							</a>
 						</div>
@@ -35,9 +35,9 @@
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxShowRoom', $vBoxShowRoom)) }}"/></a>
+								<a href="{{ CommonSlug::getUrlSlug($vBoxShowRoom->slug) }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxShowRoom', $vBoxShowRoom)) }}"/></a>
 							</div>
-							<a href="#" class="collect-text">
+							<a href="{{ CommonSlug::getUrlSlug($vBoxShowRoom->slug) }}" class="collect-text">
 								<span>{{ $vBoxShowRoom->name}}</span>
 							</a>
 						</div>
@@ -48,17 +48,15 @@
 					<div class="medium-3 columns">
 						<div class="collect-item">
 							<div class="grid_img">
-								<a href="#"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxVideo', $vBoxVideo)) }}"/></a>
+								<a href="{{ CommonSlug::getUrlSlug($vBoxVideo->slug) }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('BoxVideo', $vBoxVideo)) }}"/></a>
 							</div>
-							<a href="#" class="collect-text">
+							<a href="{{ CommonSlug::getUrlSlug($vBoxVideo->slug) }}" class="collect-text">
 								<span>{{ $vBoxVideo->name}}</span>
 							</a>
 						</div>
 					</div>
 					@endforeach
 
-					
-					
 				</div>
 			</div>
 		</div>

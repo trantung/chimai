@@ -8,7 +8,7 @@
 
 	<?php
 		$breadcrumb = array(
-			['name' => $type->name, 'link' => url(LaravelLocalization::setLocale() . '/' . $type->slug)],
+			['name' => $type->name, 'link' => CommonSlug::getUrlSlug($type->slug)],
 			['name' => $data->name, 'link' => '']
 		);
 	?>
