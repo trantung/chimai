@@ -10,8 +10,4 @@ return array(
 	"cart" => "shopping-cart",
 	"checkout" => "checkout",
 	"checkout_success" => "checkout-success",
-
-	"slug" => '{slug}',
-	"slugDetail" => '{slug}/{childSlug}',
-	// other translated routes
 );

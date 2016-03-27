@@ -71,14 +71,29 @@ class CommonSite
 	public static function getUrlByLang($lang)
 	{
 		$currentLang = getLanguage();
+		if($currentLang == $lang) {
+			return URL::current();
+		}
 		$endSlug = getSlug();
+		$array1 = File::getRequire(base_path().'/app/lang/vi/routes.php');
+		$array2 = File::getRequire(base_path().'/app/lang/en/routes.php');
+		if (in_array($endSlug, $array1) || in_array($endSlug, $array2)) {
+			
+			foreach($array1 as $k1 => $v1) {
+				if ($endSlug == $v1) {
+					$url = url($lang . '/' . $array2[$k1]);
+				}
+				if ($endSlug == $array2[$k1]) {
+					$url = url($lang . '/' . $v1);
+				}
+			}
+			return $url;
+		}
+
 		if(checkSlug() == false) {
 			if ($endSlug == '' || in_array($endSlug, Common::getArrayLang())) {
 	            return url($lang);
 	        }
-			if($currentLang == $lang) {
-				return URL::current();
-			}
 			$obj = self::getObjectBySlug($endSlug);
 			if(in_array($obj['model_name'], Common::getArrayBoxCommon())) {
 	            return self::getSlugByObject('BoxCommon', $obj, $lang);
@@ -88,9 +103,6 @@ class CommonSite
 	        }
 		} else {
 			// product, new
-			if($currentLang == $lang) {
-				return URL::current();
-			}
 			$obj = self::getObjectBySlug($endSlug);
 			//product
 			if ($obj['model_name'] == 'Product') {

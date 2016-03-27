@@ -10,8 +10,4 @@ return array(
 	"cart" => "gio-hang",
 	"checkout" => "dat-hang",
 	"checkout_success" => "dat-hang-thanh-cong",
-
-	"slug" => '{slug}',
-	"slugDetail" => '{slug}/{childSlug}',
-	// other translated routes
 );
