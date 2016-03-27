@@ -14,3 +14,5 @@
 @if(isset($script))
 	{{ $script->footer_script }}
 @endif
+
+{{ CommonConfig::getCode(CHAT_SCRIPT) }}

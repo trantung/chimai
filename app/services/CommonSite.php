@@ -51,7 +51,7 @@ class CommonSite
         if(isset($commonModel)) {
             return array_values($commonModel)[0];    
         }
-        dd(1);
+        // dd(3);
 	}
 
 	public static function getDataByModelSlug($object, $modelName, $field, $paginate = null)
@@ -72,22 +72,44 @@ class CommonSite
 	{
 		$currentLang = getLanguage();
 		$endSlug = getSlug();
-        if ($endSlug == '' || in_array($endSlug, Common::getArrayLang())) {
-            return url($lang);
-        }
-		if($currentLang == $lang) {
-			return URL::current();
+		if(checkSlug() == false) {
+			if ($endSlug == '' || in_array($endSlug, Common::getArrayLang())) {
+	            return url($lang);
+	        }
+			if($currentLang == $lang) {
+				return URL::current();
+			}
+			$obj = self::getObjectBySlug($endSlug);
+			if(in_array($obj['model_name'], Common::getArrayBoxCommon())) {
+	            return self::getSlugByObject('BoxCommon', $obj, $lang);
+			}
+	        if (in_array($obj['model_name'], Common::getArrayAdminLanguage())) {
+	            return self::getSlugByObject('AdminLanguage', $obj, $lang);
+	        }
+		} else {
+			// product, new
+			if($currentLang == $lang) {
+				return URL::current();
+			}
+			$obj = self::getObjectBySlug($endSlug);
+			//product
+			if ($obj['model_name'] == 'Product') {
+				//get slug1 with slug2 = getSlug()
+				$slug = self::commonSlugByObject('AdminLanguage', $obj, $lang);
+				$origin = Origin::find(Product::findBySlug($slug)->origin_id);
+				$originSlug = $origin->slug;
+				return url($lang .'/'. $originSlug. '/' . $slug);
+			}
+			//new
+			if ($obj['model_name'] == 'AdminNew') {
+				//get slug1 with slug2 = getSlug()
+				$slug = self::commonSlugByObject('AdminLanguage', $obj, $lang);
+				$type_new = TypeNew::find(AdminNew::findBySlug($slug)->type_new_id);
+				$type_newSlug = $type_new->slug;
+				return url($lang .'/'. $type_newSlug. '/' . $slug);
+			}
 		}
-		$obj = self::getObjectBySlug($endSlug);
-		if(in_array($obj['model_name'], Common::getArrayBoxCommon())) {
-            return self::getSlugByObject('BoxCommon', $obj, $lang);
-		}
-        if (in_array($obj['model_name'], Common::getArrayAdminLanguage())) {
-            return self::getSlugByObject('AdminLanguage', $obj, $lang);
-        }
-
 	}
-
 	public static function getListIdsCommon($table, $modelName, $modelId)
 	{
 		$ids = $table::where('model_name', $modelName)
@@ -98,7 +120,12 @@ class CommonSite
 
     public static function getSlugByObject($table, $obj, $lang)
     {
-        $currentLang = getLanguage();
+        $slug = self::commonSlugByObject($table, $obj, $lang);
+        return url($lang .'/'. $slug);
+    }
+    public static function commonSlugByObject($table, $obj, $lang)
+    {
+    	$currentLang = getLanguage();
         if($currentLang == VI) {
             $ids = self::getListIdsCommon($table, $obj['model_name'], $obj['model_object']->id);
         } else {
@@ -114,7 +141,7 @@ class CommonSite
         }
         $data = $obj['model_name']::where('language', $lang)->whereIn('id', $ids)->first();
         $slug = $data->slug;
-        return url($lang .'/'. $slug);
+        return $slug;
     }
 
     public static function getOriginByProduct($orginId)

@@ -231,6 +231,25 @@ function getSlug()
 	$array2 = explode('?', end($array));
 	return $array2[0];
 }
+// check 1 hay 2 slug
+// false: 1 slug, true: 2 slug
+function checkSlug()
+{
+	$currentUri = $_SERVER['REQUEST_URI'];
+	$array = explode('/', $currentUri);
+	$end = end($array);
+	$count = count($array);
+	// dd($array);
+	if($count > 2) {
+		if(in_array($array[count($array)-2], Common::getArrayLang())) {
+			return false;
+		} else {
+			return true;
+		}
+	} else {
+		return false;
+	}
+}
 function getQtyProduct($qty)
 {
 	if ($qty > 0) {
