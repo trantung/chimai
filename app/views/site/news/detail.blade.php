@@ -8,8 +8,8 @@
 
 	<?php
 		$breadcrumb = array(
-			['name' => trans('captions.news'), 'link' => action('SiteNewsController@index')],
-			['name' => 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit', 'link' => '']
+			['name' => $type->name, 'link' => url(LaravelLocalization::setLocale() . '/' . $type->slug)],
+			['name' => $data->name, 'link' => '']
 		);
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
@@ -18,16 +18,12 @@
 		<div class="row">
 			<div class="medium-9 medium-push-3 columns">
 				<div class="news-inner detail">
-					<h1>Lorem ipsum dolor sit amet conse ctetur adipisicing elit</h1>
+					<h1>{{ $data->name }}</h1>
 					<div class="summary">
-						Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. 
+						{{ $data->sapo }} 
 					</div>
 					<div class="desc">
-						<p>Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. </p>
-						<p>Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. </p>
-						<p>Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. </p>
-						<p>Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. </p>
-						<p>Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. </p>
+						{{ $data->description }}
 					</div>
 				</div>
 			</div>
