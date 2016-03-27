@@ -9,6 +9,7 @@
 		<li>Category: {{ implode(",", CommonSite::getCategoryNameProduct($data)) }}</li>
 		<li>Surface: {{ Surface::find($data->surface_id)->name }}</li>
 		<li>Description: {{ $data->description }}</li>
+		<li>Unit: {{ AdminUnit::find($data->unit_id)->name }}</li>
 	</ul>
 	<div class="regular_price">
 		@if($data->price_old)
