@@ -196,11 +196,16 @@ class CommonSite
     }
     public static function getClassEnd($key, $data)
     {
-    	if($key == ceil($data->getTotal()/FRONENDPAGINATE)-1) {
-			$end = 'end';
-		} else {
-			$end = '';
-		}
-		return $end;
+    	$total = $data->getTotal();
+    	if($total <= FRONENDPAGINATE) {
+    		if($key == $total-1) {
+    			return 'end';
+    		}
+    	} else {
+			if($key == ceil($total/FRONENDPAGINATE)-1) {
+				return 'end';
+			}
+    	}
+		return '';
     }
 }
