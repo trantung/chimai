@@ -87,11 +87,13 @@ class SiteIndexController extends SiteController {
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
 			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id', TAKE_NUMBER_BOX_TYPE);
-			return View::make('site.about.index')->with(compact('data'));
+			$title = $object['model_object']->name_menu;
+			return View::make('site.about.index')->with(compact('data', 'title'));
 		}
 		if ($object['model_name'] == 'TypeNew') {
 			$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
-			return View::make('site.news.list')->with(compact('data'));
+			$title = $object['model_object']->name;
+			return View::make('site.news.list')->with(compact('data', 'title'));
 		}
 		if ($object['model_name'] == 'BoxPromotion') {
 			$data = BoxPromotion::findbySlug($slug);
@@ -114,7 +116,11 @@ class SiteIndexController extends SiteController {
 			foreach ($origins as $key => $value) {
 				$arrayOriginId[] = $value->id;
 			}
-			$products = Product::whereIn('origin_id', $arrayOriginId)->paginate(FRONENDPAGINATE);
+			$products = Product::where('status', ACTIVE)
+							->whereIn('origin_id', $arrayOriginId)
+							->orderByRaw(DB::raw("weight_number = '0', weight_number"))
+							->orderBy('created_at', 'desc')
+							->paginate(FRONENDPAGINATE);
 			return View::make('site.product.list')->with(compact('products', 'data'));
 		}
 		if ($object['model_name'] == 'Origin') {
@@ -122,20 +128,43 @@ class SiteIndexController extends SiteController {
 			$products = Product::where('status', ACTIVE)
 							->where('origin_id', $data->id)
 							->where('language', getLanguage())
+							->orderByRaw(DB::raw("weight_number = '0', weight_number"))
+							->orderBy('created_at', 'desc')
 							->paginate(FRONENDPAGINATE);
 			return View::make('site.product.list')->with(compact('products', 'data'));
 		}
-
 		dd(4);
 	}
 	public function slugChild($slug, $slugChild)
 	{	
 		$object = CommonSite::getObjectBySlug($slugChild);
 		if ($object['model_name'] == 'Product') {
-
-			$data = Product::findbySlug($slugChild);
-			return View::make('site.product.detail')->with(compact('data'));
+			// $data = Product::findbySlug($slugChild);
+			$data = Product::where('slug', $slugChild)
+						->where('status', ACTIVE)
+						->first();
+			if(isset($data)) {
+				return View::make('site.product.detail')->with(compact('data'));	
+			} else {
+				dd(404);
+			}
 		}
+		if ($object['model_name'] == 'AdminNew') {
+			// $type = TypeNew::findBySlug($slug);
+			// $data = AdminNew::findbySlug($slugChild);
+			$type = TypeNew::where('slug', $slug)
+						->where('status', ACTIVE)
+						->first();
+			$data = AdminNew::where('slug', $slugChild)
+						->where('status', ACTIVE)
+						->first();
+			if(isset($data) && isset($type)) {
+				return View::make('site.news.detail')->with(compact('data', 'type'));
+			} else {
+				dd(404);
+			}
+		}
+		dd(5);
 	}
 
 }

@@ -17,7 +17,7 @@ define('INACTIVEUSER', 'Chưa kích hoạt');
 //pagination manager admin
 define('PAGINATE', 20);
 //pagination frontend
-define('FRONENDPAGINATE', 8);
+define('FRONENDPAGINATE', 16);
 //url upload img
 define('UPLOADIMG', '/images');
 define('UPLOADPDF', '/pdf');

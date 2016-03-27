@@ -1,14 +1,14 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = trans('captions.news'); }}
+	{{ $title = $title; }}
 @stop
 
 @section('content')
 
 	<?php
 		$breadcrumb = array(
-			['name' => trans('captions.news'), 'link' => '']
+			['name' => $title, 'link' => '']
 		);
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
@@ -23,23 +23,14 @@
 							<img src="{{ url(CommonSlug::getImageUrlNotBox('AdminNew', $new)) }}" />
 						</div>
 						<div class="medium-9 columns">
-							<h4><a href="{{ action('SiteNewsController@detail') }}">test</a></h4>
-							{{ CommonSlug::getSlugByModel($new, 'AdminNew')->sapo }}
-						</div>
-					</div>	
-					@endforeach
-					<div class="row">
-						<div class="medium-3 columns">
-							<img src="{{ url('assets/imgs/a1.jpg') }}" />
-						</div>
-						<div class="medium-9 columns">
-							<h4><a href="{{ action('SiteNewsController@detail') }}">Lorem ipsum dolor sit amet conse ctetur adipisicing elit</a></h4>
-							<p>
-								 Ait amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesentto dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam. 
-							</p>
+							<h4><a href="{{ url(LaravelLocalization::setLocale() . '/' . TypeNew::find($new->type_new_id)->slug . '/' . $new->slug) }}">{{ $new->name }}</a></h4>
+							<p>{{ CommonSlug::getSlugByModel($new, 'AdminNew')->sapo }}</p>
 						</div>
 					</div>
-
+					@endforeach
+					@if($data->getTotal() >= FRONENDPAGINATE)
+						@include('site.common.paginate', array('input' => $data))
+					@endif
 				</div>
 			</div>
 			<div class="medium-3 medium-pull-9 columns">
