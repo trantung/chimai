@@ -22,7 +22,7 @@
 					<?php 
 						$image = url(CommonSlug::getImageUrlNotBox('AdminImage', $vGallery));
 					?>
-						<div class="medium-4 columns">
+						<div class="medium-4 columns {{ CommonSite::getClassEnd($kGallery, $data) }}">
 							<div class="grid-item">
 								<div class="grid_img">
 									<a href="#"><img src="{{ $image }}"/></a>

@@ -19,10 +19,13 @@
 				<!--catalog list-->
 				<div class="row">
 					@foreach($data as $kVideo => $vVideo)
-						<div class="medium-4 columns">
+					<?php 
+						$image = url('http://i1.ytimg.com/vi/' . $vVideo->video_id . '/sddefault.jpg');
+					?>
+						<div class="medium-4 columns {{ CommonSite::getClassEnd($kVideo, $data) }}">
 							<div class="grid-item">
 								<div class="grid_img">
-									<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
+									<a href="#"><img src="{{ $image }}"/></a>
 								</div>
 								<div class="grid_text">
 									<a href="#" class="tille_pr"><p>{{ $vVideo->name }}</p></a>
