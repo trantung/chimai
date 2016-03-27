@@ -1,7 +1,7 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = trans('captions.news'); }}
+	{{ $title = $data->name }}
 @stop
 
 @section('content')

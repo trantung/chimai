@@ -84,6 +84,22 @@ class CommonSlug
 		}
 		return $imageUrl;
 	}
+	public static function getDownloadPdfUrl($data)
+	{
+		if (getLanguage() == VI) {
+			$downloadPdfUrl = UPLOADPDF . '/' . $data->id . '/' . $data->file;
+		} else {
+			$obModel = AdminLanguage::where('model_name', 'AdminPdf')
+				->where('relate_id', $data->id)
+				->where('status', ACTIVE)
+				->first();
+			if ($obModel) {
+				$dataModel = AdminPdf::find($obModel->model_id);
+				$downloadPdfUrl = UPLOADPDF . '/' . $dataModel->id . '/' . $dataModel->file;
+			}
+		}
+		return $downloadPdfUrl;
+	}
 	// duong dan slug, bo vi/ tren duong dan khi ngon ngu = VI
 	public static function getUrlSlug($slug, $slugChild = NULL)
 	{

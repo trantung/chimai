@@ -88,7 +88,7 @@ class AdminPdfController extends AdminController {
 			return Redirect::action('AdminPdfController@edit', $id)->withErrors($validator);
 		}
 		$input['filePdf'] = CommonFile::uploadPdf($id, UPLOADPDF, 'filePdf', AdminPdf::find($id)->file);
-		CommonLanguage::updateModel('AdminPdf', $id, $input, CommonProperty::getDefaultValue('AdminPdf', $input));
+		CommonLanguage::updateModel('AdminPdf', $id, $input, CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage($input));
 		Common::commonUpdateField('BoxPdf', $id, 'type', 'AdminPdf', 'AdminLanguage');
 		return Redirect::action('AdminPdfController@index')->with('message', 'Sửa thành công');
 	}

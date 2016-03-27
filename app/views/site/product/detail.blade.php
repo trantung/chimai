@@ -1,14 +1,14 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = trans('captions.product'); }}
+	{{ $title = $data->name }}
 @stop
 
 @section('content')
 
 	<?php
 		$breadcrumb = array(
-			['name' => $data->name, 'link' => url($lang.'/'.$data->slug)],
+			['name' => $origin->name, 'link' => CommonSlug::getUrlSlug($origin->slug)],
 			['name' => $data->name, 'link' => '']
 		);
 	?>

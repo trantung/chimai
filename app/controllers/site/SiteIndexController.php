@@ -101,7 +101,8 @@ class SiteIndexController extends SiteController {
 							->where('price_old', '!=', '')
 							->where('language', getLanguage())
 							->paginate(FRONENDPAGINATE);
-			return View::make('site.product.list')->with(compact('products', 'data'));
+			$title = $object['model_object']->name_menu;
+			return View::make('site.product.list')->with(compact('products', 'data', 'title'));
 		}
 		if ($object['model_name'] == 'BoxCollection') {
 			$data = BoxCollection::findbySlug($slug);
@@ -121,7 +122,8 @@ class SiteIndexController extends SiteController {
 							->orderByRaw(DB::raw("weight_number = '0', weight_number"))
 							->orderBy('created_at', 'desc')
 							->paginate(FRONENDPAGINATE);
-			return View::make('site.product.list')->with(compact('products', 'data'));
+			$title = $object['model_object']->name_menu;
+			return View::make('site.product.list')->with(compact('products', 'data', 'title'));
 		}
 		if ($object['model_name'] == 'Origin') {
 			$data = Origin::findbySlug($slug);
@@ -131,7 +133,8 @@ class SiteIndexController extends SiteController {
 							->orderByRaw(DB::raw("weight_number = '0', weight_number"))
 							->orderBy('created_at', 'desc')
 							->paginate(FRONENDPAGINATE);
-			return View::make('site.product.list')->with(compact('products', 'data'));
+			$title = $object['model_object']->name;
+			return View::make('site.product.list')->with(compact('products', 'data', 'title'));
 		}
 		if ($object['model_name'] == 'BoxPdf') {
 			$data = CommonSite::getDataByModelSlug($object, 'AdminPdf', 'type');
@@ -149,7 +152,8 @@ class SiteIndexController extends SiteController {
 						->where('status', ACTIVE)
 						->first();
 			if(isset($data)) {
-				return View::make('site.product.detail')->with(compact('data'));	
+				$origin = Origin::find($data->origin_id);
+				return View::make('site.product.detail')->with(compact('data', 'origin'));	
 			} else {
 				dd(404);
 			}

@@ -1,14 +1,14 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = trans('captions.product'); }}
+	{{ $title = $title }}
 @stop
 
 @section('content')
 
 	<?php
 		$breadcrumb = array(
-			['name' => $data->name_menu, 'link' => '']
+			['name' => $title, 'link' => '']
 		);
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
@@ -21,13 +21,16 @@
 					<div class="grid">
 						<div class="row">
 							@foreach($products as $kProduct => $vProduct)
+							<?php 
+								$url = CommonSlug::getUrlSlug(CommonSite::getOriginByProduct($vProduct->origin_id),  $vProduct->slug);
+							?>
 							<div class="medium-3 columns {{ CommonSite::getClassEnd($kProduct, $products) }}">
 								<div class="grid-item">
 									<div class="grid_img">
-										<a href="{{ url(LaravelLocalization::setLocale() . '/' . CommonSite::getOriginByProduct($vProduct->origin_id) . '/' . $vProduct->slug) }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('Product', $vProduct)) }}" /></a>
+										<a href="{{ $url }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('Product', $vProduct)) }}" /></a>
 									</div>
 									<div class="grid_text">
-										<a href="{{ url(LaravelLocalization::setLocale() . '/' . CommonSite::getOriginByProduct($vProduct->origin_id) . '/' . $vProduct->slug) }}" class="tille_pr"><p>{{ $vProduct->name }}</p></a>
+										<a href="{{ $url }}" class="tille_pr"><p>{{ $vProduct->name }}</p></a>
 									</div>
 								</div>
 							</div>

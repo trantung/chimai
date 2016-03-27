@@ -58,7 +58,7 @@ define('IMAGE_PARTNER_WIDTH', 140);
 define('IMAGE_PARTNER_HEIGHT', 70);
 //catalogue size
 define('IMAGE_CATALOG_WIDTH', 400);
-define('IMAGE_CATALOG_HEIGHT', 600);
+define('IMAGE_CATALOG_HEIGHT', 550);
 
 //mode image
 define('IMAGE_MODE_FIT', 'fit');
