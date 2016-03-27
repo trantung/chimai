@@ -40,7 +40,7 @@ class BoxShowRoomController extends AdminController {
 		$viId = CommonLanguage::createModel($input, 'BoxShowRoom', CommonProperty::getDefaultValue('BoxShowRoom', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'BoxShowRoom', $viId, 'boxCollections', Input::get('box_collection_id'));
-			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $id, 'BoxShowRoom',
+			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'BoxCommon', $viId, 'BoxShowRoom',
 				'BoxCollection', 'CollectionBoxShowroom', 'box_collection_id', 'box_show_room_id');
 			return Redirect::action('BoxShowRoomController@index')
 				->with('message', 'Tạo mới thành công');

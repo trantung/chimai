@@ -141,6 +141,17 @@ class SiteIndexController extends SiteController {
 			$title = $object['model_object']->name;
 			return View::make('site.catalogue.catalogue')->with(compact('data', 'title'));
 		}
+		if ($object['model_name'] == 'BoxShowRoom') {
+			$data = CommonSite::getDataByModelSlug($object, 'AdminImage', 'type');
+			$title = $object['model_object']->name;
+			return View::make('site.catalogue.gallery')->with(compact('data', 'title'));
+		}
+		if ($object['model_name'] == 'BoxVideo') {
+			$data = CommonSite::getDataByModelSlug($object, 'AdminVideo', 'type');
+			$title = $object['model_object']->name;
+			return View::make('site.catalogue.video')->with(compact('data', 'title'));
+		}
+
 		dd(4);
 	}
 	public function slugChild($slug, $slugChild)

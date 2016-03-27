@@ -1,7 +1,7 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = $title; }}
+	{{ $title = $title }}
 @stop
 
 @section('content')

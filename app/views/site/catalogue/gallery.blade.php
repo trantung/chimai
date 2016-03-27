@@ -1,14 +1,14 @@
 @extends('site.layout.default')
 
 @section('title')
-	{{ $title = trans('captions.gallery'); }}
+	{{ $title = $title }}
 @stop
 
 @section('content')
 
 	<?php
 		$breadcrumb = array(
-			['name' => trans('captions.gallery'), 'link' => '']
+			['name' => $title, 'link' => '']
 		);
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
@@ -18,84 +18,24 @@
 			<div class="column">
 				<!--catalog list-->
 				<div class="row">
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
+					@foreach($data as $kGallery => $vGallery)
+					<?php 
+						$image = url(CommonSlug::getImageUrlNotBox('AdminImage', $vGallery));
+					?>
+						<div class="medium-4 columns">
+							<div class="grid-item">
+								<div class="grid_img">
+									<a href="#"><img src="{{ $image }}"/></a>
+								</div>
+								<div class="grid_text">
+									<a href="#" class="tille_pr"><p>{{ $vGallery->name }}</p></a>
+								</div>
+								<a class="fancybox overlay" href="{{ $image }}" data-fancybox-group="gallery">
+									<span><i class="fa fa-search"></i></span>
+								</a>
 							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
 						</div>
-					</div>
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
-						</div>
-					</div>
-					<div class="medium-4 columns">
-						<div class="grid-item">
-							<div class="grid_img">
-								<a href="#"><img src="{{ url('assets/imgs/a1.jpg') }}"/></a>
-							</div>
-							<div class="grid_text">
-								<a href="#" class="tille_pr"><p>Calacatta</p></a>
-							</div>
-							<a class="fancybox overlay" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery">
-								<span><i class="fa fa-search"></i></span>
-							</a>
-						</div>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
