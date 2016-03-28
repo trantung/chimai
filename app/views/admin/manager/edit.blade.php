@@ -69,6 +69,7 @@
 				<div class="box-footer">
 					<input type="submit" class="btn btn-primary" value="Lưu lại" />
 				</div>
+				
 			{{ Form::close() }}
 		</div>
 		<!-- /.box -->

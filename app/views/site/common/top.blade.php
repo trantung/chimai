@@ -13,7 +13,7 @@
 <div class="header show-for-medium-up">
 	<div class="row">
 		<div class="medium-3 columns logo">
-			<a href="{{ url('/') }}"><img src="{{ url('assets/imgs/logo.png') }}" alt="" /></a>
+			<a href="{{ CommonSite::getUrlLang($lang) }}"><img src="{{ url('assets/imgs/logo.png') }}" alt="" /></a>
 		</div>
 
 		<div class="medium-5 columns search-area">

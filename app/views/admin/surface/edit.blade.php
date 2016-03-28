@@ -1,14 +1,14 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa' }}
+{{ $title='Chỉnh sửa bề mặt' }}
 @stop
 
 @section('content')
 
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách chất liệu</a>
+		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách bề mặt</a>
 	</div>
 </div>
 <div class="row">

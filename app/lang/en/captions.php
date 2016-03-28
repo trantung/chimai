@@ -75,6 +75,7 @@ return array(
 	'send_require' => 'Send require',
 	'shopping_cart' => 'Shopping cart',
 	'cart' => 'Cart',
+	'addtocart' => 'Add to cart',
 	'update_cart' => 'Update Shopping Cart',
 	'countinue_shopping' => 'Continue shopping',
 	'unit' => 'Unit',
@@ -103,5 +104,9 @@ return array(
 	'collection' => 'Collection',
 	'gallery' => 'Gallery',
 	'video' => 'Video',
+	'category' => 'Category',
+	'description' => 'Description',
+	'updating' => 'Updating',
+	'nodata' => 'Data not found',
 
 );

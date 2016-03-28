@@ -9,11 +9,8 @@ class ManagerController extends AdminController {
 	 */
 	public function index()
 	{
-		$data = Admin::orderBy('id', 'asc')
-			// ->get()
-			// ->toArray();
+		$data = Admin::orderBy('id', 'desc')
 			->paginate(PAGINATE);
-		// dd($data);
 		return View::make('admin.manager.index')->with(compact('data'));
 	}
 
@@ -63,8 +60,6 @@ class ManagerController extends AdminController {
         	$input += CommonSite::ipDeviceUser() ;
         	// $id = CommonNormal::create($input, 'Admin');
         	$id = Admin::create($input)->id;
-        	//create history
-			$history_id = CommonLog::insertHistory('Admin', $id);
 
         	if($id) {
         		return Redirect::action('ManagerController@index');
@@ -143,11 +138,7 @@ class ManagerController extends AdminController {
         	CommonNormal::update($id, $input);
         	$currentUserId = Auth::admin()->get()->id;
 			$currentRoleId = Auth::admin()->get()->role_id;
-			// todo cuongnt
-			//update history
-			$history_id = CommonLog::updateHistory('Admin', $id);
-			CommonLog::insertLogEdit('Admin', $id, $history_id, EDIT);
-			//end update history
+			
 			if($currentRoleId <> ADMIN) {
 				return Redirect::action('ManagerController@edit', $id);
 			}
@@ -166,37 +157,6 @@ class ManagerController extends AdminController {
 	{
 		CommonNormal::delete($id);
         return Redirect::action('ManagerController@index');
-	}
-
-
-	public function history($id)
-	{
-		$historyId = CommonLog::getIdHistory('Admin', $id);
-		if ($historyId) {
-			$history = AdminHistory::find($historyId);
-			$logEdit = LogEdit::where('history_id', $history->id)->where('action', LOGIN)->get();
-			return View::make('admin.manager.history')->with(compact('logEdit'));
-		}
-		return Redirect::action('ManagerController@index')->with('message', 'Lịch sử admin này đã bị xoá');
-
-	}
-
-	public function deleteHistory($id)
-	{
-		$history = AdminHistory::find($id);
-		if ($history) {
-			$history->logedits()->where('history_id', $id)->where('action', LOGIN)->delete();
-			$history->delete();
-			return Redirect::action('ManagerController@index')->with('message', 'Xoá lịch sử thành công');
-		}
-		return Redirect::action('ManagerController@index');
-	}
-
-	public function searchHistory()
-	{
-		$input = Input::all();
-		$logEdit = CommonSearch::searchlogHistory($input);
-		return View::make('admin.manager.history')->with(compact('history', 'logEdit'));
 	}
 
 	public function changePassword($id){

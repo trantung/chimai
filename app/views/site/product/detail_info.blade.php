@@ -1,15 +1,15 @@
 <div class="detail_shop">
 	<h1>{{ $data->name }}</h1>
 	<ul class="detail_shop_spec">
-		<li>Origin: {{ Origin::find($data->origin_id)->name }}</li>
+		<li>{{ trans('captions.origin') }}: {{ Origin::find($data->origin_id)->name }}</li>
 		<li>Size: 
 			{{ implode(",", CommonSite::getSizeNameProduct($data)) }}    
 		</li>
-		<li>Surface: {{ implode(",", CommonSite::getSurfaceNameProduct($data)) }}</li>
-		<li>Category: {{ implode(",", CommonSite::getCategoryNameProduct($data)) }}</li>
-		<li>Material: {{ Material::find($data->material_id)->name }}</li>
-		<li>Description: {{ $data->description }}</li>
-		<li>Unit: {{ AdminUnit::find($data->unit_id)->name }}</li>
+		<li>{{ trans('captions.surface') }}: {{ implode(",", CommonSite::getSurfaceNameProduct($data)) }}</li>
+		<li>{{ trans('captions.category') }}: {{ implode(",", CommonSite::getCategoryNameProduct($data)) }}</li>
+		<li>{{ trans('captions.material') }}: {{ Material::find($data->material_id)->name }}</li>
+		<li>{{ trans('captions.description') }}: {{ $data->description }}</li>
+		<li>{{ trans('captions.unit') }}: {{ AdminUnit::find($data->unit_id)->name }}</li>
 	</ul>
 	<div class="regular_price">
 		@if($data->price_old)
@@ -19,6 +19,6 @@
 	</div>
 	<p><strong>{{ trans('captions.availability') }}:</strong> {{ getQtyProduct($data->qty) }}</p>
 	<div class="detail_cart">
-		<a class="button add_cart"><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.order_by') }}</span></a>
+		<a class="button add_cart"><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.addtocart') }}</span></a>
 	</div>
 </div>

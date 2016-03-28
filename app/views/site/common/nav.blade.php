@@ -5,14 +5,14 @@
 			<ul class="title-area">
 				<!-- Title Area -->
 				<li class="name">
-					<a class="name_logo" href="{{ url('/') }}"><img src="{{ url('assets/imgs/logo.png') }}"/></a>
+					<a class="name_logo" href="{{ CommonSite::getUrlLang($lang) }}"><img src="{{ url('assets/imgs/logo.png') }}"/></a>
 				</li>
 				<li class="toggle-topbar menu-icon"><a href="#"><span>{{ trans('captions.menu') }}</span></a></li>
 			</ul>
 			<section class="top-bar-section">
 				<!-- Left Nav Section -->
 				<ul class="left">
-					<li class="active"><a href="{{ url('/') }}" title="">{{ trans('captions.home') }}</a></li>
+					<li class="active"><a href="{{ CommonSite::getUrlLang($lang) }}" title="">{{ trans('captions.home') }}</a></li>
 					@foreach($menu as $value)
 						@if($value->model_name == 'BoxType')
 							<li>

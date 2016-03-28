@@ -7,8 +7,7 @@
 @section('content')
 
 @include('admin.script.index')
-<!-- inclue Search form 
--->
+
 @if(Admin::isAdmin())
 <div class="row margin-bottom">
 	<div class="col-xs-12">

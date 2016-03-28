@@ -6,9 +6,7 @@
 
 @section('content')
 @include('admin.user.search')
-<!-- inclue Search form 
 
--->
 <div class="row">
 	<div class="col-xs-12">
 	  <div class="box">

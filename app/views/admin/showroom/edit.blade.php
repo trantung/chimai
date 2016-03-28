@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa file PDF' }}
+{{ $title='Chỉnh sửa hình ảnh' }}
 @stop
 
 @section('content')

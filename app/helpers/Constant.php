@@ -14,6 +14,9 @@ define('ACTIVE', 1);
 define('INACTIVE', 2);
 define('ACTIVEUSER', 'Kích hoạt');
 define('INACTIVEUSER', 'Chưa kích hoạt');
+//device
+define('MOBILE', 1);
+define('COMPUTER', 2);
 //pagination manager admin
 define('PAGINATE', 20);
 //pagination frontend

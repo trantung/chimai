@@ -41,6 +41,8 @@
 					@if($products->getTotal() >= FRONENDPAGINATE)
 						@include('site.common.paginate', array('input' => $products))
 					@endif
+				@else
+					<p>{{ trans('captions.nodata') }}</p>
 				@endif
 			</div>
 			<!-- sidebar -->

@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa box tin' }}
+{{ $title='Chỉnh sửa xuất xứ' }}
 @stop
 
 @section('content')

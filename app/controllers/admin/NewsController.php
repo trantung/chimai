@@ -11,7 +11,7 @@ class NewsController extends AdminController {
 	public function search()
 	{
 		$input = Input::all();
-		$inputNew = NewsManager::searchNews($input);
+		$inputNew = CommonNews::searchNews($input);
 		return View::make('admin.news.index')->with(compact('inputNew'));
 	}
 

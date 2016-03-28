@@ -8,7 +8,7 @@
 
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('AdminVideoController@index') }} " class="btn btn-success">Danh sách</a>
+		<a href="{{ action('AdminVideoController@index') }} " class="btn btn-success">Danh sách video</a>
 	</div>
 </div>
 <div class="row">
