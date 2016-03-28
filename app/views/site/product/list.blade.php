@@ -22,7 +22,7 @@
 						<div class="row">
 							@foreach($products as $kProduct => $vProduct)
 							<?php 
-								$url = CommonSlug::getUrlSlug(CommonSite::getOriginByProduct($vProduct->origin_id),  $vProduct->slug);
+								$url = CommonSlug::getUrlSlug(CommonSite::getOriginByProduct($vProduct->origin_id), $vProduct->slug);
 							?>
 							<div class="medium-3 columns {{ CommonSite::getClassEnd($kProduct, $products) }}">
 								<div class="grid-item">

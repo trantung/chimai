@@ -199,7 +199,7 @@ class SiteIndexController extends SiteController {
 	public function filter()
 	{
 		$input = Input::except('_token');
-		dd($input);
+		dd(1);
 	}
 
 }
