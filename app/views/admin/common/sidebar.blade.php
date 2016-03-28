@@ -17,7 +17,7 @@
 					<li><a href="{{ action('AdminOriginController@index') }}"><i class="fa fa-circle-o"></i> Quản lý xuất xứ</a></li>
 				</ul>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminMaterialController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chất liệu</a></li>
+					<li><a href="{{ action('AdminSurfaceController@index') }}"><i class="fa fa-circle-o"></i> Quản lý bề mặt</a></li>
 				</ul>
 				<ul class="treeview-menu">
 					<li><a href="{{ action('AdminCategoryController@index') }}"><i class="fa fa-circle-o"></i> Quản lý category</a></li>
@@ -26,7 +26,7 @@
 					<li><a href="{{ action('AdminSizeController@index') }}"><i class="fa fa-circle-o"></i> Quản lý kích cỡ</a></li>
 				</ul>
 				<ul class="treeview-menu">
-					<li><a href="{{ action('AdminSurfaceController@index') }}"><i class="fa fa-circle-o"></i> Quản lý bề mặt</a></li>
+					<li><a href="{{ action('AdminMaterialController@index') }}"><i class="fa fa-circle-o"></i> Quản lý chất liệu</a></li>
 				</ul>
 
 			</li>

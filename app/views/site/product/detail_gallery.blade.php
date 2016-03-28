@@ -1,63 +1,9 @@
 <ul class="box-gallery">
+	@foreach(ProductImage::where('product_id', $data->id)->where('type', PRODUCT_PICTURE)->get() as $vImg)
 	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
+		<a class="fancybox" href="{{ url('images/'. UPLOAD_FOLDER_PICTURE . '/' . $data->id . '/' . $vImg->image_url) }}" data-fancybox-group="gallery" title="">
+			<img src="{{ url('images/'. UPLOAD_FOLDER_PICTURE . '/' . $data->id . '/' . $vImg->image_url) }}" alt="" />
 		</a>
 	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-	<li>
-		<a class="fancybox" href="{{ url('assets/imgs/a1.jpg') }}" data-fancybox-group="gallery" title="">
-			<img src="{{ url('assets/imgs/a1.jpg') }}" alt="" />
-		</a>
-	</li>
-
+	@endforeach
 </ul>

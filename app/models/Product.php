@@ -12,7 +12,7 @@ class Product extends Eloquent implements SluggableInterface
 	use SluggableTrait;
 	protected $table = 'products';
 	protected $fillable = ['name', 'image_url', 'weight_number', 'status', 'code', 'status',
-		'slug', 'surface_id', 'origin_id', 'material_id', 'unit_id', 'description', 'language',
+		'slug', 'material_id', 'origin_id', 'surface_id', 'unit_id', 'description', 'language',
 		'price', 'price_old', 'qty'];
 	protected $dates = ['deleted_at'];
 	
@@ -31,9 +31,9 @@ class Product extends Eloquent implements SluggableInterface
 		return $this->belongsToMany('Size', 'size_products', 'product_id', 'size_id');
 
 	}
-	public function productMaterials() 
+	public function productSurfaces() 
 	{
-		return $this->belongsToMany('Material', 'material_products', 'product_id', 'material_id');
+		return $this->belongsToMany('Surface', 'surface_products', 'product_id', 'surface_id');
 
 	}
 

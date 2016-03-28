@@ -137,7 +137,7 @@ Route::group(
 		// Route::get('/product', 'SiteBoxProductController@index');
 		// Route::get('/product-detail', 'SiteBoxProductController@detail');
 		// END demo page
-
+		Route::get('/search', 'SiteIndexController@search');
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
 

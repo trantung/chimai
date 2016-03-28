@@ -33,25 +33,23 @@ class AdminProductController extends AdminController {
 	 */
 	public function store()
 	{
-		$input = Input::except('_token', 'size_id', 'category_id', 'material_id');
+		$input = Input::except('_token', 'size_id', 'category_id', 'surface_id');
 		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductCreate');
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@create')->withErrors($validator);
 		}
-		// size_id, category_id
-		//'origin_id', 'material_id', 'unit_id', 'surface_id'
 		$viId = CommonLanguage::createModel($input, 'Product', CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productCategories', Input::get('category_id'));
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productSizes', Input::get('size_id'));
-			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productMaterials', Input::get('material_id'));
+			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productSurfaces', Input::get('surface_id'));
 			
-			Common::commonUpdateField('Surface', $viId, 'surface_id', 'Product', 'AdminLanguage');
+			Common::commonUpdateField('Material', $viId, 'material_id', 'Product', 'AdminLanguage');
 			Common::commonUpdateField('Origin', $viId, 'origin_id', 'Product', 'AdminLanguage');
 			Common::commonUpdateField('AdminUnit', $viId, 'unit_id', 'Product', 'AdminLanguage');
 			
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
-				'Material', 'MaterialProduct', 'material_id', 'product_id');
+				'Surface', 'SurfaceProduct', 'surface_id', 'product_id');
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
 				'Category', 'CategoryProduct', 'category_id', 'product_id');
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $viId, 'Product',
@@ -102,7 +100,7 @@ class AdminProductController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$input = Input::except('_token', 'size_id', 'category_id', 'material_id');
+		$input = Input::except('_token', 'size_id', 'category_id', 'surface_id');
 		$validator = CommonRule::checkRules(Input::except('_token'), 'ProductEdit');
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@edit', $id)->withErrors($validator);
@@ -110,14 +108,14 @@ class AdminProductController extends AdminController {
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));
-		Common::syncCommon('AdminLanguage', 'Product', $id, 'productMaterials', Input::get('material_id'));
+		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSurfaces', Input::get('surface_id'));
 
-		Common::commonUpdateField('Surface', $id, 'surface_id', 'Product', 'AdminLanguage');
+		Common::commonUpdateField('Material', $id, 'material_id', 'Product', 'AdminLanguage');
 		Common::commonUpdateField('Origin', $id, 'origin_id', 'Product', 'AdminLanguage');
 		Common::commonUpdateField('AdminUnit', $id, 'unit_id', 'Product', 'AdminLanguage');
 		
 		CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
-				'Material', 'MaterialProduct', 'material_id', 'product_id');
+				'Surface', 'SurfaceProduct', 'surface_id', 'product_id');
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
 				'Category', 'CategoryProduct', 'category_id', 'product_id');
 			CommonNormal::commonUpdateManyRelateMany('AdminLanguage', 'AdminLanguage', $id, 'Product',
@@ -136,7 +134,7 @@ class AdminProductController extends AdminController {
 	{
 		Common::detachCommon('AdminLanguage', 'Product', $id, 'productCategories');
 		Common::detachCommon('AdminLanguage', 'Product', $id, 'productSizes');
-		Common::detachCommon('AdminLanguage', 'Product', $id, 'productMaterials');
+		Common::detachCommon('AdminLanguage', 'Product', $id, 'productSurfaces');
 		CommonLanguage::deleteModel('Product', $id);
 		return Redirect::action('AdminProductController@index')->with('message', 'Xoá thành công');
 	}

@@ -12,7 +12,7 @@
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('AdminMaterialController@create') }}" class="btn btn-primary">Thêm</a>
-	</div>o
+	</div>
 </div>
 
 <div class="row">

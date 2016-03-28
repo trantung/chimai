@@ -66,7 +66,7 @@ class CommonRule {
 		if ($modelName == 'Contact') {
 			return ['name' => 'required', 'email' => 'required', 'phone' => 'required'];
 		}
-		if (in_array($modelName, ['Origin', 'Surface', 'Size', 'Material', 'Category'])) {
+		if (in_array($modelName, ['Origin', 'Material', 'Size', 'Surface', 'Category'])) {
 			$array = self::getRulesRequired(['name']);
 			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0']);
 			return $arrayRule;

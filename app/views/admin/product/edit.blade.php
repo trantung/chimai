@@ -118,7 +118,7 @@
 								<label>Bề mặt</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('surface_id', Common::getSurface(), $boxVi->surface_id, array('class' => 'form-control')) }}
+										{{ Form::select('material_id', Common::getMaterial(), $boxVi->material_id, array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>
@@ -126,7 +126,7 @@
 								<label>Chất liệu</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('material_id[]', Common::getMaterial(), Common::getMaterial($boxVi->id), array('class' => 'form-control', 'multiple' => true, 'required' => '')) }}
+										{{ Form::select('surface_id[]', Common::getSurface(), Common::getSurface($boxVi->id), array('class' => 'form-control', 'multiple' => true, 'required' => '')) }}
 									</div>
 								</div>
 							</div>

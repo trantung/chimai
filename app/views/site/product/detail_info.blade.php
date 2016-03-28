@@ -5,9 +5,9 @@
 		<li>Size: 
 			{{ implode(",", CommonSite::getSizeNameProduct($data)) }}    
 		</li>
-		<li>Material: {{ implode(",", CommonSite::getMaterialNameProduct($data)) }}</li>
+		<li>Surface: {{ implode(",", CommonSite::getSurfaceNameProduct($data)) }}</li>
 		<li>Category: {{ implode(",", CommonSite::getCategoryNameProduct($data)) }}</li>
-		<li>Surface: {{ Surface::find($data->surface_id)->name }}</li>
+		<li>Material: {{ Material::find($data->material_id)->name }}</li>
 		<li>Description: {{ $data->description }}</li>
 		<li>Unit: {{ AdminUnit::find($data->unit_id)->name }}</li>
 	</ul>

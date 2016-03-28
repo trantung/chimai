@@ -15,22 +15,24 @@
 		<div class="medium-3 columns logo">
 			<a href="{{ url('/') }}"><img src="{{ url('assets/imgs/logo.png') }}" alt="" /></a>
 		</div>
+
 		<div class="medium-5 columns search-area">
-			<form class="form-search">
+			{{ Form::open(array('action' => 'SiteIndexController@search', 'method'=>'GET', 'class' => 'form-search', 'id' => 'searchIndex')) }}
 				<div class="row collapse">
 					<div class="small-11 columns">
 						<div class="row collapse postfix-round input_search">
-							<input type="text" placeholder="Search">
+							<input type="text" name="searchIndex" placeholder="Search">
 						</div>
 					</div>
 					<div class="small-1 columns input_search">
 						<div class="row collapse postfix-round">
-						  <a href="#" class="postfix input_search_a"><i class="fa fa-search"></i></a>
+						  <a onclick="$('#searchIndex').submit()" class="postfix input_search_a"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
 				</div>
-			</form>
+			{{ Form::close() }}
 		</div>
+
 		<div class="medium-4 columns cart-area">
 			<div class="custom-block">
 				<ul>

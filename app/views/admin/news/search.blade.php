@@ -11,5 +11,5 @@
 		<div class="input-group" style="display: inline-block; vertical-align: bottom;">
 			<input type="submit" value="Search" class="btn btn-primary" />
 		</div>
-	</form>
+	{{ Form::close() }}
 </div>

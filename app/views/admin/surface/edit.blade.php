@@ -8,7 +8,7 @@
 
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách</a>
+		<a href="{{ action('AdminSurfaceController@index') }} " class="btn btn-success">Danh sách chất liệu</a>
 	</div>
 </div>
 <div class="row">

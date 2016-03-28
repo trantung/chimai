@@ -123,7 +123,7 @@ class SiteIndexController extends SiteController {
 							->orderBy('created_at', 'desc')
 							->paginate(FRONENDPAGINATE);
 			$title = $object['model_object']->name_menu;
-			return View::make('site.product.list')->with(compact('products', 'data', 'title'));
+			return View::make('site.product.list')->with(compact('products', 'title'));
 		}
 		if ($object['model_name'] == 'Origin') {
 			$data = Origin::findbySlug($slug);
@@ -170,8 +170,6 @@ class SiteIndexController extends SiteController {
 			}
 		}
 		if ($object['model_name'] == 'AdminNew') {
-			// $type = TypeNew::findBySlug($slug);
-			// $data = AdminNew::findbySlug($slugChild);
 			$type = TypeNew::where('slug', $slug)
 						->where('status', ACTIVE)
 						->first();
@@ -185,6 +183,17 @@ class SiteIndexController extends SiteController {
 			}
 		}
 		dd(5);
+	}
+	public function search()
+	{
+		$input = Input::except('_token');
+		$products = Product::where('language', getLanguage())
+			->where('status', ACTIVE)
+			->where('name', 'LIKE', '%' . $input['searchIndex'] . '%')
+			->orderBy('created_at', 'desc')
+			->paginate(FRONENDPAGINATE);
+		$title = 'Kết quả tìm kiếm';
+		return View::make('site.product.list')->with(compact('products', 'title'));
 	}
 
 }

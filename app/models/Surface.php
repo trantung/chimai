@@ -18,5 +18,4 @@ class Surface extends Eloquent implements SluggableInterface
 		'build_from' => 'name',
 		'save_to'    => 'slug',
 	);
-	
 }

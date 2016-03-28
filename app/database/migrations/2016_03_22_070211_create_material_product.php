@@ -12,10 +12,10 @@ class CreateMaterialProduct extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('material_products', function(Blueprint $table) {
+		Schema::create('surface_products', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->nullable();
-            $table->integer('material_id')->nullable();
+            $table->integer('surface_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,7 +28,7 @@ class CreateMaterialProduct extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('material_products');
+        Schema::drop('surface_products');
 	}
 
 }

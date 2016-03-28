@@ -110,18 +110,18 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Bề mặt</label>
+								<label>Chất liệu</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('surface_id', Common::getSurface(), '', array('class' => 'form-control')) }}
+										{{ Form::select('material_id', Common::getMaterial(), '', array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Chất liệu</label>
+								<label>Bề mặt</label>
 								<div class="row">
 									<div class="col-sm-6">
-										{{ Form::select('material_id[]', Common::getMaterial(), '', array('class' => 'form-control', 'multiple' => true)) }}
+										{{ Form::select('surface_id[]', Common::getSurface(), '', array('class' => 'form-control', 'multiple' => true)) }}
 									</div>
 								</div>
 							</div>

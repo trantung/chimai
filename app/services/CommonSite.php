@@ -147,7 +147,6 @@ class CommonSite
     public static function getSlugByObject($table, $obj, $lang)
     {
         $slug = self::commonSlugByObject($table, $obj, $lang);
-        // return url($lang .'/'. $slug);
         return self::getUrlLang($lang, $slug);
     }
     public static function commonSlugByObject($table, $obj, $lang)
@@ -184,9 +183,9 @@ class CommonSite
     	$listSize = $product->productSizes->lists('name');
     	return $listSize;
     }
-    public static function getMaterialNameProduct($product)
+    public static function getSurfaceNameProduct($product)
     {
-    	$listSize = $product->productMaterials->lists('name');
+    	$listSize = $product->productSurfaces->lists('name');
     	return $listSize;
     }
  	public static function getCategoryNameProduct($product)

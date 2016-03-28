@@ -12,18 +12,18 @@
 	</ul>
 </div>
 <div class="side">
-	<h3>{{ trans('captions.surface') }}</h3>
-	<ul>
-		@foreach(Surface::where('language', getLanguage())->get() as $surface )
-			<li>{{ Form::checkbox('surface[]', $surface->id ) }} {{ $surface->name }}</li>
-		@endforeach
-	</ul>
-</div>
-<div class="side">
 	<h3>{{ trans('captions.material') }}</h3>
 	<ul>
 		@foreach(Material::where('language', getLanguage())->get() as $material )
 			<li>{{ Form::checkbox('material[]', $material->id ) }} {{ $material->name }}</li>
+		@endforeach
+	</ul>
+</div>
+<div class="side">
+	<h3>{{ trans('captions.surface') }}</h3>
+	<ul>
+		@foreach(Surface::where('language', getLanguage())->get() as $surface )
+			<li>{{ Form::checkbox('surface[]', $surface->id ) }} {{ $surface->name }}</li>
 		@endforeach
 	</ul>
 </div>

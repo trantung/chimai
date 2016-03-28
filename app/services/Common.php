@@ -423,20 +423,20 @@ class Common extends CommonParent
 			->lists('relate_id');
 		return $listId;
 	}
-	public static function getSurface($id = null)
+	public static function getMaterial($id = null)
 	{
 		if ($id) {
 			//
 		}
-		return Surface::where('language', VI)->lists('name', 'id');
+		return Material::where('language', VI)->lists('name', 'id');
 	}
-	public static function getMaterial($id = null)
+	public static function getSurface($id = null)
 	{
 		if ($id) {
-			return MaterialProduct::where('product_id', $id)
-				->groupBy('material_id')->lists('material_id');
+			return SurfaceProduct::where('product_id', $id)
+				->groupBy('surface_id')->lists('surface_id');
 		}
-		return Material::where('language', VI)->lists('name', 'id');
+		return Surface::where('language', VI)->lists('name', 'id');
 	}
 	public static function getCategory($id = null)
 	{
@@ -470,18 +470,13 @@ class Common extends CommonParent
 	}
 	public static function commonUpdateField($modelName, $modelId, $field, $table, $tableLanguage)
 	{
-		// related_id product 
 		$relateIdProduct = Common::getRelatedId('AdminLanguage', $table, $modelId);
-		//list id product -> lang + surface_id
 		$listProduct = $table::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
 		foreach ($listProduct as $key => $value) {
-			//Language table-> relateId of surface: by model_id = surface_id
 			$relateIds = $tableLanguage::where('model_name', $modelName)->where('model_id', $value->$field)->lists('relate_id');
-			//surface table: find(relateId of surface)->language
 			foreach ($relateIds as $k => $v) {
-				$surface = $modelName::find($v);
-				//if language surface = language relateId product->update relateId product : surface_id = surface_id
-				if ($surface->language == $value->language) {
+				$object = $modelName::find($v);
+				if ($object->language == $value->language) {
 					$table::find($value->id)->update([$field => $v]);
 				}
 			}
@@ -495,7 +490,7 @@ class Common extends CommonParent
 
 	public static function getArrayAdminLanguage()
 	{
-		return ['Origin', 'Category', 'Material', 'Size', 'Surface',
+		return ['Origin', 'Category', 'Surface', 'Size', 'Material',
             'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage', 'Product', 'AdminNew'];
 	}
 
