@@ -189,11 +189,17 @@ class SiteIndexController extends SiteController {
 		$input = Input::except('_token');
 		$products = Product::where('language', getLanguage())
 			->where('status', ACTIVE)
-			->where('name', 'LIKE', '%' . $input['searchIndex'] . '%')
+			->where('name', 'LIKE', '%' . $input['keyword'] . '%')
 			->orderBy('created_at', 'desc')
 			->paginate(FRONENDPAGINATE);
 		$title = 'Kết quả tìm kiếm';
 		return View::make('site.product.list')->with(compact('products', 'title'));
+	}
+
+	public function filter()
+	{
+		$input = Input::except('_token');
+		dd($input);
 	}
 
 }

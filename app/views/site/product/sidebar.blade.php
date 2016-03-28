@@ -1,4 +1,4 @@
-{{ Form::open() }}
+{{ Form::open(array('action' => 'SiteIndexController@filter', 'method'=>'GET', 'class' => 'form-search', 'id' => 'filter')) }}
 <div class="side">
 	<h3>{{ trans('captions.category') }}</h3>
 	<ul>

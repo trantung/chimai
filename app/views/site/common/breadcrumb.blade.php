@@ -2,7 +2,7 @@
 	<div class="breadcrumb">
 		<div class="row">
 			<ul>
-				<li><a href="{{ url('/') }}">{{ trans('captions.home') }}</a><i class="fa fa-chevron-right"></i></li>
+				<li><a href="{{ CommonSite::getUrlLang($lang) }}">{{ trans('captions.home') }}</a><i class="fa fa-chevron-right"></i></li>
 				@foreach($breadcrumb as $key => $value)
 					@if($value['link'])
 						@if(isset($isH1) && ($key == count($breadcrumb) - 1))

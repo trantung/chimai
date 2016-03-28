@@ -122,26 +122,13 @@ Route::group(
 	function()
 	{
 
-		// demo page
-		// Route::get('/collection', 'SiteBoxCollectionController@collection');
-		// Route::get('/catalogue', 'SiteBoxCollectionController@catalogue');
-		// Route::get('/gallery', 'SiteBoxCollectionController@gallery');
-		// Route::get('/video', 'SiteBoxCollectionController@video');
-
-		// Route::get('/orders', 'SiteOrdersController@orders');
-		// Route::get('/orders_detail', 'SiteOrdersController@orders_detail');
-
-		// Route::get('/news', 'SiteNewsController@index');
-		// Route::get('/news-detail', 'SiteNewsController@detail');
-
-		// Route::get('/product', 'SiteBoxProductController@index');
-		// Route::get('/product-detail', 'SiteBoxProductController@detail');
-		// END demo page
+		Route::get('/filter', 'SiteIndexController@filter');
+		
 		Route::get('/search', 'SiteIndexController@search');
+
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
 
-		// Route::get(LaravelLocalization::transRoute('routes.about'), 'SiteBoxTypeController@index');
 		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
 		Route::post(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@contact');
 
@@ -159,8 +146,6 @@ Route::group(
 		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'SiteCartController@checkout');
 		Route::get(LaravelLocalization::transRoute('routes.checkout_success'), 'SiteCartController@checkout_success');
 
-		// Route::get(LaravelLocalization::transRoute('routes.slug'), 'SiteTypeController@showSlug');
-		// Route::get(LaravelLocalization::transRoute('routes.slugDetail'), 'SiteTypeController@showChildSlug');
 		Route::resource('/', 'SiteIndexController');
 		Route::get('/{slug}', 'SiteIndexController@slug');
 		Route::get('/{slug}/{slugChild}', 'SiteIndexController@slugChild');

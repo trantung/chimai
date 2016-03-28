@@ -21,7 +21,7 @@
 				<div class="row collapse">
 					<div class="small-11 columns">
 						<div class="row collapse postfix-round input_search">
-							<input type="text" name="searchIndex" placeholder="Search">
+							<input type="text" name="keyword" placeholder="Search">
 						</div>
 					</div>
 					<div class="small-1 columns input_search">
