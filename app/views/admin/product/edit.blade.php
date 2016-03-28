@@ -52,6 +52,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::file('image_url') }}
+										<p>Kích thước: {{ IMAGE_PRODUCT_WIDTH }}x{{ IMAGE_PRODUCT_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 										<br />
 										<img src="{{ UPLOADIMG . '/Product/' . $boxVi->id . '/' . $boxVi->image_url }}" width="100px" />
 									</div>

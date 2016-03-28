@@ -40,6 +40,7 @@
 						<div class="col-sm-6">
 							{{ Form::file('image_url') }}
 							<img src="{{ url(UPLOADIMG . '/AdminImage/' . $boxVi->id . '/' . $boxVi->image_url) }}" width="200px" height="auto"  />
+							<p>Kích thước: {{ IMAGE_GALLERY_WIDTH }}x{{ IMAGE_GALLERY_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 						</div>
 					</div>
 				</div>

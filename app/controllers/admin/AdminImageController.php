@@ -107,9 +107,9 @@ class AdminImageController extends AdminController {
 	private function getConfigImage($input)
 	{
 		return array(
-				'w' => IMAGE_WIDTH, 
-				'h' => IMAGE_HEIGHT, 
-				'mode' => IMAGE_MODE_FILL
+				'w' => IMAGE_GALLERY_WIDTH, 
+				'h' => IMAGE_GALLERY_HEIGHT, 
+				'mode' => IMAGE_MODE_FIT
 			);
 	}
 

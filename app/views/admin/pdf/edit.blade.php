@@ -50,6 +50,7 @@
 						<div class="col-sm-6">
 							{{ Form::file('image_url') }}
 							<img src="{{ url(UPLOADIMG . '/AdminPdf/' . $boxVi->id . '/' . $boxVi->image_url) }}" width="200px" height="auto"  />
+							<p>Kích thước: {{ IMAGE_CATALOG_WIDTH }}x{{ IMAGE_CATALOG_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 						</div>
 					</div>
 				</div>

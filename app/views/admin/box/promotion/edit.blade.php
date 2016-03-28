@@ -68,6 +68,7 @@
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
 					<img class="image_BoxPromotion" src="{{ url(UPLOADIMG . '/BoxPromotion/' . $boxVi->id . '/' . $boxVi->image_url) }}" />
+					<p>Kích thước: {{ IMAGE_HOME_WIDTH }}x{{ IMAGE_HOME_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 				</div>
 
 				<div class="nav-tabs-custom">

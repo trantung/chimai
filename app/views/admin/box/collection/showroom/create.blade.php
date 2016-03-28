@@ -32,6 +32,7 @@
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
+					<p>Kích thước: {{ IMAGE_WIDTH }}x{{ IMAGE_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>

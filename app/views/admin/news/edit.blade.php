@@ -62,6 +62,7 @@
 										{{ Form::file('image_url') }}
 										<br />
 										<img src="{{ UPLOADIMG . '/AdminNew/' . $boxVi->id . '/' . $boxVi->image_url }}" width="100px" />
+										<p>Kích thước: {{ IMAGE_WIDTH }}x{{ IMAGE_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 									</div>
 								</div>
 							</div>
