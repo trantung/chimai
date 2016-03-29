@@ -1,6 +1,6 @@
 <?php
 
-class AdminContactController extends ADminController {
+class AdminContactController extends AdminController {
 
 	
 	public function index()
