@@ -9,7 +9,12 @@ class SiteIndexController extends SiteController {
 	 */
 	public function index()
 	{
-		return View::make('site.index');
+		$lang = getLanguage();
+		$banners = AdminSlide::where('type', SLIDE_BANNER_VALUE)
+			->where('language', $lang)->get();
+		$partners = AdminSlide::where('type', SLIDE_PARTNER_VALUE)
+			->where('language', $lang)->get();
+		return View::make('site.index')->with(compact('banners', 'partners'));
 	}
 
 
@@ -192,7 +197,7 @@ class SiteIndexController extends SiteController {
 			->where('name', 'LIKE', '%' . $input['keyword'] . '%')
 			->orderBy('created_at', 'desc')
 			->paginate(FRONENDPAGINATE);
-		$title = 'Kết quả tìm kiếm';
+		$title = trans('messages.result_search');
 		return View::make('site.product.list')->with(compact('products', 'title'));
 	}
 
@@ -226,7 +231,7 @@ class SiteIndexController extends SiteController {
 		$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
 			->orderBy('products.id', 'desc')
 			->paginate(FRONENDPAGINATE);
-		$title = 'Kết quả tìm kiếm';
+		$title = trans('messages.result_search');
 		return View::make('site.product.list')->with(compact('products', 'title'));
 	}
 

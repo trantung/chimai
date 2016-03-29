@@ -16,5 +16,6 @@ return array(
 	"required" => "Required fields marked *.",
 	"success" => "Success",
 	"failure" => "Failure",
+	"result_search" => "Search result",
 
 );

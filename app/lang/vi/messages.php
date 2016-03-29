@@ -16,5 +16,5 @@ return array(
 	"required" => "Mục có dấu * là bắt buộc phải nhập.",
 	"success" => "Đã gửi thành công",
 	"failure" => "Gửi thất bại",
-
+	"result_search" => "Kết quả tìm kiếm",
 );
