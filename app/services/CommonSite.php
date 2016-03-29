@@ -71,10 +71,16 @@ class CommonSite
 	public static function getUrlByLang($lang)
 	{
 		$currentLang = getLanguage();
+		$endSlug = getSlug();
+
+		if(in_array($endSlug, ['search', 'filter'])) {
+			return self::getUrlLang($lang);
+		}
+
 		if($currentLang == $lang) {
 			return URL::current();
 		}
-		$endSlug = getSlug();
+
 		$array1 = File::getRequire(base_path().'/app/lang/vi/routes.php');
 		$array2 = File::getRequire(base_path().'/app/lang/en/routes.php');
 		if (in_array($endSlug, $array1) || in_array($endSlug, $array2)) {
