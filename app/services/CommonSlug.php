@@ -16,6 +16,10 @@ class CommonSlug
 			}
 		}
 	}
+	public static function getSlugContain($data, $modelName)
+	{
+		return $modelName::find($data->id);
+	}
 	public static function getSlugByModel($data, $modelName, $lang = null)
 	{
 		return $modelName::find($data->id);

@@ -35,7 +35,7 @@
 								<ul class="dropdown">
 									@foreach(CommonSlug::getCollectionContain(CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) as $valueCollection)
 										@foreach($valueCollection as $box)
-											<li><a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, $box->model_name)->slug) }}">{{ CommonSlug::getNameObjectByLanguage($box) }}</a></li>
+											<li><a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugContain($box, $box->model_name)->slug) }}">{{ CommonSlug::getNameObjectByLanguage($box) }}</a></li>
 										@endforeach
 									@endforeach
 								</ul>
