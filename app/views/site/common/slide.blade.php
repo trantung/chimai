@@ -2,7 +2,7 @@
 	<div class="homeslide" id="homeslide">
 		@foreach($banners as $banner)
 			<div class="homeslide_item">
-				<a href="#" title="">
+				<a href="{{ $banner->link }}" title="{{ $banner->name }}">
 					<img alt="{{ $banner->name }}" src="{{ url(CommonSlug::getImageUrlNotBox('AdminSlide', $banner)) }}" title="{{ $banner->name }}" >
 					<div class="slide_text">{{ $banner->name }}</div>
 				</a>
