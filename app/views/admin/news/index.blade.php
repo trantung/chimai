@@ -34,7 +34,7 @@
 						<tr>
 							<td>{{ $value->id }}</td>
 							<td>{{ $value->name }}</td>
-							<td>{{ $value->type_new_id }}</td>
+							<td>{{ $value->typeNew->name }}</td>
 							<td>{{ $value->created_at }}</td>
 							<td>
 								<a href="{{  action('NewsController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>

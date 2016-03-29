@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới thể loại tin' }}
+{{ $title='Thêm mới tin' }}
 @stop
 
 @section('content')
@@ -79,6 +79,7 @@
 						<div class="row">
 							<div class="col-sm-6">
 								{{ Form::file('image_url', array('required' => '')) }}
+								<p>Kích thước: {{ IMAGE_WIDTH }}x{{ IMAGE_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 							</div>
 						</div>
 					</div>

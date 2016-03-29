@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới nước' }}
+{{ $title='Thêm mới xuất xứ' }}
 @stop
 
 @section('content')

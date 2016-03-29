@@ -6,7 +6,6 @@
 
 @section('content')
 
-
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box box-primary">
@@ -33,6 +32,7 @@
 				<div class="form-group">
 					<label>Upload ảnh</label>
 					{{ Form::file('image_url') }}
+					<p>Kích thước: {{ IMAGE_WIDTH }}x{{ IMAGE_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 				</div>
 				<div class="form-group">
 					<label>Mức ưu tiên</label>

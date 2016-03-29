@@ -6,9 +6,6 @@
 
 @section('content')
 
-<!-- inclue Search form 
-
--->
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('BoxShowRoomController@create') }}" class="btn btn-primary">Thêm</a>

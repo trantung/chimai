@@ -14,6 +14,9 @@ define('ACTIVE', 1);
 define('INACTIVE', 2);
 define('ACTIVEUSER', 'Kích hoạt');
 define('INACTIVEUSER', 'Chưa kích hoạt');
+//device
+define('MOBILE', 1);
+define('COMPUTER', 2);
 //pagination manager admin
 define('PAGINATE', 20);
 //pagination frontend
@@ -59,6 +62,9 @@ define('IMAGE_PARTNER_HEIGHT', 70);
 //catalogue size
 define('IMAGE_CATALOG_WIDTH', 400);
 define('IMAGE_CATALOG_HEIGHT', 550);
+//gallery size
+define('IMAGE_GALLERY_WIDTH', 800);
+define('IMAGE_GALLERY_HEIGHT', 600);
 
 //mode image
 define('IMAGE_MODE_FIT', 'fit');

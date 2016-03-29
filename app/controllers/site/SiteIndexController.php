@@ -189,8 +189,42 @@ class SiteIndexController extends SiteController {
 		$input = Input::except('_token');
 		$products = Product::where('language', getLanguage())
 			->where('status', ACTIVE)
-			->where('name', 'LIKE', '%' . $input['searchIndex'] . '%')
+			->where('name', 'LIKE', '%' . $input['keyword'] . '%')
 			->orderBy('created_at', 'desc')
+			->paginate(FRONENDPAGINATE);
+		$title = 'Kết quả tìm kiếm';
+		return View::make('site.product.list')->with(compact('products', 'title'));
+	}
+
+	public function filter()
+	{
+		$input = Input::except('_token');
+		$products = Product::select('products.*')
+			->join('materials', 'products.material_id', '=', 'materials.id')
+			->join('surface_products', 'products.id', '=', 'surface_products.product_id')
+			->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
+			->join('category_products', 'products.id', '=', 'category_products.product_id')
+			->join('categories', 'categories.id', '=', 'category_products.category_id')
+			->join('size_products', 'products.id', '=', 'size_products.product_id')
+			->join('sizes', 'sizes.id', '=', 'size_products.size_id')
+			->distinct()
+			->where('products.language', getLanguage())
+			->where('products.status', ACTIVE);
+		if(isset($input['category'])) {
+			$products = $products->whereIn('category_products.category_id', $input['category']);
+		}
+		if(isset($input['material'])) {
+			$products = $products->whereIn('materials.id', $input['material']);
+		}
+		if(isset($input['surface'])) {
+			$products = $products->whereIn('surface_products.surface_id', $input['surface']);
+		}
+		if(isset($input['size'])) {
+			$products = $products->whereIn('size_products.size_id', $input['size']);
+		}
+
+		$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
+			->orderBy('products.id', 'desc')
 			->paginate(FRONENDPAGINATE);
 		$title = 'Kết quả tìm kiếm';
 		return View::make('site.product.list')->with(compact('products', 'title'));

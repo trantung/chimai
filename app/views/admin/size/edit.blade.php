@@ -1,14 +1,14 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Chỉnh sửa' }}
+{{ $title='Chỉnh sửa Kích cỡ' }}
 @stop
 
 @section('content')
 
 <div class="row margin-bottom">
 	<div class="col-xs-12">
-		<a href="{{ action('AdminSizeController@index') }} " class="btn btn-success">Danh sách</a>
+		<a href="{{ action('AdminSizeController@index') }} " class="btn btn-success">Danh sách Kích cỡ</a>
 	</div>
 </div>
 <div class="row">

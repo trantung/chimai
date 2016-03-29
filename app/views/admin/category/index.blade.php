@@ -1,14 +1,11 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý box tin' }}
+{{ $title='Quản lý category' }}
 @stop
 
 @section('content')
 
-<!-- inclue Search form 
-
--->
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('AdminCategoryController@create') }}" class="btn btn-primary">Thêm</a>
@@ -19,13 +16,13 @@
 	<div class="col-xs-12">
 	  <div class="box">
 		<div class="box-header">
-		  <h3 class="box-title">Danh sách các nước xuất xứ</h3>
+		  <h3 class="box-title">Danh sách category</h3>
 		</div>
 		<div class="box-body table-responsive no-padding">
 			<table class="table table-hover">
 				<tr>
 					<th>ID</th>
-					<th>Tên nước tiếng việt</th>
+					<th>Tên</th>
 					<th>Thứ tự</th>
 					<th>Trạng thái</th>
 					<th style="width:200px;">Action</th>

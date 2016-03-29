@@ -75,6 +75,7 @@ return array(
 	'send_require' => 'Gửi yêu cầu',
 	'shopping_cart' => 'Giỏ hàng',
 	'cart' => 'Giỏ hàng',
+	'addtocart' => 'Đặt mua',
 	'update_cart' => 'Cập nhật giỏ hàng',
 	'countinue_shopping' => 'Tiếp tục mua hàng',
 	'unit' => 'ĐVT',
@@ -103,5 +104,9 @@ return array(
 	'collection' => 'Bộ sưu tập',
 	'gallery' => 'Bộ sưu tập',
 	'video' => 'Video',
+	'category' => 'Danh mục',
+	'description' => 'Mô tả',
+	'updating' => 'Đang cập nhật',
+	'nodata' => 'Không tìm thấy dữ liệu',
 
 );

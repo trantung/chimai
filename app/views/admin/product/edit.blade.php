@@ -52,6 +52,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::file('image_url') }}
+										<p>Kích thước: {{ IMAGE_PRODUCT_WIDTH }}x{{ IMAGE_PRODUCT_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 										<br />
 										<img src="{{ UPLOADIMG . '/Product/' . $boxVi->id . '/' . $boxVi->image_url }}" width="100px" />
 									</div>
@@ -115,7 +116,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Bề mặt</label>
+								<label>Chất liệu</label>
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::select('material_id', Common::getMaterial(), $boxVi->material_id, array('class' => 'form-control')) }}
@@ -123,7 +124,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Chất liệu</label>
+								<label>Bề mặt</label>
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::select('surface_id[]', Common::getSurface(), Common::getSurface($boxVi->id), array('class' => 'form-control', 'multiple' => true, 'required' => '')) }}

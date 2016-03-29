@@ -1,14 +1,11 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý ảnh' }}
+{{ $title='Quản lý hình ảnh' }}
 @stop
 
 @section('content')
 
-<!-- inclue Search form 
-
--->
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('AdminImageController@create') }}" class="btn btn-primary">Thêm</a>
@@ -19,7 +16,7 @@
 	<div class="col-xs-12">
 	    <div class="box">
 			<div class="box-header">
-			  <h3 class="box-title">Danh sách file PDF</h3>
+			  <h3 class="box-title">Danh sách hình ảnh</h3>
 			</div>
 			<div class="box-body table-responsive no-padding">
 				<table class="table table-hover">
