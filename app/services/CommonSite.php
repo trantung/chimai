@@ -207,4 +207,14 @@ class CommonSite
     	}
 		return '';
     }
+    public static function getRelateProduct($data)
+    {
+    	$listProducts = Product::where('material_id', $data->material_id)
+    		->where('status', ACTIVE)
+    		->where('id', '!=', $data->material_id)
+    		->orderBy('weight_number', 'asc')
+    		->get();
+    	return $listProducts;
+    }
+
 }

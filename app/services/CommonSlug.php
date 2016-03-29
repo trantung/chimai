@@ -109,5 +109,16 @@ class CommonSlug
 			return url(LaravelLocalization::setLocale() . '/' . $slug);	
 		}
 	}
-
+	public static function getListProductImageVi($data, $type)
+	{
+		if (getLanguage() == VI) {
+			$listProducts = ProductImage::where('product_id', $data->id)->where('type', $type)->get();
+		}
+		else {
+			$productId = AdminLanguage::where('model_name', 'Product')
+				->where('relate_id', $data->id)->first()->model_id;
+			$listProducts = ProductImage::where('product_id', $productId)->where('type', $type)->get();
+		}
+		return $listProducts;
+	}
 }

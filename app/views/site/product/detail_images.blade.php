@@ -1,10 +1,9 @@
 <div class="detail_image">
 	<ul id="etalage">
-		@foreach(ProductImage::where('product_id', $data->id)->where('type', PRODUCT_COLOR)->get() as $kImage => $vImage)
+		@foreach(CommonSlug::getListProductImageVi($data, PRODUCT_COLOR) as $kImage => $vImage)
 		<li>
-			<img class="etalage_source_image" src="{{ url('images/'. UPLOAD_FOLDER_COLOR . '/' . $data->id . '/' . $vImage->image_url) }}" title="{{ $vImage->name }}" />
-			<p>{{ $vImage->name }}</p>
-		</li>
+			<img class="etalage_source_image" src="{{ url('images/'. UPLOAD_FOLDER_COLOR . '/' . $vImage->product_id . '/' . $vImage->image_url) }}" title="{{ $vImage->name }}" />
+			<p>{{ $vImage->name }}</p>					
 		@endforeach
 	</ul>
 <!--                                <div class="etalage-control">
