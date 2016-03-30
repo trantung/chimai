@@ -61,7 +61,7 @@
 					</div>
 				</div>
 
-				@include('admin.common.meta', ['modelName' => 'BoxPdf', 'modelId' => $boxVi->id])
+				@include('admin.common.meta', ['modelName' => 'BoxVideo', 'modelId' => $boxVi->id])
               	
 			 	<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

@@ -117,4 +117,5 @@ define('UPLOAD_FOLDER_COLOR', 'ProductColor');
 define('UPLOAD_FOLDER_PICTURE', 'ProductPicture');
 //lấy 5 tin trang giói thiêu(box type)
 define('TAKE_NUMBER_BOX_TYPE', 5);
-
+//so luong tin sidebar
+define('NUMBER_NEWS_SIDEBAR', 5);
