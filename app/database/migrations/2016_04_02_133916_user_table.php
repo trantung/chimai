@@ -12,7 +12,19 @@ class UserTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('users', function(Blueprint $table) {
+			$table->increments('id');
+			$table->integer('role_user_id')->nullable();
+			$table->string('email', 256)->nullable();
+			$table->string('password', 256)->nullable();
+			$table->string('phone', 256)->nullable();
+			$table->string('address', 256)->nullable();
+			$table->string('fullname', 256)->nullable();
+			$table->string('username', 256)->nullable();
+			$table->integer('status')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +34,7 @@ class UserTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('users');
 	}
 
 }

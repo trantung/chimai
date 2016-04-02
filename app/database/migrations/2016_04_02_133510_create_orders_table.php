@@ -12,7 +12,15 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('orders', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('total', 256)->nullable();
+			$table->integer('discount')->nullable();
+			$table->integer('user_id')->nullable();
+			$table->integer('status')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +30,7 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('orders');
 	}
 
 }
