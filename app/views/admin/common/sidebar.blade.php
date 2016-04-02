@@ -63,7 +63,7 @@
 			</li>
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-list"></i> <span>Quản lý thư mục hiển thị trong box</span>
+					<i class="fa fa-list"></i> <span>Quản lý thư mục con trong box</span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
