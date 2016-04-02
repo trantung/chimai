@@ -24,5 +24,25 @@ class UserManager
 		$input['type_user'] = TYPESYSTEM;
 		return  $input;
 	}
+
+	public static function getRoleUserArray()
+	{
+		$rs = RoleUser::lists('name', 'id');
+		if($rs) {
+			return $rs;
+		}
+		return null;
+	}
+
+	public static function getRoleUserName($id)
+	{
+		if($id) {
+			$rs = RoleUser::find($id);
+			if($rs) {
+				return $rs->name;
+			}
+		}
+		return '';
+	}
 	
 }

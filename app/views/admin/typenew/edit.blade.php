@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Thêm mới thể loại tin' }}
+{{ $title='Sửa thể loại tin' }}
 @stop
 
 @section('content')
@@ -48,49 +48,49 @@
 						</div>
 					</div>
 				@endforeach
-				<div class="form-group">
-					<label>Upload ảnh</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::file('image_url') }}
-							<img src="{{ url(UPLOADIMG . '/TypeNew/' . $boxVi->id . '/' . $boxVi->image_url) }}" width="200px" height="auto"  />
+					<div class="form-group">
+						<label>Upload ảnh</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::file('image_url') }}
+								<img src="{{ url(UPLOADIMG . '/TypeNew/' . $boxVi->id . '/' . $boxVi->image_url) }}" width="200px" height="auto"  />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label>Box tin tức</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::select('box_type_id', Common::getBoxType(), $boxVi->box_type_id, array('class' => 'form-control')) }}
+					<div class="form-group">
+						<label>Box tin tức</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::select('box_type_id', Common::getBoxType(), $boxVi->box_type_id, array('class' => 'form-control')) }}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label>Mức ưu tiên</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
+					<div class="form-group">
+						<label>Mức ưu tiên</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::text('weight_number', $boxVi->weight_number , textPlaceHolder('Mức ưu tiên')) }}
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-	                <label>Trạng thái</label>
-	                <div class="row">
-						<div class="col-sm-6">
-		                	{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
-		                </div>
-					</div>
-              	</div>
-			  	
+					<div class="form-group">
+		                <label>Trạng thái</label>
+		                <div class="row">
+							<div class="col-sm-6">
+			                	{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
+			                </div>
+						</div>
+	              	</div>
+		  		</div>
 			  	@include('admin.common.meta', ['modelName' => 'TypeNew', 'modelId' => $boxVi->id])
 
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>
 			{{ Form::close() }}
-		  </div>
-		  <!-- /.box -->
+		</div>
+		<!-- /.box -->
 	</div>
 </div>
 @stop

@@ -132,6 +132,9 @@ class CommonRule {
 			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required']);
 			return $arrayRule;
 		}
+		if ($modelName == 'Discount') {
+			return ['value' => 'required', 'role_user_id' => 'required'];
+		}
 
 		return [];
 	}

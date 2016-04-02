@@ -112,6 +112,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/test_delete_image', 'TestUploadImageController@testDeleteImage');
 	Route::post('/test_update_text', 'TestUploadImageController@testUpdateText');
 
+	Route::resource('/discount', 'DiscountController');
+
 });
 
 Route::group(

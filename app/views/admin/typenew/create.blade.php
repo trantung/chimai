@@ -48,39 +48,40 @@
 						</div>
 					</div>
 				@endforeach
-				<div class="form-group">
-					<label>Upload ảnh</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::file('image_url') }}
+					<div class="form-group">
+						<label>Upload ảnh</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::file('image_url') }}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label>Box tin tức</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::select('box_type_id', Common::getBoxType(), '', array('class' => 'form-control')) }}
+					<div class="form-group">
+						<label>Box tin tức</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::select('box_type_id', Common::getBoxType(), '', array('class' => 'form-control')) }}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label>Mức ưu tiên</label>
-					<div class="row">
-						<div class="col-sm-6">
-							{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+					<div class="form-group">
+						<label>Mức ưu tiên</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::text('weight_number', null , textPlaceHolder('Mức ưu tiên')) }}
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-	                <label>Trạng thái</label>
-	                <div class="row">
-						<div class="col-sm-6">
-		                	{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
-		                </div>
-					</div>
-              	</div>
+					<div class="form-group">
+		                <label>Trạng thái</label>
+		                <div class="row">
+							<div class="col-sm-6">
+			                	{{ Form::select('status', Common::getStatus(), '', array('class' => 'form-control')) }}
+			                </div>
+						</div>
+	              	</div>
+          		</div>
 			  	
 			  	@include('admin.common.meta')
 
@@ -88,8 +89,8 @@
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>
 			{{ Form::close() }}
-		  </div>
-		  <!-- /.box -->
+		</div>
+		<!-- /.box -->
 	</div>
 </div>
 @stop
