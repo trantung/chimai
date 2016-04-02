@@ -3,6 +3,8 @@
 define('ADMIN', 1);
 define('EDITOR', 2);
 define('SEO', 3);
+define('SERVICE', 4);
+define('WRITER', 5);
 //define attach, detach, sync
 define('ATTACH', 1);
 define('DETACH', 2);
