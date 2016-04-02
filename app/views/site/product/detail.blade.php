@@ -30,10 +30,10 @@
 				<div class="detail_bottom">
 					<div class="tab_bar1">
 						<ul class="tabs tabs1" data-tab>
-							<li class="tab-title active"><a href="#panel1">trans('label.image_gallery')</a></li>
+							<li class="tab-title active"><a href="#panel1">{{ trans('label.image_gallery') }}</a></li>
 							<!-- <li class="tab-title"><a href="#panel2">Video</a></li> -->
-							<li class="tab-title"><a href="#panel3">trans('label.product_relate')</a></li>
-							<li class="tab-title"><a href="#panel4">trans('label.product_request')</a></li>
+							<li class="tab-title"><a href="#panel3">{{ trans('label.product_relate') }}</a></li>
+							<li class="tab-title"><a href="#panel4">{{ trans('label.product_request') }}</a></li>
 						</ul>
 						<div class="tabs-content">
 							<div class="content active" id="panel1">
