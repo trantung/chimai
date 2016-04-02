@@ -12,7 +12,13 @@ class OrderDiscountTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('order_discounts', function(Blueprint $table) {
+			$table->increments('id');
+			$table->integer('order_id')->nullable();
+			$table->integer('discount_id')->nullable();
+			$table->softDeletes();
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +28,7 @@ class OrderDiscountTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('order_discounts');
 	}
 
 }

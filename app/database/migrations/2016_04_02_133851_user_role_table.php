@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DiscountTable extends Migration {
+class UserRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class DiscountTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('discounts', function(Blueprint $table) {
+		Schema::create('role_users', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('role_user_id')->nullable();
-			$table->string('value', 256)->nullable();
+			$table->integer('status')->nullable();
+			$table->string('name', 256)->nullable();
 			$table->string('description', 256)->nullable();
 			$table->softDeletes();
 			$table->timestamps();
@@ -29,7 +29,7 @@ class DiscountTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('discounts');
+		Schema::drop('role_users');
 	}
 
 }
