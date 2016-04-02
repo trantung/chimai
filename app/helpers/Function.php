@@ -7,6 +7,8 @@ function getRole($roleId) {
 		ADMIN => 'ADMIN',
 		EDITOR => 'EDITOR',
 		SEO => 'SEO',
+		SERVICE => 'SERVICE',
+		WRITER => 'WRITER',
 	);
 	return $role[$roleId];
 }
@@ -18,6 +20,8 @@ function selectRoleId()
 		ADMIN => 'ADMIN',
 		EDITOR => 'EDITOR',
 		SEO => 'SEO',
+		SERVICE => 'SERVICE',
+		WRITER => 'WRITER',
 	);
 }
 function textPlaceHolder($input, $isSeoMeta = NULL, $id = NULL)
