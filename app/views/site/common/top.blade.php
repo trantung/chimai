@@ -16,7 +16,7 @@
 			<a href="{{ CommonSite::getUrlLang($lang) }}"><img src="{{ url('assets/imgs/logo.png') }}" alt="" /></a>
 		</div>
 
-		<div class="medium-5 columns search-area">
+		<div class="medium-4 columns search-area">
 			{{ Form::open(array('action' => 'SiteIndexController@search', 'method'=>'GET', 'class' => 'form-search', 'id' => 'searchIndex')) }}
 				<div class="row collapse">
 					<div class="small-11 columns">
@@ -33,7 +33,7 @@
 			{{ Form::close() }}
 		</div>
 
-		<div class="medium-4 columns cart-area">
+		<div class="medium-5 columns cart-area">
 			<div class="custom-block">
 				<ul>
 					<li><i class="fa fa-phone"></i>{{ CommonConfig::getCode(HOTLINE_PHONE) }}</li>
