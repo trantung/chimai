@@ -83,7 +83,7 @@
 								</div>
 							</div>
 
-						    <!-- @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id]) -->
+						    @include('admin.common.meta', ['modelName' => 'AdminNew', 'modelId' => $boxVi->id])
 
 						</div>
 

@@ -29,4 +29,21 @@ class CommonNews
 		return TypeNew::where('language', VI)->lists('name', 'id');
 	}
 
+	public static function getSideNews()
+	{
+		$data = AdminNew::join('type_news', 'news.type_new_id', '=', 'type_news.id')
+				->select('news.id as id', 'news.name as name', 'news.slug as slug', 'type_news.slug as slugType')
+				->where('news.status', ACTIVE)
+				->where('news.language', getLanguage())
+				->orderByRaw(DB::raw("news.weight_number = '0', news.weight_number"))
+				->orderBy('news.id', 'desc')
+				->take(NUMBER_NEWS_SIDEBAR)
+				->get();
+		if(count($data) > 0) {
+			return $data;
+		} else {
+			return null;
+		}
+	}
+
 }

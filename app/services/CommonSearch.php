@@ -28,7 +28,7 @@ class CommonSearch
 	public static function searchNews($input, $paginate = null)
 	{
 		$data = AdminNew::join('type_news', 'news.type_new_id', '=', 'type_news.id')
-				->select('news.id as newId', 'news.slug as slug', 'type_news.slug as slugType', 'news.title as title', 'news.description as description', 'news.image_url as image_url')
+				->select('news.id as newId', 'news.slug as slug', 'type_news.slug as slugType', 'news.name as name', 'news.description as description', 'news.image_url as image_url')
 				->where(function ($query) use ($input)
 				{
 					if($input['search'] != '') {
