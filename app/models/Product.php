@@ -13,7 +13,7 @@ class Product extends Eloquent implements SluggableInterface
 	protected $table = 'products';
 	protected $fillable = ['name', 'image_url', 'weight_number', 'status', 'code', 'status',
 		'slug', 'material_id', 'origin_id', 'surface_id', 'unit_id', 'description', 'language',
-		'price', 'price_old', 'qty'];
+		'price', 'price_old', 'qty', 'qty_import', 'qty_export', 'qty_error', 'qty_back'];
 	protected $dates = ['deleted_at'];
 	
 	protected $sluggable = array(
