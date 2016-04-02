@@ -219,6 +219,7 @@ class CommonSite
     		->where('status', ACTIVE)
     		->where('id', '!=', $data->material_id)
     		->orderBy('weight_number', 'asc')
+    		->take(PAGINATE)
     		->get();
     	return $listProducts;
     }
