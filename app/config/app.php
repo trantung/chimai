@@ -126,6 +126,7 @@ return array(
 	    // 'Barryvdh\Debugbar\ServiceProvider',
 	    'Jenssegers\Agent\AgentServiceProvider',
 	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+	    'Gloudemans\Shoppingcart\ShoppingcartServiceProvider'
 
 	),
 
@@ -197,6 +198,7 @@ return array(
 		// 'Debugbar' 	      => 'Barryvdh\Debugbar\Facade',
 		'Agent' 		  => 'Jenssegers\Agent\Facades\Agent',
 		'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
+		'Cart'            => 'Gloudemans\Shoppingcart\Facades\Cart',
 		
 	),
 
