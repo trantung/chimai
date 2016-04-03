@@ -11,8 +11,10 @@ class SiteIndexController extends SiteController {
 	{
 		$lang = getLanguage();
 		$banners = AdminSlide::where('type', SLIDE_BANNER_VALUE)
+			->where('status', ACTIVE)
 			->where('language', $lang)->get();
 		$partners = AdminSlide::where('type', SLIDE_PARTNER_VALUE)
+			->where('status', ACTIVE)
 			->where('language', $lang)->get();
 		return View::make('site.index')->with(compact('banners', 'partners'));
 	}
