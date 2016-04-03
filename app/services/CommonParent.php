@@ -6,6 +6,7 @@ class CommonParent
 		$idRelates = $table::where('model_name', $modelName)
 			->where('relate_name', $modelName)
 			->where('model_id', $modelId)
+			->groupBy('relate_id')
 			->lists('relate_id');
 		foreach ($idRelates as $key => $idRelate) {
 			$relate[$key] = $modelName::find($idRelate);
@@ -14,4 +15,25 @@ class CommonParent
 		}
 		return $idRelates;
 	}
+
+	public static function getCommonSlug($table, $modelName, $modelId)
+	{
+		$idRelates = $table::where('model_name', $modelName)
+			->where('relate_name', $modelName)
+			->where('model_id', $modelId)
+			->groupBy('relate_id')
+			->lists('relate_id');
+		foreach ($idRelates as $key => $idRelate) {
+			$slug[$key] = $modelName::find($idRelate)->slug;
+		}
+		return $slug;
+	}
+
+	public static function updateCommonSlug($modelName, $idRelates, $slugs)
+	{
+		foreach ($idRelates as $k => $v) {
+			$modelName::find($v)->update(array('slug' => $slugs[$k]));
+		}
+	}
+
 }

@@ -124,12 +124,19 @@ class CommonLanguage {
 		Common::update($modelName, $viInput, [], $id);
 		//update AdminLanguage
 		self::updateModelCommon($modelName, $id, $inputCommon);
+
+		$slugs = CommonParent::getCommonSlug('AdminLanguage', $modelName, $id);
+
 		//update foreign
 		$idRelates = self::getIdRelate($modelName, $id);
 		foreach ($idRelates as $key => $idRelate) {
 			$relate[$key] = $modelName::find($idRelate);
 			$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
-			$relate[$key]->update($relateUpdate[$key]);
+			if($input['name'] == $relate[$key]->name) {
+				$modelName::where('id', $idRelate)->update($relateUpdate[$key]);
+			} else {
+				$relate[$key]->update($relateUpdate[$key]);	
+			}
 		}
 		// update common field
 		self::updateCommonModel($id, $modelName, $inputCommon, $idRelates);
@@ -139,6 +146,8 @@ class CommonLanguage {
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
 		//update seo
 		CommonSeo::updateSeo($modelName, $id);
+		//update slug
+		CommonParent::updateCommonSlug($modelName, $idRelates, $slugs);
 	}
 	public static function deleteModel($modelName, $id)
 	{

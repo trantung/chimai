@@ -289,6 +289,8 @@ class Common extends CommonParent
 		// 	$relateUpdate[$key] = array_merge($foreignInput[$relate[$key]->language], []);
 		// 	$relate[$key]->update($relateUpdate[$key]);
 		// }
+		$slugs = CommonParent::getCommonSlug('BoxCommon', $modelName, $id);
+		// dd($slugs);
 		$idRelates = CommonParent::updateCommonParent('BoxCommon', $modelName, $id, $foreignInput);
 		// $imageUrl = Common::uploadImage($id, UPLOADIMG, 'image_url', $modelName, $imageUrl);
 		$imageUrl = CommonImage::uploadImage($id, UPLOADIMG, 'image_url', $modelName, IMAGE_HOME_WIDTH, IMAGE_HOME_HEIGHT, IMAGE_MODE_FILL, $imageUrl);
@@ -296,6 +298,8 @@ class Common extends CommonParent
 		$update = Common::updateImageBox($imageUrl, $id, $idRelates, $modelName);
 		//update seo
 		CommonSeo::updateSeo($modelName, $id);
+		//update slug
+		CommonParent::updateCommonSlug($modelName, $idRelates, $slugs);
 	}
 	public static function deleteBox($modelName, $id)
 	{
@@ -470,7 +474,14 @@ class Common extends CommonParent
 	}
 	public static function commonUpdateField($modelName, $modelId, $field, $table, $tableLanguage)
 	{
-		$relateIdProduct = Common::getRelatedId('AdminLanguage', $table, $modelId);
+		$slugs = CommonParent::getCommonSlug($tableLanguage, $table, $modelId);
+		$idRelates = $tableLanguage::where('model_name', $table)
+			->where('relate_name', $table)
+			->where('model_id', $modelId)
+			->groupBy('relate_id')
+			->lists('relate_id');
+
+		$relateIdProduct = Common::getRelatedId($tableLanguage, $table, $modelId);
 		$listProduct = $table::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
 		foreach ($listProduct as $key => $value) {
 			$relateIds = $tableLanguage::where('model_name', $modelName)->where('model_id', $value->$field)->lists('relate_id');
@@ -481,6 +492,8 @@ class Common extends CommonParent
 				}
 			}
 		}
+		CommonParent::updateCommonSlug($table, $idRelates, $slugs);
+
 	}
 
 	public static function getArrayBoxCommon()
