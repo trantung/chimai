@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder {
 		
 		$this->call('ConfigCodeTableSeeder');
 
-		// $this->call('AdminSeoSeeder');
+		$this->call('AdminSeoSeeder');
 		
 		$this->call('UnitTableSeeder');
 
