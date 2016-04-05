@@ -16,6 +16,15 @@ class RoleTableSeeder extends Seeder {
 					'name' => 'Seo',
 					'description'=> 'Role is Seo',
 			]);
+		Role::create([
+					'name' => 'Service',
+					'description'=> 'Role is Service',
+			]);
+		Role::create([
+					'name' => 'Writer',
+					'description'=> 'Role is Writer',
+			]);
+
 	}
 
 }
