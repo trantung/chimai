@@ -33,6 +33,10 @@ a:focus{
     clear: both;
 }
 
+p {
+    font-size: 14px;
+}
+
 .tooltip{
   background-color: rgba(240,100,20,0.8) !important;
 }
@@ -162,7 +166,7 @@ a:focus{
 }
 .custom-block ul li{ 
     display: inline;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 19px;
     padding: 0 6px;
     text-transform: uppercase;
@@ -470,7 +474,7 @@ a.quick_compare_button {
 }
 .bt_contact p {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 5px;
 }
 .bt_contact strong {
@@ -543,7 +547,7 @@ p.bt_newsletter_title {
 
 footer {
     background: #c9c9c9 none repeat scroll 0 0;
-    font-size: 13px;
+    font-size: 14px;
     padding-bottom: 15px;
     padding-top: 15px;
 }
@@ -601,7 +605,7 @@ footer p {
     text-align: center;
     color: #555;
     margin-bottom: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /*=========================================================================================================================================*/
@@ -776,7 +780,7 @@ footer p {
 }
 .policy_text h5 {
     margin: 0px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
 }
 /*=========================================================================================================================================*/
@@ -870,7 +874,7 @@ footer p {
     border-radius: 5px;
     color: #ED1C24;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     height: auto;
     line-height: 32px;
     text-align: center;
@@ -889,7 +893,7 @@ footer p {
     border-radius: 5px;
     color: #333;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 32px;
     padding: 0 10px 0 5px;
     font-weight: bold;
@@ -913,7 +917,7 @@ footer p {
     border-radius: 5px;
     color: #055082;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     height: auto;
     line-height: 32px;
     text-align: center;
@@ -971,7 +975,7 @@ footer p {
 .main2_tittle {
     background: rgba(0, 0, 0, 0) url("../imgs/slider-bar.png") no-repeat scroll right center;
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
     line-height: 42px;
     margin: 0 0 20px;
@@ -984,7 +988,7 @@ footer p {
     background: #fff none repeat scroll 0 0;
     color: #055082;
     display: inline;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     padding-right: 20px;
 }
@@ -1069,20 +1073,36 @@ footer p {
     margin-bottom: 20px;
 }
 
+.news-inner h2 {
+    line-height: normal;
+    font-size: 18px;
+}
+.news-inner h2 a {
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: top;
+}
+.news-inner .news-text {
+    vertical-align: top;
+}
+.news-inner .news-text p {
+    vertical-align: top;
+}
+
 .detail {
 
 }
 .detail h1 {
-    color: #555;
-    font-size: 27px;
-    font-weight: 500;
+    color: #333;
+    font-size: 24px;
     line-height: 1;
+    font-weight: bold;
     margin: 15px 0;
 }
 .summary {
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .desc {
@@ -1091,6 +1111,12 @@ footer p {
 .desc table, .desc iframe, .desc img {
     max-width: 100% !imporatnt;
     height: auto !imporatnt;
+}
+
+a.seemore {
+    display: inline-block;
+    color: #055082;
+    font-weight: bold;
 }
 
 
@@ -1136,7 +1162,7 @@ footer p {
     border-radius: 5px;
     color: #fff;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 15px;
     padding: 5px 15px;
 }
@@ -1163,7 +1189,7 @@ footer p {
     list-style: none;
     display: inline;
     color: #aaa;
-    font-size: 13px;
+    font-size: 14px;
 }
 .breadcrumb ul li i.fa {
     font-size: 11px;
@@ -1171,7 +1197,7 @@ footer p {
 }
 .breadcrumb ul li a {
     color: #555;
-    font-size: 13px;
+    font-size: 14px;
 }
 .breadcrumb ul li a:hover,
 .breadcrumb ul li a:focus {
@@ -1227,7 +1253,7 @@ footer p {
 .paging ul li {
     border-radius: 3px;
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     height: 30px;
     line-height: 30px;
     margin: 0 0 0 2px;
@@ -1283,13 +1309,15 @@ footer p {
 }
 .side ul {
     list-style: none;
+    margin-bottom: 5px;
 }
 .side ul li {
     line-height: 28px;
+    font-size: 14px;
 }
 .side ul li a {
     color: #777;
-    font-size: 13px;
+    font-size: 14px;
 }
 .side ul li a:hover,
 .side ul li a:focus {
@@ -1302,7 +1330,9 @@ footer p {
     padding-right: 7px;
     color: #055082;
 }
-
+.side ul li input[type="file"], input[type="checkbox"], input[type="radio"], select {
+    margin-bottom: 10px;
+}
 .side-submit .button {
     background: #055082;
     width: 100%;
@@ -1350,10 +1380,10 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 }
 
 .detail_shop > h1 {
-    color: #555;
-    font-size: 27px;
-    font-weight: 500;
+    color: #333;
+    font-size: 24px;
     line-height: 1;
+    font-weight: bold;
     margin: 15px 0;
 }
 /*.detail_shop > h2 {
@@ -1629,7 +1659,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
     padding-left: 10px;
 }
 .policy_text h6 {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 2px;
 }
@@ -1726,7 +1756,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 .about_body2 p,
 .about_body3 p {
     color: #555;
-    font-size: 16px;
+    font-size: 14px;
 }
 .about_body2 {
 }
@@ -2244,7 +2274,7 @@ a.button2 i.fa {
     background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
     color: #fff;
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     margin: 33% 10px;
     text-transform: uppercase;
 }

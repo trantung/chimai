@@ -13,11 +13,11 @@ class UnitTableSeeder extends Seeder {
 			'language' => 'en',
 		]);
 		AdminUnit::create([
-			'name' => 'gói',
+			'name' => 'viên',
 			'language' => 'vi',
 		]);
 		AdminUnit::create([
-			'name' => 'package',
+			'name' => 'brick',
 			'language' => 'en',
 		]);
 		AdminLanguage::create([
@@ -25,7 +25,18 @@ class UnitTableSeeder extends Seeder {
 			'model_id' => 1,
 			'relate_name' => 'AdminUnit',
 			'relate_id' => 2,
+			'status' => ACTIVE,
+			'weight_number' => VI,
 		]);
+		AdminLanguage::create([
+			'model_name' => 'AdminUnit',
+			'model_id' => 3,
+			'relate_name' => 'AdminUnit',
+			'relate_id' => 4,
+			'status' => ACTIVE,
+			'weight_number' => VI,
+		]);
+
 	}
 
 }

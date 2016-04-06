@@ -121,3 +121,6 @@ define('UPLOAD_FOLDER_PICTURE', 'ProductPicture');
 define('TAKE_NUMBER_BOX_TYPE', 5);
 //so luong tin sidebar
 define('NUMBER_NEWS_SIDEBAR', 5);
+
+// don vi tien te
+define('PRICE_UNIT', 'vnđ');

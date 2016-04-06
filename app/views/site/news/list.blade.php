@@ -18,13 +18,17 @@
 			<div class="medium-9 medium-push-3 columns">
 				<div class="news-inner">
 					@foreach($data as $new)
+					<?php $url = CommonSlug::getUrlSlug(TypeNew::find($new->type_new_id)->slug, $new->slug); ?>
 					<div class="row">
 						<div class="medium-3 columns">
 							<img src="{{ url(CommonSlug::getImageUrlNotBox('AdminNew', $new)) }}" />
 						</div>
-						<div class="medium-9 columns">
-							<h4><a href="{{ CommonSlug::getUrlSlug(TypeNew::find($new->type_new_id)->slug, $new->slug) }}">{{ $new->name }}</a></h4>
-							<p>{{ CommonSlug::getSlugByModel($new, 'AdminNew')->sapo }}</p>
+						<div class="medium-9 columns news-text">
+							<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
+							<p>
+								{{ CommonSlug::getSlugByModel($new, 'AdminNew')->sapo }}
+								<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
+							</p>
 						</div>
 					</div>
 					@endforeach

@@ -82,9 +82,10 @@
 			                </div>
 						</div>
 	              	</div>
-		  		</div>
-			  	@include('admin.common.meta', ['modelName' => 'TypeNew', 'modelId' => $boxVi->id])
 
+	              	@include('admin.common.meta', ['modelName' => 'TypeNew', 'modelId' => $boxVi->id])
+	              	
+		  		</div>
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
 				</div>

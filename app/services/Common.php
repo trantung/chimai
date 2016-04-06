@@ -507,6 +507,17 @@ class Common extends CommonParent
             'TypeNew', 'AdminVideo', 'AdminPdf', 'BoxPdf', 'BoxVideo', 'BoxShowRoom', 'AdminImage', 'Product', 'AdminNew'];
 	}
 
+	public static function getModelPropertyByLang($modelName, $lang)
+	{
+		$data = $modelName::where('language', $lang)
+			->orderByRaw(DB::raw("weight_number = '0', weight_number"))
+			->get();
+		if($data) {
+			return $data;
+		}
+		return null;
+	}
+
 }
 
 

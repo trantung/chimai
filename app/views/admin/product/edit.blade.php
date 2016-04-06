@@ -40,14 +40,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Số lượng</label>
-								<div class="row">
-									<div class="col-sm-6">	                  	
-									   {{ Form::text('qty', $boxVi->qty , textPlaceHolder('Số lượng') + ['required'=>'']) }}
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
 								<label>Upload ảnh đại diện</label>
 								<div class="row">
 									<div class="col-sm-6">
@@ -82,7 +74,22 @@
 									</div>
 								</div>
 							</div>
-							
+							<div class="form-group">
+								<label for="name">Số lượng</label>
+								<div class="row">
+									<div class="col-sm-6">	                  	
+									   {{ Form::text('qty', $boxVi->qty , textPlaceHolder('Số lượng') + ['required'=>'']) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Đơn vị</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::select('unit_id', Common::getUnit(), $boxVi->unit_id, array('class' => 'form-control')) }}
+									</div>
+								</div>
+							</div>
 							<div class="form-group">
 								<label>Mức ưu tiên</label>
 								<div class="row">
@@ -96,14 +103,6 @@
 								<div class="row">
 									<div class="col-sm-6">
 										{{ Form::select('status', Common::getStatus(), $boxVi->status, array('class' => 'form-control')) }}
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Đơn vị</label>
-								<div class="row">
-									<div class="col-sm-6">
-										{{ Form::select('unit_id', Common::getUnit(), $boxVi->unit_id, array('class' => 'form-control')) }}
 									</div>
 								</div>
 							</div>
@@ -157,7 +156,7 @@
 								<label for="name">Tên {{ $value->language }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::text($value->language.'_'.'name', $value->name , textPlaceHolder('') + ['required'=>'']) }}
+									   {{ Form::text($value->language.'_'.'name', $value->name , textPlaceHolder('')) }}
 									</div>
 								</div>
 							</div>
@@ -165,14 +164,14 @@
 								<label for="name">Giá hiện tại (hoặc giá khuyến mại) {{ $value->language }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::text($value->language.'_'.'price', $value->price , textPlaceHolder('') + ['required'=>'']) }}
+									   {{ Form::text($value->language.'_'.'price', $value->price , textPlaceHolder('')) }}
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="name">Giá cũ (trước khuyến mại) {{ $value->language }}</label>
 								<div class="row">
-									<div class="col-sm-6">	                  	
+									<div class="col-sm-6">
 									   {{ Form::text($value->language.'_'.'price_old', $value->price_old , textPlaceHolder('')) }}
 									</div>
 								</div>

@@ -24,7 +24,7 @@ class CommonRule {
 		} else {
 			$rules = CommonRule::getRules($modelName);
 		}
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return $validator;
         }
@@ -123,13 +123,15 @@ class CommonRule {
 			return $arrayRule;
 		}
 		if ($modelName == 'ProductCreate') {
-			$array = self::getRulesRequired(['name', 'price', 'price_old']);
-			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required', 'image_url' => 'required|image']);
+			// $array = self::getRulesRequired(['name', 'price', 'price_old']);
+			// $arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required', 'image_url' => 'required|image']);
+			$arrayRule = ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required', 'image_url' => 'required|image'];
 			return $arrayRule;
 		}
 		if ($modelName == 'ProductEdit') {
-			$array = self::getRulesRequired(['name', 'price', 'price_old'], $input);
-			$arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required']);
+			// $array = self::getRulesRequired(['name', 'price', 'price_old'], $input);
+			// $arrayRule = array_merge($array, ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required']);
+			$arrayRule = ['name' => 'required', 'weight_number' => 'integer|min:0', 'price' => 'required|integer|min:0', 'price_old' => 'integer|min:0|greater_than:price,' . $input['price'], 'category_id' => 'required', 'size_id' => 'required'];
 			return $arrayRule;
 		}
 		if ($modelName == 'Discount') {

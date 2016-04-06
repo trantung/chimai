@@ -19,10 +19,10 @@
 			<div class="medium-9 medium-push-3 columns">
 				<div class="detail_top">
 					<div class="row">
-						<div class="medium-6 columns">
+						<div class="medium-5 columns">
 							@include('site.product.detail_images')
 						</div>
-						<div class="medium-6 columns">
+						<div class="medium-7 columns">
 							@include('site.product.detail_info')
 						</div>
 					</div>

@@ -14,6 +14,16 @@ class AdminProductController extends AdminController {
 		return View::make('admin.product.index')->with(compact('list'));
 	}
 
+	public function search()
+	{
+		$input = Input::except('_token');
+		$list = Product::where('language', VI)
+			->where('name', 'LIKE', '%' . $input['keyword'] . '%')
+			->orderBy('created_at', 'desc')
+			->paginate(PAGINATE);
+		return View::make('admin.product.index')->with(compact('list'));
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -38,6 +48,22 @@ class AdminProductController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@create')->withErrors($validator);
 		}
+
+		//neu ko nhap ten tieng anh, gia tieng anh thi auto lay theo tieng viet
+		$arrayLang = Common::getArrayLangNotVi();
+		foreach ($arrayLang as $key => $value) {
+			if($input[$value.'_name'] == '') {
+				$input[$value.'_name'] = $input['name'];
+			}
+			if($input[$value.'_price'] == '') {
+				$input[$value.'_price'] = $input['price'];
+			}
+			if($input[$value.'_price_old'] == '') {
+				$input[$value.'_price_old'] = $input['price_old'];
+			}
+
+		}
+
 		$viId = CommonLanguage::createModel($input, 'Product', CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		if ($viId) {
 			Common::attachCommon('AdminLanguage', 'Product', $viId, 'productCategories', Input::get('category_id'));
@@ -105,6 +131,22 @@ class AdminProductController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('AdminProductController@edit', $id)->withErrors($validator);
 		}
+
+		//neu ko nhap ten tieng anh, gia tieng anh thi auto lay theo tieng viet
+		$arrayLang = Common::getArrayLangNotVi();
+		foreach ($arrayLang as $key => $value) {
+			if($input[$value.'_name'] == '') {
+				$input[$value.'_name'] = $input['name'];
+			}
+			if($input[$value.'_price'] == '') {
+				$input[$value.'_price'] = $input['price'];
+			}
+			if($input[$value.'_price_old'] == '') {
+				$input[$value.'_price_old'] = $input['price_old'];
+			}
+
+		}
+		
 		CommonLanguage::updateModel('Product', $id, $input, CommonProperty::getDefaultValue('Product', $input), self::getConfigImage($input));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productCategories', Input::get('category_id'));
 		Common::syncCommon('AdminLanguage', 'Product', $id, 'productSizes', Input::get('size_id'));

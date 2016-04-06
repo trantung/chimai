@@ -68,7 +68,8 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::post('/picture_upload_image', 'AdminPictureController@pictureUploadImage');
 		Route::post('/picture_delete_image', 'AdminPictureController@pictureDeleteImage');
 		Route::post('/picture_update_text', 'AdminPictureController@pictureUpdateText');
-
+		//product search
+		Route::get('/search', 'AdminProductController@search');
 	});
 	Route::group(['prefix' => 'news'], function(){
 		//type new

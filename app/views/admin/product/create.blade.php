@@ -37,14 +37,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="name">Số lượng</label>
-								<div class="row">
-									<div class="col-sm-6">	                  	
-									   {{ Form::text('qty', null , textPlaceHolder('Số lượng') + ['required'=>'']) }}
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
 								<label>Upload ảnh đại diện</label>
 								<div class="row">
 									<div class="col-sm-6">
@@ -77,7 +69,22 @@
 									</div>
 								</div>
 							</div>
-							
+							<div class="form-group">
+								<label for="name">Số lượng</label>
+								<div class="row">
+									<div class="col-sm-6">	                  	
+									   {{ Form::text('qty', null , textPlaceHolder('Số lượng') + ['required'=>'']) }}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Đơn vị</label>
+								<div class="row">
+									<div class="col-sm-6">
+										{{ Form::select('unit_id', Common::getUnit(), '', array('class' => 'form-control')) }}
+									</div>
+								</div>
+							</div>
 							<div class="form-group">
 								<label>Mức ưu tiên</label>
 								<div class="row">
@@ -94,14 +101,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label>Đơn vị</label>
-								<div class="row">
-									<div class="col-sm-6">
-										{{ Form::select('unit_id', Common::getUnit(), '', array('class' => 'form-control')) }}
-									</div>
-								</div>
-							</div>
+							
 							<div class="form-group">
 								<label>Xuất xứ</label>
 								<div class="row">
@@ -152,7 +152,7 @@
 								<label for="name">Tên {{ $singLang }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('') + ['required'=>'']) }}
+									   {{ Form::text($singLang.'_'.'name', null , textPlaceHolder('')) }}
 									</div>
 								</div>
 							</div>
@@ -160,7 +160,7 @@
 								<label for="name">Giá hiện tại (hoặc giá khuyến mại) {{ $singLang }}</label>
 								<div class="row">
 									<div class="col-sm-6">	                  	
-									   {{ Form::text($singLang.'_'.'price', null , textPlaceHolder('') + ['required'=>'']) }}
+									   {{ Form::text($singLang.'_'.'price', null , textPlaceHolder('')) }}
 									</div>
 								</div>
 							</div>

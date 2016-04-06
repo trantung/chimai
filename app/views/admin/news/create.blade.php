@@ -102,9 +102,9 @@
 
 					@include('admin.common.meta')
 					
-					<div class="box-footer">
+				</div>
+				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
-					</div>
 				</div>
 			{{ Form::close() }}
 		  	<!-- /.box -->

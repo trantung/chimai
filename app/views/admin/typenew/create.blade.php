@@ -81,9 +81,10 @@
 			                </div>
 						</div>
 	              	</div>
+
+	              	@include('admin.common.meta')
+	              	
           		</div>
-			  	
-			  	@include('admin.common.meta')
 
 				<div class="box-footer">
 					{{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}

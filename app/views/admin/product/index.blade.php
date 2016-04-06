@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('admin.product.search')
+
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('AdminProductController@create') }}" class="btn btn-primary">Thêm</a>

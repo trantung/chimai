@@ -13,9 +13,9 @@
 	</ul>
 	<div class="regular_price">
 		@if($data->price_old)
-		<span>{{ getFullPriceInVnd($data->price_old) }} &#273;</span>
+		<span>{{ getFullPriceInVnd($data->price_old) }} {{ PRICE_UNIT }}</span>
 		@endif
-		<p>{{ getFullPriceInVnd($data->price) }} &#273;</p>
+		<p>{{ getFullPriceInVnd($data->price) }} {{ PRICE_UNIT }}</p>
 	</div>
 	<p><strong>{{ trans('captions.availability') }}:</strong> {{ getQtyProduct($data->qty) }}</p>
 	<div class="detail_cart">
