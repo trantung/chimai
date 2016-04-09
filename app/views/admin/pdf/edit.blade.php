@@ -39,8 +39,21 @@
 					<div class="row">
 						<div class="col-sm-6">
 							{{ Form::file('filePdf') }}
-							<strong>Download File</strong>
+							@if($boxVi->file)
+								<strong>Download File</strong>
+							@endif
 							<a href="{{ url(UPLOADPDF.'/'.$boxVi->id.'/'.$boxVi->file) }}">{{ $boxVi->file }}</a>
+							@if($boxVi->file)
+								<br /><a href="{{ action('AdminPdfController@removeFile', $boxVi->id) }}">Xóa</a>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Link download file PDF</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('link', $boxVi->link , textPlaceHolder('Link')) }}
 						</div>
 					</div>
 				</div>

@@ -90,17 +90,21 @@ class CommonSlug
 	}
 	public static function getDownloadPdfUrl($data)
 	{
-		if (getLanguage() == VI) {
-			$downloadPdfUrl = UPLOADPDF . '/' . $data->id . '/' . $data->file;
+		if($data->file) {
+			if (getLanguage() == VI) {
+				$downloadPdfUrl = UPLOADPDF . '/' . $data->id . '/' . $data->file;
+			} else {
+				$obModel = AdminLanguage::where('model_name', 'AdminPdf')
+					->where('relate_id', $data->id)
+					->where('status', ACTIVE)
+					->first();
+				if ($obModel) {
+					$dataModel = AdminPdf::find($obModel->model_id);
+					$downloadPdfUrl = UPLOADPDF . '/' . $dataModel->id . '/' . $dataModel->file;
+				}
+			}	
 		} else {
-			$obModel = AdminLanguage::where('model_name', 'AdminPdf')
-				->where('relate_id', $data->id)
-				->where('status', ACTIVE)
-				->first();
-			if ($obModel) {
-				$dataModel = AdminPdf::find($obModel->model_id);
-				$downloadPdfUrl = UPLOADPDF . '/' . $dataModel->id . '/' . $dataModel->file;
-			}
+			$downloadPdfUrl = $data->link;	
 		}
 		return $downloadPdfUrl;
 	}

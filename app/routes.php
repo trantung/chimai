@@ -99,6 +99,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//upload video 
 	Route::resource('/video', 'AdminVideoController');
 	//upload pdf->ok
+	Route::get('/pdf/removeFile/{id}', 'AdminPdfController@removeFile');
 	Route::resource('/pdf', 'AdminPdfController');
 	//upload các hình ảnh khác 
 	Route::resource('/showroom/image', 'AdminImageController');

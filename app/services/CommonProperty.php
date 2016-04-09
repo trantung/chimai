@@ -63,7 +63,8 @@ class CommonProperty extends CommonParent
 			}
 			if($modelName == 'AdminPdf') {
 				return array_merge(self::defaultValueProperty($input), 
-					['image_url' => $input['image_url'], 'file' => $input['filePdf'], 'type' => $input['type']]);
+					['image_url' => $input['image_url'], 'file' => $input['filePdf'], 'type' => $input['type'], 
+					'link' => $input['link']]);
 			}
 			if($modelName == 'BoxPdf') {
 				return array_merge(self::defaultValueProperty($input), 
