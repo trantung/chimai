@@ -29,7 +29,7 @@ class NewsTypeController extends AdminController {
 		}
 		$viId = CommonLanguage::createModel($input, 'TypeNew', CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage());
 		if ($viId) {
-			Common::commonUpdateField('BoxType', $viId, 'box_type_id', 'TypeNew', 'BoxCommon');
+			Common::commonUpdateTypeNew('BoxType', $id, 'box_type_id', 'TypeNew', 'AdminLanguage');
 			return Redirect::action('NewsTypeController@index')
 				->with('message', 'Tạo mới thành công');
 		}
@@ -58,8 +58,8 @@ class NewsTypeController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('NewsTypeController@edit', $id)->withErrors($validator);
 		}
-		CommonLanguage::updateModel('TypeNew', $id, $input, CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage());
-		Common::commonUpdateField('BoxType', $id, 'box_type_id', 'TypeNew', 'BoxCommon');
+		CommonLanguage::updateModel('TypeNew', $id, $input, CommonProperty::getDefaultValue('TypeNew', $input), self::getConfigImage($input));
+		Common::commonUpdateTypeNew('BoxType', $id, 'box_type_id', 'TypeNew', 'AdminLanguage');
 		return Redirect::action('NewsTypeController@index')->with('message', 'Sửa thành công');
 	}
 
