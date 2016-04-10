@@ -480,7 +480,6 @@ class Common extends CommonParent
 			->where('model_id', $modelId)
 			->groupBy('relate_id')
 			->lists('relate_id');
-
 		$relateIdProduct = Common::getRelatedId($tableLanguage, $table, $modelId);
 		$listProduct = $table::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
 		foreach ($listProduct as $key => $value) {
@@ -493,7 +492,6 @@ class Common extends CommonParent
 			}
 		}
 		CommonParent::updateCommonSlug($table, $idRelates, $slugs);
-
 	}
 
 	public static function getArrayBoxCommon()
@@ -516,6 +514,15 @@ class Common extends CommonParent
 			return $data;
 		}
 		return null;
+	}
+
+	public static function getFieldByModel($modelName, $modelId, $field)
+	{
+		$result = $modelName::find($modelId);
+		if($result) {
+			return $result->$field;
+		}
+		return '';
 	}
 
 }

@@ -113,13 +113,13 @@ class CommonRule {
 			return $arrayRule;
 		}
 		if ($modelName == 'TypeNewCreate') {
-			$array = self::getRulesRequired(['name', 'sapo']);
-			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500']);
+			$array = self::getRulesRequired(['name', 'sapo', 'description']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500', 'description' => 'required', 'image_url' => 'required|image']);
 			return $arrayRule;
 		}
 		if ($modelName == 'TypeNewEdit') {
-			$array = self::getRulesRequired(['name', 'sapo']);
-			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500']);
+			$array = self::getRulesRequired(['name', 'sapo', 'description']);
+			$arrayRule = array_merge($array, ['name' => 'required', 'box_type_id' => 'required', 'weight_number' => 'integer|min:0', 'sapo' => 'required|max:500', 'description' => 'required']);
 			return $arrayRule;
 		}
 		if ($modelName == 'ProductCreate') {

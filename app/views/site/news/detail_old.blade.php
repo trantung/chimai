@@ -8,7 +8,7 @@
 
 	<?php
 		$breadcrumb = array(
-			['name' => $type->name_menu, 'link' => CommonSlug::getUrlSlug($type->slug)],
+			['name' => $type->name, 'link' => CommonSlug::getUrlSlug($type->slug)],
 			['name' => $data->name, 'link' => '']
 		);
 	?>

@@ -85,7 +85,7 @@ class CommonProperty extends CommonParent
 			}
 			if($modelName == 'TypeNew') {
 				return array_merge(self::defaultValueProperty($input), 
-					['box_type_id' => $input['box_type_id']]);
+					['image_url' => $input['image_url'], 'box_type_id' => $input['box_type_id']]);
 			}
 			if($modelName == 'AdminImage') {
 				return array_merge(self::defaultValueProperty($input), 

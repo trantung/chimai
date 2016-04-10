@@ -90,8 +90,12 @@ Route::group(['prefix' => 'admin'], function () {
 	//ok
 	Route::post('/contact/deleteSelected', 'AdminContactController@deleteSelected');
 	Route::resource('/contact', 'AdminContactController');
-	//no
+	//ok
+	//The loai tin chuyen thanh tin tuc
+	Route::get('/newstype/search', array('uses' => 'NewsTypeController@search', 'as' => 'admin.newstype.search'));
 	Route::resource('/newstype', 'NewsTypeController');
+	//ok
+	//Bo tin tuc
 	Route::get('/news/search', array('uses' => 'NewsController@search', 'as' => 'admin.news.search'));
 	Route::resource('/news', 'NewsController');
 	//ok
@@ -125,9 +129,6 @@ Route::group(
 	),
 	function()
 	{
-
-		// Route::get('/filter', 'SiteIndexController@filter');
-		
 		Route::get('/search', 'SiteIndexController@search');
 
 		Route::get('/newsletter', 'SiteContactController@newsletter');

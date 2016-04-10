@@ -93,15 +93,15 @@ class SiteIndexController extends SiteController {
 	{	
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
-			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id', TAKE_NUMBER_BOX_TYPE);
+			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id');
 			$title = $object['model_object']->name_menu;
-			return View::make('site.about.index')->with(compact('data', 'title'));
-		}
-		if ($object['model_name'] == 'TypeNew') {
-			$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
-			$title = $object['model_object']->name;
 			return View::make('site.news.list')->with(compact('data', 'title'));
 		}
+		// if ($object['model_name'] == 'TypeNew') {
+		// 	$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
+		// 	$title = $object['model_object']->name;
+		// 	return View::make('site.news.list')->with(compact('data', 'title'));
+		// }
 		if ($object['model_name'] == 'BoxPromotion') {
 			$data = BoxPromotion::findbySlug($slug);
 			$products = Product::where('status', ACTIVE)
@@ -176,11 +176,9 @@ class SiteIndexController extends SiteController {
 				dd(404);
 			}
 		}
-		if ($object['model_name'] == 'AdminNew') {
-			$type = TypeNew::where('slug', $slug)
-						->where('status', ACTIVE)
-						->first();
-			$data = AdminNew::where('slug', $slugChild)
+		if ($object['model_name'] == 'TypeNew') {
+			$type = BoxType::where('slug', $slug)->first();
+			$data = TypeNew::where('slug', $slugChild)
 						->where('status', ACTIVE)
 						->first();
 			if(isset($data) && isset($type)) {
@@ -189,6 +187,19 @@ class SiteIndexController extends SiteController {
 				dd(404);
 			}
 		}
+		// if ($object['model_name'] == 'AdminNew') {
+		// 	$type = TypeNew::where('slug', $slug)
+		// 				->where('status', ACTIVE)
+		// 				->first();
+		// 	$data = AdminNew::where('slug', $slugChild)
+		// 				->where('status', ACTIVE)
+		// 				->first();
+		// 	if(isset($data) && isset($type)) {
+		// 		return View::make('site.news.detail')->with(compact('data', 'type'));
+		// 	} else {
+		// 		dd(404);
+		// 	}
+		// }
 		dd(5);
 	}
 	public function search()

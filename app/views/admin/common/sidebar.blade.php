@@ -58,34 +58,18 @@
 			</li>
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-list"></i> <span>Quản lý thư mục con trong box</span>
+					<i class="fa fa-list"></i> <span>Quản lý chuyên mục sưu tập</span>
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li>
-						<a href="#">
-							<i class="fa fa-circle-o"></i>Box tin tuc
-						</a>
-						<ul class="treeview-menu">
-							<li>
-								<a href="{{ action('NewsTypeController@index') }}">
-									<i class="fa fa-users"></i> <span>Quản lý thể loại tin</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> Quản lý chuyên mục sưu tập</a>
-						<ul class="treeview-menu">
-							<li><a href="{{ action('BoxPdfController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box pdf</a></li>
-							<li><a href="{{ action('BoxVideoController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box video</a></li>
-							<li><a href="{{ action('BoxShowRoomController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box showroom</a></li>
-						</ul>
-					</li>
+					<li><a href="{{ action('BoxPdfController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box pdf</a></li>
+					<li><a href="{{ action('BoxVideoController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box video</a></li>
+					<li><a href="{{ action('BoxShowRoomController@index') }}"><i class="fa fa-circle-o"></i> Quản lý box showroom</a></li>
 				</ul>
 			</li>
 			
 			<li>
-				<a href="{{ action('NewsController@index') }}">
+				<a href="{{ action('NewsTypeController@index') }}">
 					<i class="fa fa-list"></i> <span>Quản lý tin tức</span>
 				</a>
 			</li>

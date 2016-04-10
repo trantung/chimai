@@ -12,7 +12,7 @@ class TypeNew extends Eloquent implements SluggableInterface
 	use SluggableTrait;
     protected $table = 'type_news';
     protected $fillable = ['name', 'slug', 'weight_number', 'status', 'image_url', 
-        'language', 'box_type_id', 'sapo'];
+        'language', 'box_type_id', 'sapo', 'description', 'start_date', 'count_view'];
     protected $dates = ['deleted_at'];
 
     protected $sluggable = array(
@@ -23,5 +23,10 @@ class TypeNew extends Eloquent implements SluggableInterface
     public function news()
     {
         return $this->hasMany('AdminNew', 'type_new_id', 'id');
+    }
+
+    public function boxType()
+    {
+        return $this->belongsTo('BoxType', 'box_type_id', 'id');
     }
 }

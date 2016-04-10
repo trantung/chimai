@@ -23,10 +23,40 @@ class CommonNews
 		->orderBy('created_at', 'desc')->paginate(PAGINATE);
 		return $data;
 	}
+
+	public static function searchTypeNew($input)
+	{
+		$data = TypeNew::where(function ($query) use ($input)
+		{
+			if ($input['name']) {
+				$query = $query->where('name', 'like', '%'.$input['name'].'%');
+			}
+		})
+		->where('language', VI)
+		->orderBy('created_at', 'desc')->paginate(PAGINATE);
+		return $data;
+	}
 	
 	public static function getTypeNews()
 	{
 		return TypeNew::where('language', VI)->lists('name', 'id');
+	}
+
+	public static function getSideTypeNews()
+	{
+		$data = TypeNew::join('box_types', 'type_news.box_type_id', '=', 'box_types.id')
+				->select('type_news.id as id', 'type_news.name as name', 'type_news.slug as slug', 'box_types.slug as slugType')
+				->where('type_news.status', ACTIVE)
+				->where('type_news.language', getLanguage())
+				->orderByRaw(DB::raw("type_news.weight_number = '0', type_news.weight_number"))
+				->orderBy('type_news.id', 'desc')
+				->take(NUMBER_NEWS_SIDEBAR)
+				->get();
+		if(count($data) > 0) {
+			return $data;
+		} else {
+			return null;
+		}
 	}
 
 	public static function getSideNews()
