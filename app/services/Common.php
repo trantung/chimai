@@ -550,11 +550,36 @@ class Common extends CommonParent
 	public static function getBoxTypeParentArray()
 	{
 		$array = [0 => '- Chọn mục cha'];
-		$boxType = BoxType::where('language', VI)->lists('name_menu', 'id');
-		$array = array_merge($array, $boxType);
+		$boxType = BoxType::where('parent_id', 0)
+			->where('language', VI)
+			->lists('name_menu', 'id');
+		$array = $array + $boxType;
 		return $array;
 	}
 
+	public static function updateParentIdBox($input, $viId)
+	{
+		$idRelates = self::getIdRelate('BoxType', $viId);
+		if ($input['parent_id'] == 0) {
+			$listBoxTypes = BoxType::whereIn('id', $idRelates)->get();
+			foreach ($listBoxTypes as $kList => $vList) {
+				BoxType::find($vList->id)->update(['parent_id' => 0]);
+			}
+		}
+		else {
+			$idParentRelates = self::getIdRelate('BoxType', $input['parent_id']);
+			$listBoxParentTypes = BoxType::whereIn('id', $idParentRelates)->get();
+			$listBoxTypes = BoxType::whereIn('id', $idRelates)->get();
+			foreach ($listBoxTypes as $key => $value) {
+				$object = BoxType::find($value->id);
+				foreach ($listBoxParentTypes as $k => $v) {
+					if ($object->language == BoxType::find($v->id)->language) {
+						$object->update(['parent_id' => $v->id]);
+					}
+				}
+				
+			}
+		}
+	}
+
 }
-
-

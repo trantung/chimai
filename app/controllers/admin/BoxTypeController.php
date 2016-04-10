@@ -22,6 +22,7 @@ class BoxTypeController extends BoxController {
 		}
 		$viId = Common::createBox($input, 'BoxType');
 		if ($viId) {
+			Common::updateParentIdBox($input, $viId);
 			return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thành công');
 		}
 		return Redirect::action('BoxTypeController@index')->with('message', 'Tạo mới thất bại');
@@ -44,6 +45,7 @@ class BoxTypeController extends BoxController {
 			return Redirect::action('BoxTypeController@edit', $id)->withErrors($validator);
 		}
 		Common::updateBox('BoxType', $id, $input);
+		Common::updateParentIdBox($input, $id);
 		return Redirect::action('BoxTypeController@index')->with('message', 'Sửa thành công');
 	}
 

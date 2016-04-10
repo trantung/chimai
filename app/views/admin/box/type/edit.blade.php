@@ -75,7 +75,7 @@
 					<label>Mục cha</label>
 					<div class="row">
 						<div class="col-sm-6">
-							{{ Form::select('parent_id', Common::getBoxTypeParentArray(), null, array('class' => 'form-control')) }}
+							{{ Form::select('parent_id', Common::getBoxTypeParentArray(), $boxVi->parent_id, array('class' => 'form-control')) }}
 						</div>
 					</div>
 				</div>
