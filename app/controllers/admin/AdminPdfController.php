@@ -37,7 +37,7 @@ class AdminPdfController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('AdminPdfController@create')->withErrors($validator);
 		}
-		$viId = CommonLanguage::createModel($input, 'AdminPdf', CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage($input));
+		$viId = CommonLanguage::createModel($input, 'AdminPdf', CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage());
 		CommonFile::uploadPdf($viId, UPLOADPDF, 'filePdf');
 		if ($viId) {
 			Common::commonUpdateField('BoxPdf', $viId, 'type', 'AdminPdf', 'AdminLanguage');
@@ -88,7 +88,7 @@ class AdminPdfController extends AdminController {
 			return Redirect::action('AdminPdfController@edit', $id)->withErrors($validator);
 		}
 		$input['filePdf'] = CommonFile::uploadPdf($id, UPLOADPDF, 'filePdf', AdminPdf::find($id)->file);
-		CommonLanguage::updateModel('AdminPdf', $id, $input, CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage($input));
+		CommonLanguage::updateModel('AdminPdf', $id, $input, CommonProperty::getDefaultValue('AdminPdf', $input), self::getConfigImage());
 		Common::commonUpdateField('BoxPdf', $id, 'type', 'AdminPdf', 'AdminLanguage');
 		return Redirect::action('AdminPdfController@index')->with('message', 'Sửa thành công');
 	}
@@ -106,7 +106,15 @@ class AdminPdfController extends AdminController {
 		return Redirect::action('AdminPdfController@index')->with('message', 'Xoá thành công');
 	}
 
-	private function getConfigImage($input)
+	public function removeFile($id)
+	{
+		$input['file'] = '';
+		$idRelates = CommonLanguage::getIdRelate('AdminPdf', $id);
+		CommonLanguage::updateCommonModel($id, 'AdminPdf', $input, $idRelates);
+		return Redirect::action('AdminPdfController@edit', $id);
+	}
+
+	private function getConfigImage()
 	{
 		return array(
 				'w' => IMAGE_CATALOG_WIDTH, 

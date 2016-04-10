@@ -37,6 +37,14 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label>Link download file PDF</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::text('link', null , textPlaceHolder('Link')) }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label>Upload ảnh</label>
 					<div class="row">
 						<div class="col-sm-6">

@@ -37,7 +37,7 @@ class AdminImageController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('AdminImageController@create')->withErrors($validator);
 		}
-		$viId = CommonLanguage::createModel($input, 'AdminImage', CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
+		$viId = CommonLanguage::createModel($input, 'AdminImage', CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage());
 		if ($viId) {
 			Common::commonUpdateField('BoxShowRoom', $viId, 'type', 'AdminImage', 'AdminLanguage');
 			return Redirect::action('AdminImageController@index')
@@ -86,7 +86,7 @@ class AdminImageController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('AdminImageController@edit', $id)->withErrors($validator);
 		}
-		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage($input));
+		CommonLanguage::updateModel('AdminImage', $id, $input, CommonProperty::getDefaultValue('AdminImage', $input), self::getConfigImage());
 		Common::commonUpdateField('BoxShowRoom', $id, 'type', 'AdminImage', 'AdminLanguage');
 		return Redirect::action('AdminImageController@index')->with('message', 'Sửa thành công');
 	}
@@ -104,7 +104,7 @@ class AdminImageController extends AdminController {
 		return Redirect::action('AdminImageController@index')->with('message', 'Xoá thành công');
 	}
 
-	private function getConfigImage($input)
+	private function getConfigImage()
 	{
 		return array(
 				'w' => IMAGE_GALLERY_WIDTH, 

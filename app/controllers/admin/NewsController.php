@@ -27,7 +27,7 @@ class NewsController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('NewsController@create')->withErrors($validator);
 		}
-		$viId = CommonLanguage::createModel($input, 'AdminNew', CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
+		$viId = CommonLanguage::createModel($input, 'AdminNew', CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage());
 		if ($viId) {
 			Common::commonUpdateField('TypeNew', $viId, 'type_new_id', 'AdminNew', 'AdminLanguage');
 			return Redirect::action('NewsController@index')
@@ -57,7 +57,7 @@ class NewsController extends AdminController {
 		if(isset($validator)) {
 			return Redirect::action('NewsController@edit', $id)->withErrors($validator);
 		}
-		CommonLanguage::updateModel('AdminNew', $id, $input, CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage($input));
+		CommonLanguage::updateModel('AdminNew', $id, $input, CommonProperty::getDefaultValue('AdminNew', $input), self::getConfigImage());
 		Common::commonUpdateField('TypeNew', $id, 'type_new_id', 'AdminNew', 'AdminLanguage');
 		return Redirect::action('NewsController@index')->with('message', 'Sửa thành công');
 	}
@@ -68,7 +68,7 @@ class NewsController extends AdminController {
 		return Redirect::action('NewsController@index')->with('message', 'Xoá thành công');
 	}
 
-	private function getConfigImage($input)
+	private function getConfigImage()
 	{
 		return array(
 				'w' => IMAGE_WIDTH, 

@@ -492,7 +492,6 @@ class Common extends CommonParent
 			}
 		}
 		CommonParent::updateCommonSlug($table, $idRelates, $slugs);
-
 	}
 	public static function commonUpdateTypeNew($modelName, $modelId, $field, $table, $tableLanguage)
 	{
@@ -537,6 +536,15 @@ class Common extends CommonParent
 			return $data;
 		}
 		return null;
+	}
+
+	public static function getFieldByModel($modelName, $modelId, $field)
+	{
+		$result = $modelName::find($modelId);
+		if($result) {
+			return $result->$field;
+		}
+		return '';
 	}
 
 }

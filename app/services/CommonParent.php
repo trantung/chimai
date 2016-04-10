@@ -18,6 +18,7 @@ class CommonParent
 
 	public static function getCommonSlug($table, $modelName, $modelId)
 	{
+		$slug = array();
 		$idRelates = $table::where('model_name', $modelName)
 			->where('relate_name', $modelName)
 			->where('model_id', $modelId)
@@ -31,8 +32,10 @@ class CommonParent
 
 	public static function updateCommonSlug($modelName, $idRelates, $slugs)
 	{
-		foreach ($idRelates as $k => $v) {
-			$modelName::find($v)->update(array('slug' => $slugs[$k]));
+		if($slugs) {
+			foreach ($idRelates as $k => $v) {
+				$modelName::find($v)->update(array('slug' => $slugs[$k]));
+			}	
 		}
 	}
 

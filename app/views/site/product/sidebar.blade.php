@@ -1,4 +1,4 @@
-{{ Form::open(array('action' => 'SiteIndexController@filter', 'method'=>'GET', 'class' => 'form-search', 'id' => 'filter')) }}
+{{ Form::open(array('action' => ['SiteIndexController@filter', Request::segment(1)], 'method'=>'GET', 'class' => 'form-search', 'id' => 'filter')) }}
 <div class="side">
 	<h3>{{ trans('captions.category') }}</h3>
 	<ul>
@@ -35,6 +35,7 @@
 		@endforeach
 	</ul>
 </div>
+
 <div class="side-submit">
 	<button class="button" title="Tìm kiếm" type="submit">{{ trans('captions.search') }}</button>
 </div>

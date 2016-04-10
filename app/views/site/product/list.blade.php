@@ -39,7 +39,9 @@
 					</div>
 					<!-- products end-->
 					@if($products->getTotal() >= FRONENDPAGINATE)
-						@include('site.common.paginate', array('input' => $products))
+						<div class="center">
+						{{ $products->appends(Request::except('page'))->links() }}
+						</div>
 					@endif
 				@else
 					<p>{{ trans('captions.nodata') }}</p>

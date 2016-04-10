@@ -1,4 +1,4 @@
-<?php $sideNews = CommonNews::getSideNews(); ?>
+<?php $sideNews = CommonNews::getSideTypeNews(); ?>
 @if($sideNews)
 <div class="side">
 	<h3>{{ trans('captions.news') }}</h3>

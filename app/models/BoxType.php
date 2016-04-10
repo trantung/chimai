@@ -17,4 +17,9 @@ class BoxType extends Eloquent implements SluggableInterface
         'build_from' => 'name_menu',
         'save_to'    => 'slug',
     );
+
+    public function typenews()
+    {
+        return $this->hasMany('TypeNew', 'box_type_id', 'id');
+    }
 }

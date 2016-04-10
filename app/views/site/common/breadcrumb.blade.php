@@ -9,7 +9,7 @@
 							<li><h1><a href="{{ url($value['link']) }}">{{ $value['name'] }}</a></h1></li>
 						@else
 							<li>
-								<a href="{{ url($value['link']) }}">{{ $value['name'] }}</a><i class="fa fa-caret-right"></i>
+								<a href="{{ url($value['link']) }}">{{ $value['name'] }}</a><i class="fa fa-chevron-right"></i>
 							</li>
 						@endif
 					@else

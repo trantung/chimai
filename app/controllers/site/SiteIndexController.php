@@ -93,15 +93,15 @@ class SiteIndexController extends SiteController {
 	{	
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
-			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id', TAKE_NUMBER_BOX_TYPE);
+			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id');
 			$title = $object['model_object']->name_menu;
-			return View::make('site.about.index')->with(compact('data', 'title'));
-		}
-		if ($object['model_name'] == 'TypeNew') {
-			$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
-			$title = $object['model_object']->name;
 			return View::make('site.news.list')->with(compact('data', 'title'));
 		}
+		// if ($object['model_name'] == 'TypeNew') {
+		// 	$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
+		// 	$title = $object['model_object']->name;
+		// 	return View::make('site.news.list')->with(compact('data', 'title'));
+		// }
 		if ($object['model_name'] == 'BoxPromotion') {
 			$data = BoxPromotion::findbySlug($slug);
 			$products = Product::where('status', ACTIVE)
@@ -176,11 +176,9 @@ class SiteIndexController extends SiteController {
 				dd(404);
 			}
 		}
-		if ($object['model_name'] == 'AdminNew') {
-			$type = TypeNew::where('slug', $slug)
-						->where('status', ACTIVE)
-						->first();
-			$data = AdminNew::where('slug', $slugChild)
+		if ($object['model_name'] == 'TypeNew') {
+			$type = BoxType::where('slug', $slug)->first();
+			$data = TypeNew::where('slug', $slugChild)
 						->where('status', ACTIVE)
 						->first();
 			if(isset($data) && isset($type)) {
@@ -189,6 +187,19 @@ class SiteIndexController extends SiteController {
 				dd(404);
 			}
 		}
+		// if ($object['model_name'] == 'AdminNew') {
+		// 	$type = TypeNew::where('slug', $slug)
+		// 				->where('status', ACTIVE)
+		// 				->first();
+		// 	$data = AdminNew::where('slug', $slugChild)
+		// 				->where('status', ACTIVE)
+		// 				->first();
+		// 	if(isset($data) && isset($type)) {
+		// 		return View::make('site.news.detail')->with(compact('data', 'type'));
+		// 	} else {
+		// 		dd(404);
+		// 	}
+		// }
 		dd(5);
 	}
 	public function search()
@@ -203,38 +214,79 @@ class SiteIndexController extends SiteController {
 		return View::make('site.product.list')->with(compact('products', 'title'));
 	}
 
-	public function filter()
+	public function filter($slug)
 	{
 		$input = Input::except('_token');
-		$products = Product::select('products.*')
-			->join('materials', 'products.material_id', '=', 'materials.id')
-			->join('surface_products', 'products.id', '=', 'surface_products.product_id')
-			->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
-			->join('category_products', 'products.id', '=', 'category_products.product_id')
-			->join('categories', 'categories.id', '=', 'category_products.category_id')
-			->join('size_products', 'products.id', '=', 'size_products.product_id')
-			->join('sizes', 'sizes.id', '=', 'size_products.size_id')
-			->distinct()
-			->where('products.language', getLanguage())
-			->where('products.status', ACTIVE);
-		if(isset($input['category'])) {
-			$products = $products->whereIn('category_products.category_id', $input['category']);
-		}
-		if(isset($input['material'])) {
-			$products = $products->whereIn('materials.id', $input['material']);
-		}
-		if(isset($input['surface'])) {
-			$products = $products->whereIn('surface_products.surface_id', $input['surface']);
-		}
-		if(isset($input['size'])) {
-			$products = $products->whereIn('size_products.size_id', $input['size']);
-		}
+		if (BoxProduct::findbySlug($slug)) {
+			$products = Product::select('products.*')
+				->join('materials', 'products.material_id', '=', 'materials.id')
+				->join('surface_products', 'products.id', '=', 'surface_products.product_id')
+				->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
+				->join('category_products', 'products.id', '=', 'category_products.product_id')
+				->join('categories', 'categories.id', '=', 'category_products.category_id')
+				->join('size_products', 'products.id', '=', 'size_products.product_id')
+				->join('sizes', 'sizes.id', '=', 'size_products.size_id')
+				->distinct()
+				->where('products.language', getLanguage())
+				->where('products.status', ACTIVE);
+			if(isset($input['category'])) {
+				$products = $products->whereIn('category_products.category_id', $input['category']);
+			}
+			if(isset($input['material'])) {
+				$products = $products->whereIn('materials.id', $input['material']);
+			}
+			if(isset($input['surface'])) {
+				$products = $products->whereIn('surface_products.surface_id', $input['surface']);
+			}
+			if(isset($input['size'])) {
+				$products = $products->whereIn('size_products.size_id', $input['size']);
+			}
 
-		$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
-			->orderBy('products.id', 'desc')
-			->paginate(FRONENDPAGINATE);
-		$title = trans('messages.result_search');
-		return View::make('site.product.list')->with(compact('products', 'title'));
+			$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
+				->orderBy('products.id', 'desc')
+				->paginate(FRONENDPAGINATE);
+			$title = trans('messages.result_search');
+			return View::make('site.product.list')->with(compact('products', 'title'));
+		}
+		if ($origin = Origin::findbySlug($slug)) {
+
+			$products = Product::select('products.*')
+				->join('materials', 'products.material_id', '=', 'materials.id')
+				->join('surface_products', 'products.id', '=', 'surface_products.product_id')
+				->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
+				->join('category_products', 'products.id', '=', 'category_products.product_id')
+				->join('categories', 'categories.id', '=', 'category_products.category_id')
+				->join('size_products', 'products.id', '=', 'size_products.product_id')
+				->join('sizes', 'sizes.id', '=', 'size_products.size_id')
+				->distinct()
+				->where('products.language', getLanguage())
+				->where('products.status', ACTIVE);
+
+			if($origin) {
+				$products = $products->where('products.origin_id', $origin->id);
+			}
+
+			if(isset($input['category'])) {
+				$products = $products->whereIn('category_products.category_id', $input['category']);
+			}
+			if(isset($input['material'])) {
+				$products = $products->whereIn('materials.id', $input['material']);
+			}
+			if(isset($input['surface'])) {
+				$products = $products->whereIn('surface_products.surface_id', $input['surface']);
+			}
+			if(isset($input['size'])) {
+				$products = $products->whereIn('size_products.size_id', $input['size']);
+			}
+
+			$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
+				->orderBy('products.id', 'desc')
+				->paginate(FRONENDPAGINATE);
+			$title = trans('messages.result_search');
+			$data = $origin;
+			return View::make('site.product.list')->with(compact('products', 'title', 'data'));
+		}
+		dd(123);
 	}
 
 }
