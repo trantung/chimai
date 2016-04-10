@@ -480,11 +480,32 @@ class Common extends CommonParent
 			->where('model_id', $modelId)
 			->groupBy('relate_id')
 			->lists('relate_id');
-
 		$relateIdProduct = Common::getRelatedId($tableLanguage, $table, $modelId);
 		$listProduct = $table::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
 		foreach ($listProduct as $key => $value) {
 			$relateIds = $tableLanguage::where('model_name', $modelName)->where('model_id', $value->$field)->lists('relate_id');
+			foreach ($relateIds as $k => $v) {
+				$object = $modelName::find($v);
+				if ($object->language == $value->language) {
+					$table::find($value->id)->update([$field => $v]);
+				}
+			}
+		}
+		CommonParent::updateCommonSlug($table, $idRelates, $slugs);
+
+	}
+	public static function commonUpdateTypeNew($modelName, $modelId, $field, $table, $tableLanguage)
+	{
+		$slugs = CommonParent::getCommonSlug($tableLanguage, $table, $modelId);
+		$idRelates = $tableLanguage::where('model_name', $table)
+			->where('relate_name', $table)
+			->where('model_id', $modelId)
+			->groupBy('relate_id')
+			->lists('relate_id');
+		$relateIdProduct = Common::getRelatedId($tableLanguage, $table, $modelId);
+		$listProduct = $table::whereIn('id', $relateIdProduct)->get(['id', $field, 'language']);
+		foreach ($listProduct as $key => $value) {
+			$relateIds = BoxCommon::where('model_name', $modelName)->where('model_id', $value->$field)->lists('relate_id');
 			foreach ($relateIds as $k => $v) {
 				$object = $modelName::find($v);
 				if ($object->language == $value->language) {
