@@ -126,7 +126,7 @@ Route::group(
 	function()
 	{
 
-		Route::get('/filter', 'SiteIndexController@filter');
+		// Route::get('/filter', 'SiteIndexController@filter');
 		
 		Route::get('/search', 'SiteIndexController@search');
 
@@ -152,6 +152,7 @@ Route::group(
 
 		Route::resource('/', 'SiteIndexController');
 		Route::get('/{slug}', 'SiteIndexController@slug');
+		Route::get('/{slug}/filter', 'SiteIndexController@filter');
 		Route::get('/{slug}/{slugChild}', 'SiteIndexController@slugChild');
 	}
 );

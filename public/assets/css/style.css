@@ -1287,6 +1287,49 @@ a.seemore {
     display: none !important;
 }
 
+/*pagination*/
+ul.pagination {
+    clear: both;
+    margin-bottom: 10px;
+    text-align: right;
+    display: inline-block;
+}
+ul.pagination li {
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 0 2px;
+    text-align: center;
+    width: 30px;
+}
+ul.pagination li a {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #055082;
+    display: block;
+    height: 30px;
+    padding: 0;
+}
+ul.pagination li a:hover,
+ul.pagination li a:focus {
+    background-color: #055082;
+    border-color: #055082;
+    color: #fff;
+    text-decoration: none;
+}
+ul.pagination li.active {
+    background-color: #055082;
+    color: #fff;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
 /*=========================================================================================================================================*/
                             /* -- SIDE COLUMN -- */
 /*=========================================================================================================================================*/
