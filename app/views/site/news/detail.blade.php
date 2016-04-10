@@ -7,10 +7,18 @@
 @section('content')
 
 	<?php
-		$breadcrumb = array(
-			['name' => $type->name_menu, 'link' => CommonSlug::getUrlSlug($type->slug)],
-			['name' => $data->name, 'link' => '']
-		);
+		if($boxType->parent_id == 0) {
+			$breadcrumb = array(
+				['name' => $boxType->name_menu, 'link' => CommonSlug::getUrlSlug($boxType->slug)],
+				['name' => $data->name, 'link' => '']
+			);	
+		} else {
+			$breadcrumb = array(
+				['name' => $type->name_menu, 'link' => CommonSlug::getUrlSlug($type->slug)],
+				['name' => $boxType->name_menu, 'link' => CommonSlug::getUrlSlug($boxType->slug)],
+				['name' => $data->name, 'link' => '']
+			);
+		}
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
 

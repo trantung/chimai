@@ -7,9 +7,16 @@
 @section('content')
 
 	<?php
-		$breadcrumb = array(
-			['name' => $title, 'link' => '']
-		);
+		if($boxType->parent_id == 0) {
+			$breadcrumb = array(
+				['name' => $title, 'link' => '']
+			);	
+		} else {
+			$breadcrumb = array(
+				['name' => $type->name_menu, 'link' => CommonSlug::getUrlSlug($type->slug)],
+				['name' => $title, 'link' => '']
+			);
+		}
 	?>
 	@include('site.common.breadcrumb', ['breadcrumb' => $breadcrumb])
 

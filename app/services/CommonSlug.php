@@ -129,4 +129,21 @@ class CommonSlug
 		}
 		return $listProducts;
 	}
+
+	public static function getBoxTypeChild($parentId)
+	{
+		$menu = BoxType::select('box_types.*');
+		if(getLanguage() == VI) {
+			$menu = $menu->join('box_commons', 'box_commons.model_id', '=', 'box_types.id');
+		} else {
+			$menu = $menu->join('box_commons', 'box_commons.relate_id', '=', 'box_types.id');
+		}
+			$menu = $menu->where('box_types.parent_id', $parentId)
+					->where('box_commons.position', MENU)
+					->where('box_commons.status', ENABLED)
+					->orderByRaw(DB::raw("box_commons.weight_number = '0', box_commons.weight_number"))
+					->get();
+		return $menu;
+	}
+	
 }

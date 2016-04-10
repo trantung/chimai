@@ -93,9 +93,23 @@ class SiteIndexController extends SiteController {
 	{	
 		$object = CommonSite::getObjectBySlug($slug);
 		if ($object['model_name'] == 'BoxType') {
-			$data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id');
+			$boxType = $object['model_object'];
+			if($boxType->parent_id == 0) {
+				$boxTypeId = BoxType::where('parent_id', $boxType->id)->lists('id');
+				$boxTypeId = array_merge([$boxType->id], $boxTypeId);
+				$type = null;
+			} else {
+				$boxTypeId = [$boxType->id];
+				$type = BoxType::where('id', $boxType->parent_id)->first();
+			}
+			$data = TypeNew::where('status', ACTIVE)
+				->whereIn('box_type_id', $boxTypeId)
+				->orderByRaw(DB::raw("weight_number = '0', weight_number"))
+				->paginate(FRONENDPAGINATE);
+
+			// $data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id');
 			$title = $object['model_object']->name_menu;
-			return View::make('site.news.list')->with(compact('data', 'title'));
+			return View::make('site.news.list')->with(compact('data', 'title', 'boxType', 'type'));
 		}
 		// if ($object['model_name'] == 'TypeNew') {
 		// 	$data = CommonSite::getDataByModelSlug($object, 'AdminNew', 'type_new_id');
@@ -177,12 +191,17 @@ class SiteIndexController extends SiteController {
 			}
 		}
 		if ($object['model_name'] == 'TypeNew') {
-			$type = BoxType::where('slug', $slug)->first();
+			$boxType = BoxType::where('slug', $slug)->first();
+			if($boxType->parent_id == 0) {
+				$type = null;
+			} else {
+				$type = BoxType::where('id', $boxType->parent_id)->first();
+			}
 			$data = TypeNew::where('slug', $slugChild)
 						->where('status', ACTIVE)
 						->first();
-			if(isset($data) && isset($type)) {
-				return View::make('site.news.detail')->with(compact('data', 'type'));
+			if(isset($data) && isset($boxType)) {
+				return View::make('site.news.detail')->with(compact('data', 'boxType', 'type'));
 			} else {
 				dd(404);
 			}

@@ -15,13 +15,32 @@
 					<li class="active"><a href="{{ CommonSite::getUrlLang($lang) }}" title="">{{ trans('captions.home') }}</a></li>
 					@foreach($menu as $value)
 						@if($value->model_name == 'BoxType')
-							<li>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxType')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxType')->name_menu }}</a>
+							<?php 
+								$boxTypeParent = CommonSlug::getSlugByLanguage($value, 'BoxType');
+								$boxTypeChild = CommonSlug::getBoxTypeChild($boxTypeParent->id);
+								$boxTypeCount = count($boxTypeChild);
+							?>
+							@if($boxTypeCount > 0)
+								<li class="has-dropdown">
+							@else
+								<li>
+							@endif
+								<a href="{{ action('SiteIndexController@slug', $boxTypeParent->slug) }}" title="">{{ $boxTypeParent->name_menu }}</a>
+								@if($boxTypeCount > 0)
+									<ul class="dropdown">
+										@foreach($boxTypeChild as $valueBoxType)
+											<li><a href="{{ action('SiteIndexController@slug', $valueBoxType->slug) }}">{{ $valueBoxType->name_menu }}</a></li>
+										@endforeach
+									</ul>
+								@endif
 							</li>
 						@endif
 						@if($value->model_name == 'BoxProduct')
+							<?php 
+								$boxProduct = CommonSlug::getSlugByLanguage($value, 'BoxProduct');
+							?>
 							<li class="has-dropdown">
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxProduct')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxProduct')->name_menu }}</a>
+								<a href="{{ action('SiteIndexController@slug', $boxProduct->slug) }}" title="">{{ $boxProduct->name_menu }}</a>
 								<ul class="dropdown">
 									@foreach(CommonSlug::getOriginByLanguage() as $k => $v )
 										<li><a href="{{ action('SiteIndexController@slug', Origin::find($k)->slug) }}">{{ $v }}</a></li>
@@ -30,10 +49,13 @@
 							</li>
 						@endif
 						@if($value->model_name == 'BoxCollection')
+							<?php 
+								$boxCollection = CommonSlug::getSlugByLanguage($value, 'BoxCollection');
+							?>
 							<li class="has-dropdown">
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) }}">{{ CommonSlug::getSlugByLanguage($value, 'BoxCollection')->name_menu }}</a>
+								<a href="{{ action('SiteIndexController@slug', $boxCollection->slug) }}">{{ $boxCollection->name_menu }}</a>
 								<ul class="dropdown">
-									@foreach(CommonSlug::getCollectionContain(CommonSlug::getSlugByLanguage($value, 'BoxCollection')->slug) as $valueCollection)
+									@foreach(CommonSlug::getCollectionContain($boxCollection->slug) as $valueCollection)
 										@foreach($valueCollection as $box)
 											<li><a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugContain($box, $box->model_name)->slug) }}">{{ CommonSlug::getNameObjectByLanguage($box) }}</a></li>
 										@endforeach
@@ -42,8 +64,11 @@
 							</li>
 						@endif
 						@if($value->model_name == 'BoxPromotion')
+							<?php 
+								$boxPromotion = CommonSlug::getSlugByLanguage($value, 'BoxPromotion');
+							?>
 							<li>
-								<a href="{{ action('SiteIndexController@slug', CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->slug) }}" title="">{{ CommonSlug::getSlugByLanguage($value, 'BoxPromotion')->name_menu }}</a>
+								<a href="{{ action('SiteIndexController@slug', $boxPromotion->slug) }}" title="">{{ $boxPromotion->name_menu }}</a>
 							</li>
 						@endif
 					@endforeach

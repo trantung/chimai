@@ -6,25 +6,38 @@ class SiteController extends BaseController {
 
 		$lang = getLanguage();
 
-		$menu = BoxCommon::where('position', MENU)
-			->where('status', ENABLED)
-			->orderBy('weight_number', 'asc')
-			->get();
+		// $menu = BoxCommon::where('position', MENU)
+		// 	->where('status', ENABLED)
+		// 	->orderBy('weight_number', 'asc')
+		//  ->orderByRaw(DB::raw("weight_number = '0', weight_number"))
+		// 	->get();
+
+		// menu box tin tuc parent_id = 0
+		$menu = BoxCommon::select('box_commons.*')
+				->join('box_types', 'box_commons.model_id', '=', 'box_types.id')
+				// ->distinct()
+				->where('box_commons.position', MENU)
+				->where('box_commons.status', ENABLED)
+				->where('box_types.parent_id', 0)
+				->orderByRaw(DB::raw("box_commons.weight_number = '0', box_commons.weight_number"))
+				->get();
 		$content = BoxCommon::where('position', CONTENT)
 			->where('status', ENABLED)
-			->orderBy('weight_number', 'asc')
+			->orderByRaw(DB::raw("weight_number = '0', weight_number"))
 			->get();
 		$footer = BoxCommon::where('position', FOOTER)
 			->where('status', ENABLED)
-			->orderBy('weight_number', 'asc')
+			->orderByRaw(DB::raw("weight_number = '0', weight_number"))
 			->get();
 
-		if (Cache::has(SEO_DEFAULT)) {
-            $seoDefault = Cache::get(SEO_DEFAULT);
-        } else {
-        	$seoDefault = AdminSeo::whereNull('model_id')->where('model_name', SEO_DEFAULT)->first();
-            Cache::put(SEO_DEFAULT, $seoDefault, CACHETIME);
-        }
+		// if (Cache::has(SEO_DEFAULT)) {
+  //           $seoDefault = Cache::get(SEO_DEFAULT);
+  //       } else {
+  //       	$seoDefault = AdminSeo::whereNull('model_id')->where('model_name', SEO_DEFAULT)->first();
+  //           Cache::put(SEO_DEFAULT, $seoDefault, CACHETIME);
+  //       }
+
+        $seoDefault = AdminSeo::whereNull('model_id')->where('model_name', SEO_DEFAULT)->first();
 		if(isset($seoDefault)) {
 			View::share('script', $seoDefault);
 		}

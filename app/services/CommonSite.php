@@ -58,7 +58,7 @@ class CommonSite
 	{
 		$data = $modelName::where($field, $object['model_object']->id)
 				->where('status', ACTIVE)
-				->orderBy('weight_number', 'asc');
+				->orderByRaw(DB::raw("weight_number = '0', weight_number"));
 		if ($paginate) {
 			$data = $data->take(TAKE_NUMBER_BOX_TYPE)->get();
 		}
@@ -130,6 +130,15 @@ class CommonSite
 				$type_newSlug = $type_new->slug;
 				// return url($lang .'/'. $type_newSlug. '/' . $slug);
 				return self::getUrlLang($lang, $type_newSlug. '/' . $slug);
+			}
+			//type new
+			if ($obj['model_name'] == 'TypeNew') {
+				//get slug1 with slug2 = getSlug()
+				$slug = self::commonSlugByObject('AdminLanguage', $obj, $lang);
+				$boxType = BoxType::find(TypeNew::findBySlug($slug)->box_type_id);
+				$boxTypeSlug = $boxType->slug;
+				// return url($lang .'/'. $boxTypeSlug. '/' . $slug);
+				return self::getUrlLang($lang, $boxTypeSlug. '/' . $slug);
 			}
 		}
 	}
@@ -218,7 +227,7 @@ class CommonSite
     	$listProducts = Product::where('material_id', $data->material_id)
     		->where('status', ACTIVE)
     		->where('id', '!=', $data->material_id)
-    		->orderBy('weight_number', 'asc')
+    		->orderByRaw(DB::raw("weight_number = '0', weight_number"))
     		->take(PAGINATE)
     		->get();
     	return $listProducts;
