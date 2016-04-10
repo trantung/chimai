@@ -71,6 +71,15 @@
 					<p>Kích thước: {{ IMAGE_HOME_WIDTH }}x{{ IMAGE_HOME_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 				</div>
 
+				<div class="form-group">
+					<label>Mục cha</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('parent_id', Common::getBoxTypeParentArray(), null, array('class' => 'form-control')) }}
+						</div>
+					</div>
+				</div>
+
 				<div class="nav-tabs-custom">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#tab_1" data-toggle="tab">Menu</a></li>

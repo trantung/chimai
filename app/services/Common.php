@@ -525,6 +525,14 @@ class Common extends CommonParent
 		return '';
 	}
 
+	public static function getBoxTypeParentArray()
+	{
+		$array = [0 => '- Chọn mục cha'];
+		$boxType = BoxType::where('language', VI)->lists('name_menu', 'id');
+		$array = array_merge($array, $boxType);
+		return $array;
+	}
+
 }
 
 

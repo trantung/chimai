@@ -69,6 +69,15 @@
 					<p>Kích thước: {{ IMAGE_HOME_WIDTH }}x{{ IMAGE_HOME_HEIGHT }} / Dung lượng < 1Mb / Định dạng: jpg, jpeg, gif, png</p>
 				</div>
 
+				<div class="form-group">
+					<label>Mục cha</label>
+					<div class="row">
+						<div class="col-sm-6">
+							{{ Form::select('parent_id', Common::getBoxTypeParentArray(), null, array('class' => 'form-control')) }}
+						</div>
+					</div>
+				</div>
+
 				@include('admin.box.tab')
 
 				@include('admin.common.meta')
