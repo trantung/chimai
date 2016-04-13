@@ -118,6 +118,11 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/test_delete_image', 'TestUploadImageController@testDeleteImage');
 	Route::post('/test_update_text', 'TestUploadImageController@testUpdateText');
 
+
+	Route::get('/user/chanpassword/{id}', array('uses' =>  'UserController@changePassword', 'as' => 'admin.user.chanpassword'));
+	Route::get('/user/search', array('uses' =>  'UserController@search', 'as' => 'admin.user.search'));
+	Route::resource('/user', 'UserController');
+
 	Route::resource('/discount', 'DiscountController');
 
 });

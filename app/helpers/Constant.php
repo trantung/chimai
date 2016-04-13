@@ -16,6 +16,10 @@ define('ACTIVE', 1);
 define('INACTIVE', 2);
 define('ACTIVEUSER', 'Kích hoạt');
 define('INACTIVEUSER', 'Chưa kích hoạt');
+//user type
+define('TYPESYSTEM', 'Hệ thống');
+define('TYPEFACEBOOK', 'Facebook');
+define('TYPEGOOGLE', 'Google');
 //device
 define('MOBILE', 1);
 define('COMPUTER', 2);

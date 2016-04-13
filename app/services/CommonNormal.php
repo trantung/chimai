@@ -32,6 +32,10 @@ class CommonNormal
 		if ($name == '') {
 			return 'AdminNew';
 		}
+		if ($name == 'user') {
+			return 'User';
+		}
+
 	}
 	public static function commonUpdateManyRelateMany($adminLang, $boxCommon, $viId,
 		 $modelName, $viewModelName, $relateModelName, $fieldBoxView, $field)

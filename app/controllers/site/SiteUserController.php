@@ -36,7 +36,6 @@ class SiteUserController extends SiteController {
             'password'   => 'required|min:6',
             'email'      => 'required|email|unique:users',
             'phone'      => 'required',
-            // 'vehicle'	 => 'required'
 		);
 		$input = CommonSite::inputRegister();
 		$validator = Validator::make($input,$rules);

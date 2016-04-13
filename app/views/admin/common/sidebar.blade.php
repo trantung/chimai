@@ -100,6 +100,11 @@
 				</a>
 			</li>
 			<li>
+				<a href="{{ action('UserController@index') }}">
+					<i class="fa fa-users"></i> <span>Quản lý users khách hàng</span>
+				</a>
+			</li>
+			<li>
 				<a href="{{ action('SeoController@editSeo') }}">
 					<i class="fa fa-users"></i> <span>Quản lý SEO Script</span>
 				</a>

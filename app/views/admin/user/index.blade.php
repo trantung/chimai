@@ -1,29 +1,31 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý User' }}
+{{ $title='Quản lý khách hàng' }}
 @stop
 
 @section('content')
+
 @include('admin.user.search')
 
 <div class="row">
 	<div class="col-xs-12">
 	  <div class="box">
 		<div class="box-header">
-		  <h3 class="box-title">Danh sách User</h3>
+		  <h3 class="box-title">Danh sách khách hàng</h3>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body table-responsive no-padding">
 		  <table class="table table-hover">
 			<tr>
 			  <th>ID</th>
-			  <th>Tài khoản</th>
-			  <th>Loại tài khoản</th>
 			  <th>email</th>
 			  <th>Tên</th>
-			  <th>Ip</th>
-			  <th>Device</th>
+			  <th>Cấp độ</th>
+			  <!-- <th>Tài khoản</th> -->
+			  <!-- <th>Loại tài khoản</th> -->
+			  <!-- <th>Ip</th> -->
+			  <!-- <th>Device</th> -->
 			  <th>Đăng nhập cuối</th>
 			  <th>Trạng thái</th>
 			  <th>Action</th>
@@ -31,18 +33,19 @@
 			@foreach($inputUser as $value)
 			<tr>
 			  <td>{{ $value->id }}</td>
-			  <td>{{ UserManager::getUsername($value->id)['user_name'] }}</td>
-			  <td>{{ UserManager::getUsername($value->id)['type_user'] }}</td>
 			  <td>{{ $value->email }}</td>
 			  <td>{{ $value->fullname }}</td>
-			  <td>{{ $value->ip }}</td>
-			  <td>{{ getNameDevice($value->device) }}</td>
+			  <td>{{ Common::getFieldByModel('RoleUser', $value->role_user_id, 'name') }}</td>
+			  <!-- <td>{{-- UserManager::getUsername($value->id)['username'] --}}</td> -->
+			  <!-- <td>{{-- UserManager::getUsername($value->id)['type_user'] --}}</td> -->
+			  <!-- <td>{{ $value->ip }}</td> -->
+			  <!-- <td>{{-- getNameDevice($value->device) --}}</td> -->
 			  <td>{{ $value->updated_at }}</td>
 			  <td>{{ UserManager::getStatus($value->status) }}</td>
 			  <td>
 			    @if(Admin::isAdmin() || Admin::isEditor())
 				  	@if($value->status == ACTIVE )
-					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-danger">Hủy</a>
+					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-danger">Chặn</a>
 					@else
 					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-primary">Kích hoạt</a>
 					@endif
