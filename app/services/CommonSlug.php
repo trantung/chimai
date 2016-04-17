@@ -146,7 +146,7 @@ class CommonSlug
 		return $menu;
 	}
 	
-	public static function getSlugByLang()
+	public static function getSlugSearch()
 	{
 		if (Request::segment(1) == getLanguage()) {
 			return Request::segment(2);
