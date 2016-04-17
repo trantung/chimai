@@ -30,22 +30,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public static function getRule($input, $user = null)
     {
+    	$rules = ['fullname' => 'required'];
     	if ($user) {
-    		if ($user->email = $input['email']) {
-			$rules = array(
-				'phone' => 'required|unique:users',
-				'fullname' => 'required',
-			);
-			}
-			else {
-				$rules = array(
-					'email' => 'required|email|unique:users',
-					'phone' => 'required|unique:users',
-					'fullname' => 'required',
-				);
-			}
+    		$unique = array('phone', 'email');
+    		foreach ($unique as $value) {
+    			if ($user->$value != $input[$value]) {
+    				$rules[$value] = 'required|unique:users';
+    			}
+    		}
 			return $rules;
     	}
+    	
     	return $rules = array(
 			'password' => 'required', 
 			'email' => 'required|email|unique:users',
