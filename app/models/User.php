@@ -28,4 +28,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'fullname', 'status', 'phone', 'role_user_id', 'address', 'type');
     protected $dates = ['deleted_at'];
 
+    public static function getRule($input, $user = null)
+    {
+    	if ($user) {
+    		if ($user->email = $input['email']) {
+			$rules = array(
+				'phone' => 'required|unique:users',
+				'fullname' => 'required',
+			);
+			}
+			else {
+				$rules = array(
+					'email' => 'required|email|unique:users',
+					'phone' => 'required|unique:users',
+					'fullname' => 'required',
+				);
+			}
+			return $rules;
+    	}
+    	return $rules = array(
+			'password' => 'required', 
+			'email' => 'required|email|unique:users',
+			'phone' => 'required|unique:users',
+			'fullname' => 'required',
+		);
+    }
 }

@@ -21,7 +21,7 @@ class UserController extends AdminController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.user.create');
 	}
 
 
@@ -32,7 +32,18 @@ class UserController extends AdminController {
 	 */
 	public function store()
 	{
-
+		$input = Input::except('_token');
+		$rules = User::getRule($input);
+		$validator = Validator::make($input,$rules);
+		if($validator->fails()) {
+			return Redirect::action('UserController@create')
+				->withInput(Input::except('password'))
+				->withErrors($validator);
+		}
+		else {
+			User::create($input);
+			return Redirect::action('UserController@index');
+		}
 	}
 
 
@@ -56,6 +67,11 @@ class UserController extends AdminController {
 	 */
 	public function edit($id)
 	{
+		$user = User::find($id);
+		return View::make('admin.user.edit')->with(compact('user'));
+	}	
+	public function changeStatusUser($id)
+	{
 		$statusUser = User::find($id);
 	
 		if($statusUser->status == ACTIVE)
@@ -68,7 +84,7 @@ class UserController extends AdminController {
 		}
 
 		return Redirect::action('UserController@index') ;
-	}
+	}	
 
 
 	/**
@@ -79,26 +95,22 @@ class UserController extends AdminController {
 	 */
 	public function update($id)
 	{
-		$rules = array(
-			'password'   => 'required',
-			'repassword' => 'required|same:password'
-
-		);
 		$input = Input::except('_token');
+		if ($input['password'] != '') {
+			$input['password'] = Hash::make($input['password']);
+		}
+		$user = User::find($id);
+		$rules = User::getRule($input, $user);
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
-			return Redirect::action('UserController@changePassword',$id)
-	            ->withErrors($validator)
-	            ->withInput(Input::except('password'));
-        } else {
-        	// dd(Hash::make($input['password']));
-        		$inputPass['password'] = Hash::make($input['password']);
-        		CommonNormal::update($id, $inputPass);
-        	
-        	
-        }
-        return Redirect::action('UserController@index') ;
-		
+			return Redirect::action('UserController@edit', $id)
+				->withInput(Input::except('password'))
+				->withErrors($validator);
+		}
+		else {
+			$user->update($input);
+			return Redirect::action('UserController@index');
+		}
 	}
 
 

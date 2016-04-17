@@ -7,7 +7,11 @@
 @section('content')
 
 @include('admin.user.search')
-
+<div class="row margin-bottom">
+	<div class="col-xs-12">
+		<a href="{{ action('UserController@create') }}" class="btn btn-primary">Thêm</a>
+	</div>
+</div>
 <div class="row">
 	<div class="col-xs-12">
 	  <div class="box">
@@ -43,11 +47,11 @@
 			  <td>{{ $value->updated_at }}</td>
 			  <td>{{ UserManager::getStatus($value->status) }}</td>
 			  <td>
-			    @if(Admin::isAdmin() || Admin::isEditor())
+					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-danger">Edit</a>
 				  	@if($value->status == ACTIVE )
-					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-danger">Chặn</a>
+					<a href="{{action('UserController@changeStatusUser', $value->id) }}" class="btn btn-danger">Chặn</a>
 					@else
-					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-primary">Kích hoạt</a>
+					<a href="{{action('UserController@changeStatusUser', $value->id) }}" class="btn btn-primary">Kích hoạt</a>
 					@endif
 					@if(UserManager::getUsername($value->id)['type_user'] == TYPESYSTEM)
 						<a href="{{action('UserController@changePassword', $value->id) }}" class="btn btn-primary">Đổi mật khẩu</a>
@@ -55,7 +59,6 @@
 		<!-- 		{{ Form::open(array('method'=>'DELETE', 'action' => array('UserController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
 				<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
 				{{ Form::close() }} -->
-				@endif
 			  </td>
 			  </td>
 			</tr>

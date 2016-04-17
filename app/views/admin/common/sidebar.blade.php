@@ -119,6 +119,7 @@
 					<i class="fa fa-users"></i> <span>Quản lý thành viên</span>
 				</a>
 			</li>
+
 			<!-- <li>
 				<a href="{{-- action('TestUploadImageController@index') --}}">
 					<i class="fa fa-file-image-o"></i> <span>Test upload images</span>

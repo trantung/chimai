@@ -121,6 +121,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::get('/user/chanpassword/{id}', array('uses' =>  'UserController@changePassword', 'as' => 'admin.user.chanpassword'));
 	Route::get('/user/search', array('uses' =>  'UserController@search', 'as' => 'admin.user.search'));
+	
+	//create user with permission: vip, kien truc su, dai li
+	Route::get('/user/changeStatus/{id}', 'UserController@changeStatusUser');
 	Route::resource('/user', 'UserController');
 
 	Route::resource('/discount', 'DiscountController');
