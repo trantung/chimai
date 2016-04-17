@@ -9,7 +9,8 @@ class SiteCartController extends SiteController {
 	 */
 	public function index()
 	{
-		return View::make('site.cart.index');
+		$content = Cart::content();
+		return View::make('site.cart.index')->with(compact('content'));
 	}
 
 
@@ -87,9 +88,53 @@ class SiteCartController extends SiteController {
 		return View::make('site.cart.checkout');
 	}
 
-	public function checkout_success()
+	public function checkoutSuccess()
 	{
 		return View::make('site.cart.checkout_success');
+	}
+
+	public function addCart()
+	{
+		$id = Input::get('id');
+		$product = Product::find($id);
+		if($product) {
+			Cart::add(
+				array(
+						'id' => $product->id,
+						'name' => $product->name,
+						'qty' => 1,
+						'price' => $product->price,
+						'options' => array(
+							'code' => $product->code,
+							'image_url' => url(CommonSlug::getImageUrlNotBox('Product', $product)),
+							'url' => CommonSlug::getUrlSlug(CommonSite::getOriginByProduct($product->origin_id), $product->slug),
+							'unit' => Common::getFieldByModel('AdminUnit', $product->unit_id, 'name'),
+							// 'amount' => $product->price,
+							'color_id' => null,
+							'size_id' => null,
+							'surface_id' => null,
+						),
+					)
+				);
+		}
+		return;
+	}
+
+	public function updateCart()
+	{
+		$rowid = Input::get('rowid');
+		$color_id = Input::get('color_id');
+		$size_id = Input::get('size_id');
+		$surface_id = Input::get('surface_id');
+		$qty = Input::get('qty');
+		
+	}
+
+	public function removeCart()
+	{
+		$rowid = Input::get('rowid');
+		Cart::remove($rowid);
+		return;
 	}
 
 }

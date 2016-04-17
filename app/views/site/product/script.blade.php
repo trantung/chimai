@@ -63,3 +63,31 @@ $(window).load(function() {
 
 	});
 </script>
+
+<script type="text/javascript">
+(function($){
+	addCart();
+})(jQuery);
+function addCart()
+{
+	$('#add_cart').click(function(){
+        id = $('input[name=id]').val();
+        $.ajax(
+        {
+            type:'post',
+            url : '/addCart',
+            data:{
+                'id' : id
+            },
+            beforeSend: function(){
+                $('#add_cart').prop('disabled', true);
+                $('#add_cart').html("Please wait...");
+            },
+            success: function(data)
+            {
+                location.href = '{{ action("SiteCartController@index") }}';
+            }
+        });
+    });
+}
+</script>

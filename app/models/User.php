@@ -35,17 +35,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     		$unique = array('phone', 'email');
     		foreach ($unique as $value) {
     			if ($user->$value != $input[$value]) {
-    				$rules[$value] = 'required|unique:users';
+    				$rules[$value] = 'required|max:256|unique:users';
     			}
     		}
 			return $rules;
     	}
-    	
     	return $rules = array(
-			'password' => 'required', 
-			'email' => 'required|email|unique:users',
-			'phone' => 'required|unique:users',
-			'fullname' => 'required',
+			'password' => 'required|max:256|min:6',
+			'email' => 'required|max:256|email|unique:users',
+			'phone' => 'required|max:256|unique:users',
+			'fullname' => 'required|max:256',
+			'address' => 'max:256',
 		);
     }
+
 }

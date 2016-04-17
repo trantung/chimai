@@ -61,6 +61,7 @@ return array(
 	'company' => 'Công ty',
 	'product' => 'Sản phẩm',
 	'product_info' => 'Thông tin sản phẩm',
+	'color' => 'Màu sắc',
 	'size' => 'Kích cỡ',
 	'origin' => 'Xuất xứ',
 	'material' => 'Chất liệu',

@@ -123,17 +123,21 @@ class SiteUserController extends SiteController {
 		if(!CommonSite::isLogin()) {
 			return Redirect::action('SiteUserController@create');
 		}
-		$id = Auth::user()->get()->id;
+		$user = Auth::user()->get();
+		$id = $user->id;
 		$input = Input::except('_method', '_token');
+
+		$rules = User::getRule($input, $user);
+
 		if(Input::get('password')) {
-			$rules = array(
+			$rulesPass = array(
 				'password'   	=> 'required|min:6|max:256',
 				'password_new'  => 'required|min:6|max:256',
 				'password_new2' => 'required|min:6|max:256|same:password_new',
 	        );
-		} else {
-			$rules = array();
+	        $rules = array_merge($rules, $rulesPass);
 		}
+
 		// $rules['image_url'] = 'image|mimes:jpg,png,jpeg|max:150';
 		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {

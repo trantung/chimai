@@ -61,6 +61,7 @@ return array(
 	'company' => 'Company',
 	'product' => 'Products',
 	'product_info' => 'Product Information',
+	'color' => 'Color',
 	'size' => 'Size',
 	'origin' => 'Origin',
 	'material' => 'Material',

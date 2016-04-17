@@ -19,6 +19,7 @@
 	</div>
 	<p><strong>{{ trans('captions.availability') }}:</strong> {{ getQtyProduct($data->qty) }}</p>
 	<div class="detail_cart">
-		<a class="button add_cart"><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.addtocart') }}</span></a>
+		<a class="button add_cart" id="add_cart" ><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.addtocart') }}</span></a>
+		{{ Form::hidden('id', $data->id) }}
 	</div>
 </div>

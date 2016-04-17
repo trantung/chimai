@@ -17,90 +17,98 @@
 		<div class="row">
 			<div class="column">
 				<h2>{{ trans('captions.cart') }}</h2>
-				<form class="shopping_cart_form">
-					<table width="100%">
-						<thead>
-							<tr>
-								<th width="50"></th>
-								<th>{{ trans('captions.product') }}</th>
-								<th width="150">{{ trans('captions.unit') }}</th>
-								<th width="150">{{ trans('captions.unit_price') }}</th>
-								<th width="150">{{ trans('captions.quanty') }}</th>
-								<th width="150">{{ trans('captions.to_price') }}</th>
-								<th width="70"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><img src="{{ url('assets/imgs/a1.jpg') }}"/></td>
-								<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
-								<td>m2</td>
-								<td>300.000</td>
-								<td>
-									<div class="qty-holder">
-										<input class="qty" type="text" value="1" name="qty[]">
-									</div>
-								</td>
-								<td>300.000</td>
-								<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
-							</tr>
-							<tr>
-								<td><img src="{{ url('assets/imgs/a1.jpg') }}"/></td>
-								<td class="shopping_cart_link"><a href="products_detail.html">Calacatta</a></td>
-								<td>viên</td>
-								<td>300.000</td>
-								<td>
-									<div class="qty-holder">
-										<input class="qty" type="text" value="2" name="qty[]">
-									</div>
-								</td>
-								<td>600.000</td>
-								<td><a href="#"><i class="fa fa-times-circle-o"></i></a></td>
-							</tr>
-							<tr>
-								<td colspan="4" class="order_table_right">{{ trans('captions.plus') }}</td>
-								<td></td>
-								<td colspan="2">900.000</td>
-							</tr>
-							<tr>
-								<td colspan="4" class="order_table_right">{{ trans('captions.discount') }}</td>
-								<td>5%</td>
-								<td colspan="2">45.000</td>
-							</tr>
-							<tr>
-								<td colspan="4" class="order_table_right">{{ trans('captions.to_price') }}</td>
-								<td></td>
-								<td colspan="2">855.000</td>
-							</tr>
-							<tr>
-								<td colspan="4" class="order_table_right">Số điểm tích lũy lần này</td>
-								<td></td>
-								<td colspan="2">8</td>
-							</tr>
-							<tr>
-								<td colspan="4" class="order_table_right">Số điểm tích lũy cộng dồn</td>
-								<td></td>
-								<td colspan="2">18</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="row shopping_cart_form2">
-						<div class="columns medium-6 medium-push-6">
-							<a href="{{ action('SiteCartController@checkout') }}" title="" class="button button2 right">{{ trans('captions.order') }} <i class="fa fa-angle-double-right"></i></a>
-							<a class="button button2 right" title="">{{ trans('captions.update_cart') }}</a>
-							<div class="clearfix"></div>
-						</div>
-						<div class="columns medium-6 medium-pull-6">
-							<div class="shopping_continue clearfix">
-								<a href="{{ url('/') }}" class="left">
-									<i class="fa fa-angle-double-left"></i> {{ trans('captions.countinue_shopping') }}
-								</a>
+				@if(Cart::count() > 0)
+					<form class="shopping_cart_form">
+						<table width="100%">
+							<thead>
+								<tr>
+									<th width="50"></th>
+									<th>{{ trans('captions.product') }}</th>
+									<th width="120">{{ trans('captions.color') }}</th>
+									<th width="120">{{ trans('captions.size') }}</th>
+									<th width="120">{{ trans('captions.surface') }}</th>
+									<th width="50">{{ trans('captions.unit') }}</th>
+									<th width="100">{{ trans('captions.unit_price') }}</th>
+									<th width="100">{{ trans('captions.quanty') }}</th>
+									<th width="100">{{ trans('captions.to_price') }}</th>
+									<th width="70"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- START LIST PRODUCT -->
+								@foreach($content as $key => $value)
+									<tr>
+										<td>
+											<img src="{{ $value->options->image_url }}"/>
+											{{ Form::hidden('rowid[]', $value->rowid) }}
+										</td>
+										<td class="shopping_cart_link"><a href="{{ $value->options->url }}">{{ $value->name }}</a></td>
+										<td>{{ Form::select('color_id[]', CommonCart::getColorByProductId($value->id), $value->options->color_id, array('class' => 'form-control')) }}</td>
+										<td>{{ Form::select('size_id[]', CommonCart::getSizeByProductId($value->id), $value->options->size_id, array('class' => 'form-control')) }}</td>
+										<td>{{ Form::select('surface_id[]', CommonCart::getSurfaceByProductId($value->id), $value->options->surface_id, array('class' => 'form-control')) }}</td>
+										<td>{{ $value->options->unit }}</td>
+										<td>{{ getFullPriceInVnd($value->price) }}</td>
+										<td>
+											<div class="qty-holder">
+											{{ Form::text('qty[]', $value->qty, array('class' => 'qty')) }}
+											</div>
+										</td>
+										<td>{{ getFullPriceInVnd($value->subtotal) }}</td>
+										<td>
+											<a onclick="removeCart('{{ $value->rowid }}')"><i class="fa fa-times-circle-o"></i></a>
+										</td>
+									</tr>
+								@endforeach
+								<!-- END LIST PRODUCT -->
+								<tr>
+									<td colspan="7" class="order_table_right">{{ trans('captions.plus') }}</td>
+									<td></td>
+									<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
+								</tr>
+								<!-- <tr>
+									<td colspan="7" class="order_table_right">{{-- trans('captions.discount') --}}</td>
+									<td>5%</td>
+									<td colspan="2">45.000</td>
+								</tr> -->
+								<!-- <tr>
+									<td colspan="7" class="order_table_right">{{-- trans('captions.to_price') --}}</td>
+									<td></td>
+									<td colspan="2">855.000</td>
+								</tr> -->
+								<!-- <tr>
+									<td colspan="7" class="order_table_right">Số điểm tích lũy lần này</td>
+									<td></td>
+									<td colspan="2">8</td>
+								</tr> -->
+								<!-- <tr>
+									<td colspan="7" class="order_table_right">Số điểm tích lũy cộng dồn</td>
+									<td></td>
+									<td colspan="2">18</td>
+								</tr> -->
+							</tbody>
+						</table>
+						<div class="row shopping_cart_form2">
+							<div class="columns medium-6 medium-push-6">
+								<a href="{{ action('SiteCartController@checkout') }}" title="" class="button button2 right">{{ trans('captions.order') }} <i class="fa fa-angle-double-right"></i></a>
+								<a class="button button2 right" title="" id="update_cart">{{ trans('captions.update_cart') }}</a>
+								<div class="clearfix"></div>
+							</div>
+							<div class="columns medium-6 medium-pull-6">
+								<div class="shopping_continue clearfix">
+									<a href="{{ CommonSite::getUrlLang($lang) }}" class="left">
+										<i class="fa fa-angle-double-left"></i> {{ trans('captions.countinue_shopping') }}
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				</form>
+					</form>
+				@else
+					<p>{{ trans('captions.nodata') }}</p>
+				@endif
 			</div>
 		</div>
 	</div>
+
+@include('site.cart.script')
 
 @stop
