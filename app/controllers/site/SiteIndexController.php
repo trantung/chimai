@@ -237,75 +237,55 @@ class SiteIndexController extends SiteController {
 	{
 		$input = Input::except('_token');
 		if (BoxProduct::findbySlug($slug)) {
-			$products = Product::select('products.*')
-				->join('materials', 'products.material_id', '=', 'materials.id')
-				->join('surface_products', 'products.id', '=', 'surface_products.product_id')
-				->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
-				->join('category_products', 'products.id', '=', 'category_products.product_id')
-				->join('categories', 'categories.id', '=', 'category_products.category_id')
-				->join('size_products', 'products.id', '=', 'size_products.product_id')
-				->join('sizes', 'sizes.id', '=', 'size_products.size_id')
-				->distinct()
-				->where('products.language', getLanguage())
-				->where('products.status', ACTIVE);
-			if(isset($input['category'])) {
-				$products = $products->whereIn('category_products.category_id', $input['category']);
-			}
-			if(isset($input['material'])) {
-				$products = $products->whereIn('materials.id', $input['material']);
-			}
-			if(isset($input['surface'])) {
-				$products = $products->whereIn('surface_products.surface_id', $input['surface']);
-			}
-			if(isset($input['size'])) {
-				$products = $products->whereIn('size_products.size_id', $input['size']);
-			}
-
-			$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
-				->orderBy('products.id', 'desc')
-				->paginate(FRONENDPAGINATE);
+			$products = $this->productSearch();
+			$products = $this->getProductSearchInput($products, $input);
 			$title = trans('messages.result_search');
 			return View::make('site.product.list')->with(compact('products', 'title'));
 		}
 		if ($origin = Origin::findbySlug($slug)) {
-
-			$products = Product::select('products.*')
-				->join('materials', 'products.material_id', '=', 'materials.id')
-				->join('surface_products', 'products.id', '=', 'surface_products.product_id')
-				->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
-				->join('category_products', 'products.id', '=', 'category_products.product_id')
-				->join('categories', 'categories.id', '=', 'category_products.category_id')
-				->join('size_products', 'products.id', '=', 'size_products.product_id')
-				->join('sizes', 'sizes.id', '=', 'size_products.size_id')
-				->distinct()
-				->where('products.language', getLanguage())
-				->where('products.status', ACTIVE);
-
+			$products = $this->productSearch();
 			if($origin) {
 				$products = $products->where('products.origin_id', $origin->id);
 			}
-
-			if(isset($input['category'])) {
-				$products = $products->whereIn('category_products.category_id', $input['category']);
-			}
-			if(isset($input['material'])) {
-				$products = $products->whereIn('materials.id', $input['material']);
-			}
-			if(isset($input['surface'])) {
-				$products = $products->whereIn('surface_products.surface_id', $input['surface']);
-			}
-			if(isset($input['size'])) {
-				$products = $products->whereIn('size_products.size_id', $input['size']);
-			}
-
-			$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
-				->orderBy('products.id', 'desc')
-				->paginate(FRONENDPAGINATE);
+			$products = $this->getProductSearchInput($products, $input);
 			$title = trans('messages.result_search');
-			$data = $origin;
-			return View::make('site.product.list')->with(compact('products', 'title', 'data'));
+			return View::make('site.product.list')->with(compact('products', 'title'));
 		}
 		dd(123);
 	}
 
+	public function productSearch()
+	{
+		$products = Product::select('products.*')
+			->join('materials', 'products.material_id', '=', 'materials.id')
+			->join('surface_products', 'products.id', '=', 'surface_products.product_id')
+			->join('surfaces', 'surfaces.id', '=', 'surface_products.surface_id')
+			->join('category_products', 'products.id', '=', 'category_products.product_id')
+			->join('categories', 'categories.id', '=', 'category_products.category_id')
+			->join('size_products', 'products.id', '=', 'size_products.product_id')
+			->join('sizes', 'sizes.id', '=', 'size_products.size_id')
+			->distinct()
+			->where('products.language', getLanguage())
+			->where('products.status', ACTIVE);	
+		return $products;
+	}
+	public function getProductSearchInput($products, $input)
+	{
+		if(isset($input['category'])) {
+				$products = $products->whereIn('category_products.category_id', $input['category']);
+			}
+		if(isset($input['material'])) {
+			$products = $products->whereIn('materials.id', $input['material']);
+		}
+		if(isset($input['surface'])) {
+			$products = $products->whereIn('surface_products.surface_id', $input['surface']);
+		}
+		if(isset($input['size'])) {
+			$products = $products->whereIn('size_products.size_id', $input['size']);
+		}
+		$products =	$products->orderByRaw("products.weight_number = '0', products.weight_number")
+			->orderBy('products.id', 'desc')
+			->paginate(FRONENDPAGINATE);
+		return $products;
+	}
 }
