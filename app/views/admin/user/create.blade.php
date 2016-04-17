@@ -29,6 +29,15 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="email">Địa chỉ</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::text('address', null, array('class' => 'form-control')) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="email">Email</label>
 						<div class="row">
 							<div class="col-sm-6">

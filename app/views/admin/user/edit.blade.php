@@ -16,7 +16,7 @@
 						<label for="email">Tên đầy đủ</label>
 						<div class="row">
 							<div class="col-sm-6">
-								{{ Form::text('fullname', null, array('class' => 'form-control')) }}
+								{{ Form::text('fullname', $user->fullname, array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
@@ -24,15 +24,23 @@
 						<label for="email">Phone</label>
 						<div class="row">
 							<div class="col-sm-6">
-								{{ Form::text('phone', null, array('class' => 'form-control')) }}
+								{{ Form::text('phone', $user->phone, array('class' => 'form-control')) }}
+							</div>
+						</div>
+					</div><div class="form-group">
+						<label for="email">Địa chỉ</label>
+						<div class="row">
+							<div class="col-sm-6">
+								{{ Form::text('address', $user->address, array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
+
 					<div class="form-group">
 						<label for="email">Email</label>
 						<div class="row">
 							<div class="col-sm-6">
-									{{ Form::text('email', null, array('class' => 'form-control')) }}
+									{{ Form::text('email', $user->email, array('class' => 'form-control')) }}
 							</div>
 						</div>
 					</div>
