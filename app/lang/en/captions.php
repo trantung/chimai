@@ -28,6 +28,7 @@ return array(
 	'send' => 'Send',
 	'update' => 'Update',
 	'password' => 'Password',
+	'repassword' => 'Repassword',
 	'new_password' => 'New password',
 	'confirm_new_password' => 'Confirm New Password',
 	'forgot_password' => 'Forgot password',

@@ -18,4 +18,9 @@ return array(
 	"failure" => "Failure",
 	"result_search" => "Search result",
 
+	"login_error" => "Email or Password is wrong",
+	"login_lock" => "Your account has been locked",
+	"login_success" => "Your account has been created. Please, login now!",
+	"login_updated" => "Updated success",
+
 );

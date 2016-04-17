@@ -2,10 +2,13 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<ul class="right">
-				<li><a href="{{ action('SiteUserController@account') }}"><i class="fa fa-user"></i>{{ trans('captions.account') }}</a></li>
-				<li><a href="{{ action('SiteController@logout') }}"><i class="fa fa-power-off"></i>{{ trans('captions.logout') }}</a></li>
-				<li><a href="{{ action('SiteController@login') }}"><i class="fa fa-power-off"></i>{{ trans('captions.login') }}</a></li>
-				<li><a href="{{ action('SiteUserController@create') }}"><i class="fa fa-user"></i>{{ trans('captions.register') }}</a></li>
+				@if(CommonSite::isLogin())
+					<li><a href="{{ action('SiteUserController@account') }}"><i class="fa fa-user"></i>{{ trans('captions.account') }}</a></li>
+					<li><a href="{{ action('SiteController@logout') }}"><i class="fa fa-power-off"></i>{{ trans('captions.logout') }}</a></li>
+				@else
+					<li><a href="{{ action('SiteController@login') }}"><i class="fa fa-power-off"></i>{{ trans('captions.login') }}</a></li>
+					<li><a href="{{ action('SiteUserController@create') }}"><i class="fa fa-user"></i>{{ trans('captions.register') }}</a></li>
+				@endif
 			</ul>
 		</div>
 	</div>
@@ -49,20 +52,20 @@
 <!-- Show for mobile -->
 <div class="row show-for-small-down">
 	<div class="columns">
-		<form class="form-search">
+		{{ Form::open(array('action' => 'SiteIndexController@search', 'method'=>'GET', 'class' => 'form-search', 'id' => 'searchIndex')) }}
 			<div class="row collapse">
 				<div class="small-11 columns">
 					<div class="row collapse postfix-round input_search">
-						<input type="text" placeholder="Search">
+						<input type="text" name="keyword" placeholder="Search">
 					</div>
 				</div>
 				<div class="small-1 columns input_search">
 					<div class="row collapse postfix-round">
-						<a href="#" class="postfix input_search_a"><i class="fa fa-search"></i></a>
+						<a onclick="$('#searchIndex').submit()" class="postfix input_search_a"><i class="fa fa-search"></i></a>
 					</div>
 				</div>
 			</div>
-		</form>
+		{{ Form::close() }}
 	</div>
 	<div class="columns cart-area">
 		<div class="custom-block">

@@ -32,22 +32,28 @@ class SiteUserController extends SiteController {
 	public function store()
 	{
 		$rules = array(
-			'user_name'  => 'required|unique:users',
-            'password'   => 'required|min:6',
-            'email'      => 'required|email|unique:users',
-            'phone'      => 'required',
+			'fullname'   => 'required|max:256',
+            'password'   => 'required|min:6|max:256',
+            'repassword' => 'required|min:6|max:256|same:password',
+            'email'      => 'required|email|max:256|unique:users',
+            'phone'      => 'required|max:256',
+            'address'    => 'max:256',
+            'type'       => 'required',
 		);
 		$input = CommonSite::inputRegister();
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('SiteUserController@create')
 	            ->withErrors($validator)
 	            ->withInput(Input::except('password'));
         } else {
         	$input['password'] = Hash::make($input['password']);
+        	// khach le
+        	$input['role_user_id'] = 1;
+        	$input['username'] = $input['email'];
         	$id = CommonNormal::create($input, 'user');
         	if($id) {
-        		return Redirect::action('SiteController@login')->with('message', 'Tài khoản của bạn đã được tạo thành công. Hãy đăng nhập ngay!');
+        		return Redirect::action('SiteController@login')->with('message', trans('messages.login_success'));
         	} else {
         		dd('Error');
         	}
@@ -104,14 +110,12 @@ class SiteUserController extends SiteController {
 
 	public function account()
 	{
-		return View::make('site.user.account');
-
 		if(!CommonSite::isLogin()) {
 			return Redirect::action('SiteUserController@create');
 		}
 		$id = Auth::user()->get()->id;
 		$data = User::find($id);
-        return View::make('site.user.account', array('data'=>$data));
+        return View::make('site.user.account', array('data' => $data));
 	}
 
 	public function doAccount()
@@ -123,15 +127,15 @@ class SiteUserController extends SiteController {
 		$input = Input::except('_method', '_token');
 		if(Input::get('password')) {
 			$rules = array(
-				'password'   	=> 'required|min:6',
-				'password_new'  => 'required|min:6',
-				'password_new2' => 'required|min:6|same:password_new',
+				'password'   	=> 'required|min:6|max:256',
+				'password_new'  => 'required|min:6|max:256',
+				'password_new2' => 'required|min:6|max:256|same:password_new',
 	        );
 		} else {
 			$rules = array();
 		}
-		$rules['image_url'] = 'image|mimes:jpg,png,jpeg|max:150';
-		$validator = Validator::make($input,$rules);
+		// $rules['image_url'] = 'image|mimes:jpg,png,jpeg|max:150';
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('SiteUserController@account')
 	            ->withErrors($validator)
@@ -142,9 +146,10 @@ class SiteUserController extends SiteController {
         	} else {
         		$input = Input::except('_method', '_token','password', 'password_new', 'password_new2');
         	}
-        	$input['image_url'] = Commonsite::uploadImg(UPLOADIMG, UPLOAD_USER_AVATAR, 'image_url', User::find($id)->image_url);
+        	$input['username'] = $input['email'];
+        	// $input['image_url'] = CommonSite::uploadImg(UPLOADIMG, UPLOAD_USER_AVATAR, 'image_url', User::find($id)->image_url);
         	CommonNormal::update($id, $input, 'User');
-    		return Redirect::action('SiteUserController@account')->with('message', 'Cập nhật thành công');
+    		return Redirect::action('SiteUserController@account')->with('message', trans('messages.login_updated'));
         }
 	}
 

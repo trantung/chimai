@@ -130,8 +130,6 @@ class SiteController extends BaseController {
 
 	public function login()
     {
-    	return View::make('site.user.login');
-    	
     	$checkLogin = CommonSite::isLogin();
         if($checkLogin) {
     		return Redirect::action('SiteIndexController@index');
@@ -143,34 +141,33 @@ class SiteController extends BaseController {
     public function doLogin()
     {
         $rules = array(
-            'user_name'   => 'required',
-            'password'   => 'required',
+            'email' => 'required',
+            'password' => 'required',
         );
         $input = Input::except('_token');
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
             return Redirect::action('SiteController@login')
                 // ->withErrors($validator);
-            	->with('error', 'Sai tên truy cập hoặc mật khẩu');
+            	->with('error', trans('messages.login_error'));
         } else {
             if(Auth::user()->attempt($input)) {
             	if(Auth::user()->get()->status == INACTIVE) {
-            		dd('Tài khoản của bạn đã bị khóa');
+            		return Redirect::action('SiteController@login')
+		            	->with('error', trans('messages.login_lock'));
             	}
-            	$inputUser = CommonSite::ipDeviceUser();
-            	CommonNormal::update(Auth::user()->get()->id, $inputUser, 'User');
+            	// $inputUser = CommonSite::ipDeviceUser();
+            	// CommonNormal::update(Auth::user()->get()->id, $inputUser, 'User');
         		return Redirect::action('SiteIndexController@index');
             }
             else {
-                return Redirect::action('SiteController@login')->with('error', 'Sai tên truy cập hoặc mật khẩu');
+                return Redirect::action('SiteController@login')->with('error', trans('messages.login_error'));
             }
         }
     }
 
     public function logout()
     {
-    	return View::make('site.user.login');
-
     	$checkLogin = CommonSite::isLogin();
         if($checkLogin) {
         	Auth::user()->logout();

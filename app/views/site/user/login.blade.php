@@ -17,7 +17,7 @@
         <div class="row">
             <div class="column">
                 <h2>{{ trans('captions.login_account') }}</h2>
-                <form class="submit-form">
+                {{ Form::open(array('action' => 'SiteController@doLogin', 'class' => 'submit-form')) }}
                     <div class="row">
                         <ul class="medium-6 columns">
                             <li>@include('message')</li>
@@ -34,7 +34,7 @@
                             </li>
                         </ul>
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

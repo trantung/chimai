@@ -15,8 +15,8 @@ class CommonSite
 	{
 		$input = Input::except('_token');
 		$input['status'] = ACTIVE;
-		$input['ip'] = getIpAddress();
-		$input['device'] = getDevice();
+		// $input['ip'] = getIpAddress();
+		// $input['device'] = getDevice();
 		return $input;
 	}
 

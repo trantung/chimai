@@ -10,3 +10,10 @@
 		<a href="#" class="close">&times;</a>
 	</div>
 @endif
+
+@if (count($errors->all()) > 0)
+	<div data-alert class="alert-box alert">
+		{{ HTML::ul($errors->all()) }}
+		<a href="#" class="close">&times;</a>
+	</div>
+@endif

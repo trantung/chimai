@@ -28,6 +28,7 @@ return array(
 	'send' => 'Gửi',
 	'update' => 'Cập nhật',
 	'password' => 'Mật khẩu',
+	'repassword' => 'Nhập lại mật khẩu',
 	'new_password' => 'Mật khẩu mới',
 	'confirm_new_password' => 'Nhập lại mật khẩu mới',
 	'forgot_password' => 'Quên mật khẩu',

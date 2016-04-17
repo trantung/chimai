@@ -17,4 +17,10 @@ return array(
 	"success" => "Đã gửi thành công",
 	"failure" => "Gửi thất bại",
 	"result_search" => "Kết quả tìm kiếm",
+
+	"login_error" => "Sai email hoặc mật khẩu",
+	"login_lock" => "Tài khoản của bạn đã bị khóa",
+	"login_success" => "Tài khoản của bạn đã được tạo thành công. Hãy đăng nhập ngay!",
+	"login_updated" => "Cập nhật thành công",
+
 );
