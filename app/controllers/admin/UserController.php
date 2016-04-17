@@ -131,7 +131,6 @@ class UserController extends AdminController {
 	{
 		$input = Input::all();
 		$inputUser = CommonSearch::seachUser($input);
-		
 		return View::make('admin.user.index')->with(compact('inputUser'));
 	}
 

@@ -26,11 +26,7 @@
 			  <th>email</th>
 			  <th>Tên</th>
 			  <th>Cấp độ</th>
-			  <!-- <th>Tài khoản</th> -->
-			  <!-- <th>Loại tài khoản</th> -->
-			  <!-- <th>Ip</th> -->
-			  <!-- <th>Device</th> -->
-			  <th>Đăng nhập cuối</th>
+			  <th>Phone</th>
 			  <th>Trạng thái</th>
 			  <th>Action</th>
 			</tr>
@@ -40,14 +36,10 @@
 			  <td>{{ $value->email }}</td>
 			  <td>{{ $value->fullname }}</td>
 			  <td>{{ Common::getFieldByModel('RoleUser', $value->role_user_id, 'name') }}</td>
-			  <!-- <td>{{-- UserManager::getUsername($value->id)['username'] --}}</td> -->
-			  <!-- <td>{{-- UserManager::getUsername($value->id)['type_user'] --}}</td> -->
-			  <!-- <td>{{ $value->ip }}</td> -->
-			  <!-- <td>{{-- getNameDevice($value->device) --}}</td> -->
-			  <td>{{ $value->updated_at }}</td>
+			  <td>{{ $value->phone }}</td>
 			  <td>{{ UserManager::getStatus($value->status) }}</td>
 			  <td>
-					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-danger">Edit</a>
+					<a href="{{action('UserController@edit', $value->id) }}" class="btn btn-primary">Edit</a>
 				  	@if($value->status == ACTIVE )
 					<a href="{{action('UserController@changeStatusUser', $value->id) }}" class="btn btn-danger">Chặn</a>
 					@else
@@ -56,9 +48,6 @@
 					@if(UserManager::getUsername($value->id)['type_user'] == TYPESYSTEM)
 						<a href="{{action('UserController@changePassword', $value->id) }}" class="btn btn-primary">Đổi mật khẩu</a>
 					@endif
-		<!-- 		{{ Form::open(array('method'=>'DELETE', 'action' => array('UserController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
-				<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
-				{{ Form::close() }} -->
 			  </td>
 			  </td>
 			</tr>
