@@ -23,7 +23,7 @@
 							<li>@include('message')</li>
 							<li>
 								<label for="fullname">{{ trans('captions.fullname') }} <em>*</em></label>
-								<input type="text" value="" id="fullname" name="fullname" maxlength="256">
+								<input type="text" value="" id="fullname" name="fullname" required maxlength="256">
 							</li>
 							<li>
 								<label for="email">{{ trans('captions.email') }} <em>*</em></label>
