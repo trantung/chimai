@@ -146,4 +146,11 @@ class CommonSlug
 		return $menu;
 	}
 	
+	public static function getSlugByLang()
+	{
+		if (Request::segment(1) == getLanguage()) {
+			return Request::segment(2);
+		}
+		return Request::segment(1);
+	}
 }

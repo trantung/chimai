@@ -21,7 +21,7 @@
 						<label for="name">Tên User</label>
 						<div class="row">
 							<div class="col-sm-6">	       
-								<input name="username" type="text" class="form-control" value="{{ $inputUser->username }}" readonly="true">          	           	        	
+								<input name="email" type="text" class="form-control" value="{{ $inputUser->email }}" readonly="true">          	           	        	
 							</div>
 						</div>
 					</div>

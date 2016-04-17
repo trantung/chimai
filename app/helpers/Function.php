@@ -261,3 +261,5 @@ function getQtyProduct($qty)
 	}
 	return trans('captions.notinstock');
 }
+
+
