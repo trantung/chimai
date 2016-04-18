@@ -137,6 +137,7 @@ class SiteCartController extends SiteController {
 	        				));
 	        		}
 	        	}
+	        	Cart::destroy();
 	        	return View::make('site.cart.checkout_success');	
 	        }
 	    } else {
