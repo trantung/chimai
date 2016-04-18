@@ -6,4 +6,6 @@ return array(
 	'seemore' => 'See more', 
 	'create_account' => 'Create an Account', 
 	'page404' => 'Page Not Found', 
+	'print_cart_order_qty' => 'Print Products', 
+	'print_cart_order' => 'Print Shopping Cart', 
 );

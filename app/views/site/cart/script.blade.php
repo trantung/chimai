@@ -65,5 +65,12 @@ function updateCart(checkout)
         }
     });
 }
-
+function printOrder(type)
+{
+    if(type == 1) {
+        location.href = '{{ action("SiteCartController@printOrder", 1) }}';
+    } else {
+        location.href = '{{ action("SiteCartController@printOrder", 0) }}';
+    }
+}
 </script>

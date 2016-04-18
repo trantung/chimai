@@ -2211,6 +2211,12 @@ ul.checkout_account {
     margin-bottom: 5px;
 }
 
+a.printOrder {
+    font-weight: bold;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
 /*home page box*/
 .homebox {
     margin-bottom: 30px;

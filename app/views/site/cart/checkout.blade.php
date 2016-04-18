@@ -21,48 +21,50 @@
 					<div class="row">
 						<a href="{{ action('SiteCartController@index') }}" class="left"><i class="fa fa-angle-double-left"></i>&nbsp;{{ trans('captions.cart') }}</a>
 					</div>
-					<div class="row">
-						<div class="column shopping_cart_form">
-							<table width="100%">
-								<thead>
-									<tr>
-										<th width="50"></th>
-										<th>{{ trans('captions.product') }}</th>
-										<th width="120">{{ trans('captions.color') }}</th>
-										<th width="120">{{ trans('captions.size') }}</th>
-										<th width="120">{{ trans('captions.surface') }}</th>
-										<th width="50">{{ trans('captions.unit') }}</th>
-										<th width="100">{{ trans('captions.unit_price') }}</th>
-										<th width="100">{{ trans('captions.quanty') }}</th>
-										<th width="100">{{ trans('captions.to_price') }}</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($content as $key => $value)
+					@if(Cart::count() > 0)
+						<div class="row">
+							<div class="column shopping_cart_form">
+								<table width="100%">
+									<thead>
 										<tr>
-											<td>
-												<img src="{{ $value->options->image_url }}"/>
-											</td>
-											<td class="shopping_cart_link"><a href="{{ $value->options->url }}">{{ $value->name }}</a></td>
-											<td>{{ Common::getFieldByModel('ProductImage', $value->options->color_id, 'name') }}</td>
-											<td>{{ Common::getFieldByModel('Size', $value->options->size_id, 'name') }}</td>
-											<td>{{ Common::getFieldByModel('Surface', $value->options->surface_id, 'name') }}</td>
-											<td>{{ $value->options->unit }}</td>
-											<td>{{ getFullPriceInVnd($value->price) }}</td>
-											<td>{{ $value->qty }}</td>
-											<td>{{ getFullPriceInVnd($value->subtotal) }}</td>
+											<th width="50"></th>
+											<th>{{ trans('captions.product') }}</th>
+											<th width="120">{{ trans('captions.color') }}</th>
+											<th width="120">{{ trans('captions.size') }}</th>
+											<th width="120">{{ trans('captions.surface') }}</th>
+											<th width="50">{{ trans('captions.unit') }}</th>
+											<th width="100">{{ trans('captions.unit_price') }}</th>
+											<th width="100">{{ trans('captions.quanty') }}</th>
+											<th width="100">{{ trans('captions.to_price') }}</th>
 										</tr>
-									@endforeach
-									<!-- END LIST PRODUCT -->
-									<tr>
-										<td colspan="7" class="order_table_right">{{ trans('captions.plus') }}</td>
-										<td></td>
-										<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
-									</tr>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										@foreach($content as $key => $value)
+											<tr>
+												<td>
+													<img src="{{ $value->options->image_url }}"/>
+												</td>
+												<td class="shopping_cart_link"><a href="{{ $value->options->url }}">{{ $value->name }}</a></td>
+												<td>{{ Common::getFieldByModel('ProductImage', $value->options->color_id, 'name') }}</td>
+												<td>{{ Common::getFieldByModel('Size', $value->options->size_id, 'name') }}</td>
+												<td>{{ Common::getFieldByModel('Surface', $value->options->surface_id, 'name') }}</td>
+												<td>{{ $value->options->unit }}</td>
+												<td>{{ getFullPriceInVnd($value->price) }}</td>
+												<td>{{ $value->qty }}</td>
+												<td>{{ getFullPriceInVnd($value->subtotal) }}</td>
+											</tr>
+										@endforeach
+										<!-- END LIST PRODUCT -->
+										<tr>
+											<td colspan="7" class="order_table_right">{{ trans('captions.plus') }}</td>
+											<td></td>
+											<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
+					@endif
 					<div class="row">
 						<ul class="medium-6 columns checkout_account">
 							<li><h4>{{ trans('captions.account_info') }}</h4></li>

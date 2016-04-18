@@ -143,3 +143,6 @@ define('ORDER_STATUS_2', 2);
 define('ORDER_STATUS_3', 3);
 //huy bo
 define('ORDER_STATUS_4', 4);
+
+//company
+define('COMPANY_NAME', 'Công ty cổ phần thương mại đầu tư Toàn Cầu');

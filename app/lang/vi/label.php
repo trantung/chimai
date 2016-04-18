@@ -6,4 +6,6 @@ return array(
 	'seemore' => 'Xem thêm', 
 	'create_account' => 'Đăng ký tài khoản', 
 	'page404' => 'Trang không tìm thấy', 
+	'print_cart_order_qty' => 'In danh sách sản phẩm', 
+	'print_cart_order' => 'In báo giá', 
 );

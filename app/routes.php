@@ -137,6 +137,8 @@ Route::group(
 	),
 	function()
 	{
+		Route::get('/printOrder/{type}', 'SiteCartController@printOrder');
+
 		Route::get('/search', 'SiteIndexController@search');
 
 		Route::get('/newsletter', 'SiteContactController@newsletter');

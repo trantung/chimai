@@ -88,12 +88,14 @@
 							</tbody>
 						</table>
 						<div class="row shopping_cart_form2">
-							<div class="columns medium-6 medium-push-6">
+							<div class="columns medium-9 medium-push-3">
 								<a title="" class="button button2 right" onclick="updateCart(1)">{{ trans('captions.order') }} <i class="fa fa-angle-double-right"></i></a>
 								<a class="button button2 right" title="" id="update_cart" onclick="updateCart(0)">{{ trans('captions.update_cart') }}</a>
+								<a title="" class="printOrder right" onclick="printOrder(1)">{{ trans('label.print_cart_order') }} <i class="fa fa-print"></i></a>
+								<a title="" class="printOrder right" onclick="printOrder(0)">{{ trans('label.print_cart_order_qty') }} <i class="fa fa-print"></i></a>
 								<div class="clearfix"></div>
 							</div>
-							<div class="columns medium-6 medium-pull-6">
+							<div class="columns medium-3 medium-pull-9">
 								<div class="shopping_continue clearfix">
 									<a href="{{ CommonSite::getUrlLang($lang) }}" class="left">
 										<i class="fa fa-angle-double-left"></i> {{ trans('captions.countinue_shopping') }}

@@ -208,4 +208,14 @@ class SiteCartController extends SiteController {
 		return;
 	}
 
+	public function printOrder($type = 0)
+	{
+		$content = Cart::content();
+		if($type == 1) {
+			return View::make('site.cart.printOrder')->with(compact('content'));
+		} else {
+			return View::make('site.cart.printOrderQty')->with(compact('content'));	
+		}
+	}
+
 }
