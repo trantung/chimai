@@ -11,7 +11,7 @@ class SiteContactController extends SiteController {
 	{
 		$rules = CommonRule::getRules('Contact');
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('SiteContactController@index')
 	            ->with('error', trans('messages.required'));
@@ -33,7 +33,7 @@ class SiteContactController extends SiteController {
 	{
 		$rules = ['email' => 'required'];
 		$input = Input::except('_token');
-		$validator = Validator::make($input,$rules);
+		$validator = Validator::make($input, $rules);
 		if($validator->fails()) {
 			return Redirect::action('SiteContactController@newsletter')
 	            ->with('error', trans('messages.required'));

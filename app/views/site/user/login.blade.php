@@ -30,6 +30,7 @@
                                 <input type="password" class="input-text" id="password" name="password" required>
                             </li>
                             <li>
+                                <a href="{{ action('SiteUserController@create') }}">{{ trans('label.create_account') }}</a>
                                 <button class="button right" type="submit">{{ trans('captions.login') }}</button>
                             </li>
                         </ul>

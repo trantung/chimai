@@ -142,7 +142,7 @@ Route::group(
 		Route::get('/newsletter', 'SiteContactController@newsletter');
 		Route::post('/newsletter', 'SiteContactController@newsletterSend');
 
-		Route::post('/addCart', 'SiteCartController@addCart');	
+		Route::post('/addCart', 'SiteCartController@addCart');
 		Route::post('/updateCart', 'SiteCartController@updateCart');
 		Route::post('/removeCart', 'SiteCartController@removeCart');
 
@@ -161,7 +161,7 @@ Route::group(
 
 		Route::get(LaravelLocalization::transRoute('routes.cart'), 'SiteCartController@index');
 		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'SiteCartController@checkout');
-		Route::get(LaravelLocalization::transRoute('routes.checkout_success'), 'SiteCartController@checkoutSuccess');
+		Route::post(LaravelLocalization::transRoute('routes.checkout_success'), 'SiteCartController@checkoutSuccess');
 
 		Route::resource('/', 'SiteIndexController');
 		Route::get('/{slug}', 'SiteIndexController@slug');

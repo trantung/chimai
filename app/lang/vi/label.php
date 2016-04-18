@@ -4,4 +4,5 @@ return array(
 	'product_relate' => 'Sản phẩm liên quan', 
 	'product_request' => 'Gửi yêu cầu', 
 	'seemore' => 'Xem thêm', 
+	'create_account' => 'Đăng ký tài khoản', 
 );

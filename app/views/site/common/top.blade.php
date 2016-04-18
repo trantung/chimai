@@ -43,7 +43,7 @@
 
 					@include('site.common.lang')
 
-					<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">2</span></a></li>
+					<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">{{ Cart::count() }}</span></a></li>
 				</ul> 
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 				
 				@include('site.common.lang')
 
-				<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">2</span></a></li>
+				<li><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i><span class="number_item">{{ Cart::count() }}</span></a></li>
 			</ul> 
 		</div>
 	</div>

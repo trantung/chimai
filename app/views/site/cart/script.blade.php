@@ -8,7 +8,7 @@ function removeCart(rowid)
 	{
         $.ajax(
         {
-            type:'post',
+            type: 'post',
             url : '/removeCart',
             data:{
                 'rowid' : rowid
@@ -24,27 +24,27 @@ function removeCart(rowid)
         return false;
     }
 }
-function updateCart()
+function updateCart(checkout)
 {
 	var rowid = $('input[name^="rowid"]').map(function () {
 			return this.value;
 		}).get();
-	var color_id = $('input[name^="color_id"]').map(function () {
+	var color_id = $('select[name^="color_id"]').map(function () {
 			return this.value;
 		}).get();
-	var size_id = $('input[name^="size_id"]').map(function () {
+	var size_id = $('select[name^="size_id"]').map(function () {
 			return this.value;
 		}).get();
-	var surface_id = $('input[name^="surface_id"]').map(function () {
+	var surface_id = $('select[name^="surface_id"]').map(function () {
 			return this.value;
 		}).get();
 	var qty = $('input[name^="qty"]').map(function () {
 			return this.value;
 		}).get();
-	
+
     $.ajax(
     {
-        type:'post',
+        type: 'post',
         url : '/updateCart',
         data:{
             'rowid' : rowid,
@@ -52,11 +52,16 @@ function updateCart()
             'size_id' : size_id,
             'surface_id' : surface_id,
             'qty' : qty,
-            
+            'checkout' : checkout,
+
         },
         success: function(data)
         {
-            location.href = '{{ action("SiteCartController@index") }}';
+        	if(data == 1) {
+        		location.href = '{{ action("SiteCartController@checkout") }}';
+        	} else {
+        		location.href = '{{ action("SiteCartController@index") }}';
+        	}
         }
     });
 }

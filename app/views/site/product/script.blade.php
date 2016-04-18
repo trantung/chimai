@@ -74,7 +74,7 @@ function addCart()
         id = $('input[name=id]').val();
         $.ajax(
         {
-            type:'post',
+            type: 'post',
             url : '/addCart',
             data:{
                 'id' : id

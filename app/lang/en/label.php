@@ -4,4 +4,5 @@ return array(
 	'product_relate' => 'Products relate', 
 	'product_request' => 'Send request', 
 	'seemore' => 'See more', 
+	'create_account' => 'Create an Account', 
 );

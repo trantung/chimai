@@ -2131,6 +2131,9 @@ a.button2 i.fa {
     margin-top: 10px;
     text-decoration: underline;
 }
+.checkout .shopping_cart_link a {
+    margin-left: 0;
+}
 .checkout .submit-form a.button2 {
     background: #055082 none repeat scroll 0 0;
     color: #fff;
@@ -2141,6 +2144,9 @@ a.button2 i.fa {
 .checkout .submit-form a.button2:focus {
     background-color: #007095;
     border-color: #007095;
+}
+ul.checkout_account {
+    
 }
 .shopping_cart_link a {
     color: #333;

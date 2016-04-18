@@ -89,8 +89,8 @@
 						</table>
 						<div class="row shopping_cart_form2">
 							<div class="columns medium-6 medium-push-6">
-								<a href="{{ action('SiteCartController@checkout') }}" title="" class="button button2 right">{{ trans('captions.order') }} <i class="fa fa-angle-double-right"></i></a>
-								<a class="button button2 right" title="" id="update_cart">{{ trans('captions.update_cart') }}</a>
+								<a title="" class="button button2 right" onclick="updateCart(1)">{{ trans('captions.order') }} <i class="fa fa-angle-double-right"></i></a>
+								<a class="button button2 right" title="" id="update_cart" onclick="updateCart(0)">{{ trans('captions.update_cart') }}</a>
 								<div class="clearfix"></div>
 							</div>
 							<div class="columns medium-6 medium-pull-6">

@@ -23,4 +23,7 @@ return array(
 	"login_success" => "Tài khoản của bạn đã được tạo thành công. Hãy đăng nhập ngay!",
 	"login_updated" => "Cập nhật thành công",
 
+	"order_success" => "Đặt hàng thành công",
+	"order_success_msg" => "Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất",
+
 );

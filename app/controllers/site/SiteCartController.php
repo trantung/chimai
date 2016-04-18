@@ -85,12 +85,63 @@ class SiteCartController extends SiteController {
 
 	public function checkout()
 	{
-		return View::make('site.cart.checkout');
+		$checkLogin = CommonSite::isLogin();
+        if($checkLogin) {
+        	$id = Auth::user()->get()->id;
+			$data = User::find($id);
+			$content = Cart::content();
+			return View::make('site.cart.checkout')->with(compact('data', 'content'));
+        } else {
+            return Redirect::action('SiteController@login');
+        }
 	}
 
 	public function checkoutSuccess()
 	{
-		return View::make('site.cart.checkout_success');
+		$checkLogin = CommonSite::isLogin();
+		if($checkLogin) {
+			$input = Input::except('_token');
+			$rules = array(
+				'payment' => 'required|integer',
+				'message' => 'max:256',
+			);
+			$validator = Validator::make($input, $rules);
+			if($validator->fails()) {
+				return Redirect::action('SiteCartController@checkout')
+		            ->withErrors($validator);
+	        } else {
+	        	// to do: save order to db
+	        	//save order
+	        	$id = Auth::user()->get()->id;
+	        	$content = Cart::content();
+	        	$orderId = Order::create(array(
+	        			'total' => Cart::total(),
+	        			'discount' => 0,
+	        			'user_id' => $id,
+	        			'message' => $input['message'],
+	        			'payment' => $input['payment'],
+	        			'status' => ORDER_STATUS_1,
+	        		))->id;
+	        	//save order product
+	        	if($orderId && Cart::count() > 0) {
+	        		foreach($content as $value) {
+	        			OrderProduct::create(array(
+	        					'product_id' => $value->id,
+	        					'price' => $value->price,
+	        					'qty' => $value->qty,
+	        					'amount' => $value->subtotal,
+	        					'order_id' => $orderId,
+	        					'color_id' => $value->options->color_id,
+	        					'size_id' => $value->options->size_id,
+	        					'surface_id' => $value->options->surface_id,
+	        				));
+	        		}
+	        	}
+	        	return View::make('site.cart.checkout_success');	
+	        }
+	    } else {
+            return Redirect::action('SiteController@login');
+        }
 	}
 
 	public function addCart()
@@ -109,7 +160,6 @@ class SiteCartController extends SiteController {
 							'image_url' => url(CommonSlug::getImageUrlNotBox('Product', $product)),
 							'url' => CommonSlug::getUrlSlug(CommonSite::getOriginByProduct($product->origin_id), $product->slug),
 							'unit' => Common::getFieldByModel('AdminUnit', $product->unit_id, 'name'),
-							// 'amount' => $product->price,
 							'color_id' => null,
 							'size_id' => null,
 							'surface_id' => null,
@@ -127,7 +177,27 @@ class SiteCartController extends SiteController {
 		$size_id = Input::get('size_id');
 		$surface_id = Input::get('surface_id');
 		$qty = Input::get('qty');
-		
+		$checkout = Input::get('checkout');
+		if($rowid) {
+			foreach($rowid as $key => $value) {
+				Cart::update($value, array(
+					'qty' => $qty[$key], 
+					'options' => array(
+							'color_id' => $color_id[$key], 
+							'size_id' => $size_id[$key], 
+							'surface_id' => $surface_id[$key]
+						)
+					)
+				);
+			}
+		}
+		if($checkout == 1) {
+			// redirect to checkout page
+			return 1;
+		} else {
+			// redirect to shopping cart page
+			return;	
+		}
 	}
 
 	public function removeCart()

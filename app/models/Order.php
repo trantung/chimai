@@ -8,7 +8,7 @@ class Order extends Eloquent
 {
 	use SoftDeletingTrait;
     protected $table = 'orders';
-    protected $fillable = ['total', 'discount', 'user_id', 'status'];
+    protected $fillable = ['total', 'discount', 'user_id', 'status', 'payment', 'message'];
     protected $dates = ['deleted_at'];
 
 }

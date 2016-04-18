@@ -128,3 +128,18 @@ define('NUMBER_NEWS_SIDEBAR', 5);
 
 // don vi tien te
 define('PRICE_UNIT', 'vnđ');
+
+//payment value
+define('PAYMENT1', 1);
+define('PAYMENT2', 2);
+define('PAYMENT3', 3);
+
+//order status
+//chua xu ly
+define('ORDER_STATUS_1', 1);
+//dang xu ly
+define('ORDER_STATUS_2', 2);
+//da thanh toan
+define('ORDER_STATUS_3', 3);
+//huy bo
+define('ORDER_STATUS_4', 4);

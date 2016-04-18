@@ -76,7 +76,7 @@
 				</ul>
 				<!--right -->
 				<ul class="right show-for-medium-up">
-					<li class="quick_cart"><a href="shopping_cart.html" class="mini-cart"><i class="fa fa-shopping-cart"></i> <span class="number_item">2</span></a></li>
+					<li class="quick_cart"><a href="{{ action('SiteCartController@index') }}" class="mini-cart"><i class="fa fa-shopping-cart"></i> <span class="number_item">{{ Cart::count() }}</span></a></li>
 				</ul>
 			</section>
 		</nav>

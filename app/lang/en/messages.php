@@ -23,4 +23,7 @@ return array(
 	"login_success" => "Your account has been created. Please, login now!",
 	"login_updated" => "Updated success",
 
+	"order_success" => "Order Success",
+	"order_success_msg" => "Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất",
+
 );
