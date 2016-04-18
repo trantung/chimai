@@ -173,7 +173,7 @@ class SiteIndexController extends SiteController {
 			return View::make('site.catalogue.video')->with(compact('data', 'title'));
 		}
 
-		dd(4);
+		return Redirect::action('SiteController@page404');
 	}
 	public function slugChild($slug, $slugChild)
 	{	
@@ -187,7 +187,7 @@ class SiteIndexController extends SiteController {
 				$origin = Origin::find($data->origin_id);
 				return View::make('site.product.detail')->with(compact('data', 'origin'));	
 			} else {
-				dd(404);
+				return Redirect::action('SiteController@page404');
 			}
 		}
 		if ($object['model_name'] == 'TypeNew') {
@@ -203,7 +203,7 @@ class SiteIndexController extends SiteController {
 			if(isset($data) && isset($boxType)) {
 				return View::make('site.news.detail')->with(compact('data', 'boxType', 'type'));
 			} else {
-				dd(404);
+				return Redirect::action('SiteController@page404');
 			}
 		}
 		// if ($object['model_name'] == 'AdminNew') {
@@ -216,10 +216,10 @@ class SiteIndexController extends SiteController {
 		// 	if(isset($data) && isset($type)) {
 		// 		return View::make('site.news.detail')->with(compact('data', 'type'));
 		// 	} else {
-		// 		dd(404);
+		// 		return Redirect::action('SiteController@page404');
 		// 	}
 		// }
-		dd(5);
+		return Redirect::action('SiteController@page404');
 	}
 	public function search()
 	{
@@ -251,7 +251,7 @@ class SiteIndexController extends SiteController {
 			$title = trans('messages.result_search');
 			return View::make('site.product.list')->with(compact('products', 'title'));
 		}
-		dd(123);
+		return Redirect::action('SiteController@page404');
 	}
 
 	public function productSearch()

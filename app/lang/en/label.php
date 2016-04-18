@@ -5,4 +5,5 @@ return array(
 	'product_request' => 'Send request', 
 	'seemore' => 'See more', 
 	'create_account' => 'Create an Account', 
+	'page404' => 'Page Not Found', 
 );

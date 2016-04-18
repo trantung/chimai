@@ -9,4 +9,5 @@ return array(
 	"cart" => "gio-hang",
 	"checkout" => "dat-hang",
 	"checkout_success" => "dat-hang-thanh-cong",
+	"page404" => "404-trang-khong-tim-thay",
 );

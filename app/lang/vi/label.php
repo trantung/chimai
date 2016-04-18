@@ -5,4 +5,5 @@ return array(
 	'product_request' => 'Gửi yêu cầu', 
 	'seemore' => 'Xem thêm', 
 	'create_account' => 'Đăng ký tài khoản', 
+	'page404' => 'Trang không tìm thấy', 
 );

@@ -178,4 +178,9 @@ class SiteController extends BaseController {
         }
     }
 
+    public function page404()
+    {
+    	return View::make('404');
+    }
+
 }

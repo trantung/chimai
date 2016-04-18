@@ -9,4 +9,5 @@ return array(
 	"cart" => "shopping-cart",
 	"checkout" => "checkout",
 	"checkout_success" => "checkout-success",
+	"page404" => "404-page-not-found",
 );

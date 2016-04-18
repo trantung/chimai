@@ -163,6 +163,8 @@ Route::group(
 		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'SiteCartController@checkout');
 		Route::post(LaravelLocalization::transRoute('routes.checkout_success'), 'SiteCartController@checkoutSuccess');
 
+		Route::get(LaravelLocalization::transRoute('routes.page404'), 'SiteController@page404');
+
 		Route::resource('/', 'SiteIndexController');
 		Route::get('/{slug}', 'SiteIndexController@slug');
 		Route::get('/{slug}/filter', 'SiteIndexController@filter');
