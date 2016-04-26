@@ -88,16 +88,18 @@
 							<td></td>
 							<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(Cart::total()) }}</td>
 						</tr>
-						<tr>
-							<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
-							<td style="text-align: center;">5%</td>
-							<td colspan="2" style="text-align: right;">45.000</td>
-						</tr>
-						<tr>
-							<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
-							<td></td>
-							<td colspan="2" style="text-align: right;">855.000</td>
-						</tr>
+						@if(CommonSite::isLogin())
+							<tr>
+								<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
+								<td style="text-align: center;">{{ CommonCart::getDiscountByUserRole(Auth::user()->get()) }}%</td>
+								<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(CommonCart::getDiscountPrice(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
+							</tr>
+							<tr>
+								<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
+								<td></td>
+								<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 			@endif

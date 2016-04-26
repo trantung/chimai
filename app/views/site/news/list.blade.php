@@ -26,18 +26,30 @@
 				<div class="news-inner">
 					@foreach($data as $new)
 					<?php $url = CommonSlug::getUrlSlug(Common::getFieldByModel('BoxType', $new->box_type_id, 'slug'), $new->slug); ?>
-					<div class="row">
-						<div class="medium-3 columns">
-							<img src="{{ url(CommonSlug::getImageUrlNotBox('TypeNew', $new)) }}" />
+					@if(!isset($new->image_url))
+						<div class="row">
+							<div class="medium-12 columns news-text">
+								<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
+								<p>
+									{{ Common::getFieldByModel('TypeNew', $new->id, 'sapo') }}
+									<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
+								</p>
+							</div>
 						</div>
-						<div class="medium-9 columns news-text">
-							<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
-							<p>
-								{{ Common::getFieldByModel('TypeNew', $new->id, 'sapo') }}
-								<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
-							</p>
+					@else
+						<div class="row">
+							<div class="medium-3 columns">
+								<img src="{{ url(CommonSlug::getImageUrlNotBox('TypeNew', $new)) }}" />
+							</div>
+							<div class="medium-9 columns news-text">
+								<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
+								<p>
+									{{ Common::getFieldByModel('TypeNew', $new->id, 'sapo') }}
+									<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
+								</p>
+							</div>
 						</div>
-					</div>
+					@endif
 					@endforeach
 					@if($data->getTotal() >= FRONENDPAGINATE)
 						@include('site.common.paginate', array('input' => $data))

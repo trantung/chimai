@@ -100,6 +100,7 @@ class SiteCartController extends SiteController {
 	{
 		$checkLogin = CommonSite::isLogin();
 		if($checkLogin) {
+			$user = Auth::user()->get();
 			$input = Input::except('_token');
 			$rules = array(
 				'payment' => 'required|integer',
@@ -112,11 +113,12 @@ class SiteCartController extends SiteController {
 	        } else {
 	        	// to do: save order to db
 	        	//save order
-	        	$id = Auth::user()->get()->id;
+	        	$id = $user->id;
 	        	$content = Cart::content();
 	        	$orderId = Order::create(array(
+	        			'code' => date("YmdHis"),
 	        			'total' => Cart::total(),
-	        			'discount' => 0,
+	        			'discount' => CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole($user)),
 	        			'user_id' => $id,
 	        			'message' => $input['message'],
 	        			'payment' => $input['payment'],
@@ -137,8 +139,25 @@ class SiteCartController extends SiteController {
 	        				));
 	        		}
 	        	}
+	        	$order = Order::find($orderId);
+	        	// send email
+	        	$data = array(
+	        			'items' => $content,
+	        			'order' => $order,
+
+	        		);
+	        	Mail::send('emails.email', $data, function($message) use ($user, $data){
+                    $message->to($user->email)
+                            ->subject(trans('messages.subject'));
+                });
+                //send mail to admin
+                // Mail::send('emails.email', $data, function($message) use ($user, $data){
+                //     $message->to('vnmini2015@gmail.com')
+                //             ->subject(trans('messages.subject'));
+                // });
+
 	        	Cart::destroy();
-	        	return View::make('site.cart.checkout_success');	
+	        	return View::make('site.cart.checkout_success')->with(compact('order'));	
 	        }
 	    } else {
             return Redirect::action('SiteController@login');

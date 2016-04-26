@@ -26,4 +26,6 @@ return array(
 	"order_success" => "Đặt hàng thành công",
 	"order_success_msg" => "Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất",
 
+	"subject" => "Thông tin đơn hàng",
+
 );

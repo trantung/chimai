@@ -88,16 +88,18 @@
 							<td></td>
 							<td colspan="2" style="text-align: right;"></td>
 						</tr>
-						<tr>
-							<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
-							<td style="text-align: center;"></td>
-							<td colspan="2" style="text-align: right;"></td>
-						</tr>
-						<tr>
-							<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
-							<td></td>
-							<td colspan="2" style="text-align: right;"></td>
-						</tr>
+						@if(CommonSite::isLogin())
+							<tr>
+								<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
+								<td style="text-align: center;"></td>
+								<td colspan="2" style="text-align: right;"></td>
+							</tr>
+							<tr>
+								<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
+								<td></td>
+								<td colspan="2" style="text-align: right;"></td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 			@endif

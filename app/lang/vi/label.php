@@ -8,4 +8,5 @@ return array(
 	'page404' => 'Trang không tìm thấy', 
 	'print_cart_order_qty' => 'In danh sách sản phẩm', 
 	'print_cart_order' => 'In báo giá', 
+	'order_code' => 'Mã hóa đơn', 
 );

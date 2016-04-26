@@ -45,4 +45,25 @@ class CommonCart
 		return [];
 	}
 
+	public static function getDiscountByUserRole($user)
+	{
+		$roleUser = $user->role_user_id;
+		$discount = Discount::where('role_user_id', $roleUser)->first();
+		if($discount) {
+			return $discount->value;
+		}
+		return 0;
+	}
+
+	public static function getDiscountPrice($total, $discount)
+	{
+		return $total*$discount/100;
+	}
+
+	public static function getDiscountPriceTotal($total, $discount)
+	{
+		return $total - self::getDiscountPrice($total, $discount);
+	}
+
+
 }

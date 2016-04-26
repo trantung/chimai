@@ -19,6 +19,7 @@
 			<h2>{{ trans('captions.order') }}</h2>
 			<div class="main_page">
 				<h3>{{ trans('messages.order_success') }}</h3>
+				<p>{{ trans('label.order_code') . ': ' . $order->code }}</p>
 				<p>{{ trans('messages.order_success_msg') }}</p>
 				<a href="{{ CommonSite::getUrlLang($lang) }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ trans('captions.countinue_shopping') }}</a>
 			</div>
