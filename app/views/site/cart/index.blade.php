@@ -65,16 +65,16 @@
 									<td></td>
 									<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
 								</tr>
-								<!-- <tr>
-									<td colspan="7" class="order_table_right">{{-- trans('captions.discount') --}}</td>
+								<tr>
+									<td colspan="7" class="order_table_right">{{ trans('captions.discount') }}</td>
 									<td>5%</td>
 									<td colspan="2">45.000</td>
-								</tr> -->
-								<!-- <tr>
-									<td colspan="7" class="order_table_right">{{-- trans('captions.to_price') --}}</td>
+								</tr>
+								<tr>
+									<td colspan="7" class="order_table_right">{{ trans('captions.to_price') }}</td>
 									<td></td>
 									<td colspan="2">855.000</td>
-								</tr> -->
+								</tr>
 								<!-- <tr>
 									<td colspan="7" class="order_table_right">Số điểm tích lũy lần này</td>
 									<td></td>

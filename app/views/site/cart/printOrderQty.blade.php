@@ -84,7 +84,18 @@
 						@endforeach
 						<!-- END LIST PRODUCT -->
 						<tr>
-							<td colspan="8" style="text-align: right;">{{ trans('captions.plus') }} (Đơn vị tính: VNĐ):</td>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.plus') }} (Đơn vị tính: VNĐ):</td>
+							<td></td>
+							<td colspan="2" style="text-align: right;"></td>
+						</tr>
+						<tr>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
+							<td style="text-align: center;"></td>
+							<td colspan="2" style="text-align: right;"></td>
+						</tr>
+						<tr>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
+							<td></td>
 							<td colspan="2" style="text-align: right;"></td>
 						</tr>
 					</tbody>

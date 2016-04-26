@@ -84,8 +84,19 @@
 						@endforeach
 						<!-- END LIST PRODUCT -->
 						<tr>
-							<td colspan="8" style="text-align: right;">{{ trans('captions.plus') }} (Đơn vị tính: VNĐ):</td>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.plus') }} (Đơn vị tính: VNĐ):</td>
+							<td></td>
 							<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(Cart::total()) }}</td>
+						</tr>
+						<tr>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
+							<td style="text-align: center;">5%</td>
+							<td colspan="2" style="text-align: right;">45.000</td>
+						</tr>
+						<tr>
+							<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
+							<td></td>
+							<td colspan="2" style="text-align: right;">855.000</td>
 						</tr>
 					</tbody>
 				</table>
