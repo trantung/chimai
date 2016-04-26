@@ -26,7 +26,7 @@ class UnitTableSeeder extends Seeder {
 			'relate_name' => 'AdminUnit',
 			'relate_id' => 2,
 			'status' => ACTIVE,
-			'weight_number' => VI,
+			'weight_number' => 0,
 		]);
 		AdminLanguage::create([
 			'model_name' => 'AdminUnit',
@@ -34,7 +34,7 @@ class UnitTableSeeder extends Seeder {
 			'relate_name' => 'AdminUnit',
 			'relate_id' => 4,
 			'status' => ACTIVE,
-			'weight_number' => VI,
+			'weight_number' => 0,
 		]);
 
 	}

@@ -42,7 +42,7 @@
 			data : {
 				'id' : id,
 				'name' : $('#color_name_'+id).val(),
-				'weight_number' : $('#color_weight_number_'+id).val(),
+				'qty' : $('#color_qty_'+id).val(),
 				'product_id': {{ $productId }}
 			},
 			beforeSend: function(){

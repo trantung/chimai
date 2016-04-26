@@ -12,9 +12,9 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-5">Mức ưu tiên: </div>
+					<div class="col-xs-5">Số lượng: </div>
 					<div class="col-xs-7">
-						<input type="text" value="{{ $value->weight_number }}" id="color_weight_number_{{ $value->id }}" />
+						<input type="text" value="{{ $value->qty }}" id="color_qty_{{ $value->id }}" />
 					</div>
 				</div>
 			</div>

@@ -14,7 +14,8 @@ class AdminColorController extends AdminController {
 						'product_id' => $productId,
 						'image_url' => $imageUrl,
 						'type' => PRODUCT_COLOR,
-						'weight_number' => 0
+						'qty' => 0,
+						'weight_number' => 0,
 					]);
 			} else {
 				echo 'Invalid file type.';
@@ -40,11 +41,11 @@ class AdminColorController extends AdminController {
 	{
 		$id = Input::get('id');
 		$name = Input::get('name');
-		$weight_number = Input::get('weight_number');
+		$qty = Input::get('qty');
 		$productId = Input::get('product_id');
 		ProductImage::find($id)->update([
 				'name' => $name,
-				'weight_number' => $weight_number
+				'qty' => $qty
 			]);
 		return CommonProduct::getProductBoxImages($productId, PRODUCT_COLOR, 'color_box_images');
 	}

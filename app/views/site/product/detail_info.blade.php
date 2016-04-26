@@ -17,7 +17,7 @@
 		@endif
 		<p>{{ getFullPriceInVnd($data->price) }} {{ PRICE_UNIT }}</p>
 	</div>
-	<p><strong>{{ trans('captions.availability') }}:</strong> {{ getQtyProduct($data->qty) }}</p>
+	<!-- <p><strong>{{-- trans('captions.availability') --}}:</strong> {{-- getQtyProduct($data->qty) --}}</p> -->
 	<div class="detail_cart">
 		<a class="button add_cart" id="add_cart" ><i class="fa fa-shopping-cart"></i><span>{{ trans('captions.addtocart') }}</span></a>
 		{{ Form::hidden('id', $data->id) }}
