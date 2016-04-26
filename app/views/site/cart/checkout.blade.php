@@ -50,15 +50,25 @@
 												<td>{{ Common::getFieldByModel('Surface', $value->options->surface_id, 'name') }}</td>
 												<td>{{ $value->options->unit }}</td>
 												<td>{{ getFullPriceInVnd($value->price) }}</td>
-												<td>{{ $value->qty }}</td>
-												<td>{{ getFullPriceInVnd($value->subtotal) }}</td>
+												<td style="text-align: center;">{{ $value->qty }}</td>
+												<td style="text-align: right;">{{ getFullPriceInVnd($value->subtotal) }}</td>
 											</tr>
 										@endforeach
 										<!-- END LIST PRODUCT -->
 										<tr>
 											<td colspan="7" class="order_table_right">{{ trans('captions.plus') }}</td>
 											<td></td>
-											<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
+											<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(Cart::total()) }}</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align: right;">{{ trans('captions.discount') }}</td>
+											<td style="text-align: center;">{{ CommonCart::getDiscountByUserRole(Auth::user()->get()) }}%</td>
+											<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(CommonCart::getDiscountPrice(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align: right;">{{ trans('captions.to_price') }}</td>
+											<td></td>
+											<td colspan="2" style="text-align: right;">{{ getFullPriceInVnd(CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
 										</tr>
 									</tbody>
 								</table>
