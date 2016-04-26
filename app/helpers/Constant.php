@@ -135,14 +135,16 @@ define('PAYMENT2', 2);
 define('PAYMENT3', 3);
 
 //order status
-//chua xu ly
+//cho xu ly
 define('ORDER_STATUS_1', 1);
-//dang xu ly
+//cho giao hang
 define('ORDER_STATUS_2', 2);
-//da thanh toan
+//cho giao hang lan 2
 define('ORDER_STATUS_3', 3);
-//huy bo
+//da thanh toan
 define('ORDER_STATUS_4', 4);
+//huy hoa don
+define('ORDER_STATUS_5', 5);
 
 //company
 define('COMPANY_NAME', 'Công ty cổ phần thương mại đầu tư Toàn Cầu');

@@ -8,7 +8,7 @@ class ProductImage extends Eloquent
 {
     use SoftDeletingTrait;
     protected $table = 'product_images';
-    protected $fillable = ['name', 'image_url', 'weight_number', 'type', 'product_id', 'status', 'qty'];
+    protected $fillable = ['name', 'image_url', 'weight_number', 'type', 'product_id', 'status', 'qty', 'qty_temp'];
     protected $dates = ['deleted_at'];
 
 }

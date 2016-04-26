@@ -15,6 +15,7 @@ class AdminColorController extends AdminController {
 						'image_url' => $imageUrl,
 						'type' => PRODUCT_COLOR,
 						'qty' => 0,
+						'qty_temp' => 0,
 						'weight_number' => 0,
 					]);
 			} else {
@@ -45,7 +46,8 @@ class AdminColorController extends AdminController {
 		$productId = Input::get('product_id');
 		ProductImage::find($id)->update([
 				'name' => $name,
-				'qty' => $qty
+				'qty' => $qty,
+				'qty_temp' => $qty,
 			]);
 		return CommonProduct::getProductBoxImages($productId, PRODUCT_COLOR, 'color_box_images');
 	}
