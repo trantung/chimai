@@ -146,10 +146,10 @@ class SiteCartController extends SiteController {
 	        			'order' => $order,
 
 	        		);
-	        	// Mail::send('emails.email', $data, function($message) use ($user, $data){
-          //           $message->to($user->email)
-          //                   ->subject(trans('messages.subject'));
-          //       });
+	        	Mail::send('emails.email', $data, function($message) use ($user, $data){
+                    $message->to($user->email)
+                            ->subject(trans('messages.subject'));
+                });
                 //send mail to admin
                 // Mail::send('emails.email', $data, function($message) use ($user, $data){
                 //     $message->to('vnmini2015@gmail.com')
