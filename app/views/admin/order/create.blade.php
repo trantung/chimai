@@ -35,6 +35,7 @@
 						</div>
 					</div>
 					<!-- start ordertable -->
+					{{ Form::hidden('orderId') }}
 					<div id="orderListProduct">
 
 					</div>
