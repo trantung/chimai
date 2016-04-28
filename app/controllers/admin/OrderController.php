@@ -104,10 +104,11 @@ class OrderController extends AdminController {
 		}
 		//neu chua co orderId thi tao moi order
 		if(!$orderId) {
+			$orderCode = date("YmdHis");
 			$total = CommonCart::getDiscountPriceTotal($product->price, CommonCart::getDiscountByUserRole($user));
 			$discount = CommonCart::getDiscountPrice($product->price, CommonCart::getDiscountByUserRole($user));
 			$orderId = Order::create(array(
-		        			'code' => date("YmdHis"),
+		        			'code' => $orderCode,
 		        			'total' => $total,
 		        			'discount' => $discount,
 		        			'user_id' => $user->id,
@@ -116,7 +117,7 @@ class OrderController extends AdminController {
 		        			'status' => $status,
 		        		))->id;
 		}
-		// neu da co orderId thi chi cap nhat order + tao them product
+		// neu da co orderId thi tao them product
 		if($orderId) {
 			OrderProduct::create(array(
 					'product_id' => $product->id,
@@ -128,8 +129,48 @@ class OrderController extends AdminController {
 					'size_id' => null,
 					'surface_id' => null,
 				));
+			//cap nhat order
+			$amount = CommonCart::getTotalAmount($orderId);
+			$totalUpdate = CommonCart::getDiscountPriceTotal($amount, CommonCart::getDiscountByUserRole($user));
+			$discountUpdate = CommonCart::getDiscountPrice($amount, CommonCart::getDiscountByUserRole($user));
+			Order::find($orderId)->update(array(
+					'total' => $totalUpdate,
+        			'discount' => $discountUpdate,
+        			'message' => $message,
+        			'payment' => $payment,
+        			'status' => $status,
+				));
+			return $orderId;
     	}
-    	return $orderId;
+    	return;
+	}
+
+	public function reloadOrderListProduct()
+	{
+		$orderId = Input::get('orderId');
+		$order = Order::find($orderId);
+		$products = OrderProduct::where('order_id', $orderId)->get();
+		return View::make('admin.order.orderlist')->with(compact('products', 'order'));
+	}
+
+	public function removeOrderProduct()
+	{
+		$orderId = Input::get('orderId');
+		$productId = Input::get('productId');
+		$orderProduct = OrderProduct::where('order_id', $orderId)
+			->where('product_id', $productId)
+			->first();
+		if($orderProduct) {
+			$orderProduct->delete();
+		}
+		$order = Order::find($orderId);
+		$products = OrderProduct::where('order_id', $orderId)->get();
+		return View::make('admin.order.orderlist')->with(compact('products', 'order'));
+	}
+
+	public function updateOrderProduct()
+	{
+		//
 	}
 
 }

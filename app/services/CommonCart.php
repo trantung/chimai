@@ -97,4 +97,9 @@ class CommonCart
 		return $array[$status];
 	}
 
+	public static function getTotalAmount($orderId)
+	{
+		return OrderProduct::where('order_id', $orderId)->sum('amount');
+	}
+
 }

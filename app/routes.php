@@ -128,6 +128,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::resource('/discount', 'DiscountController');
 
+	Route::post('/orders/updateOrderProduct', 'OrderController@updateOrderProduct');
+	Route::post('/orders/removeOrderProduct', 'OrderController@removeOrderProduct');
+	Route::post('/orders/reloadOrderListProduct', 'OrderController@reloadOrderListProduct');
 	Route::post('/orders/orderAddProduct', 'OrderController@orderAddProduct');
 	Route::resource('/orders', 'OrderController');
 

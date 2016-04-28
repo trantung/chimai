@@ -4,11 +4,11 @@
 	})(jQuery);
 
 	function orderAddProduct() {
-		email = $('input[name=email]').val();
 		code = $('input[name=code]').val();
-		payment = $('input[name=payment]').val();
-		status = $('input[name=status]').val();
-		message = $('input[name=message]').val();
+		email = $('input[name=email]').val();
+		payment = $('select[name=payment]').val();
+		status = $('select[name=status]').val();
+		message = $('textarea[name=message]').val();
 		orderId = $('input[name=orderId]').val();
 		if(email == '') {
 			alert('Chưa nhập email');
@@ -37,12 +37,13 @@
 			success: function(responseText)
 			{
 				$('#load_msg').html('');
-				// var object = document.getElementById("orderListProduct").childNodes[1];
-				var object = document.getElementById("orderListProduct");
-				object.innerHTML = responseText;
-				setValueOrderId(responseText)
+				var r = setValueOrderId(responseText);
+				if(r == 1) {
+					reloadOrderListProduct(responseText);
+				}
 			}
 		});
+
 	}
 
 	function setValueOrderId(responseText)
@@ -60,7 +61,72 @@
 			return;
 		}
 		$('input[name=orderId]').val(responseText);
-		return;
+		return 1;
+	}
+
+	function reloadOrderListProduct(orderId)
+	{
+		$.ajax(
+		{
+			type : 'post',
+			url : '{{ url("admin/orders/reloadOrderListProduct") }}',
+			data : {
+				'orderId' : orderId,
+			},
+			beforeSend: function() {
+	            $('#orderListProduct').html('Đang load...');
+	        },
+			success: function(responseText)
+			{
+				// var object = document.getElementById("orderListProduct").childNodes[1];
+				var object = document.getElementById("orderListProduct");
+				object.innerHTML = responseText;
+			}
+		});
+	}
+
+	function loadOrderListProduct()
+	{
+		orderId = $('input[name=orderId]').val();
+		if(orderId) {
+			reloadOrderListProduct(orderId);
+		}
+	}
+
+	function removeOrderProduct(productId)
+	{
+		question = confirm("Are you sure you want delete?");
+		if (question)
+		{
+			orderId = $('input[name=orderId]').val();
+			$.ajax(
+			{
+				type : 'post',
+				url : '{{ url("admin/orders/removeOrderProduct") }}',
+				data : {
+					'orderId' : orderId,
+					'productId' : productId,
+				},
+				beforeSend: function() {
+		            $('#orderListProduct').html('Đang load...');
+		        },
+				success: function(responseText)
+				{
+					// var object = document.getElementById("orderListProduct").childNodes[1];
+					var object = document.getElementById("orderListProduct");
+					object.innerHTML = responseText;
+				}
+			});
+		}
+		else
+	    {
+	        return false;
+	    }
+	}
+
+	function updateOrderProduct()
+	{
+		alert('123');
 	}
 
 </script>
