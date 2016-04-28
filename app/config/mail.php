@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'companymkd@gmail.com', 'name' => 'MKD company'),
+	'from' => array('address' => 'abcgroupcompany@gmail.com', 'name' => 'MKD company'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'companymkd@gmail.com',
+	'username' => 'abcgroupcompany@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'Tunglaso1@123',
+	'password' => 'Tunglaso1@abc123',
 
 	/*
 	|--------------------------------------------------------------------------
