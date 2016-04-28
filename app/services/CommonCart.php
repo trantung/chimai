@@ -65,5 +65,36 @@ class CommonCart
 		return $total - self::getDiscountPrice($total, $discount);
 	}
 
+	public static function getPaymentList()
+	{
+		return array(
+				PAYMENT1 => trans('captions.payment_1'),
+				PAYMENT2 => trans('captions.payment_2'),
+				PAYMENT3 => trans('captions.payment_3'),
+			);
+	}
+
+	public static function getPaymentValue($paymentId = PAYMENT1)
+	{
+		$array = self::getPaymentList();
+		return $array[$paymentId];
+	}
+
+	public static function getStatusOrderList()
+	{
+		return array(
+				ORDER_STATUS_1 => trans('label.order_status_1'),
+				ORDER_STATUS_2 => trans('label.order_status_2'),
+				ORDER_STATUS_3 => trans('label.order_status_3'),
+				ORDER_STATUS_4 => trans('label.order_status_4'),
+				ORDER_STATUS_5 => trans('label.order_status_5'),
+			);
+	}
+
+	public static function getStatusOrderValue($status = ORDER_STATUS_1)
+	{
+		$array = self::getStatusOrderList();
+		return $array[$status];
+	}
 
 }

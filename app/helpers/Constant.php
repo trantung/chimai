@@ -130,8 +130,11 @@ define('NUMBER_NEWS_SIDEBAR', 5);
 define('PRICE_UNIT', 'vnđ');
 
 //payment value
+//Thanh toán trực tiếp khi giao hàng
 define('PAYMENT1', 1);
+//Thanh toán qua ngân hàng
 define('PAYMENT2', 2);
+//Thanh toán bằng thẻ
 define('PAYMENT3', 3);
 
 //order status
