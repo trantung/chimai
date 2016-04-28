@@ -90,29 +90,32 @@ class OrderController extends AdminController {
 		$payment = Input::get('payment');
 		$status = Input::get('status');
 		$message = Input::get('message');
+		$orderId = Input::get('orderId');
 		if($code == '' || $email == '') {
-			return 0;
+			return 'empty';
 		}
 		$user = User::where('email', $email)->first();
 		$product = Product::where('code', $code)->first();
 		if(!$user) {
-			return 1;
+			return 'email';
 		}
 		if(!$product) {
-			return 2;
+			return 'code';
 		}
 		//neu chua co orderId thi tao moi order
-		$discount = CommonCart::getDiscountByUserRole($user);
-		$total = CommonCart::getDiscountPriceTotal($product->price, $discount);
-		$orderId = Order::create(array(
-	        			'code' => date("YmdHis"),
-	        			'total' => $total,
-	        			'discount' => $discount,
-	        			'user_id' => $user->id,
-	        			'message' => $message,
-	        			'payment' => $payment,
-	        			'status' => $status,
-	        		))->id;
+		if(!$orderId) {
+			$total = CommonCart::getDiscountPriceTotal($product->price, CommonCart::getDiscountByUserRole($user));
+			$discount = CommonCart::getDiscountPrice($product->price, CommonCart::getDiscountByUserRole($user));
+			$orderId = Order::create(array(
+		        			'code' => date("YmdHis"),
+		        			'total' => $total,
+		        			'discount' => $discount,
+		        			'user_id' => $user->id,
+		        			'message' => $message,
+		        			'payment' => $payment,
+		        			'status' => $status,
+		        		))->id;
+		}
 		// neu da co orderId thi chi cap nhat order + tao them product
 		if($orderId) {
 			OrderProduct::create(array(
