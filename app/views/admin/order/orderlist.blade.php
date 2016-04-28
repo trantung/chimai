@@ -1,0 +1,70 @@
+<table width="100%">
+	<thead>
+		<tr>
+			<th width="50"></th>
+			<th>{{ trans('captions.product') }}</th>
+			<th width="120">{{ trans('captions.color') }}</th>
+			<th width="120">{{ trans('captions.size') }}</th>
+			<th width="120">{{ trans('captions.surface') }}</th>
+			<th width="50">{{ trans('captions.unit') }}</th>
+			<th width="100">{{ trans('captions.unit_price') }}</th>
+			<th width="100">{{ trans('captions.quanty') }}</th>
+			<th width="100">{{ trans('captions.to_price') }}</th>
+			<th width="70"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- START LIST PRODUCT -->
+		@foreach($content as $key => $value)
+			<tr>
+				<td>
+					<img src="{{ $value->options->image_url }}"/>
+					{{ Form::hidden('rowid[]', $value->rowid) }}
+				</td>
+				<td class="shopping_cart_link"><a href="{{ $value->options->url }}">{{ $value->name }}</a></td>
+				<td>{{ Form::select('color_id[]', CommonCart::getColorByProductId($value->id), $value->options->color_id, array('class' => 'form-control')) }}</td>
+				<td>{{ Form::select('size_id[]', CommonCart::getSizeByProductId($value->id), $value->options->size_id, array('class' => 'form-control')) }}</td>
+				<td>{{ Form::select('surface_id[]', CommonCart::getSurfaceByProductId($value->id), $value->options->surface_id, array('class' => 'form-control')) }}</td>
+				<td>{{ $value->options->unit }}</td>
+				<td>{{ getFullPriceInVnd($value->price) }}</td>
+				<td>
+					<div class="qty-holder">
+					{{ Form::text('qty[]', $value->qty, array('class' => 'qty')) }}
+					</div>
+				</td>
+				<td>{{ getFullPriceInVnd($value->subtotal) }}</td>
+				<td>
+					<a onclick="removeCart('{{ $value->rowid }}')"><i class="fa fa-times-circle-o"></i></a>
+				</td>
+			</tr>
+		@endforeach
+		<!-- END LIST PRODUCT -->
+		<tr>
+			<td colspan="7" class="order_table_right">{{ trans('captions.plus') }}</td>
+			<td></td>
+			<td colspan="2">{{ getFullPriceInVnd(Cart::total()) }}</td>
+		</tr>
+		@if(CommonSite::isLogin())
+			<tr>
+				<td colspan="7" class="order_table_right">{{ trans('captions.discount') }}</td>
+				<td>{{ CommonCart::getDiscountByUserRole(Auth::user()->get()) }}%</td>
+				<td colspan="2">{{ getFullPriceInVnd(CommonCart::getDiscountPrice(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
+			</tr>
+			<tr>
+				<td colspan="7" class="order_table_right">{{ trans('captions.to_price') }}</td>
+				<td></td>
+				<td colspan="2">{{ getFullPriceInVnd(CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole(Auth::user()->get()))) }}</td>
+			</tr>
+		@endif
+		<!-- <tr>
+			<td colspan="7" class="order_table_right">Số điểm tích lũy lần này</td>
+			<td></td>
+			<td colspan="2">8</td>
+		</tr> -->
+		<!-- <tr>
+			<td colspan="7" class="order_table_right">Số điểm tích lũy cộng dồn</td>
+			<td></td>
+			<td colspan="2">18</td>
+		</tr> -->
+	</tbody>
+</table>

@@ -128,6 +128,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::resource('/discount', 'DiscountController');
 
+	Route::post('/orders/orderAddProduct', 'OrderController@orderAddProduct');
+	Route::resource('/orders', 'OrderController');
+
 });
 
 Route::group(

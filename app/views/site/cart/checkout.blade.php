@@ -95,11 +95,7 @@
 							<li>
 	                            <label for="payment">{{ trans('captions.payment') }}<em>*</em></label>
 	                            <div class="input-box">
-	                                <select required name="payment" id="payment">
-	                                    <option value="{{ PAYMENT1 }}">{{ trans('captions.payment_1') }}</option>
-	                                    <option value="{{ PAYMENT2 }}">{{ trans('captions.payment_2') }}</option>
-	                                    <option value="{{ PAYMENT3 }}">{{ trans('captions.payment_3') }}</option>
-	                                </select>
+	                            	{{ Form::select('payment', CommonCart::getPaymentList(), '', array('id' => 'payment', 'required' => true)) }}
 	                            </div>
 	                        </li>
 							<li>

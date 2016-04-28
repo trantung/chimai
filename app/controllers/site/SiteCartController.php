@@ -117,8 +117,8 @@ class SiteCartController extends SiteController {
 	        	$content = Cart::content();
 	        	$orderId = Order::create(array(
 	        			'code' => date("YmdHis"),
-	        			'total' => Cart::total(),
-	        			'discount' => CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole($user)),
+	        			'total' => CommonCart::getDiscountPriceTotal(Cart::total(), CommonCart::getDiscountByUserRole($user)),
+	        			'discount' => CommonCart::getDiscountPrice(Cart::total(), CommonCart::getDiscountByUserRole($user)),
 	        			'user_id' => $id,
 	        			'message' => $input['message'],
 	        			'payment' => $input['payment'],
@@ -146,10 +146,10 @@ class SiteCartController extends SiteController {
 	        			'order' => $order,
 
 	        		);
-	        	Mail::send('emails.email', $data, function($message) use ($user, $data){
-                    $message->to($user->email)
-                            ->subject(trans('messages.subject'));
-                });
+	        	// Mail::send('emails.email', $data, function($message) use ($user, $data){
+          //           $message->to($user->email)
+          //                   ->subject(trans('messages.subject'));
+          //       });
                 //send mail to admin
                 // Mail::send('emails.email', $data, function($message) use ($user, $data){
                 //     $message->to('vnmini2015@gmail.com')
