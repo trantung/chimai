@@ -29,7 +29,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="{{ action('DiscountController@index') }}"><i class="fa fa-circle-o"></i> Mức chiết khấu</a></li>
-					<li><a href="#"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>
+					<li><a href="{{ action('OrderController@index') }}"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>
 					
 				</ul>
 			</li>

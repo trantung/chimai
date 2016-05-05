@@ -102,4 +102,31 @@ class CommonCart
 		return OrderProduct::where('order_id', $orderId)->sum('amount');
 	}
 
+	public static function getDiscountIdByUserRole($user)
+	{
+		$roleUser = $user->role_user_id;
+		$discount = Discount::where('role_user_id', $roleUser)->first();
+		if($discount) {
+			return $discount->id;
+		}
+		return 0;
+	}
+
+	public static function getDiscountArray()
+	{
+
+		$data = Discount::lists('value', 'id');
+		if($data) {
+			return $data;
+		}
+		return [];
+	}
+
+	public static function loadViewOrderListProduct($orderId)
+	{
+		$order = Order::find($orderId);
+		$products = OrderProduct::where('order_id', $orderId)->get();
+		return View::make('admin.order.orderlist')->with(compact('products', 'order'));
+	}
+	
 }

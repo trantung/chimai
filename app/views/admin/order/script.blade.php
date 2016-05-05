@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	(function($){
-		
+		orderId = $('input[name=orderId]').val();
+		reloadOrderListProduct(orderId);
 	})(jQuery);
 
 	function orderAddProduct() {
@@ -37,6 +38,7 @@
 			success: function(responseText)
 			{
 				$('#load_msg').html('');
+				$('input[name=code]').val('');
 				var r = setValueOrderId(responseText);
 				if(r == 1) {
 					reloadOrderListProduct(responseText);
@@ -126,7 +128,58 @@
 
 	function updateOrderProduct()
 	{
-		alert('123');
+		var id = $('input[name^="id"]').map(function () {
+			return this.value;
+		}).get();
+		var color_id = $('select[name^="color_id"]').map(function () {
+			return this.value;
+		}).get();
+		var size_id = $('select[name^="size_id"]').map(function () {
+			return this.value;
+		}).get();
+		var surface_id = $('select[name^="surface_id"]').map(function () {
+			return this.value;
+		}).get();
+		var qty = $('input[name^="qty"]').map(function () {
+			return this.value;
+		}).get();
+		var amount = $('input[name^="amount"]').map(function () {
+			return this.value;
+		}).get();
+		discount = $('input[name=discount]').val();
+		totalAmount = $('input[name=totalAmount]').val();
+		discount_id = $('select[name=discount_id]').val();
+		discount = $('input[name=discount]').val();
+		total = $('input[name=total]').val();
+		orderId = $('input[name=orderId]').val();
+		$.ajax(
+		{
+			type : 'post',
+			url : '{{ url("admin/orders/updateOrderProduct") }}',
+			data : {
+				'id' : id,
+				'color_id' : color_id,
+				'size_id' : size_id,
+				'surface_id' : surface_id,
+				'qty' : qty,
+				'amount' : amount,
+				'discount' : discount,
+				'totalAmount' : totalAmount,
+				'discount_id' : discount_id,
+				'discount' : discount,
+				'total' : total,
+				'order_id' : orderId,
+			},
+			beforeSend: function() {
+	            $('#load_msg').html('Đang sửa...');
+	        },
+			success: function(responseText)
+			{
+				$('#load_msg').html('');
+				var object = document.getElementById("orderListProduct");
+				object.innerHTML = responseText;
+			}
+		});
 	}
 
 </script>

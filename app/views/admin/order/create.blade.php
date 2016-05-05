@@ -26,7 +26,7 @@
 						<label for="code">Mã sản phẩm</label>
 						<div class="row">
 							<div class="col-sm-6">	                  	
-							   {{ Form::text('code', null , textPlaceHolder('Mã sản phẩm') + ['required'=>'']) }}
+							   {{ Form::text('code', null , textPlaceHolder('Mã sản phẩm')) }}
 							</div>
 							<div class="col-sm-3">
 								<a class="btn btn-primary" onclick="orderAddProduct()">Thêm</a>

@@ -32,7 +32,14 @@ class OrderController extends AdminController {
 	 */
 	public function store()
 	{
-    	//
+    	$input = Input::only('payment', 'status', 'message', 'orderId');
+    	Order::find($input['orderId'])
+    		->update(array(
+    				'payment' => $input['payment'],
+    				'status' => $input['status'],
+    				'message' => $input['message'],
+    			));
+		return Redirect::action('OrderController@index');
 	}
 
 
@@ -56,7 +63,9 @@ class OrderController extends AdminController {
 	 */
 	public function edit($id)
 	{
-		return View::make('admin.order.edit');
+		$order = Order::find($id);
+		$products = OrderProduct::where('order_id', $id)->get();
+		return View::make('admin.order.edit')->with(compact('products', 'order'));
 	}
 
 
@@ -68,7 +77,14 @@ class OrderController extends AdminController {
 	 */
 	public function update($id)
 	{
-        //
+        $input = Input::only('payment', 'status', 'message');
+    	Order::find($id)
+    		->update(array(
+    				'payment' => $input['payment'],
+    				'status' => $input['status'],
+    				'message' => $input['message'],
+    			));
+		return Redirect::action('OrderController@index');
 	}
 
 
@@ -148,9 +164,7 @@ class OrderController extends AdminController {
 	public function reloadOrderListProduct()
 	{
 		$orderId = Input::get('orderId');
-		$order = Order::find($orderId);
-		$products = OrderProduct::where('order_id', $orderId)->get();
-		return View::make('admin.order.orderlist')->with(compact('products', 'order'));
+		return CommonCart::loadViewOrderListProduct($orderId);
 	}
 
 	public function removeOrderProduct()
@@ -163,14 +177,37 @@ class OrderController extends AdminController {
 		if($orderProduct) {
 			$orderProduct->delete();
 		}
-		$order = Order::find($orderId);
-		$products = OrderProduct::where('order_id', $orderId)->get();
-		return View::make('admin.order.orderlist')->with(compact('products', 'order'));
+		return CommonCart::loadViewOrderListProduct($orderId);
 	}
 
 	public function updateOrderProduct()
 	{
-		//
+		$input = Input::all();
+		$orderId = $input['order_id'];
+		//update order
+		$orderInput = array(
+				'total' => $input['total'],
+				'discount' => $input['discount'],
+			);
+		Order::find($orderId)->update($orderInput);
+		//update order products
+		foreach($input['id'] as $key => $value) {
+			$orderProductInput = array(
+				'color_id' => $input['color_id'][$key],
+				'size_id' => $input['size_id'][$key],
+				'surface_id' => $input['surface_id'][$key],
+				'qty' => $input['qty'][$key],
+				'amount' => $input['amount'][$key],
+			);
+			OrderProduct::find($value)->update($orderProductInput);
+		}
+		//order discount
+		$orderDiscountInput = array(
+				'order_id' => $orderId,
+				'discount_id' => $input['discount_id'],
+			);
+		OrderDiscount::create($orderDiscountInput);
+		return CommonCart::loadViewOrderListProduct($orderId);
 	}
 
 }

@@ -48,7 +48,7 @@
 				<tr>
 					<td>
 						<img width="50px" src="{{ url(CommonSlug::getImageUrlNotBox('Product', Product::find($value->product_id))) }}"/>
-						{{ Form::hidden('product_id[]', $value->product_id) }}
+						{{ Form::hidden('id[]', $value->id) }}
 					</td>
 					<td>{{ Common::getFieldByModel('Product', $value->product_id, 'name') }}</td>
 					<td class="orderProductTableCenter">{{ Form::select('color_id[]', CommonCart::getColorByProductId($value->product_id), $value->color_id, array('class' => 'form-control')) }}</td>
@@ -69,19 +69,20 @@
 			<tr>
 				<td colspan="7" class="orderProductTableRight">{{ trans('captions.plus') }}</td>
 				<td></td>
-				<td class="orderProductTableRight">{{ Form::text('discount', CommonCart::getTotalAmount($order->id), array('class' => 'form-control orderProductTableRight')) }}</td>
+				<td class="orderProductTableRight">{{ Form::text('totalAmount', CommonCart::getTotalAmount($order->id), array('class' => 'form-control orderProductTableRight')) }}</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td colspan="7" class="orderProductTableRight">{{ trans('captions.discount') }} (%)</td>
-				<td class="orderProductTableCenter">{{ Form::text('discount', CommonCart::getDiscountByUserRole(User::find($order->user_id)), array('class' => 'form-control orderProductTableCenter')) }}</td>
+				<!-- <td class="orderProductTableCenter">{{-- Form::text('discountValue', CommonCart::getDiscountByUserRole(User::find($order->user_id)), array('class' => 'form-control orderProductTableCenter')) --}}</td> -->
+				<td class="orderProductTableCenter">{{ Form::select('discount_id', CommonCart::getDiscountArray(), CommonCart::getDiscountIdByUserRole(User::find($order->user_id)), array('class' => 'form-control orderProductTableCenter')) }}</td>
 				<td class="orderProductTableRight">{{ Form::text('discount', $order->discount, array('class' => 'form-control orderProductTableRight')) }}</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td colspan="7" class="orderProductTableRight">{{ trans('captions.to_price') }}</td>
 				<td></td>
-				<td class="orderProductTableRight">{{ Form::text('discount', $order->total, array('class' => 'form-control orderProductTableRight')) }}</td>
+				<td class="orderProductTableRight">{{ Form::text('total', $order->total, array('class' => 'form-control orderProductTableRight')) }}</td>
 				<td></td>
 			</tr>
 			<!-- <tr>
