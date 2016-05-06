@@ -32,13 +32,14 @@ class OrderController extends AdminController {
 	 */
 	public function store()
 	{
-    	$input = Input::only('payment', 'status', 'message', 'orderId');
-    	Order::find($input['orderId'])
-    		->update(array(
-    				'payment' => $input['payment'],
-    				'status' => $input['status'],
-    				'message' => $input['message'],
-    			));
+    	$input = Input::except('_token');
+    	$order = Order::find($input['orderId']);
+    	self::updateQty($input, $order);
+		$order->update(array(
+				'payment' => $input['payment'],
+				'status' => $input['status'],
+				'message' => $input['message'],
+			));
 		return Redirect::action('OrderController@index');
 	}
 
@@ -77,13 +78,14 @@ class OrderController extends AdminController {
 	 */
 	public function update($id)
 	{
-        $input = Input::only('payment', 'status', 'message');
-    	Order::find($id)
-    		->update(array(
-    				'payment' => $input['payment'],
-    				'status' => $input['status'],
-    				'message' => $input['message'],
-    			));
+        $input = Input::except('_token');
+        $order = Order::find($id);
+    	self::updateQty($input, $order);
+		$order->update(array(
+				'payment' => $input['payment'],
+				'status' => $input['status'],
+				'message' => $input['message'],
+			));
 		return Redirect::action('OrderController@index');
 	}
 
@@ -97,6 +99,53 @@ class OrderController extends AdminController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function updateQty($input, $order)
+	{
+		if($order->status == ORDER_STATUS_3) {
+	    	if(in_array($input['status'], [ORDER_STATUS_1, ORDER_STATUS_2, ORDER_STATUS_5])) {
+	    		self::updateQtyField($input, 'qty_temp', 1);
+	    	}
+	    	if($input['status'] == ORDER_STATUS_4) {
+	    		self::updateQtyField($input, 'qty');
+	    	}
+		}
+		if($order->status == ORDER_STATUS_4) {
+	    	if(in_array($input['status'], [ORDER_STATUS_1, ORDER_STATUS_2, ORDER_STATUS_3, ORDER_STATUS_5])) {
+	    		self::updateQtyField($input, 'qty', 1);
+	    	}
+	    	if($input['status'] != ORDER_STATUS_3) {
+	    		self::updateQtyField($input, 'qty_temp', 1);
+	    	}
+		}
+		if(in_array($order->status, [ORDER_STATUS_1, ORDER_STATUS_2, ORDER_STATUS_5])) {
+			if($input['status'] == ORDER_STATUS_3) {
+	    		self::updateQtyField($input, 'qty_temp');
+	    	}
+	    	if($input['status'] == ORDER_STATUS_4) {
+	    		self::updateQtyField($input, 'qty_temp');
+	    		self::updateQtyField($input, 'qty');
+	    	}
+		}
+	}
+
+	public function updateQtyField($input, $qtyField, $calc = null)
+	{
+		foreach($input['color_id'] as $key => $value) {
+			$productImage = ProductImage::find($value);
+			if($productImage) {
+				if($calc) {
+					$productImage->update(array(
+						$qtyField => $productImage->$qtyField + $input['qty'][$key],
+					));
+				} else {
+					$productImage->update(array(
+						$qtyField => $productImage->$qtyField - $input['qty'][$key],
+					));
+				}
+			}
+		}
 	}
 
 	public function orderAddProduct()
