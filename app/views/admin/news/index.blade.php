@@ -27,6 +27,9 @@
 						<th>ID</th>
 						<th>Tiêu đề</th>
 						<th>Thể loại</th>
+						<th>Mức ưu tiên</th>
+						<th>Trạng thái</th>
+						<th>Thể loại</th>
 						<th>Ngày đăng</th>
 						<th style="width:200px;">Action</th>
 					</tr>
@@ -35,6 +38,8 @@
 							<td>{{ $value->id }}</td>
 							<td>{{ $value->name }}</td>
 							<td>{{ $value->typeNew->name }}</td>
+							<td>{{ $value->weight_number }}</td>
+							<td>{{ Common::getStatusProperty($value->status) }}</td>
 							<td>{{ $value->created_at }}</td>
 							<td>
 								<a href="{{  action('NewsController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>

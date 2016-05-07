@@ -31,6 +31,10 @@ class CommonNews
 			if ($input['name']) {
 				$query = $query->where('name', 'like', '%'.$input['name'].'%');
 			}
+			if ($input['box_type_id']) {
+				$query = $query->where('box_type_id', $input['box_type_id']);
+			}
+
 		})
 		->where('language', VI)
 		->orderBy('created_at', 'desc')->paginate(PAGINATE);

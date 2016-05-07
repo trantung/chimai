@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('admin.typenew.search')
+
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ action('NewsTypeController@create') }}" class="btn btn-primary">Thêm tin</a>
@@ -26,6 +28,8 @@
 			  <th>Ảnh đại diện</th>
 			  <th>Tiêu đề</th>
 			  <th>Box tin tức</th>
+			  <th>Mức ưu tiên</th>
+			  <th>Trạng thái</th>
 			  <th>Ngày đăng</th>
 			  <th style="width:200px;">&nbsp;</th>
 			</tr>
@@ -35,6 +39,8 @@
 			  <td><img src="{{ UPLOADIMG . '/TypeNew/' . $newstype->id . '/' . $newstype->image_url }}" width="70px" /></td>
 			  <td>{{ $newstype->name }}</td>
 			  <td>{{ $newstype->boxType->name_menu }}</td>
+			  <td>{{ $newstype->weight_number }}</td>
+			  <td>{{ Common::getStatusProperty($newstype->status) }}</td>
 			  <td>{{ $newstype->created_at }}</td>
 			  <td>
 				<a href="{{ action('NewsTypeController@edit', $newstype->id) }}" class="btn btn-primary">Sửa</a>
