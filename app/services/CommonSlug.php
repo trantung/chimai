@@ -90,6 +90,10 @@ class CommonSlug
 	}
 	public static function getDownloadPdfUrl($data)
 	{
+		if($data->link) {
+			$downloadPdfUrl = $data->link;
+			return $downloadPdfUrl;
+		}
 		if($data->file) {
 			if (getLanguage() == VI) {
 				$downloadPdfUrl = UPLOADPDF . '/' . $data->id . '/' . $data->file;
@@ -102,11 +106,10 @@ class CommonSlug
 					$dataModel = AdminPdf::find($obModel->model_id);
 					$downloadPdfUrl = UPLOADPDF . '/' . $dataModel->id . '/' . $dataModel->file;
 				}
-			}	
-		} else {
-			$downloadPdfUrl = $data->link;	
+			}
+			return $downloadPdfUrl;
 		}
-		return $downloadPdfUrl;
+		return '#';
 	}
 	// duong dan slug, bo vi/ tren duong dan khi ngon ngu = VI
 	public static function getUrlSlug($slug, $slugChild = NULL)

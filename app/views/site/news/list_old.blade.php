@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					@endforeach
-					@if($data->getTotal() >= FRONENDPAGINATE)
+					@if($data->getTotal() >= FRONENDPAGINATE_NEWS)
 						@include('site.common.paginate', array('input' => $data))
 					@endif
 				</div>

@@ -27,6 +27,7 @@ define('COMPUTER', 2);
 define('PAGINATE', 20);
 //pagination frontend
 define('FRONENDPAGINATE', 16);
+define('FRONENDPAGINATE_NEWS', 7);
 //url upload img
 define('UPLOADIMG', '/images');
 define('UPLOADPDF', '/pdf');
