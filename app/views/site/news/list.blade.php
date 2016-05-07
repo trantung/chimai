@@ -39,7 +39,7 @@
 					@else
 						<div class="row">
 							<div class="medium-3 columns">
-								<img src="{{ url(CommonSlug::getImageUrlNotBox('TypeNew', $new)) }}" />
+								<a href="{{ $url }}"><img src="{{ url(CommonSlug::getImageUrlNotBox('TypeNew', $new)) }}" /></a>
 							</div>
 							<div class="medium-9 columns news-text">
 								<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
