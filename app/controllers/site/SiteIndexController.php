@@ -224,10 +224,10 @@ class SiteIndexController extends SiteController {
 	public function search()
 	{
 		$input = Input::except('_token');
-		$products = Product::where('language', getLanguage())
-			->where('status', ACTIVE)
+		$products = Product::where('status', ACTIVE)
 			->where('name', 'LIKE', '%' . $input['keyword'] . '%')
 			->orWhere('code', 'LIKE', '%' . $input['keyword'] . '%')
+			->where('language', getLanguage())
 			->orderBy('created_at', 'desc')
 			->paginate(FRONENDPAGINATE);
 		$title = trans('messages.result_search');
