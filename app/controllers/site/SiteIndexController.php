@@ -105,7 +105,7 @@ class SiteIndexController extends SiteController {
 			$data = TypeNew::where('status', ACTIVE)
 				->whereIn('box_type_id', $boxTypeId)
 				->orderByRaw(DB::raw("weight_number = '0', weight_number"))
-				->paginate(FRONENDPAGINATE);
+				->paginate(FRONENDPAGINATE_NEWS);
 
 			// $data = CommonSite::getDataByModelSlug($object, 'TypeNew', 'box_type_id');
 			$title = $object['model_object']->name_menu;
