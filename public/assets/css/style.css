@@ -1076,6 +1076,8 @@ footer p {
 .news-inner h2 {
     line-height: normal;
     font-size: 18px;
+    font-weight: bold;
+    vertical-align: top;
 }
 .news-inner h2 a {
     font-size: 18px;

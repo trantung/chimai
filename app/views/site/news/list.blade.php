@@ -25,15 +25,23 @@
 			<div class="medium-9 medium-push-3 columns">
 				<div class="news-inner">
 					@foreach($data as $new)
-					<?php $url = CommonSlug::getUrlSlug(Common::getFieldByModel('BoxType', $new->box_type_id, 'slug'), $new->slug); ?>
-					@if(!isset($new->image_url))
+					<?php 
+						$url = CommonSlug::getUrlSlug(Common::getFieldByModel('BoxType', $new->box_type_id, 'slug'), $new->slug); 
+						$sapo = Common::getFieldByModel('TypeNew', $new->id, 'sapo');
+					?>
+					@if(!isset($new->image_url) || $sapo == '')
 						<div class="row">
 							<div class="medium-12 columns news-text">
-								<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
-								<p>
-									{{ Common::getFieldByModel('TypeNew', $new->id, 'sapo') }}
-									<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
-								</p>
+								@if($sapo != '')
+									<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
+									<p>
+										{{ $sapo }}
+										<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
+									</p>
+								@else
+									<h2>{{ $new->name }}</h2>
+									{{ $new->description }}
+								@endif
 							</div>
 						</div>
 					@else
@@ -44,7 +52,7 @@
 							<div class="medium-9 columns news-text">
 								<h2><a href="{{ $url }}">{{ $new->name }}</a></h2>
 								<p>
-									{{ Common::getFieldByModel('TypeNew', $new->id, 'sapo') }}
+									{{ $sapo }}
 									<a href="{{ $url }}" class="seemore">{{ trans('label.seemore') }}</a>
 								</p>
 							</div>
