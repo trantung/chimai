@@ -66,8 +66,19 @@ class SiteContactController extends SiteController {
 	            ->with('error', trans('messages.required'));
         } else {
 			$id = Contact::create($input)->id;
+        	$destinationPath = public_path().'/'.SITE_UPLOAD_FILE.'/'.$id.'/';
+			if(Input::hasFile('file_upload')){
+				$file = Input::file('file_upload');
+				$filename = $file->getClientOriginalName();
+				$uploadSuccess = $file->move($destinationPath, $filename);
+			}
+			$input['filename'] = $filename;
 			//send mail
-
+        	Mail::send('emails.recruitment', $input, function($message) use ($input){
+                $message->to(RECRUITMENT_EMAIL)
+                        ->subject(trans('messages.recruitment'))
+                        ->attachData($input['file_upload'], $input['filename']);
+            });
 			if($id) {
 				return Redirect::action('SiteContactController@recruitment')->with('message', trans('messages.success'));
 			}

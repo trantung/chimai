@@ -36,6 +36,7 @@ define('BOXTYPE', '/box_type');
 define('BOXCOLLECTION', '/box_collection');
 define('BOXPRODUCT', '/box_product');
 define('BOXPROMOTION', '/box_promotion');
+define('SITE_UPLOAD_FILE', '/site/recruitment');
 
 define('MENU', 1);
 define('CONTENT', 2);
@@ -153,3 +154,5 @@ define('ORDER_STATUS_5', 5);
 
 //company
 define('COMPANY_NAME', 'Công ty cổ phần thương mại đầu tư Toàn Cầu');
+//email tuyen dung
+define('RECRUITMENT_EMAIL', 'trantunghn196@gmail.com');
