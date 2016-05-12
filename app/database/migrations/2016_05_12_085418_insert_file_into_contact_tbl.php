@@ -12,7 +12,7 @@ class InsertFileIntoContactTbl extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('contact', function(Blueprint $table) {
+		Schema::table('contacts', function(Blueprint $table) {
             $table->string('file_upload', 256)->after('id')->nullable();
         });
 	}
