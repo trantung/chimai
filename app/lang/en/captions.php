@@ -110,5 +110,7 @@ return array(
 	'description' => 'Description',
 	'updating' => 'Updating',
 	'nodata' => 'Data not found',
+	'recruitment' => 'Recruitment',
+	'file' => 'File',
 
 );

@@ -251,6 +251,7 @@ class OrderController extends AdminController {
 			OrderProduct::find($value)->update($orderProductInput);
 		}
 		//order discount
+		OrderDiscount::where('order_id', $orderId)->delete();
 		$orderDiscountInput = array(
 				'order_id' => $orderId,
 				'discount_id' => $input['discount_id'],

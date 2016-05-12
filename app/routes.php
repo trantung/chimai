@@ -154,6 +154,9 @@ Route::group(
 		Route::post('/updateCart', 'SiteCartController@updateCart');
 		Route::post('/removeCart', 'SiteCartController@removeCart');
 
+		Route::get(LaravelLocalization::transRoute('routes.recruitment'), 'SiteContactController@recruitment');
+		Route::post(LaravelLocalization::transRoute('routes.recruitment'), 'SiteContactController@recruitmentPost');
+
 		Route::get(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@index');
 		Route::post(LaravelLocalization::transRoute('routes.contact'), 'SiteContactController@contact');
 

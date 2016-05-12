@@ -110,5 +110,7 @@ return array(
 	'description' => 'Mô tả',
 	'updating' => 'Đang cập nhật',
 	'nodata' => 'Không tìm thấy dữ liệu',
+	'recruitment' => 'Tuyển dụng',
+	'file' => 'File đính kèm',
 
 );

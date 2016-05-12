@@ -10,4 +10,5 @@ return array(
 	"checkout" => "checkout",
 	"checkout_success" => "checkout-success",
 	"page404" => "404-page-not-found",
+	"recruitment" => "recruitment-form",
 );

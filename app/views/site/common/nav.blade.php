@@ -72,6 +72,7 @@
 							</li>
 						@endif
 					@endforeach
+					<li><a href="{{ action('SiteContactController@recruitment') }}" title="">{{ trans('captions.recruitment') }}</a></li>
 					<li><a href="{{ action('SiteContactController@index') }}" title="">{{ trans('captions.contact') }}</a></li>
 				</ul>
 				<!--right -->
