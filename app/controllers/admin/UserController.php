@@ -96,15 +96,11 @@ class UserController extends AdminController {
 	public function update($id)
 	{
 		$input = Input::except('_token');
-		if ($input['password'] != '') {
-			$input['password'] = Hash::make($input['password']);
-		}
 		$user = User::find($id);
 		$rules = User::getRule($input, $user);
 		$validator = Validator::make($input,$rules);
 		if($validator->fails()) {
 			return Redirect::action('UserController@edit', $id)
-				->withInput(Input::except('password'))
 				->withErrors($validator);
 		}
 		else {

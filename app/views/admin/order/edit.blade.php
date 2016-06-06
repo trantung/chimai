@@ -15,6 +15,14 @@
 			{{ Form::open(array('action' => array('OrderController@update', $order->id), 'method' => 'PUT')) }}
 				<div class="box-body">
 					<div class="form-group">
+						<label for="email">Mã đơn hàng:</label>
+						<div class="row">
+							<div class="col-sm-6">
+							   <span>{{ $order->code }}</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="email">Khách hàng</label>
 						<div class="row">
 							<div class="col-sm-6">
