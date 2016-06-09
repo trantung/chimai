@@ -128,6 +128,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::resource('/discount', 'DiscountController');
 
+	Route::get('/orders/exportExcelOrderList/{orderId}', 'OrderController@exportExcelOrderList');
+	Route::get('/orders/exportExcelOrder/{orderId}', 'OrderController@exportExcelOrder');
 	Route::post('/orders/updateOrderProduct', 'OrderController@updateOrderProduct');
 	Route::post('/orders/removeOrderProduct', 'OrderController@removeOrderProduct');
 	Route::post('/orders/reloadOrderListProduct', 'OrderController@reloadOrderListProduct');

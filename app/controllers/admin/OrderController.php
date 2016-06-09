@@ -260,4 +260,32 @@ class OrderController extends AdminController {
 		return CommonCart::loadViewOrderListProduct($orderId);
 	}
 
+	public function exportExcelOrderList($orderId)
+	{
+		$order = Order::find($orderId);
+		$orderExcel = OrderExcel::where('order_id', $orderId)->get();
+		return View::make('admin.order.excellist')->with(compact('order', 'orderExcel'));
+	}
+
+	public function exportExcelOrder($orderId)
+	{
+		$now = date('dmYHis', strtotime(Carbon\Carbon::now()));
+		$order = Order::find($orderId);
+		$data = OrderProduct::where('order_id', $orderId)->get();
+		$fileName = 'Order-'.$order->code.'-'.date('dmYHis', strtotime($order->created_at)).'-'.$now;
+		if($data) {
+			OrderExcel::create(['order_id' => $orderId, 'file' => $fileName.'.xlsx']);
+			Excel::create($fileName, function($excel) use ($data, $order) {
+			    $excel->sheet('Sheet1', function($sheet) use ($data, $order) {
+			        $sheet->loadView('admin.order.excelview', array('data' => $data, 'order' => $order));
+			    });
+			})
+			->store('xlsx', public_path() . '/excels/' . $orderId)
+			->export('xlsx');
+		    return Redirect::action('OrderController@exportExcelOrderList', $orderId)->with('message', 'Đã xuất file');
+		} else {
+			return Redirect::action('OrderController@exportExcelOrderList', $orderId)->with('message', 'Không có dữ liệu');
+		}
+	}
+
 }

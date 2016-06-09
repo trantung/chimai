@@ -42,6 +42,7 @@
 							<td>{{ CommonCart::getPaymentValue($value->payment) }}</td>
 							<td>{{ CommonCart::getStatusOrderValue($value->status) }}</td>
 							<td>
+								<a href="{{ action('OrderController@exportExcelOrderList', $value->id) }}" class="btn btn-success">Excel</a>
 								<a href="{{ action('OrderController@edit', $value->id) }}" class="btn btn-primary">Sửa</a>
 								{{ Form::open(array('method'=>'DELETE', 'action' => array('OrderController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
 								<button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>

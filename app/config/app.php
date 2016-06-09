@@ -126,7 +126,8 @@ return array(
 	    // 'Barryvdh\Debugbar\ServiceProvider',
 	    'Jenssegers\Agent\AgentServiceProvider',
 	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
-	    'Gloudemans\Shoppingcart\ShoppingcartServiceProvider'
+	    'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+	    'Maatwebsite\Excel\ExcelServiceProvider',
 
 	),
 
@@ -199,6 +200,7 @@ return array(
 		'Agent' 		  => 'Jenssegers\Agent\Facades\Agent',
 		'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
 		'Cart'            => 'Gloudemans\Shoppingcart\Facades\Cart',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 		
 	),
 
