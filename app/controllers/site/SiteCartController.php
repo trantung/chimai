@@ -146,15 +146,11 @@ class SiteCartController extends SiteController {
 	        			'order' => $order,
 
 	        		);
-	        	Mail::send('emails.email', $data, function($message) use ($user, $data){
-                    $message->to($user->email)
+                //send mail
+                Mail::send('emails.email', $data, function($message) use ($user, $data){
+                    $message->to(ORDER_EMAIL)->cc($user->email)
                             ->subject(trans('messages.subject'));
                 });
-                //send mail to admin
-                // Mail::send('emails.email', $data, function($message) use ($user, $data){
-                //     $message->to('vnmini2015@gmail.com')
-                //             ->subject(trans('messages.subject'));
-                // });
 
 	        	Cart::destroy();
 	        	return View::make('site.cart.checkout_success')->with(compact('order'));	

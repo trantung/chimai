@@ -155,4 +155,7 @@ define('ORDER_STATUS_5', 5);
 //company
 define('COMPANY_NAME', 'Công ty cổ phần thương mại đầu tư Toàn Cầu');
 //email tuyen dung
-define('RECRUITMENT_EMAIL', 'nmdzung@gmail.com');
+define('RECRUITMENT_EMAIL', 'info@ecotiles.vn');
+//email order
+define('ORDER_EMAIL', 'sale1.bnt@gmail.com');
+
