@@ -32,6 +32,7 @@
 				<th>Phone</th>
 				<th>Địa chỉ</th>
 				<th>Tin nhắn</th>
+				<th>File đính kèm</th>
 				<th>Ngày tạo</th>
 				<th style="width:100px;">Action</th>
 			</tr>
@@ -45,6 +46,7 @@
 				<td>{{ $value->phone }}</td>
 				<td>{{ $value->address }}</td>
 				<td>{{ nl2br($value->message) }}</td>
+				<td><a href="<?php echo SITE_UPLOAD_FILE.'/'.$value->id.'/'.$value->file_upload; ?>">{{ $value->file_upload }}</a></td>
 				<td>{{ $value->created_at }}</td>
 				<td>
 					{{ Form::open(array('method'=>'DELETE', 'action' => array('AdminContactController@destroy', $value->id), 'style' => 'display: inline-block;')) }}
